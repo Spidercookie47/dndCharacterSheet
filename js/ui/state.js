@@ -1,0 +1,19 @@
+/* Screen state: which panel, filter or form is open. (Character data lives in core/state.js.) */
+let delId = null; // character card waiting for delete confirmation
+let startSub = 'chars'; // Start tab: 'chars' | 'sources'
+let msub = 'char'; // Manage tab sub-tab
+let msg = ''; // status-bar message
+let msp = 'cast',
+  spq = '',
+  spl = '',
+  spc = '',
+  spall = false; // Magic tab: sub-tab, search, level filter, class, "any class" toggle
+let eqs = 'shop',
+  eqq = '',
+  eqn = 1,
+  ecat = 'Adventuring Gear',
+  cust = { n: '', w: '', q: 1 }; // Equipment tab
+let panel = null,
+  optBk = null; // side panel ('lvl' | 'opt' | 'sheet') and the options backup for Cancel
+let lastPv = null; // last previewed row, to detect a double click
+let srcMsg = null; // result of the last Sources action

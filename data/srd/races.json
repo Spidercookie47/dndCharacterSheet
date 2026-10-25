@@ -1,0 +1,797 @@
+{
+ "elements": [
+  {
+   "id": "Racial Trait:Darkvision",
+   "type": "Racial Trait",
+   "name": "Darkvision",
+   "desc": "See in dim light within 60 feet as if bright, and in darkness as if dim.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Dwarven Resilience",
+   "type": "Racial Trait",
+   "name": "Dwarven Resilience",
+   "desc": "Advantage on saves against poison and resistance to poison damage.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Dwarven Toughness",
+   "type": "Racial Trait",
+   "name": "Dwarven Toughness",
+   "desc": "Your hit point maximum increases by 1 per level.",
+   "rules": [
+    {
+     "stat": {
+      "hpl": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Keen Senses",
+   "type": "Racial Trait",
+   "name": "Keen Senses",
+   "desc": "You have proficiency in Perception.",
+   "rules": [
+    {
+     "grant": "skill:Perception"
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Fey Ancestry",
+   "type": "Racial Trait",
+   "name": "Fey Ancestry",
+   "desc": "Advantage on saves against being charmed; magic cannot put you to sleep.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Trance",
+   "type": "Racial Trait",
+   "name": "Trance",
+   "desc": "You meditate 4 hours instead of sleeping 8.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Lucky",
+   "type": "Racial Trait",
+   "name": "Lucky",
+   "desc": "When you roll a 1 on an attack, check or save, reroll it and use the new roll.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Brave",
+   "type": "Racial Trait",
+   "name": "Brave",
+   "desc": "Advantage on saves against being frightened.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Halfling Nimbleness",
+   "type": "Racial Trait",
+   "name": "Halfling Nimbleness",
+   "desc": "You can move through the space of any larger creature.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Naturally Stealthy",
+   "type": "Racial Trait",
+   "name": "Naturally Stealthy",
+   "desc": "You can hide behind a creature at least one size larger than you.",
+   "rules": []
+  },
+  {
+   "id": "Race:Dwarf",
+   "type": "Race",
+   "name": "Dwarf",
+   "desc": "Bold and hardy. +2 Constitution, speed 25 ft.",
+   "rules": [
+    {
+     "stat": {
+      "con": 2,
+      "speed": 25
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Language:Dwarvish"
+    },
+    {
+     "grant": "Racial Trait:Darkvision"
+    },
+    {
+     "grant": "Racial Trait:Dwarven Resilience"
+    },
+    {
+     "select": {
+      "name": "Subrace",
+      "type": "Sub Race",
+      "supports": "Race:Dwarf"
+     }
+    },
+    {
+     "pf": [
+      "w:Battleaxes",
+      "w:Handaxes",
+      "w:Light hammers",
+      "w:Warhammers"
+     ]
+    },
+    {
+     "select": {
+      "name": "Tool Proficiency",
+      "type": "Tool",
+      "supports": "Race:Dwarf"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Sub Race:Hill Dwarf",
+   "type": "Sub Race",
+   "name": "Hill Dwarf",
+   "desc": "+1 Wisdom, plus Dwarven Toughness.",
+   "rules": [
+    {
+     "stat": {
+      "wis": 1
+     }
+    },
+    {
+     "grant": "Racial Trait:Dwarven Toughness"
+    }
+   ],
+   "supports": "Race:Dwarf"
+  },
+  {
+   "id": "Race:Elf",
+   "type": "Race",
+   "name": "Elf",
+   "desc": "Graceful and long-lived. +2 Dexterity, speed 30 ft.",
+   "rules": [
+    {
+     "stat": {
+      "dex": 2,
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Language:Elvish"
+    },
+    {
+     "grant": "Racial Trait:Darkvision"
+    },
+    {
+     "grant": "Racial Trait:Keen Senses"
+    },
+    {
+     "grant": "Racial Trait:Fey Ancestry"
+    },
+    {
+     "grant": "Racial Trait:Trance"
+    },
+    {
+     "select": {
+      "name": "Subrace",
+      "type": "Sub Race",
+      "supports": "Race:Elf"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Sub Race:High Elf",
+   "type": "Sub Race",
+   "name": "High Elf",
+   "desc": "+1 Intelligence.",
+   "rules": [
+    {
+     "stat": {
+      "int": 1
+     }
+    },
+    {
+     "pf": [
+      "w:Longswords",
+      "w:Shortswords",
+      "w:Shortbows",
+      "w:Longbows"
+     ]
+    },
+    {
+     "select": {
+      "name": "Wizard cantrip",
+      "type": "Spell",
+      "n": 1,
+      "spl": "Wizard",
+      "lvl": 0
+     }
+    }
+   ],
+   "supports": "Race:Elf"
+  },
+  {
+   "id": "Race:Halfling",
+   "type": "Race",
+   "name": "Halfling",
+   "desc": "Small and nimble. +2 Dexterity, speed 25 ft.",
+   "rules": [
+    {
+     "stat": {
+      "dex": 2,
+      "speed": 25
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Language:Halfling"
+    },
+    {
+     "grant": "Racial Trait:Lucky"
+    },
+    {
+     "grant": "Racial Trait:Brave"
+    },
+    {
+     "grant": "Racial Trait:Halfling Nimbleness"
+    },
+    {
+     "select": {
+      "name": "Subrace",
+      "type": "Sub Race",
+      "supports": "Race:Halfling"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Sub Race:Lightfoot Halfling",
+   "type": "Sub Race",
+   "name": "Lightfoot Halfling",
+   "desc": "+1 Charisma, plus Naturally Stealthy.",
+   "rules": [
+    {
+     "stat": {
+      "cha": 1
+     }
+    },
+    {
+     "grant": "Racial Trait:Naturally Stealthy"
+    }
+   ],
+   "supports": "Race:Halfling"
+  },
+  {
+   "id": "Race:Human",
+   "type": "Race",
+   "name": "Human",
+   "desc": "Versatile. +1 to every ability, speed 30 ft.",
+   "rules": [
+    {
+     "stat": {
+      "str": 1,
+      "dex": 1,
+      "con": 1,
+      "int": 1,
+      "wis": 1,
+      "cha": 1,
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Ability Increase:Strength",
+   "type": "Ability Increase",
+   "name": "Strength",
+   "desc": "Your Strength score increases by 1.",
+   "rules": [
+    {
+     "stat": {
+      "str": 1
+     }
+    }
+   ],
+   "supports": "Race:Half-Elf"
+  },
+  {
+   "id": "Ability Increase:Dexterity",
+   "type": "Ability Increase",
+   "name": "Dexterity",
+   "desc": "Your Dexterity score increases by 1.",
+   "rules": [
+    {
+     "stat": {
+      "dex": 1
+     }
+    }
+   ],
+   "supports": "Race:Half-Elf"
+  },
+  {
+   "id": "Ability Increase:Constitution",
+   "type": "Ability Increase",
+   "name": "Constitution",
+   "desc": "Your Constitution score increases by 1.",
+   "rules": [
+    {
+     "stat": {
+      "con": 1
+     }
+    }
+   ],
+   "supports": "Race:Half-Elf"
+  },
+  {
+   "id": "Ability Increase:Intelligence",
+   "type": "Ability Increase",
+   "name": "Intelligence",
+   "desc": "Your Intelligence score increases by 1.",
+   "rules": [
+    {
+     "stat": {
+      "int": 1
+     }
+    }
+   ],
+   "supports": "Race:Half-Elf"
+  },
+  {
+   "id": "Ability Increase:Wisdom",
+   "type": "Ability Increase",
+   "name": "Wisdom",
+   "desc": "Your Wisdom score increases by 1.",
+   "rules": [
+    {
+     "stat": {
+      "wis": 1
+     }
+    }
+   ],
+   "supports": "Race:Half-Elf"
+  },
+  {
+   "id": "Racial Trait:Breath Weapon",
+   "type": "Racial Trait",
+   "name": "Breath Weapon",
+   "desc": "Action: exhale destructive energy based on your draconic ancestry (2d6, Dexterity or Constitution save), once per short rest.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Draconic Damage Resistance",
+   "type": "Racial Trait",
+   "name": "Draconic Damage Resistance",
+   "desc": "You have resistance to the damage type of your draconic ancestry.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Gnome Cunning",
+   "type": "Racial Trait",
+   "name": "Gnome Cunning",
+   "desc": "Advantage on Intelligence, Wisdom and Charisma saves against magic.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Artificer's Lore",
+   "type": "Racial Trait",
+   "name": "Artificer's Lore",
+   "desc": "Add double your proficiency bonus to History checks about magic items, alchemical objects or technological devices.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Tinker",
+   "type": "Racial Trait",
+   "name": "Tinker",
+   "desc": "Spend 1 hour and 10 gp to build a tiny clockwork device (clockwork toy, fire starter or music box).",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Skill Versatility",
+   "type": "Racial Trait",
+   "name": "Skill Versatility",
+   "desc": "You gain proficiency in two skills of your choice.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Menacing",
+   "type": "Racial Trait",
+   "name": "Menacing",
+   "desc": "You have proficiency in the Intimidation skill.",
+   "rules": [
+    {
+     "grant": "skill:Intimidation"
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Relentless Endurance",
+   "type": "Racial Trait",
+   "name": "Relentless Endurance",
+   "desc": "When reduced to 0 hit points but not killed, drop to 1 hit point instead, once per long rest.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Savage Attacks",
+   "type": "Racial Trait",
+   "name": "Savage Attacks",
+   "desc": "On a critical hit with a melee weapon, roll one of the weapon damage dice one additional time.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Hellish Resistance",
+   "type": "Racial Trait",
+   "name": "Hellish Resistance",
+   "desc": "You have resistance to fire damage.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Infernal Legacy",
+   "type": "Racial Trait",
+   "name": "Infernal Legacy",
+   "desc": "You know thaumaturgy, and gain hellish rebuke at 3rd level and darkness at 5th, using Charisma.",
+   "rules": [],
+   "featSpells": [
+    [
+     1,
+     "Thaumaturgy",
+     "at will"
+    ],
+    [
+     3,
+     "Hellish Rebuke",
+     "1/long rest, 2nd level"
+    ],
+    [
+     5,
+     "Darkness",
+     "1/long rest"
+    ]
+   ]
+  },
+  {
+   "id": "Draconic Ancestry:Black Dragon",
+   "type": "Draconic Ancestry",
+   "name": "Black Dragon",
+   "desc": "Acid damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Draconic Ancestry:Blue Dragon",
+   "type": "Draconic Ancestry",
+   "name": "Blue Dragon",
+   "desc": "Lightning damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Draconic Ancestry:Brass Dragon",
+   "type": "Draconic Ancestry",
+   "name": "Brass Dragon",
+   "desc": "Fire damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Draconic Ancestry:Bronze Dragon",
+   "type": "Draconic Ancestry",
+   "name": "Bronze Dragon",
+   "desc": "Lightning damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Draconic Ancestry:Copper Dragon",
+   "type": "Draconic Ancestry",
+   "name": "Copper Dragon",
+   "desc": "Acid damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Draconic Ancestry:Gold Dragon",
+   "type": "Draconic Ancestry",
+   "name": "Gold Dragon",
+   "desc": "Fire damage. Breath weapon: 15 ft cone, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Draconic Ancestry:Green Dragon",
+   "type": "Draconic Ancestry",
+   "name": "Green Dragon",
+   "desc": "Poison damage. Breath weapon: 15 ft cone, Constitution save.",
+   "rules": []
+  },
+  {
+   "id": "Draconic Ancestry:Red Dragon",
+   "type": "Draconic Ancestry",
+   "name": "Red Dragon",
+   "desc": "Fire damage. Breath weapon: 15 ft cone, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Draconic Ancestry:Silver Dragon",
+   "type": "Draconic Ancestry",
+   "name": "Silver Dragon",
+   "desc": "Cold damage. Breath weapon: 15 ft cone, Constitution save.",
+   "rules": []
+  },
+  {
+   "id": "Draconic Ancestry:White Dragon",
+   "type": "Draconic Ancestry",
+   "name": "White Dragon",
+   "desc": "Cold damage. Breath weapon: 15 ft cone, Constitution save.",
+   "rules": []
+  },
+  {
+   "id": "Race:Dragonborn",
+   "type": "Race",
+   "name": "Dragonborn",
+   "desc": "Born of dragons. +2 Strength, +1 Charisma, speed 30 ft.",
+   "rules": [
+    {
+     "stat": {
+      "str": 2,
+      "cha": 1,
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Language:Draconic"
+    },
+    {
+     "grant": "Racial Trait:Breath Weapon"
+    },
+    {
+     "grant": "Racial Trait:Draconic Damage Resistance"
+    },
+    {
+     "select": {
+      "name": "Draconic Ancestry",
+      "type": "Draconic Ancestry"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Race:Gnome",
+   "type": "Race",
+   "name": "Gnome",
+   "desc": "Small and curious. +2 Intelligence, speed 25 ft.",
+   "rules": [
+    {
+     "stat": {
+      "int": 2,
+      "speed": 25
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Language:Gnomish"
+    },
+    {
+     "grant": "Racial Trait:Darkvision"
+    },
+    {
+     "grant": "Racial Trait:Gnome Cunning"
+    },
+    {
+     "select": {
+      "name": "Subrace",
+      "type": "Sub Race",
+      "supports": "Race:Gnome"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Sub Race:Rock Gnome",
+   "type": "Sub Race",
+   "name": "Rock Gnome",
+   "desc": "+1 Constitution, plus Artificer’s Lore and Tinker.",
+   "rules": [
+    {
+     "stat": {
+      "con": 1
+     }
+    },
+    {
+     "grant": "Racial Trait:Artificer's Lore"
+    },
+    {
+     "grant": "Racial Trait:Tinker"
+    },
+    {
+     "pf": [
+      "t:Tinker’s tools"
+     ]
+    }
+   ],
+   "supports": "Race:Gnome"
+  },
+  {
+   "id": "Race:Half-Elf",
+   "type": "Race",
+   "name": "Half-Elf",
+   "desc": "Walking in two worlds. +2 Charisma and +1 to two other abilities, speed 30 ft.",
+   "rules": [
+    {
+     "stat": {
+      "cha": 2,
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Language:Elvish"
+    },
+    {
+     "select": {
+      "name": "Extra language",
+      "type": "Language"
+     }
+    },
+    {
+     "grant": "Racial Trait:Darkvision"
+    },
+    {
+     "grant": "Racial Trait:Fey Ancestry"
+    },
+    {
+     "grant": "Racial Trait:Skill Versatility"
+    },
+    {
+     "select": {
+      "name": "Skill Versatility",
+      "n": 2,
+      "from": [
+       "Acrobatics",
+       "Animal Handling",
+       "Arcana",
+       "Athletics",
+       "Deception",
+       "History",
+       "Insight",
+       "Intimidation",
+       "Investigation",
+       "Medicine",
+       "Nature",
+       "Perception",
+       "Performance",
+       "Persuasion",
+       "Religion",
+       "Sleight of Hand",
+       "Stealth",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "select": {
+      "name": "Ability Score Increase",
+      "n": 2,
+      "type": "Ability Increase",
+      "supports": "Race:Half-Elf"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Race:Half-Orc",
+   "type": "Race",
+   "name": "Half-Orc",
+   "desc": "Fierce and strong. +2 Strength, +1 Constitution, speed 30 ft.",
+   "rules": [
+    {
+     "stat": {
+      "str": 2,
+      "con": 1,
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Language:Orc"
+    },
+    {
+     "grant": "Racial Trait:Darkvision"
+    },
+    {
+     "grant": "Racial Trait:Menacing"
+    },
+    {
+     "grant": "Racial Trait:Relentless Endurance"
+    },
+    {
+     "grant": "Racial Trait:Savage Attacks"
+    }
+   ]
+  },
+  {
+   "id": "Race:Tiefling",
+   "type": "Race",
+   "name": "Tiefling",
+   "desc": "Touched by the Nine Hells. +2 Charisma, +1 Intelligence, speed 30 ft.",
+   "rules": [
+    {
+     "stat": {
+      "cha": 2,
+      "int": 1,
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Language:Infernal"
+    },
+    {
+     "grant": "Racial Trait:Darkvision"
+    },
+    {
+     "grant": "Racial Trait:Hellish Resistance"
+    },
+    {
+     "grant": "Racial Trait:Infernal Legacy"
+    }
+   ]
+  },
+  {
+   "id": "Tool:Smith’s tools",
+   "type": "Tool",
+   "name": "Smith’s tools",
+   "desc": "You gain proficiency with Smith’s tools.",
+   "rules": [
+    {
+     "pf": "t:Smith’s tools"
+    }
+   ],
+   "supports": "Race:Dwarf"
+  },
+  {
+   "id": "Tool:Brewer’s supplies",
+   "type": "Tool",
+   "name": "Brewer’s supplies",
+   "desc": "You gain proficiency with Brewer’s supplies.",
+   "rules": [
+    {
+     "pf": "t:Brewer’s supplies"
+    }
+   ],
+   "supports": "Race:Dwarf"
+  },
+  {
+   "id": "Tool:Mason’s tools",
+   "type": "Tool",
+   "name": "Mason’s tools",
+   "desc": "You gain proficiency with Mason’s tools.",
+   "rules": [
+    {
+     "pf": "t:Mason’s tools"
+    }
+   ],
+   "supports": "Race:Dwarf"
+  }
+ ]
+}

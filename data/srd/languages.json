@@ -1,0 +1,116 @@
+{
+ "elements": [
+  {
+   "id": "Language:Common",
+   "type": "Language",
+   "name": "Common",
+   "desc": "Common is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Dwarvish",
+   "type": "Language",
+   "name": "Dwarvish",
+   "desc": "Dwarvish is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Elvish",
+   "type": "Language",
+   "name": "Elvish",
+   "desc": "Elvish is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Giant",
+   "type": "Language",
+   "name": "Giant",
+   "desc": "Giant is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Gnomish",
+   "type": "Language",
+   "name": "Gnomish",
+   "desc": "Gnomish is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Goblin",
+   "type": "Language",
+   "name": "Goblin",
+   "desc": "Goblin is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Halfling",
+   "type": "Language",
+   "name": "Halfling",
+   "desc": "Halfling is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Orc",
+   "type": "Language",
+   "name": "Orc",
+   "desc": "Orc is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Abyssal",
+   "type": "Language",
+   "name": "Abyssal",
+   "desc": "Abyssal is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Celestial",
+   "type": "Language",
+   "name": "Celestial",
+   "desc": "Celestial is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Deep Speech",
+   "type": "Language",
+   "name": "Deep Speech",
+   "desc": "Deep Speech is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Draconic",
+   "type": "Language",
+   "name": "Draconic",
+   "desc": "Draconic is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Infernal",
+   "type": "Language",
+   "name": "Infernal",
+   "desc": "Infernal is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Primordial",
+   "type": "Language",
+   "name": "Primordial",
+   "desc": "Primordial is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Sylvan",
+   "type": "Language",
+   "name": "Sylvan",
+   "desc": "Sylvan is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Undercommon",
+   "type": "Language",
+   "name": "Undercommon",
+   "desc": "Undercommon is a language your character can speak, read and write.",
+   "rules": []
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "elements": [
+  {
+   "id": "Feat:Grappler",
+   "type": "Feat",
+   "name": "Grappler",
+   "desc": "Prerequisite: Strength 13. Advantage on attack rolls against a creature you are grappling, and you can use an action to pin it so you and it are both restrained.",
+   "rules": []
+  }
+ ]
+}

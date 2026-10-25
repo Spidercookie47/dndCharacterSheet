@@ -1,0 +1,5606 @@
+{
+ "elements": [
+  {
+   "id": "Fighting Style:Archery",
+   "type": "Fighting Style",
+   "name": "Archery",
+   "desc": "+2 bonus to attack rolls with ranged weapons.",
+   "rules": [],
+   "cls": "FR"
+  },
+  {
+   "id": "Fighting Style:Defense",
+   "type": "Fighting Style",
+   "name": "Defense",
+   "desc": "+1 AC while wearing armor.",
+   "rules": [
+    {
+     "stat": {
+      "acArm": 1
+     }
+    }
+   ],
+   "cls": "FPR"
+  },
+  {
+   "id": "Fighting Style:Dueling",
+   "type": "Fighting Style",
+   "name": "Dueling",
+   "desc": "+2 damage with a one-handed melee weapon and no other weapon.",
+   "rules": [],
+   "cls": "FPR"
+  },
+  {
+   "id": "Fighting Style:Protection",
+   "type": "Fighting Style",
+   "name": "Protection",
+   "desc": "Use your reaction to impose disadvantage on an attack against an adjacent ally (needs a shield).",
+   "rules": [],
+   "cls": "FP"
+  },
+  {
+   "id": "Class Feature:Spellcasting",
+   "type": "Class Feature",
+   "name": "Spellcasting",
+   "desc": "You cast wizard spells from your spellbook using Intelligence.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Cleric Spellcasting",
+   "type": "Class Feature",
+   "name": "Cleric Spellcasting",
+   "desc": "You cast cleric spells using Wisdom. Spell save DC = 8 + proficiency bonus + Wisdom modifier. You prepare Wisdom modifier + cleric level spells.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Channel Divinity",
+   "type": "Class Feature",
+   "name": "Channel Divinity",
+   "desc": "Channel divine energy for Turn Undead and a domain effect. You regain uses on a short or long rest (1 use; 2 at level 6; 3 at level 18).",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Destroy Undead",
+   "type": "Class Feature",
+   "name": "Destroy Undead",
+   "desc": "When an undead fails its save against Turn Undead, it is destroyed if its challenge rating is at or below a threshold (1/2 at level 5, rising to 4 at level 17).",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Divine Intervention",
+   "type": "Class Feature",
+   "name": "Divine Intervention",
+   "desc": "At 10th level, use your action to call on your deity: roll percentile dice, and if you roll your cleric level or lower, your deity intervenes. At 20th level it succeeds automatically.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Bonus Proficiency",
+   "type": "Class Feature",
+   "name": "Bonus Proficiency",
+   "desc": "When you choose this domain at 1st level, you gain proficiency with heavy armor.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Disciple of Life",
+   "type": "Class Feature",
+   "name": "Disciple of Life",
+   "desc": "Your healing spells are more effective. Whenever you use a spell of 1st level or higher to restore hit points to a creature, the creature regains additional hit points equal to 2 + the spell’s level.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Channel Divinity: Preserve Life",
+   "type": "Class Feature",
+   "name": "Channel Divinity: Preserve Life",
+   "desc": "As an action, restore a number of hit points equal to five times your cleric level, divided among creatures within 30 feet. A creature can be restored to no more than half its hit point maximum. Not usable on undead or constructs.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Blessed Healer",
+   "type": "Class Feature",
+   "name": "Blessed Healer",
+   "desc": "The healing spells you cast on others heal you as well. When you cast a spell of 1st level or higher that restores hit points to a creature other than you, you regain 2 + the spell’s level hit points.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Divine Strike",
+   "type": "Class Feature",
+   "name": "Divine Strike",
+   "desc": "Once on each of your turns when you hit a creature with a weapon attack, you can deal an extra 1d8 radiant damage (2d8 at 14th level).",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Supreme Healing",
+   "type": "Class Feature",
+   "name": "Supreme Healing",
+   "desc": "When you would normally roll dice to restore hit points with a spell, you instead use the highest number possible for each die.",
+   "rules": []
+  },
+  {
+   "id": "Class:Cleric",
+   "type": "Class",
+   "name": "Cleric",
+   "desc": "Hit die d8. Saves: Wisdom, Charisma. Skills: choose two from History, Insight, Medicine, Persuasion, Religion.",
+   "rules": [
+    {
+     "grant": "save:wis"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "History",
+       "Insight",
+       "Medicine",
+       "Persuasion",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Cleric Spellcasting"
+    },
+    {
+     "select": {
+      "name": "Divine Domain",
+      "type": "Divine Domain"
+     }
+    },
+    {
+     "grant": "Class Feature:Channel Divinity",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Destroy Undead",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Divine Intervention",
+     "level": 10
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Simple weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields"
+   ],
+   "casting": {
+    "ability": "wis",
+    "mode": "prep",
+    "half": false,
+    "rows": [
+     [
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": null
+   },
+   "prereq": [
+    "wis"
+   ],
+   "start": {
+    "f": [
+     [
+      "Armor:Shield",
+      1
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a mace or (b) a warhammer (if proficient)",
+      "o": [
+       [
+        {
+         "i": "Weapon:Mace",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Weapon:Warhammer",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) scale mail, (b) leather armor, or (c) chain mail (if proficient)",
+      "o": [
+       [
+        {
+         "i": "Armor:Scale Mail",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Armor:Leather Armor",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Armor:Chain Mail",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
+      "o": [
+       [
+        {
+         "i": "Weapon:Light Crossbow",
+         "q": 1
+        },
+        {
+         "i": "Gear:Crossbow bolt",
+         "q": 20
+        }
+       ],
+       [
+        {
+         "c": "simple-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a priest’s pack or (b) an explorer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Priest's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Explorer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "holy symbol",
+      "o": [
+       [
+        {
+         "c": "holy-symbols",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Rage",
+   "type": "Class Feature",
+   "name": "Rage",
+   "desc": "Bonus action: advantage on Strength checks and saves, bonus melee damage, resistance to bludgeoning, piercing and slashing damage. 2 uses at level 1, unlimited at 20",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Barbarian Unarmored Defense",
+   "type": "Class Feature",
+   "name": "Barbarian Unarmored Defense",
+   "desc": "While unarmored, AC equals 10 + Dex modifier + Con modifier",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Reckless Attack",
+   "type": "Class Feature",
+   "name": "Reckless Attack",
+   "desc": "Gain advantage on Strength melee attacks this turn, but attacks against you have advantage",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Danger Sense",
+   "type": "Class Feature",
+   "name": "Danger Sense",
+   "desc": "Advantage on Dexterity saves against effects you can see",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Fast Movement",
+   "type": "Class Feature",
+   "name": "Fast Movement",
+   "desc": "Speed increases by 10 feet while you are not in heavy armor",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Feral Instinct",
+   "type": "Class Feature",
+   "name": "Feral Instinct",
+   "desc": "Advantage on initiative rolls, and you can act normally when surprised if you rage",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Brutal Critical",
+   "type": "Class Feature",
+   "name": "Brutal Critical",
+   "desc": "Roll one extra weapon damage die on a critical hit (two at 13, three at 17)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Relentless Rage",
+   "type": "Class Feature",
+   "name": "Relentless Rage",
+   "desc": "If you drop to 0 hit points while raging, a Constitution save can keep you at 1",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Persistent Rage",
+   "type": "Class Feature",
+   "name": "Persistent Rage",
+   "desc": "Your rage ends early only if you fall unconscious or choose to end it",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Indomitable Might",
+   "type": "Class Feature",
+   "name": "Indomitable Might",
+   "desc": "If a Strength check total is lower than your Strength score, use the score instead",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Primal Champion",
+   "type": "Class Feature",
+   "name": "Primal Champion",
+   "desc": "Your Strength and Constitution scores each increase by 4, to a maximum of 24",
+   "rules": []
+  },
+  {
+   "id": "Class:Barbarian",
+   "type": "Class",
+   "name": "Barbarian",
+   "desc": "A fierce warrior of primitive background who can enter a battle rage.",
+   "rules": [
+    {
+     "grant": "save:str"
+    },
+    {
+     "grant": "save:con"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Animal Handling",
+       "Athletics",
+       "Intimidation",
+       "Nature",
+       "Perception",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Rage",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Barbarian Unarmored Defense",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Reckless Attack",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Danger Sense",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Extra Attack",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Fast Movement",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Feral Instinct",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Brutal Critical",
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Relentless Rage",
+     "level": 11
+    },
+    {
+     "grant": "Class Feature:Persistent Rage",
+     "level": 15
+    },
+    {
+     "grant": "Class Feature:Indomitable Might",
+     "level": 18
+    },
+    {
+     "grant": "Class Feature:Primal Champion",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Primal Path",
+      "type": "Subclass",
+      "supports": "Class:Barbarian"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    }
+   ],
+   "hd": 12,
+   "wp": [
+    "simple",
+    "martial"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "mp": [
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "prereq": [
+    "str"
+   ],
+   "start": {
+    "f": [
+     [
+      "Gear:Explorer's Pack",
+      1
+     ],
+     [
+      "Weapon:Javelin",
+      4
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a greataxe or (b) any martial melee weapon",
+      "o": [
+       [
+        {
+         "i": "Weapon:Greataxe",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "martial-melee-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) two handaxes or (b) any simple weapon",
+      "o": [
+       [
+        {
+         "i": "Weapon:Handaxe",
+         "q": 2
+        }
+       ],
+       [
+        {
+         "c": "simple-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Frenzy",
+   "type": "Class Feature",
+   "name": "Frenzy",
+   "desc": "While raging, make a bonus-action melee attack each turn, then suffer a level of exhaustion when the rage ends",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Mindless Rage",
+   "type": "Class Feature",
+   "name": "Mindless Rage",
+   "desc": "You cannot be charmed or frightened while raging",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Intimidating Presence",
+   "type": "Class Feature",
+   "name": "Intimidating Presence",
+   "desc": "Action: frighten a creature within 30 feet",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Retaliation",
+   "type": "Class Feature",
+   "name": "Retaliation",
+   "desc": "Reaction: make a melee attack against a creature that damages you",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Bard Spellcasting",
+   "type": "Class Feature",
+   "name": "Bard Spellcasting",
+   "desc": "Cast bard spells using Charisma as your spellcasting ability",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Bardic Inspiration",
+   "type": "Class Feature",
+   "name": "Bardic Inspiration",
+   "desc": "Bonus action: give a creature a d6 inspiration die to add to a roll (Charisma modifier uses per long rest, die grows at 5, 10 and 15)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Jack of All Trades",
+   "type": "Class Feature",
+   "name": "Jack of All Trades",
+   "desc": "Add half your proficiency bonus to ability checks you are not proficient in",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Song of Rest",
+   "type": "Class Feature",
+   "name": "Song of Rest",
+   "desc": "Allies regain extra hit points after a short rest (d6, growing with level)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Font of Inspiration",
+   "type": "Class Feature",
+   "name": "Font of Inspiration",
+   "desc": "You regain all Bardic Inspiration uses on a short or long rest",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Countercharm",
+   "type": "Class Feature",
+   "name": "Countercharm",
+   "desc": "Action: you and nearby allies gain advantage on saves against being frightened or charmed",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Magical Secrets",
+   "type": "Class Feature",
+   "name": "Magical Secrets",
+   "desc": "Learn two spells from any class list (more at 14 and 18)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Superior Inspiration",
+   "type": "Class Feature",
+   "name": "Superior Inspiration",
+   "desc": "When you roll initiative with no Bardic Inspiration left, regain one use",
+   "rules": []
+  },
+  {
+   "id": "Class:Bard",
+   "type": "Class",
+   "name": "Bard",
+   "desc": "An inspiring magician whose power echoes the music of creation.",
+   "rules": [
+    {
+     "grant": "save:dex"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 3)",
+      "n": 3,
+      "from": [
+       "Acrobatics",
+       "Animal Handling",
+       "Arcana",
+       "Athletics",
+       "Deception",
+       "History",
+       "Insight",
+       "Intimidation",
+       "Investigation",
+       "Medicine",
+       "Nature",
+       "Perception",
+       "Performance",
+       "Persuasion",
+       "Religion",
+       "Sleight of Hand",
+       "Stealth",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Bard Spellcasting",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Bardic Inspiration",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Jack of All Trades",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Song of Rest",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Expertise",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Font of Inspiration",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Countercharm",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Magical Secrets",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Superior Inspiration",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Bard College",
+      "type": "Subclass",
+      "supports": "Class:Bard"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    },
+    {
+     "expertise": 2,
+     "level": 3
+    },
+    {
+     "expertise": 2,
+     "level": 10
+    },
+    {
+     "select": {
+      "name": "Musical instruments (choose 3)",
+      "type": "Gear",
+      "n": 3,
+      "ids": [
+       "Gear:Bagpipes",
+       "Gear:Drum",
+       "Gear:Dulcimer",
+       "Gear:Flute",
+       "Gear:Lute",
+       "Gear:Lyre",
+       "Gear:Horn",
+       "Gear:Pan flute",
+       "Gear:Shawm",
+       "Gear:Viol"
+      ],
+      "tool": 1
+     },
+     "level": 1
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple",
+    "Rapier",
+    "Shortsword",
+    "Longsword"
+   ],
+   "ap": [
+    "a:Light armor",
+    "w:Simple weapons",
+    "w:Hand crossbows",
+    "w:Longswords",
+    "w:Rapiers",
+    "w:Shortswords"
+   ],
+   "mp": [
+    "a:Light armor"
+   ],
+   "casting": {
+    "ability": "cha",
+    "mode": "known",
+    "half": false,
+    "rows": [
+     [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     15,
+     16,
+     18,
+     19,
+     19,
+     20,
+     22,
+     22,
+     22
+    ]
+   },
+   "prereq": [
+    "cha"
+   ],
+   "start": {
+    "f": [
+     [
+      "Armor:Leather Armor",
+      1
+     ],
+     [
+      "Weapon:Dagger",
+      1
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a rapier, (b) a longsword, or (c) any simple weapon",
+      "o": [
+       [
+        {
+         "i": "Weapon:Rapier",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Weapon:Longsword",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "simple-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a diplomat’s pack or (b) an entertainer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Diplomat's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Entertainer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a lute or (b) any other musical instrument",
+      "o": [
+       [
+        {
+         "i": "Gear:Lute",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "musical-instruments",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Lore Bonus Proficiencies",
+   "type": "Class Feature",
+   "name": "Lore Bonus Proficiencies",
+   "desc": "Gain proficiency in three skills of your choice",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Cutting Words",
+   "type": "Class Feature",
+   "name": "Cutting Words",
+   "desc": "Reaction: subtract a Bardic Inspiration die from an enemy attack, check or damage roll",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Additional Magical Secrets",
+   "type": "Class Feature",
+   "name": "Additional Magical Secrets",
+   "desc": "Learn two spells from any class list",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Peerless Skill",
+   "type": "Class Feature",
+   "name": "Peerless Skill",
+   "desc": "Spend a Bardic Inspiration die to add it to your own ability check",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Druidic",
+   "type": "Class Feature",
+   "name": "Druidic",
+   "desc": "You know Druidic, the secret language of druids",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Druid Spellcasting",
+   "type": "Class Feature",
+   "name": "Druid Spellcasting",
+   "desc": "Cast druid spells using Wisdom as your spellcasting ability",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Wild Shape",
+   "type": "Class Feature",
+   "name": "Wild Shape",
+   "desc": "Action: magically assume the shape of a beast you have seen (twice per short rest, limits grow with level)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Beast Spells",
+   "type": "Class Feature",
+   "name": "Beast Spells",
+   "desc": "You can cast spells while in Wild Shape",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Archdruid",
+   "type": "Class Feature",
+   "name": "Archdruid",
+   "desc": "Unlimited Wild Shape uses, and you can ignore verbal and somatic components",
+   "rules": []
+  },
+  {
+   "id": "Class:Druid",
+   "type": "Class",
+   "name": "Druid",
+   "desc": "A priest of the Old Faith, wielding the powers of nature and adopting animal forms.",
+   "rules": [
+    {
+     "grant": "save:int"
+    },
+    {
+     "grant": "save:wis"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Arcana",
+       "Animal Handling",
+       "Insight",
+       "Medicine",
+       "Nature",
+       "Perception",
+       "Religion",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Druidic",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Druid Spellcasting",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Wild Shape",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Timeless Body",
+     "level": 18
+    },
+    {
+     "grant": "Class Feature:Beast Spells",
+     "level": 18
+    },
+    {
+     "grant": "Class Feature:Archdruid",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Druid Circle",
+      "type": "Subclass",
+      "supports": "Class:Druid"
+     },
+     "level": 2
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "Club",
+    "Dagger",
+    "Mace",
+    "Quarterstaff",
+    "Spear"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Clubs",
+    "w:Daggers",
+    "w:Darts",
+    "w:Javelins",
+    "w:Maces",
+    "w:Quarterstaffs",
+    "w:Scimitars",
+    "w:Sickles",
+    "w:Slings",
+    "w:Spears",
+    "t:Herbalism kit"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields"
+   ],
+   "casting": {
+    "ability": "wis",
+    "mode": "prep",
+    "half": false,
+    "rows": [
+     [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": null
+   },
+   "prereq": [
+    "wis"
+   ],
+   "start": {
+    "f": [
+     [
+      "Armor:Leather Armor",
+      1
+     ],
+     [
+      "Gear:Explorer's Pack",
+      1
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a wooden shield or (b) any simple weapon",
+      "o": [
+       [
+        {
+         "i": "Armor:Shield",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "simple-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a scimitar or (b) any simple melee weapon",
+      "o": [
+       [
+        {
+         "i": "Weapon:Scimitar",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "simple-melee-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "druidic focus",
+      "o": [
+       [
+        {
+         "c": "druidic-foci",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Bonus Cantrip",
+   "type": "Class Feature",
+   "name": "Bonus Cantrip",
+   "desc": "Learn one additional druid cantrip",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Natural Recovery",
+   "type": "Class Feature",
+   "name": "Natural Recovery",
+   "desc": "Once per day on a short rest, recover spell slots with a combined level up to half your druid level",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Circle Spells",
+   "type": "Class Feature",
+   "name": "Circle Spells",
+   "desc": "Gain extra spells tied to your chosen land type",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Nature's Ward",
+   "type": "Class Feature",
+   "name": "Nature's Ward",
+   "desc": "Immune to poison and disease, and to charm and fear from elementals and fey",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Nature's Sanctuary",
+   "type": "Class Feature",
+   "name": "Nature's Sanctuary",
+   "desc": "Beasts and plant creatures must succeed on a Wisdom save to attack you",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Second Wind",
+   "type": "Class Feature",
+   "name": "Second Wind",
+   "desc": "Bonus action: regain 1d10 + fighter level hit points, once per short rest",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Action Surge",
+   "type": "Class Feature",
+   "name": "Action Surge",
+   "desc": "Take one additional action on your turn, once per short rest (twice at level 17)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Indomitable",
+   "type": "Class Feature",
+   "name": "Indomitable",
+   "desc": "Reroll a failed saving throw, once per long rest (more uses at 13 and 17)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Extra Attack (3)",
+   "type": "Class Feature",
+   "name": "Extra Attack (3)",
+   "desc": "Attack three times when you take the Attack action",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Extra Attack (4)",
+   "type": "Class Feature",
+   "name": "Extra Attack (4)",
+   "desc": "Attack four times when you take the Attack action",
+   "rules": []
+  },
+  {
+   "id": "Class:Fighter",
+   "type": "Class",
+   "name": "Fighter",
+   "desc": "A master of martial combat, skilled with a variety of weapons and armor.",
+   "rules": [
+    {
+     "grant": "save:str"
+    },
+    {
+     "grant": "save:con"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Acrobatics",
+       "Animal Handling",
+       "Athletics",
+       "History",
+       "Insight",
+       "Intimidation",
+       "Perception",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "select": {
+      "name": "Fighting Style",
+      "type": "Fighting Style",
+      "cls": "F"
+     },
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Second Wind",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Action Surge",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Extra Attack",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Indomitable",
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Extra Attack (3)",
+     "level": 11
+    },
+    {
+     "grant": "Class Feature:Extra Attack (4)",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Martial Archetype",
+      "type": "Subclass",
+      "supports": "Class:Fighter"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 6
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 14
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    }
+   ],
+   "hd": 10,
+   "wp": [
+    "simple",
+    "martial"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Heavy armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "prereq": [
+    "str",
+    "dex"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) chain mail or (b) leather armor, longbow, and 20 arrows",
+      "o": [
+       [
+        {
+         "i": "Armor:Chain Mail",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Armor:Leather Armor",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Longbow",
+         "q": 1
+        },
+        {
+         "i": "Gear:Arrow",
+         "q": 20
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a martial weapon and a shield or (b) two martial weapons",
+      "o": [
+       [
+        {
+         "c": "martial-weapons",
+         "q": 1
+        },
+        {
+         "i": "Armor:Shield",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "martial-weapons",
+         "q": 2
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a light crossbow and 20 bolts or (b) two handaxes",
+      "o": [
+       [
+        {
+         "i": "Weapon:Light Crossbow",
+         "q": 1
+        },
+        {
+         "i": "Gear:Crossbow bolt",
+         "q": 20
+        }
+       ],
+       [
+        {
+         "i": "Weapon:Handaxe",
+         "q": 2
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Dungeoneer's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Explorer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Improved Critical",
+   "type": "Class Feature",
+   "name": "Improved Critical",
+   "desc": "Your weapon attacks score a critical hit on a roll of 19 or 20",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Remarkable Athlete",
+   "type": "Class Feature",
+   "name": "Remarkable Athlete",
+   "desc": "Add half your proficiency bonus to Strength, Dexterity and Constitution checks you lack proficiency in, and jump farther",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Superior Critical",
+   "type": "Class Feature",
+   "name": "Superior Critical",
+   "desc": "Your weapon attacks score a critical hit on a roll of 18 to 20",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Survivor",
+   "type": "Class Feature",
+   "name": "Survivor",
+   "desc": "At the start of your turn, regain 5 + Con modifier hit points if you are below half your maximum",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Monk Unarmored Defense",
+   "type": "Class Feature",
+   "name": "Monk Unarmored Defense",
+   "desc": "While unarmored and without a shield, AC equals 10 + Dex modifier + Wis modifier",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Martial Arts",
+   "type": "Class Feature",
+   "name": "Martial Arts",
+   "desc": "Use Dexterity for unarmed strikes and monk weapons, roll a martial arts die (d4, growing with level) and make a bonus unarmed strike",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Ki",
+   "type": "Class Feature",
+   "name": "Ki",
+   "desc": "Gain ki points equal to your monk level to fuel Flurry of Blows, Patient Defense and Step of the Wind",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Unarmored Movement",
+   "type": "Class Feature",
+   "name": "Unarmored Movement",
+   "desc": "Speed increases by 10 feet while unarmored (more at higher levels)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Deflect Missiles",
+   "type": "Class Feature",
+   "name": "Deflect Missiles",
+   "desc": "Reaction: reduce damage from a ranged weapon attack by 1d10 + Dex modifier + monk level",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Slow Fall",
+   "type": "Class Feature",
+   "name": "Slow Fall",
+   "desc": "Reaction: reduce falling damage by five times your monk level",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Stunning Strike",
+   "type": "Class Feature",
+   "name": "Stunning Strike",
+   "desc": "Spend 1 ki when you hit to force a Constitution save or the target is stunned",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Ki-Empowered Strikes",
+   "type": "Class Feature",
+   "name": "Ki-Empowered Strikes",
+   "desc": "Your unarmed strikes count as magical",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Stillness of Mind",
+   "type": "Class Feature",
+   "name": "Stillness of Mind",
+   "desc": "Action: end one effect on yourself that is charming or frightening you",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Purity of Body",
+   "type": "Class Feature",
+   "name": "Purity of Body",
+   "desc": "You are immune to disease and poison",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Tongue of the Sun and Moon",
+   "type": "Class Feature",
+   "name": "Tongue of the Sun and Moon",
+   "desc": "You understand all spoken languages",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Diamond Soul",
+   "type": "Class Feature",
+   "name": "Diamond Soul",
+   "desc": "You are proficient in all saving throws",
+   "rules": [
+    {
+     "grant": "save:str"
+    },
+    {
+     "grant": "save:dex"
+    },
+    {
+     "grant": "save:con"
+    },
+    {
+     "grant": "save:int"
+    },
+    {
+     "grant": "save:wis"
+    },
+    {
+     "grant": "save:cha"
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Timeless Body",
+   "type": "Class Feature",
+   "name": "Timeless Body",
+   "desc": "You age much more slowly and no longer suffer the frailty of old age",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Empty Body",
+   "type": "Class Feature",
+   "name": "Empty Body",
+   "desc": "Spend 4 ki to become invisible for 1 minute and resist all damage but force damage",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Perfect Self",
+   "type": "Class Feature",
+   "name": "Perfect Self",
+   "desc": "When you roll initiative with no ki, regain 4 ki",
+   "rules": []
+  },
+  {
+   "id": "Class:Monk",
+   "type": "Class",
+   "name": "Monk",
+   "desc": "A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection.",
+   "rules": [
+    {
+     "grant": "save:str"
+    },
+    {
+     "grant": "save:dex"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Acrobatics",
+       "Athletics",
+       "History",
+       "Insight",
+       "Religion",
+       "Stealth"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Monk Unarmored Defense",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Martial Arts",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Ki",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Unarmored Movement",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Deflect Missiles",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Slow Fall",
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Extra Attack",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Stunning Strike",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Ki-Empowered Strikes",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Evasion",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Stillness of Mind",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Purity of Body",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Tongue of the Sun and Moon",
+     "level": 13
+    },
+    {
+     "grant": "Class Feature:Diamond Soul",
+     "level": 14
+    },
+    {
+     "grant": "Class Feature:Timeless Body",
+     "level": 15
+    },
+    {
+     "grant": "Class Feature:Empty Body",
+     "level": 18
+    },
+    {
+     "grant": "Class Feature:Perfect Self",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Monastic Tradition",
+      "type": "Subclass",
+      "supports": "Class:Monk"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    },
+    {
+     "select": {
+      "name": "Artisan’s tools or an instrument",
+      "type": "Gear",
+      "n": 1,
+      "ids": [
+       "Gear:Alchemist's Supplies",
+       "Gear:Brewer's Supplies",
+       "Gear:Calligrapher's Supplies",
+       "Gear:Carpenter's Tools",
+       "Gear:Cartographer's Tools",
+       "Gear:Cobbler's Tools",
+       "Gear:Cook's utensils",
+       "Gear:Glassblower's Tools",
+       "Gear:Jeweler's Tools",
+       "Gear:Leatherworker's Tools",
+       "Gear:Mason's Tools",
+       "Gear:Painter's Supplies",
+       "Gear:Potter's Tools",
+       "Gear:Smith's Tools",
+       "Gear:Tinker's Tools",
+       "Gear:Weaver's Tools",
+       "Gear:Woodcarver's Tools",
+       "Gear:Bagpipes",
+       "Gear:Drum",
+       "Gear:Dulcimer",
+       "Gear:Flute",
+       "Gear:Lute",
+       "Gear:Lyre",
+       "Gear:Horn",
+       "Gear:Pan flute",
+       "Gear:Shawm",
+       "Gear:Viol"
+      ],
+      "tool": 1
+     },
+     "level": 1
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple",
+    "Shortsword"
+   ],
+   "ap": [
+    "w:Simple weapons",
+    "w:Shortswords"
+   ],
+   "mp": [
+    "w:Simple weapons",
+    "w:Shortswords"
+   ],
+   "prereq": [
+    "&",
+    "dex",
+    "wis"
+   ],
+   "start": {
+    "f": [
+     [
+      "Weapon:Dart",
+      10
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a shortsword or (b) any simple weapon",
+      "o": [
+       [
+        {
+         "i": "Weapon:Shortsword",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "simple-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Dungeoneer's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Explorer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Open Hand Technique",
+   "type": "Class Feature",
+   "name": "Open Hand Technique",
+   "desc": "When you hit with Flurry of Blows you can push, knock prone or deny reactions",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Wholeness of Body",
+   "type": "Class Feature",
+   "name": "Wholeness of Body",
+   "desc": "Action: regain hit points equal to three times your monk level, once per long rest",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Tranquility",
+   "type": "Class Feature",
+   "name": "Tranquility",
+   "desc": "At the end of a long rest, gain the effect of sanctuary until your next long rest",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Quivering Palm",
+   "type": "Class Feature",
+   "name": "Quivering Palm",
+   "desc": "When you hit with an unarmed strike, spend 3 ki to start lethal vibrations in the target",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Divine Sense",
+   "type": "Class Feature",
+   "name": "Divine Sense",
+   "desc": "Action: sense celestials, fiends and undead within 60 feet (1 + Cha modifier uses per long rest)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Lay on Hands",
+   "type": "Class Feature",
+   "name": "Lay on Hands",
+   "desc": "Pool of healing equal to five times your paladin level to restore hit points or cure disease",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Paladin Spellcasting",
+   "type": "Class Feature",
+   "name": "Paladin Spellcasting",
+   "desc": "Cast paladin spells using Charisma as your spellcasting ability",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Divine Smite",
+   "type": "Class Feature",
+   "name": "Divine Smite",
+   "desc": "When you hit with a melee weapon, spend a spell slot to deal extra radiant damage (2d8 plus 1d8 per slot level above 1)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Divine Health",
+   "type": "Class Feature",
+   "name": "Divine Health",
+   "desc": "You are immune to disease",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Aura of Protection",
+   "type": "Class Feature",
+   "name": "Aura of Protection",
+   "desc": "You and allies within 10 feet add your Charisma modifier to saving throws",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Aura of Courage",
+   "type": "Class Feature",
+   "name": "Aura of Courage",
+   "desc": "You and allies within 10 feet cannot be frightened",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Improved Divine Smite",
+   "type": "Class Feature",
+   "name": "Improved Divine Smite",
+   "desc": "Your melee weapon hits deal an extra 1d8 radiant damage",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Cleansing Touch",
+   "type": "Class Feature",
+   "name": "Cleansing Touch",
+   "desc": "Action: end one spell on yourself or a willing creature (Charisma modifier uses per long rest)",
+   "rules": []
+  },
+  {
+   "id": "Class:Paladin",
+   "type": "Class",
+   "name": "Paladin",
+   "desc": "A holy warrior bound to a sacred oath.",
+   "rules": [
+    {
+     "grant": "save:wis"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Athletics",
+       "Insight",
+       "Intimidation",
+       "Medicine",
+       "Persuasion",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Divine Sense",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Lay on Hands",
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Fighting Style",
+      "type": "Fighting Style",
+      "cls": "P"
+     },
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Paladin Spellcasting",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Divine Smite",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Divine Health",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Extra Attack",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Aura of Protection",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Aura of Courage",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Improved Divine Smite",
+     "level": 11
+    },
+    {
+     "grant": "Class Feature:Cleansing Touch",
+     "level": 14
+    },
+    {
+     "select": {
+      "name": "Sacred Oath",
+      "type": "Subclass",
+      "supports": "Class:Paladin"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    }
+   ],
+   "hd": 10,
+   "wp": [
+    "simple",
+    "martial"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Heavy armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "casting": {
+    "ability": "cha",
+    "mode": "prep",
+    "half": true,
+    "rows": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "known": null
+   },
+   "prereq": [
+    "&",
+    "str",
+    "cha"
+   ],
+   "start": {
+    "f": [
+     [
+      "Armor:Chain Mail",
+      1
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a martial weapon and a shield or (b) two martial weapons",
+      "o": [
+       [
+        {
+         "c": "martial-weapons",
+         "q": 1
+        },
+        {
+         "i": "Armor:Shield",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "martial-weapons",
+         "q": 2
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) five javelins or (b) any simple melee weapon",
+      "o": [
+       [
+        {
+         "i": "Weapon:Javelin",
+         "q": 5
+        }
+       ],
+       [
+        {
+         "c": "simple-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a priest’s pack or (b) an explorer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Priest's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Explorer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "holy symbol",
+      "o": [
+       [
+        {
+         "c": "holy-symbols",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Channel Divinity: Sacred Weapon",
+   "type": "Class Feature",
+   "name": "Channel Divinity: Sacred Weapon",
+   "desc": "Add Charisma modifier to attack rolls with a weapon for 1 minute",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Turn the Unholy",
+   "type": "Class Feature",
+   "name": "Turn the Unholy",
+   "desc": "Action: fiends and undead within 30 feet must succeed on a Wisdom save or be turned",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Devotion Oath Spells",
+   "type": "Class Feature",
+   "name": "Devotion Oath Spells",
+   "desc": "Gain extra oath spells as you level",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Aura of Devotion",
+   "type": "Class Feature",
+   "name": "Aura of Devotion",
+   "desc": "You and allies within 10 feet cannot be charmed",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Purity of Spirit",
+   "type": "Class Feature",
+   "name": "Purity of Spirit",
+   "desc": "You are always under the effect of protection from evil and good",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Holy Nimbus",
+   "type": "Class Feature",
+   "name": "Holy Nimbus",
+   "desc": "Action: emit an aura of sunlight for 1 minute that burns nearby enemies",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Favored Enemy",
+   "type": "Class Feature",
+   "name": "Favored Enemy",
+   "desc": "Gain advantage on tracking and recalling information about a chosen type of enemy",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Natural Explorer",
+   "type": "Class Feature",
+   "name": "Natural Explorer",
+   "desc": "Gain travel benefits in your favored terrain",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Ranger Spellcasting",
+   "type": "Class Feature",
+   "name": "Ranger Spellcasting",
+   "desc": "Cast ranger spells using Wisdom as your spellcasting ability",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Primeval Awareness",
+   "type": "Class Feature",
+   "name": "Primeval Awareness",
+   "desc": "Spend a spell slot to sense certain creature types within 1 mile",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Extra Attack",
+   "type": "Class Feature",
+   "name": "Extra Attack",
+   "desc": "Attack twice when you take the Attack action",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Land's Stride",
+   "type": "Class Feature",
+   "name": "Land's Stride",
+   "desc": "Move through nonmagical difficult terrain without extra movement and pass through nonmagical plants unharmed",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Hide in Plain Sight",
+   "type": "Class Feature",
+   "name": "Hide in Plain Sight",
+   "desc": "Spend 1 minute camouflaging yourself to gain +10 to Stealth checks",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Vanish",
+   "type": "Class Feature",
+   "name": "Vanish",
+   "desc": "Hide as a bonus action and you cannot be tracked by nonmagical means",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Feral Senses",
+   "type": "Class Feature",
+   "name": "Feral Senses",
+   "desc": "You have no disadvantage when attacking creatures you cannot see",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Foe Slayer",
+   "type": "Class Feature",
+   "name": "Foe Slayer",
+   "desc": "Once per turn add your Wisdom modifier to an attack or damage roll against a favored enemy",
+   "rules": []
+  },
+  {
+   "id": "Class:Ranger",
+   "type": "Class",
+   "name": "Ranger",
+   "desc": "A warrior who uses martial prowess and nature magic to combat threats on the edges of civilization.",
+   "rules": [
+    {
+     "grant": "save:str"
+    },
+    {
+     "grant": "save:dex"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 3)",
+      "n": 3,
+      "from": [
+       "Animal Handling",
+       "Athletics",
+       "Insight",
+       "Investigation",
+       "Nature",
+       "Perception",
+       "Stealth",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Favored Enemy",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Natural Explorer",
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Fighting Style",
+      "type": "Fighting Style",
+      "cls": "R"
+     },
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Ranger Spellcasting",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Primeval Awareness",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Extra Attack",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Land's Stride",
+     "level": 8
+    },
+    {
+     "grant": "Class Feature:Hide in Plain Sight",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Vanish",
+     "level": 14
+    },
+    {
+     "grant": "Class Feature:Feral Senses",
+     "level": 18
+    },
+    {
+     "grant": "Class Feature:Foe Slayer",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Ranger Archetype",
+      "type": "Subclass",
+      "supports": "Class:Ranger"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    },
+    {
+     "select": {
+      "name": "Favored Enemy",
+      "type": "Favored Enemy",
+      "n": 1
+     },
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Favored Enemy (level 6)",
+      "type": "Favored Enemy",
+      "n": 1
+     },
+     "level": 6
+    },
+    {
+     "select": {
+      "name": "Favored Enemy (level 14)",
+      "type": "Favored Enemy",
+      "n": 1
+     },
+     "level": 14
+    },
+    {
+     "select": {
+      "name": "Favored Terrain",
+      "type": "Favored Terrain",
+      "n": 1
+     },
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Favored Terrain (level 6)",
+      "type": "Favored Terrain",
+      "n": 2
+     },
+     "level": 6
+    },
+    {
+     "select": {
+      "name": "Favored Terrain (level 10)",
+      "type": "Favored Terrain",
+      "n": 2
+     },
+     "level": 10
+    }
+   ],
+   "hd": 10,
+   "wp": [
+    "simple",
+    "martial"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "casting": {
+    "ability": "wis",
+    "mode": "known",
+    "half": true,
+    "rows": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "known": [
+     0,
+     2,
+     3,
+     3,
+     4,
+     4,
+     5,
+     5,
+     6,
+     6,
+     7,
+     7,
+     8,
+     8,
+     9,
+     9,
+     10,
+     10,
+     11,
+     11
+    ]
+   },
+   "prereq": [
+    "&",
+    "dex",
+    "wis"
+   ],
+   "start": {
+    "f": [
+     [
+      "Weapon:Longbow",
+      1
+     ],
+     [
+      "Gear:Arrow",
+      20
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) scale mail or (b) leather armor",
+      "o": [
+       [
+        {
+         "i": "Armor:Scale Mail",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Armor:Leather Armor",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) two shortswords or (b) two simple melee weapons",
+      "o": [
+       [
+        {
+         "i": "Weapon:Shortsword",
+         "q": 2
+        }
+       ],
+       [
+        {
+         "c": "simple-melee-weapons",
+         "q": 2
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Dungeoneer's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Explorer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Hunter's Prey",
+   "type": "Class Feature",
+   "name": "Hunter's Prey",
+   "desc": "Choose Colossus Slayer, Giant Killer or Horde Breaker",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Defensive Tactics",
+   "type": "Class Feature",
+   "name": "Defensive Tactics",
+   "desc": "Choose Escape the Horde, Multiattack Defense or Steel Will",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Hunter Multiattack",
+   "type": "Class Feature",
+   "name": "Hunter Multiattack",
+   "desc": "Choose Volley or Whirlwind Attack",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Superior Hunter's Defense",
+   "type": "Class Feature",
+   "name": "Superior Hunter's Defense",
+   "desc": "Choose Evasion, Stand Against the Tide or Uncanny Dodge",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Expertise",
+   "type": "Class Feature",
+   "name": "Expertise",
+   "desc": "Double your proficiency bonus for two skill proficiencies of your choice",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Sneak Attack",
+   "type": "Class Feature",
+   "name": "Sneak Attack",
+   "desc": "Once per turn, deal extra damage (1d6 at level 1, +1d6 every two levels) when you have advantage or an ally is adjacent to the target",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Thieves' Cant",
+   "type": "Class Feature",
+   "name": "Thieves' Cant",
+   "desc": "You know thieves' cant, a secret mix of dialect, jargon and code",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Cunning Action",
+   "type": "Class Feature",
+   "name": "Cunning Action",
+   "desc": "Bonus action: Dash, Disengage or Hide",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Uncanny Dodge",
+   "type": "Class Feature",
+   "name": "Uncanny Dodge",
+   "desc": "Reaction: halve the damage from an attack you can see",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Evasion",
+   "type": "Class Feature",
+   "name": "Evasion",
+   "desc": "On Dexterity saves, take no damage on a success and half damage on a failure",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Reliable Talent",
+   "type": "Class Feature",
+   "name": "Reliable Talent",
+   "desc": "Treat any d20 roll of 9 or lower as a 10 on skill checks you are proficient in",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Blindsense",
+   "type": "Class Feature",
+   "name": "Blindsense",
+   "desc": "You are aware of hidden or invisible creatures within 10 feet",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Slippery Mind",
+   "type": "Class Feature",
+   "name": "Slippery Mind",
+   "desc": "Gain proficiency in Wisdom saving throws",
+   "rules": [
+    {
+     "grant": "save:wis"
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Elusive",
+   "type": "Class Feature",
+   "name": "Elusive",
+   "desc": "No attack roll has advantage against you while you are not incapacitated",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Stroke of Luck",
+   "type": "Class Feature",
+   "name": "Stroke of Luck",
+   "desc": "Turn a missed attack into a hit or a failed check into a 20, once per short rest",
+   "rules": []
+  },
+  {
+   "id": "Class:Rogue",
+   "type": "Class",
+   "name": "Rogue",
+   "desc": "A scoundrel who uses stealth and trickery to overcome obstacles and enemies.",
+   "rules": [
+    {
+     "grant": "save:dex"
+    },
+    {
+     "grant": "save:int"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 4)",
+      "n": 4,
+      "from": [
+       "Acrobatics",
+       "Athletics",
+       "Deception",
+       "Insight",
+       "Intimidation",
+       "Investigation",
+       "Perception",
+       "Performance",
+       "Persuasion",
+       "Sleight of Hand",
+       "Stealth"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Expertise",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Sneak Attack",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Thieves' Cant",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Cunning Action",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Uncanny Dodge",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Evasion",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Reliable Talent",
+     "level": 11
+    },
+    {
+     "grant": "Class Feature:Blindsense",
+     "level": 14
+    },
+    {
+     "grant": "Class Feature:Slippery Mind",
+     "level": 15
+    },
+    {
+     "grant": "Class Feature:Elusive",
+     "level": 18
+    },
+    {
+     "grant": "Class Feature:Stroke of Luck",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Roguish Archetype",
+      "type": "Subclass",
+      "supports": "Class:Rogue"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 10
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    },
+    {
+     "expertise": 2,
+     "level": 1
+    },
+    {
+     "expertise": 2,
+     "level": 6
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple",
+    "Rapier",
+    "Shortsword",
+    "Longsword"
+   ],
+   "ap": [
+    "a:Light armor",
+    "w:Simple weapons",
+    "w:Hand crossbows",
+    "w:Longswords",
+    "w:Rapiers",
+    "w:Shortswords",
+    "t:Thieves’ tools"
+   ],
+   "mp": [
+    "a:Light armor",
+    "t:Thieves’ tools"
+   ],
+   "prereq": [
+    "dex"
+   ],
+   "start": {
+    "f": [
+     [
+      "Armor:Leather Armor",
+      1
+     ],
+     [
+      "Weapon:Dagger",
+      2
+     ],
+     [
+      "Gear:Thieves' Tools",
+      1
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a rapier or (b) a shortsword",
+      "o": [
+       [
+        {
+         "i": "Weapon:Rapier",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Weapon:Shortsword",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a shortbow and quiver of 20 arrows or (b) a shortsword",
+      "o": [
+       [
+        {
+         "i": "Weapon:Shortbow",
+         "q": 1
+        },
+        {
+         "i": "Gear:Arrow",
+         "q": 20
+        }
+       ],
+       [
+        {
+         "i": "Weapon:Shortsword",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a burglar’s pack, (b) a dungeoneer’s pack, or (c) an explorer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Burglar's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Dungeoneer's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Explorer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Fast Hands",
+   "type": "Class Feature",
+   "name": "Fast Hands",
+   "desc": "Use Cunning Action to make a Sleight of Hand check, use thieves' tools or take the Use an Object action",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Second-Story Work",
+   "type": "Class Feature",
+   "name": "Second-Story Work",
+   "desc": "Climbing costs no extra movement and your running jump distance increases",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Supreme Sneak",
+   "type": "Class Feature",
+   "name": "Supreme Sneak",
+   "desc": "Advantage on Stealth checks if you move no more than half your speed",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Use Magic Device",
+   "type": "Class Feature",
+   "name": "Use Magic Device",
+   "desc": "Ignore class, race and level requirements on magic items",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Thief's Reflexes",
+   "type": "Class Feature",
+   "name": "Thief's Reflexes",
+   "desc": "You take two turns in the first round of combat",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Sorcerer Spellcasting",
+   "type": "Class Feature",
+   "name": "Sorcerer Spellcasting",
+   "desc": "Cast sorcerer spells using Charisma as your spellcasting ability",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Font of Magic",
+   "type": "Class Feature",
+   "name": "Font of Magic",
+   "desc": "Gain sorcery points equal to your sorcerer level and convert them to and from spell slots",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Metamagic",
+   "type": "Class Feature",
+   "name": "Metamagic",
+   "desc": "Choose two Metamagic options to twist your spells (more at 10 and 17)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Sorcerous Restoration",
+   "type": "Class Feature",
+   "name": "Sorcerous Restoration",
+   "desc": "Regain 4 expended sorcery points on a short rest",
+   "rules": []
+  },
+  {
+   "id": "Class:Sorcerer",
+   "type": "Class",
+   "name": "Sorcerer",
+   "desc": "A spellcaster who draws on inherent magic from a gift or bloodline.",
+   "rules": [
+    {
+     "grant": "save:con"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Arcana",
+       "Deception",
+       "Insight",
+       "Intimidation",
+       "Persuasion",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Sorcerer Spellcasting",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Font of Magic",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Metamagic",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Sorcerous Restoration",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Sorcerous Origin",
+      "type": "Subclass",
+      "supports": "Class:Sorcerer"
+     },
+     "level": 1
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    },
+    {
+     "select": {
+      "name": "Metamagic",
+      "type": "Metamagic",
+      "n": 2
+     },
+     "level": 3
+    },
+    {
+     "select": {
+      "name": "Metamagic (level 10)",
+      "type": "Metamagic",
+      "n": 1
+     },
+     "level": 10
+    },
+    {
+     "select": {
+      "name": "Metamagic (level 17)",
+      "type": "Metamagic",
+      "n": 1
+     },
+     "level": 17
+    }
+   ],
+   "hd": 6,
+   "wp": [
+    "Dagger",
+    "Quarterstaff",
+    "Light Crossbow"
+   ],
+   "ap": [
+    "w:Daggers",
+    "w:Darts",
+    "w:Slings",
+    "w:Quarterstaffs",
+    "w:Light crossbows"
+   ],
+   "mp": [],
+   "casting": {
+    "ability": "cha",
+    "mode": "known",
+    "half": false,
+    "rows": [
+     [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     12,
+     13,
+     13,
+     14,
+     14,
+     15,
+     15,
+     15,
+     15
+    ]
+   },
+   "prereq": [
+    "cha"
+   ],
+   "start": {
+    "f": [
+     [
+      "Weapon:Dagger",
+      2
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
+      "o": [
+       [
+        {
+         "i": "Weapon:Light Crossbow",
+         "q": 1
+        },
+        {
+         "i": "Gear:Crossbow bolt",
+         "q": 20
+        }
+       ],
+       [
+        {
+         "c": "simple-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a component pouch or (b) an arcane focus",
+      "o": [
+       [
+        {
+         "i": "Gear:Component pouch",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "arcane-foci",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Dungeoneer's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Explorer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Dragon Ancestor",
+   "type": "Class Feature",
+   "name": "Dragon Ancestor",
+   "desc": "Choose a dragon type, you speak Draconic and double your proficiency on Charisma checks with dragons",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Draconic Resilience",
+   "type": "Class Feature",
+   "name": "Draconic Resilience",
+   "desc": "Hit point maximum +1 per sorcerer level, and unarmored AC is 13 + Dex modifier",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Elemental Affinity",
+   "type": "Class Feature",
+   "name": "Elemental Affinity",
+   "desc": "Add Charisma modifier to damage of your ancestry type and spend 1 sorcery point for resistance",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Dragon Wings",
+   "type": "Class Feature",
+   "name": "Dragon Wings",
+   "desc": "Bonus action: sprout wings and gain a flying speed equal to your walking speed",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Draconic Presence",
+   "type": "Class Feature",
+   "name": "Draconic Presence",
+   "desc": "Spend 5 sorcery points to project an aura of awe or fear",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Pact Magic",
+   "type": "Class Feature",
+   "name": "Pact Magic",
+   "desc": "Cast warlock spells with a few slots that recharge on a short rest, using Charisma",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Eldritch Invocations",
+   "type": "Class Feature",
+   "name": "Eldritch Invocations",
+   "desc": "Learn two eldritch invocations (more as you level)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Pact Boon",
+   "type": "Class Feature",
+   "name": "Pact Boon",
+   "desc": "Choose the Pact of the Chain, Blade or Tome",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Mystic Arcanum",
+   "type": "Class Feature",
+   "name": "Mystic Arcanum",
+   "desc": "Choose a 6th-level spell to cast once per long rest (7th at 13, 8th at 15, 9th at 17)",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Eldritch Master",
+   "type": "Class Feature",
+   "name": "Eldritch Master",
+   "desc": "Spend 1 minute to regain all your expended pact slots",
+   "rules": []
+  },
+  {
+   "id": "Class:Warlock",
+   "type": "Class",
+   "name": "Warlock",
+   "desc": "A wielder of magic that is derived from a bargain with an extraplanar entity.",
+   "rules": [
+    {
+     "grant": "save:wis"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Arcana",
+       "Deception",
+       "History",
+       "Intimidation",
+       "Investigation",
+       "Nature",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Pact Magic",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Eldritch Invocations",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Pact Boon",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Mystic Arcanum",
+     "level": 11
+    },
+    {
+     "grant": "Class Feature:Eldritch Master",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Otherworldly Patron",
+      "type": "Subclass",
+      "supports": "Class:Warlock"
+     },
+     "level": 1
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    },
+    {
+     "select": {
+      "name": "Pact Boon",
+      "type": "Pact Boon",
+      "n": 1
+     },
+     "level": 3
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocations",
+      "type": "Invocation",
+      "n": 2
+     },
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocation (level 5)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 5
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocation (level 7)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 7
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocation (level 9)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 9
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocation (level 12)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 12
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocation (level 15)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 15
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocation (level 18)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 18
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple"
+   ],
+   "ap": [
+    "a:Light armor",
+    "w:Simple weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "w:Simple weapons"
+   ],
+   "casting": {
+    "ability": "cha",
+    "mode": "known",
+    "half": false,
+    "rows": [
+     [
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "known": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     10,
+     11,
+     11,
+     12,
+     12,
+     13,
+     13,
+     14,
+     14,
+     15,
+     15
+    ]
+   },
+   "prereq": [
+    "cha"
+   ],
+   "start": {
+    "f": [
+     [
+      "Weapon:Dagger",
+      2
+     ],
+     [
+      "Armor:Leather Armor",
+      1
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
+      "o": [
+       [
+        {
+         "i": "Weapon:Light Crossbow",
+         "q": 1
+        },
+        {
+         "i": "Gear:Crossbow bolt",
+         "q": 20
+        }
+       ],
+       [
+        {
+         "c": "simple-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a component pouch or (b) an arcane focus",
+      "o": [
+       [
+        {
+         "i": "Gear:Component pouch",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "arcane-foci",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a scholar’s pack or (b) a dungeoneer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Scholar's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Dungeoneer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "any simple weapon",
+      "o": [
+       [
+        {
+         "c": "simple-weapons",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Dark One's Blessing",
+   "type": "Class Feature",
+   "name": "Dark One's Blessing",
+   "desc": "When you reduce a hostile creature to 0 hit points, gain temporary hit points equal to Charisma modifier + warlock level",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Dark One's Own Luck",
+   "type": "Class Feature",
+   "name": "Dark One's Own Luck",
+   "desc": "Add a d10 to an ability check or saving throw, once per short rest",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Fiendish Resilience",
+   "type": "Class Feature",
+   "name": "Fiendish Resilience",
+   "desc": "Choose a damage type to resist after each short or long rest",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Hurl Through Hell",
+   "type": "Class Feature",
+   "name": "Hurl Through Hell",
+   "desc": "When you hit a creature, send it through the lower planes for 10d10 psychic damage",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Wizard Spellcasting",
+   "type": "Class Feature",
+   "name": "Wizard Spellcasting",
+   "desc": "Cast wizard spells from your spellbook using Intelligence as your spellcasting ability",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Arcane Recovery",
+   "type": "Class Feature",
+   "name": "Arcane Recovery",
+   "desc": "Once per day on a short rest, recover spell slots with a combined level up to half your wizard level",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Spell Mastery",
+   "type": "Class Feature",
+   "name": "Spell Mastery",
+   "desc": "Choose a 1st- and a 2nd-level spell to cast at will",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Signature Spells",
+   "type": "Class Feature",
+   "name": "Signature Spells",
+   "desc": "Two 3rd-level spells are always prepared and can each be cast once at 3rd level for free",
+   "rules": []
+  },
+  {
+   "id": "Class:Wizard",
+   "type": "Class",
+   "name": "Wizard",
+   "desc": "A scholarly magic-user capable of manipulating the structures of reality.",
+   "rules": [
+    {
+     "grant": "save:int"
+    },
+    {
+     "grant": "save:wis"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Arcana",
+       "History",
+       "Insight",
+       "Investigation",
+       "Medicine",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Wizard Spellcasting",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Arcane Recovery",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Spell Mastery",
+     "level": 18
+    },
+    {
+     "grant": "Class Feature:Signature Spells",
+     "level": 20
+    },
+    {
+     "select": {
+      "name": "Arcane Tradition",
+      "type": "Subclass",
+      "supports": "Class:Wizard"
+     },
+     "level": 2
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19
+    }
+   ],
+   "hd": 6,
+   "wp": [
+    "Dagger",
+    "Quarterstaff",
+    "Light Crossbow"
+   ],
+   "ap": [
+    "w:Daggers",
+    "w:Darts",
+    "w:Slings",
+    "w:Quarterstaffs",
+    "w:Light crossbows"
+   ],
+   "mp": [],
+   "casting": {
+    "ability": "int",
+    "mode": "book",
+    "half": false,
+    "rows": [
+     [
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": null
+   },
+   "prereq": [
+    "int"
+   ],
+   "start": {
+    "f": [
+     [
+      "Gear:Spellbook",
+      1
+     ]
+    ],
+    "g": [
+     {
+      "d": "(a) a quarterstaff or (b) a dagger",
+      "o": [
+       [
+        {
+         "i": "Weapon:Quarterstaff",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Weapon:Dagger",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a component pouch or (b) an arcane focus",
+      "o": [
+       [
+        {
+         "i": "Gear:Component pouch",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "c": "arcane-foci",
+         "q": 1
+        }
+       ]
+      ]
+     },
+     {
+      "d": "(a) a scholar’s pack or (b) an explorer’s pack",
+      "o": [
+       [
+        {
+         "i": "Gear:Scholar's Pack",
+         "q": 1
+        }
+       ],
+       [
+        {
+         "i": "Gear:Explorer's Pack",
+         "q": 1
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Class Feature:Evocation Savant",
+   "type": "Class Feature",
+   "name": "Evocation Savant",
+   "desc": "Halve the gold and time to copy evocation spells into your spellbook",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Sculpt Spells",
+   "type": "Class Feature",
+   "name": "Sculpt Spells",
+   "desc": "Choose creatures to automatically succeed on saves against your evocation spells",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Potent Cantrip",
+   "type": "Class Feature",
+   "name": "Potent Cantrip",
+   "desc": "Targets that save against your damage cantrips still take half damage",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Empowered Evocation",
+   "type": "Class Feature",
+   "name": "Empowered Evocation",
+   "desc": "Add Intelligence modifier to one damage roll of an evocation spell",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Overchannel",
+   "type": "Class Feature",
+   "name": "Overchannel",
+   "desc": "Maximize damage of a 5th-level or lower wizard spell",
+   "rules": []
+  },
+  {
+   "id": "Fighting Style:Great Weapon Fighting",
+   "type": "Fighting Style",
+   "name": "Great Weapon Fighting",
+   "desc": "Reroll 1s and 2s on damage dice with a two-handed melee weapon.",
+   "rules": [],
+   "cls": "FP"
+  },
+  {
+   "id": "Fighting Style:Two-Weapon Fighting",
+   "type": "Fighting Style",
+   "name": "Two-Weapon Fighting",
+   "desc": "Add your ability modifier to the damage of your second attack.",
+   "rules": [],
+   "cls": "FR"
+  }
+ ]
+}

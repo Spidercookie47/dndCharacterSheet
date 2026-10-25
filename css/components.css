@@ -1,0 +1,546 @@
+/* Rows, cards, forms, tables, drawers and the character sheet. */
+h2,
+h3 {
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+h2 {
+  font-size: 1.6rem;
+}
+h3 {
+  font-size: 1rem;
+  margin-top: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.ph {
+  background: var(--head);
+  padding: 5px 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.ph:first-child {
+  margin-top: 0;
+}
+.rw {
+  display: flex;
+  gap: 10px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--line);
+}
+.rw:hover {
+  background: var(--sel);
+}
+.rw.pv {
+  background: var(--sel);
+  box-shadow: inset 3px 0 var(--acc);
+}
+.rw.on {
+  color: var(--ok);
+}
+.rw > span:first-child {
+  flex: 1;
+}
+.src {
+  color: var(--mut);
+}
+.x {
+  margin-left: 10px;
+  color: var(--mut);
+  cursor: pointer;
+}
+.hint {
+  color: var(--mut);
+}
+button,
+.btn {
+  font: inherit;
+  font-weight: 500;
+  background: var(--btn);
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+button[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+.btn.alt,
+button.alt {
+  background: var(--head);
+  color: var(--ink);
+}
+.lnk {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+.card {
+  position: relative;
+  width: 170px;
+  min-height: 96px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  cursor: pointer;
+  border-radius: 4px;
+}
+.card:hover {
+  border-color: var(--acc);
+}
+.card small {
+  display: block;
+  color: var(--mut);
+}
+.card .x {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+}
+.abs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+.abc {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  text-align: center;
+  padding: 10px 6px;
+}
+.abc b {
+  display: block;
+  font-size: 2.2rem;
+  line-height: 1.1;
+}
+.abc .m {
+  display: inline-block;
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  padding: 0 10px;
+  margin: 4px 0;
+}
+.abc button {
+  padding: 0 8px;
+  background: var(--head);
+}
+.bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+label {
+  display: block;
+  font-weight: 500;
+  margin: 10px 0 3px;
+}
+input[type='text'],
+input[type='number'],
+select {
+  width: 100%;
+  max-width: 420px;
+  font: inherit;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--ink);
+}
+.cs h2 {
+  font-size: 1.7rem;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.stat,
+.ab {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px;
+  text-align: center;
+  background: var(--panel);
+}
+.stat b,
+.ab b {
+  display: block;
+  font-size: 1.4rem;
+}
+.stat span,
+.ab span {
+  color: var(--mut);
+  font-size: 0.85rem;
+}
+.abg {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 560px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+  .abg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+ul.sk {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.sk li {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  border-bottom: 1px dotted var(--line);
+}
+ul.sk li.p {
+  font-weight: 700;
+  color: var(--acc);
+}
+details {
+  border-top: 1px solid var(--line);
+  padding: 6px 0;
+}
+summary {
+  cursor: pointer;
+  font-weight: 500;
+}
+details p {
+  margin: 4px 0 2px;
+  color: var(--mut);
+}
+textarea {
+  width: 100%;
+  font: inherit;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--ink);
+}
+.fg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 14px;
+}
+.fg label,
+.left > label {
+  margin: 8px 0 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+.fg input,
+.fg select,
+.fg textarea {
+  max-width: none;
+  text-transform: none;
+  color: var(--ink);
+  font-size: 15px;
+}
+.tw {
+  overflow-x: auto;
+}
+.tb {
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 6px 0;
+}
+.tb th,
+.tb td {
+  border: 1px solid var(--line);
+  padding: 2px 6px;
+  text-align: center;
+}
+.tb td:nth-child(2) {
+  text-align: left;
+  min-width: 150px;
+}
+.kv {
+  display: flex;
+  gap: 14px;
+  border-bottom: 1px solid var(--line);
+  padding: 2px 0;
+}
+.kv b {
+  min-width: 44px;
+}
+.ov {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  overflow: auto;
+  z-index: 9;
+  padding: 14px;
+}
+.ov[hidden] {
+  display: none;
+}
+.ovb {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.dr {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 100%);
+  background: var(--panel);
+  border-left: 1px solid var(--line);
+  z-index: 8;
+  overflow: auto;
+  padding: 16px;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.4);
+}
+.dr[hidden] {
+  display: none;
+}
+.dh {
+  display: flex;
+  justify-content: space-between;
+  background: var(--head);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+.xp {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--mut);
+}
+.xb {
+  flex: 1;
+  height: 4px;
+  background: var(--line);
+}
+.xb i {
+  display: block;
+  height: 100%;
+  background: var(--acc);
+}
+.cc {
+  border: 1px dashed var(--line);
+  padding: 10px;
+  margin: 10px 0;
+}
+.hr {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--mut);
+}
+.hr input {
+  flex: 1;
+}
+.hrs {
+  flex: 1;
+}
+.hr b {
+  color: var(--acc);
+  min-width: 60px;
+  text-align: right;
+}
+.oc {
+  display: block;
+  border: 1px dashed var(--line);
+  padding: 10px;
+  margin: 10px 0;
+  text-transform: none;
+  font-size: inherit;
+  color: var(--ink);
+}
+.oc small {
+  display: block;
+  color: var(--mut);
+  margin-top: 4px;
+}
+.av {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--line);
+}
+.av.big {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 12px auto;
+  background: var(--sel);
+}
+.skc {
+  columns: 2;
+  font-size: 13px;
+}
+h2,
+h3,
+.brand,
+.ph {
+  font-family: Fraunces, Georgia, serif;
+}
+h3 {
+  border-bottom: 1px solid var(--line);
+}
+.lnk {
+  text-transform: none;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--sel);
+}
+.lnk:hover {
+  box-shadow: inset 0 0 0 1px var(--acc);
+}
+button,
+.btn {
+  border-radius: 999px;
+  padding: 7px 16px;
+}
+.ph {
+  background: none;
+  padding: 0 0 5px;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-top: 20px;
+}
+.ph .src {
+  font-family: Figtree, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+.rw {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin: 6px 0;
+  padding: 8px 12px;
+  background: var(--panel);
+}
+.rw:hover {
+  border-color: var(--mut);
+  background: var(--sel);
+}
+.rw.pv {
+  border-color: var(--acc);
+  box-shadow: 0 0 0 1px var(--acc);
+}
+.rw.on {
+  border-color: var(--ok);
+}
+.card {
+  border-radius: 16px;
+  background: var(--panel);
+}
+.abc,
+.stat,
+.ab,
+.cc,
+.oc {
+  border-radius: 12px;
+}
+input[type='text'],
+input[type='number'],
+select,
+textarea {
+  border-radius: 8px;
+}
+.dr {
+  border-radius: 18px 0 0 18px;
+}
+.dh {
+  border-radius: 12px;
+  font-family: Fraunces, Georgia, serif;
+}
+.xb {
+  border-radius: 4px;
+}
+.xb i {
+  border-radius: 4px;
+}
+.hint {
+  color: var(--mut);
+}
+.rw select {
+  width: auto;
+  max-width: 230px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 8px 0;
+}
+.chips .lnk.on {
+  box-shadow: inset 0 0 0 1px var(--acc);
+}
+h4 {
+  margin: 14px 0 4px;
+  font-size: 0.95rem;
+}
+.tb.tm td,
+.tb.tm th {
+  text-align: left;
+  vertical-align: top;
+}
+details .tw {
+  margin: 6px 0;
+}
+details h3,
+details h4 {
+  color: var(--ink);
+}
+.opt {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 5px 0;
+}
+.opt input {
+  margin-top: 5px;
+}
+.opt small {
+  color: var(--mut);
+  display: block;
+  font-weight: 400;
+}

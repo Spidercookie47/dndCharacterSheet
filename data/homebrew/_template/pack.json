@@ -1,0 +1,54 @@
+{
+  "format": "hearthscribe-pack",
+  "version": 1,
+  "source": { "id": "my-homebrew", "name": "My Homebrew", "short": "Homebrew" },
+
+  "elements": [
+    { "id": "Racial Trait:Stone Sense", "type": "Racial Trait", "name": "Stone Sense",
+      "desc": "You can sense the shape of stonework within 30 feet, even through walls." },
+
+    { "id": "Race:Stoneborn", "type": "Race", "name": "Stoneborn",
+      "desc": "Hardy folk of the deep hills. +2 Constitution, speed 25 ft.",
+      "rules": [
+        { "stat": { "con": 2, "speed": 25 } },
+        { "grant": "Language:Common" },
+        { "grant": "Racial Trait:Stone Sense" },
+        { "select": { "name": "Extra language", "type": "Language" } }
+      ] },
+
+    { "id": "Class Feature:Tinker's Insight", "type": "Class Feature", "name": "Tinker's Insight",
+      "desc": "Once per short rest, add your Intelligence modifier to a check made with tools." },
+
+    { "id": "Class:Tinkerer", "type": "Class", "name": "Tinkerer", "hd": 8,
+      "desc": "A quick-handed inventor who solves problems with gadgets and a little magic.",
+      "ap": ["a:Light armor", "w:Simple weapons", "t:Tinker's tools"],
+      "mp": ["a:Light armor", "t:Tinker's tools"],
+      "prereq": ["int"],
+      "rules": [
+        { "grant": "save:con" }, { "grant": "save:int" },
+        { "select": { "name": "Skills (choose 2)", "n": 2, "from": ["Arcana", "History", "Investigation", "Medicine", "Nature", "Perception", "Sleight of Hand"] } },
+        { "grant": "Class Feature:Tinker's Insight", "level": 1 },
+        { "asi": 1, "level": 4 }, { "asi": 1, "level": 8 }, { "asi": 1, "level": 12 }, { "asi": 1, "level": 16 }, { "asi": 1, "level": 19 }
+      ],
+      "casting": { "ability": "int", "mode": "prep", "half": true,
+        "rows": [[0,0,0,0,0,0,0,0,0,0],[2,2,0,0,0,0,0,0,0,0],[2,3,0,0,0,0,0,0,0,0],[2,3,0,0,0,0,0,0,0,0],[2,4,2,0,0,0,0,0,0,0],[2,4,2,0,0,0,0,0,0,0],[2,4,3,0,0,0,0,0,0,0],[2,4,3,0,0,0,0,0,0,0],[2,4,3,2,0,0,0,0,0,0],[3,4,3,2,0,0,0,0,0,0],[3,4,3,3,0,0,0,0,0,0],[3,4,3,3,0,0,0,0,0,0],[3,4,3,3,1,0,0,0,0,0],[3,4,3,3,1,0,0,0,0,0],[3,4,3,3,2,0,0,0,0,0],[3,4,3,3,2,0,0,0,0,0],[4,4,3,3,3,1,0,0,0,0],[4,4,3,3,3,1,0,0,0,0],[4,4,3,3,3,2,0,0,0,0],[4,4,3,3,3,2,0,0,0,0]],
+        "known": null } },
+
+    { "id": "Spell:Pebble Barrage", "type": "Spell", "name": "Pebble Barrage",
+      "lvl": 1, "school": "evocation", "comp": "V,S,M", "mat": "a handful of pebbles",
+      "cast": "1 action", "range": "60 feet", "dur": "Instantaneous", "ritual": false,
+      "lists": ["Wizard", "Tinkerer"],
+      "desc": "Hurl a spray of pebbles at a creature you can see. It makes a Dexterity save or takes 2d6 bludgeoning damage." },
+
+    { "id": "Magic:Charm of the Hearth", "type": "Magic", "name": "Charm of the Hearth",
+      "cg": "Wondrous Items", "rar": "Uncommon", "att": true, "cp": 0, "wt": 0,
+      "desc": "A small iron charm, always warm. While attuned to it you gain +1 AC and +1 to saving throws.",
+      "effect": { "ac": 1, "saves": 1, "att": 1 } }
+  ],
+
+  "info": {
+    "Race:Stoneborn": "STONEBORN\nThe Stoneborn live in halls cut beneath the hills.\n\nSTONEBORN TRAITS\nAbility Score Increase.Your Constitution score increases by 2.\nSpeed.Your base walking speed is 25 feet.\nStone Sense.You can sense the shape of stonework within 30 feet."
+  },
+
+  "tables": { "trinkets": [ "A chip of glowing stone", "A tiny hammer with a worn handle" ] }
+}
