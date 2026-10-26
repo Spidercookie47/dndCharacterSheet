@@ -55,7 +55,24 @@ function main() {
 
 function draw() {
   if (tab !== 'start' || store.chars.some((c) => c.id === ch.id)) persist();
+
+  // 1) capture scroll before anything is rebuilt
+  const SEL = ['#main', '#main .left', '#main .right', '#sl', '#el', '#dr'];
+  const saved = SEL.map((s) => {
+    const el = document.querySelector(s);
+    return el ? { s, y: el.scrollTop } : null;
+  }).filter((x) => x && x.y > 0);
+  const pageY = window.scrollY;
+
+  // 2) redraw as before
   chrome();
   main();
   drawer();
+
+  // 3) put scroll positions back
+  saved.forEach(({ s, y }) => {
+    const el = document.querySelector(s);
+    if (el) el.scrollTop = y;
+  });
+  if (window.scrollY !== pageY) window.scrollTo(0, pageY);
 }
