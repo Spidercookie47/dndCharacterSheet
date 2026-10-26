@@ -9,12 +9,53 @@ function model() {
     d = ch.d,
     L = r.els.filter((e) => e.type === 'Language').map((e) => e.name);
   const SX = spellFill(r, c);
+
+  /* ----- class line with subclass ----- */
+  const I = idx(),
+    lc = classLevels(ch),
+    entries = Object.entries(lc);
+
+  // collect every subclass ID from three sources
+  const subIds = new Set();
+  r.sels.forEach((s) => {
+    if (s.kind === 'Subclass' || s.kind === 'Divine Domain') s.chosen.forEach((id) => subIds.add(id));
+  });
+  r.els.forEach((e) => {
+    if (e.type === 'Subclass' || e.type === 'Divine Domain') subIds.add(e.id);
+  });
+  Object.values(ch.picks || {}).forEach((arr) => {
+    if (Array.isArray(arr)) arr.forEach((id) => subIds.add(id));
+  });
+  const subs = [...subIds].map((id) => I[id]).filter(Boolean);
+
+  // match subclass → class by any of the linkage fields used across data packs
+  const matchSub = (e, clsId, clsName) => {
+    if (e.type !== 'Subclass' && e.type !== 'Divine Domain') return false;
+    if (e.supports) {
+      return (
+        e.supports === clsId ||
+        e.supports === clsName ||
+        String(e.supports).endsWith(':' + clsName)
+      );
+    }
+    const link = e.cls || e.class || e.parent || e.parentClass;
+    return link ? String(link).toLowerCase().includes(clsName.toLowerCase()) : false;
+  };
+
+  const classLevel = entries
+    .map(([k, n]) => {
+      const clsName = (I[k] || {}).name || '';
+      let sub = subs.find((e) => matchSub(e, k, clsName));
+      // last resort: single class + single subclass → use it
+      if (!sub && entries.length === 1 && subs.length === 1) sub = subs[0];
+      return clsName + (sub ? ' (' + sub.name + ')' : '') + ' ' + n;
+    })
+    .join(' / ');
+
   return {
     xchecks: SX.ck,
     name: ch.name,
-    classLevel: Object.entries(classLevels(ch))
-      .map(([k, n]) => ((idx()[k] || {}).name || '') + ' ' + n)
-      .join(' / '),
+    classLevel,
     bg: bg ? bg.name : '',
     race: (sr || rc || {}).name || '',
     scores: c.sc,
