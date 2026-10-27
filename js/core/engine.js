@@ -5,7 +5,8 @@ function resolve(ch) {
   const asi = [],
     exp = [],
     pfs = new Set(),
-    langs = [];
+    langs = [],
+    fx = [];
   const I = idx(),
     els = [],
     sels = [],
@@ -45,6 +46,7 @@ function resolve(ch) {
         return;
       }
       if (r.grant) give(r.grant);
+      if (r.acFormula || r.speedBonus || r.halfProf || r.saveBonus) fx.push(r);
       if (r.stat) for (const k in r.stat) stats[k] = k === 'speed' ? r.stat[k] : (stats[k] || 0) + r.stat[k];
       if (r.select) {
         const s = r.select,
@@ -114,11 +116,11 @@ function resolve(ch) {
       });
     });
   }
-  return { els, sels, stats, prof, asi, exp, pfs, langs, cls: I[ch.cls] };
+  return { els, sels, stats, prof, asi, exp, pfs, langs, fx, cls: I[ch.cls] };
 }
 function calc(ch, r) {
   const sc = {};
-  AB.forEach((a) => (sc[a] = Math.min(20, ch.ab[a] + (r.stats[a] || 0) + asiB(ch, r, a))));
+  AB.forEach((a) => (sc[a] = Math.min((ch.opt || {}).uncap ? 30 : 20, ch.ab[a] + (r.stats[a] || 0) + asiB(ch, r, a))));
   {
     const sb = magicB(ch).set;
     AB.forEach((a) => {
@@ -144,10 +146,16 @@ function calc(ch, r) {
     const p = r.prof.has('skill:' + s),
       x = p && exs.has(s),
       a = SK[s],
-      hh = Math.max(half, ['str', 'dex', 'con'].includes(a) ? ra : 0);
+      hh = Math.max(half, ['str', 'dex', 'con'].includes(a) ? ra : 0, halfBonus(r, a, pb));
     sk[s] = { p, x, v: mod(sc[a]) + (p ? pb * (x ? 2 : 1) : hh) };
   }
-  const aura = (hasF(r, 'Aura of Protection') ? Math.max(1, mod(sc.cha)) : 0) + magicB(ch).saves;
+  const aura =
+    Math.max(
+      hasF(r, 'Aura of Protection') ? Math.max(1, mod(sc.cha)) : 0,
+      ...(r.fx || [])
+        .filter((x) => x.saveBonus)
+        .map((x) => Math.max(x.saveBonus.min || 0, (x.saveBonus.mod ? mod(sc[x.saveBonus.mod]) : 0) + (x.saveBonus.n || 0))),
+    ) + magicB(ch).saves;
   const sv = {};
   AB.forEach((a) => {
     const p = r.prof.has('save:' + a);
@@ -160,8 +168,8 @@ function calc(ch, r) {
     ac,
     sk,
     sv,
-    init: dm + Math.max(half, ra),
-    speed: (r.stats.speed || 30) + speedB(ch, r),
+    init: dm + Math.max(half, ra, halfBonus(r, 'dex', pb)),
+    speed: (r.stats.speed || 30) + speedB(ch, r, { sc, pb }),
     pp: 10 + sk.Perception.v,
   };
 }
@@ -177,6 +185,13 @@ const asiB = (c, r, a) =>
           : 0)
     );
   }, 0);
+/* Half-proficiency style bonus from data rules: {"halfProf": {"abilities": "all" | ["str","dex","con"], "round": "up" | "down"}} */
+const halfBonus = (r, a, pb) =>
+  (r.fx || []).reduce((m, x) => {
+    const h = x.halfProf;
+    if (!h || !(h.abilities === 'all' || (h.abilities || []).includes(a))) return m;
+    return Math.max(m, h.round === 'up' ? Math.ceil(pb / 2) : Math.floor(pb / 2));
+  }, 0);
 const hasF = (r, n) => r.els.some((e) => e.id === 'Class Feature:' + n);
 function armorAC(c, r, ea, sc) {
   const dm = mod(sc.dex),
@@ -187,6 +202,11 @@ function armorAC(c, r, ea, sc) {
   if (hasF(r, 'Barbarian Unarmored Defense')) b = Math.max(b, 10 + dm + mod(sc.con));
   if (hasF(r, 'Monk Unarmored Defense') && !sh) b = Math.max(b, 10 + dm + mod(sc.wis));
   if (hasF(r, 'Draconic Resilience')) b = Math.max(b, 13 + dm);
+  (r.fx || []).forEach((x) => {
+    const f = x.acFormula;
+    if (f && !(f.noShield && sh))
+      b = Math.max(b, (f.base || 10) + (f.add || []).reduce((t, a) => t + mod(sc[a]), 0));
+  });
   return b + (sh ? 2 : 0);
 }
 function magicB(c) {
@@ -211,7 +231,7 @@ function acCalc(c, r, ea, sc) {
     sh = (c.inv || []).some((i) => i.eq && I[i.id] && I[i.id].kind === 'Shield');
   return armorAC(c, r, ea, sc) + mb.ac + (!ea.worn && !sh ? mb.brac : 0);
 }
-function speedB(c, r) {
+function speedB(c, r, cc) {
   const I = idx(),
     eq = (c.inv || []).filter((i) => i.eq && I[i.id]).map((i) => I[i.id]),
     arm = eq.find((e) => e.type === 'Armor' && e.kind !== 'Shield'),
@@ -221,5 +241,10 @@ function speedB(c, r) {
   if (hasF(r, 'Fast Movement') && !(arm && arm.kind === 'Heavy')) b += 10;
   if (hasF(r, 'Unarmored Movement') && !arm && !sh)
     b += l >= 18 ? 30 : l >= 14 ? 25 : l >= 10 ? 20 : l >= 6 ? 15 : l >= 2 ? 10 : 0;
+  (r.fx || []).forEach((x) => {
+    const s = x.speedBonus;
+    if (!s || (s.noHeavy && arm && arm.kind === 'Heavy') || (s.unarmored && (arm || sh))) return;
+    b += resMax(s.max, cc || { sc: {}, pb: 0 }, (n) => classLevels(c)['Class:' + n] || 0);
+  });
   return b;
 }

@@ -125,8 +125,8 @@ on('ab', (d) => {
     n = ch.ab[k] + +d.d,
     buy = ch.method === 'buy',
     lo = buy ? 8 : 3,
-    hi = buy ? 15 : 18;
-  if (n < lo || n > hi) return false;
+    hi = buy ? 15 : ch.opt.uncap ? 30 : 18;
+  if (n < lo || (n > hi && +d.d > 0)) return false;
   const old = ch.ab[k];
   ch.ab[k] = n;
   if (

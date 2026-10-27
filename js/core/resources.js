@@ -57,8 +57,41 @@ function resources(r, c) {
     if (ch.level >= 3) add('hr', 'Hellish Rebuke (racial)', 1, 'L');
     if (ch.level >= 5) add('dk', 'Darkness (racial)', 1, 'L');
   }
+  /* resources defined in pack data: { "resource": { id, name, max, rest, min, note, class } } */
+  r.els.forEach((e) =>
+    (e.rules || []).forEach((rl) => {
+      const x = rl.resource;
+      if (!x || !x.name) return;
+      if (x.class && rl.level && L(x.class) < rl.level) return;
+      add(
+        'hb:' + (x.id || e.id + ':' + x.name),
+        x.name,
+        Math.max(x.min || 0, resMax(x.max, c, L)),
+        x.rest === 'S' ? 'S' : 'L',
+        x.note,
+      );
+    }),
+  );
   const S = slotsFor(r);
   S.sl.forEach((x, i) => add('slot' + (i + 1), 'Level ' + (i + 1) + ' spell slots', x, 'L'));
   if (S.pact) add('pact', 'Pact slots (level ' + S.pact.l + ')', S.pact.n, 'S');
   return R;
+}
+
+/* How many uses a data-defined resource has. A number, "unlimited", one part, or a list of parts that are added.
+   Parts: {"n":3} · {"class":"Name"} (class level) · {"class":"Name","table":[20 numbers]} · {"mod":"int"} · {"pb":true},
+   each optionally with "mult" and "div" (rounded down). */
+function resMax(m, c, L) {
+  if (m === 'unlimited') return Infinity;
+  if (typeof m === 'number') return m;
+  if (Array.isArray(m)) return m.reduce((t, p) => t + resMax(p, c, L), 0);
+  if (!m || typeof m !== 'object') return 0;
+  const lv = m.class ? L(m.class) : 0;
+  let v = 0;
+  if ('n' in m) v = +m.n || 0;
+  else if (m.table) v = lv ? m.table[Math.min(lv, m.table.length) - 1] || 0 : 0;
+  else if (m.class) v = lv;
+  else if (m.mod) v = mod(c.sc[m.mod]);
+  else if (m.pb) v = c.pb;
+  return Math.floor((v * (m.mult || 1)) / (m.div || 1));
 }

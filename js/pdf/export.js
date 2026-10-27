@@ -130,7 +130,15 @@ function model() {
     caster: casterInfo(r, c),
   };
 }
-const mk = async () => fillSheet(PDFLib, await Loader.sheetPdf(), buildFields(model()));
+const mk = async () => {
+  const sheet = await fillSheet(PDFLib, await Loader.sheetPdf(), buildFields(model()));
+  try {
+    return await addSpellCards(PDFLib, sheet, preparedSpells());
+  } catch (e) {
+    note('Spell cards skipped: ' + ((e && e.message) || e));
+    return sheet;
+  }
+};
 async function pdf() {
   try {
     const bytes = await mk();

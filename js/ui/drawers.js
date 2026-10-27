@@ -78,6 +78,11 @@ function drawer() {
           'Multiclassing',
           'Multiclassing allows you to gain levels in multiple classes. To qualify for a new class, you must meet the ability score prerequisites for both your current class and your new one.',
         ],
+        [
+          'uncap',
+          'Ability scores above 20',
+          'Lets ability scores go up to 30 instead of stopping at 20. Meant for NPCs and monsters built by a DM.',
+        ],
       ]
         .map(
           ([k, n, d]) =>

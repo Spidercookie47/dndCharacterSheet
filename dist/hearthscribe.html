@@ -1166,7 +1166,7 @@ function resolve(ch) {
 }
 function calc(ch, r) {
   const sc = {};
-  AB.forEach((a) => (sc[a] = Math.min(20, ch.ab[a] + (r.stats[a] || 0) + asiB(ch, r, a))));
+  AB.forEach((a) => (sc[a] = Math.min(ch.uncap ? 30 : 20, ch.ab[a] + (r.stats[a] || 0) + asiB(ch, r, a))));
   {
     const sb = magicB(ch).set;
     AB.forEach((a) => {
@@ -3656,7 +3656,7 @@ on('ab', (d) => {
     n = ch.ab[k] + +d.d,
     buy = ch.method === 'buy',
     lo = buy ? 8 : 3,
-    hi = buy ? 15 : 18;
+    hi = buy ? 15 : (ch.opt || {}).uncap ? 30 : 18;
   if (n < lo || n > hi) return false;
   const old = ch.ab[k];
   ch.ab[k] = n;
