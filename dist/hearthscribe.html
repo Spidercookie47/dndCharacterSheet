@@ -2507,6 +2507,25 @@ let srcMsg = null; // result of the last Sources action
 
 /* ===== js/ui/rich.js ===== */
 /* Turns the plain-text or HTML descriptions in the data files into readable panels. */
+/* Pack text may contain HTML (tables). Packs can come from other people's links, so keep only harmless markup. */
+const _clean = new Map();
+function cleanHtml(h) {
+  if (_clean.has(h)) return _clean.get(h);
+  const t = document.createElement('template'); // inert: nothing in it runs or loads
+  t.innerHTML = h;
+  t.content.querySelectorAll('script,style,iframe,object,embed,link,meta,base,form,svg,math').forEach((n) => n.remove());
+  t.content.querySelectorAll('*').forEach((n) =>
+    [...n.attributes].forEach((a) => {
+      const k = a.name.toLowerCase(), v = a.value.trim().toLowerCase();
+      const ok = ['class', 'colspan', 'rowspan', 'title'].includes(k) || (k === 'href' && /^https?:/.test(v));
+      if (!ok) n.removeAttribute(a.name);
+    }),
+  );
+  const out = t.innerHTML;
+  _clean.set(h, out);
+  return out;
+}
+
 function rich(t) {
   const H = ['Level', 'Features', 'Cantrips', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th'];
   let o = '',
@@ -2525,6 +2544,14 @@ function rich(t) {
   for (const raw of t.split('\n').slice(1)) {
     const l = raw.trim();
     if (!l || /^Level Features Cantrips/.test(l)) continue;
+
+    // --- FIX: If the line contains ANY HTML tags, render it directly! ---
+    if (/<[a-z][\s\S]*>/i.test(l)) {
+      fl();
+      o += cleanHtml(l);
+      continue;
+    }
+    // --------------------------------------------------------------------
     const tk = l.split(' ');
     if (/^\d+(st|nd|rd|th) /.test(l) && tk.length >= 12 && tk.slice(-10).every((x) => /^(\d+|—)$/.test(x))) {
       tb.push(
@@ -2659,7 +2686,7 @@ function descPane() {
     on = ro ? ch[pv.k] === pv.id : (ch.picks[pv.k] || []).includes(pv.id);
   return (
     `<h2>${esc(e.name)}</h2><p><button data-a="pick" data-id="${esc(pv.id)}" data-k="${esc(pv.k)}"${on && ro ? ' disabled' : ''}>${on ? (ro ? 'Selected' : 'Remove') : 'Select'}</button></p>` +
-    (INFO[e.id][0] === '<' ? INFO[e.id] : rich(INFO[e.id]))
+    (INFO[e.id][0] === '<' ? cleanHtml(INFO[e.id]) : rich(INFO[e.id]))
   );
 }
 const KP = (r) =>
@@ -3300,7 +3327,7 @@ function sheetHTML() {
 <div><h3>Skills</h3><ul class="sk">${Object.entries(c.sk)
     .map(([n, s]) => `<li class="${s.p ? 'p' : ''}"><span>${n}</span><span>${sg(s.v)}</span></li>`)
     .join('')}</ul></div></div>
-<h3 style="margin-top:14px">Features</h3>${feats.map((f) => `<details><summary>${esc(f.name)}</summary>${INFO[f.id] && INFO[f.id][0] === '<' ? INFO[f.id] : '<p>' + esc(f.desc) + '</p>'}</details>`).join('') || '<p class="hint">Features from your race, class and background appear here.</p>'}`;
+<h3 style="margin-top:14px">Features</h3>${feats.map((f) => `<details><summary>${esc(f.name)}</summary>${INFO[f.id] && INFO[f.id][0] === '<' ? cleanHtml(INFO[f.id]) : '<p>' + esc(f.desc) + '</p>'}</details>`).join('') || '<p class="hint">Features from your race, class and background appear here.</p>'}`;
 }
 function resHtml() {
   const r = resolve(ch),
