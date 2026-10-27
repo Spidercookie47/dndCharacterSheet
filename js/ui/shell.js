@@ -41,7 +41,7 @@ function chrome() {
   const n = store.chars.length,
     on = Loader.packs.filter((p) => p.enabled).length;
   $('#status').innerHTML =
-    `<span>${esc(msg) || 'Saved in this browser · ' + n + ' character' + (n == 1 ? '' : 's')}</span><span>${on} content source${on == 1 ? '' : 's'} · Hearthscribe 0.5</span>`;
+    `<span>${esc(msg) || 'Saved in this browser · ' + n + ' character' + (n == 1 ? '' : 's')}</span><span>${on} content source${on == 1 ? '' : 's'} · Hearthscribe 0.7</span>`;
 }
 
 function main() {
