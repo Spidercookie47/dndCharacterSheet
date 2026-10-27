@@ -3,7 +3,7 @@ const rows = (opts, key, chosen) =>
   opts
     .map(
       (o) =>
-        `<div class="rw${chosen.includes(o.id) ? ' on' : ''}${pv && pv.id === o.id && pv.k === key ? ' pv' : ''}" data-a="pv" data-id="${esc(o.id)}" data-k="${esc(key)}"><span>${chosen.includes(o.id) ? '✓ ' : ''}${esc(o.name)}</span><span class="src">SRD</span></div>`,
+        `<div class="rw${chosen.includes(o.id) ? ' on' : ''}${pv && pv.id === o.id && pv.k === key ? ' pv' : ''}" data-a="pv" data-id="${esc(o.id)}" data-k="${esc(key)}"><span>${chosen.includes(o.id) ? '✓ ' : ''}${esc(o.name)}</span>${o.src ? `<span class="src">${esc(o.src)}</span>` : ''}</div>`,
     )
     .join('');
 function root(t, k, ty) {
@@ -11,7 +11,7 @@ function root(t, k, ty) {
   return (
     `<div class="ph"><span>${t}</span></div>` +
     (e
-      ? `<div class="rw on" data-a="pv" data-id="${esc(e.id)}" data-k="${k}"><span>✓ ${esc(e.name)}</span><span class="src">SRD<b class="x" data-a="rm" data-k="${k}" title="Remove">✕</b></span></div>`
+      ? `<div class="rw on" data-a="pv" data-id="${esc(e.id)}" data-k="${k}"><span>✓ ${esc(e.name)}</span><span class="src">${esc(e.src || 'SRD')}<b class="x" data-a="rm" data-k="${k}" title="Remove">✕</b></span></div>`
       : rows(ofType(ty), k, []))
   );
 }
