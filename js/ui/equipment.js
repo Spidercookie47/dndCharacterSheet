@@ -2,7 +2,7 @@
 function eqPane(e) {
   const mg = e.type === 'Magic';
   return (
-    `<h2>${esc(e.name)}</h2><p class="hint">${esc(e.cg)}${e.rar ? ' · ' + esc(e.rar) : ''}${e.att ? ' · requires attunement' : ''}</p>` +
+    `<h2>${esc(e.name)}</h2><p class="hint">${e.src ? esc(e.src) + ' · ' : ''}${esc(e.cg)}${e.rar ? ' · ' + esc(e.rar) : ''}${e.att ? ' · requires attunement' : ''}</p>` +
     (mg ? '' : `<p><b>Cost:</b> ${fmtP(e.cp)} · <b>Weight:</b> ${e.wt || 0} lb</p>`) +
     e.desc
       .split('\n\n')
@@ -19,7 +19,7 @@ function fillEq() {
     rs
       .map(
         (e) =>
-          `<div class="rw${pv && pv.id === e.id && pv.k === 'item' ? ' pv' : ''}" data-a="pv" data-id="${esc(e.id)}" data-k="item"><span>${esc(e.name)}</span><span class="src">${e.type === 'Magic' ? esc(e.rar) : fmtP(e.cp) + ' · ' + (e.wt || 0) + ' lb'}</span></div>`,
+          `<div class="rw${pv && pv.id === e.id && pv.k === 'item' ? ' pv' : ''}" data-a="pv" data-id="${esc(e.id)}" data-k="item"><span>${esc(e.name)}</span><span class="src">${e.src ? esc(e.src) + ' · ' : ''}${e.type === 'Magic' ? esc(e.rar) : fmtP(e.cp) + ' · ' + (e.wt || 0) + ' lb'}</span></div>`,
       )
       .join('') || '<p class="hint">No items match.</p>';
 }
@@ -93,7 +93,7 @@ function startView(r) {
         .join('') +
       '<p><button data-a="addstart">Add to inventory</button></p>';
   }
-  if ((idx()[ch.bg] || {}).name === 'Acolyte')
+  if (ch.bg === 'Background:Acolyte')
     h +=
       '<div class="ph"><span>Acolyte background equipment</span></div><p class="hint">A holy symbol, prayer book, 5 sticks of incense, vestments, common clothes and 15 gp.</p><p><button class="alt" data-a="addbg">Add background equipment</button></p>';
   return h;

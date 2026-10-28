@@ -36,12 +36,12 @@ function atkFill() {
       pr = profW(r, e),
       dm = e.desc.match(/Damage (\d+d\d+) (\w+)/) || [];
     ch.d['a' + (n + 1) + 'n'] = e.name;
-    const ar = rng && r.els.some((x) => x.id === 'Fighting Style:Archery') ? 2 : 0,
+    const ar = rng && r.els.some((x) => x.type === 'Fighting Style' && x.name === 'Archery') ? 2 : 0,
       du =
         !rng &&
         Wl.length === 1 &&
         !/Two-handed|Heavy/.test(e.desc) &&
-        r.els.some((x) => x.id === 'Fighting Style:Dueling')
+        r.els.some((x) => x.type === 'Fighting Style' && x.name === 'Dueling')
           ? 2
           : 0;
     {

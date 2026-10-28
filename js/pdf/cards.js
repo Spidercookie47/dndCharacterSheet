@@ -203,9 +203,9 @@ function itemView(x, r, c, soloWeapon) {
       k = rng ? 'dex' : fin && c.sc.dex > c.sc.str ? 'dex' : 'str',
       m = mod(c.sc[k]),
       mw = magicB(ch).wpn,
-      ar = rng && r.els.some((y) => y.id === 'Fighting Style:Archery') ? 2 : 0,
+      ar = rng && r.els.some((y) => y.type === 'Fighting Style' && y.name === 'Archery') ? 2 : 0,
       du =
-        !rng && soloWeapon && !/Two-handed|Heavy/.test(d) && r.els.some((y) => y.id === 'Fighting Style:Dueling')
+        !rng && soloWeapon && !/Two-handed|Heavy/.test(d) && r.els.some((y) => y.type === 'Fighting Style' && y.name === 'Dueling')
           ? 2
           : 0;
     stats.push(['Attack', sg(m + (profW(r, e) ? c.pb : 0) + ar + mw)]);

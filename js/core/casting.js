@@ -43,7 +43,7 @@ function domOf(r, n) {
     const d = DOM2[e.id];
     if (d && d.c === n)
       Object.entries(d).forEach(([k, v]) => {
-        if (k !== 'c' && +k <= clv(n)) o.push(...v.map((x) => 'Spell:' + x));
+        if (k !== 'c' && +k <= clv(n)) o.push(...v.map((x) => (x.includes(':') ? x : 'Spell:' + x)));
       });
   });
   return o;
@@ -170,7 +170,7 @@ const secretsN = (r) => {
 };
 const knownT = (n, r) => knownN(n) + (n === 'Bard' ? secretsN(r) : 0);
 function inList(s, n, r) {
-  if (s.lists.includes(n)) return true;
+  if (s.lists.includes(LN[n] || n)) return true;
   return Object.entries(EXP).some(
     ([k, v]) => v.c === n && v.list.includes(s.name) && r.els.some((e) => e.id === k),
   );
@@ -181,7 +181,8 @@ function featSpells(r) {
   Object.entries(FS).forEach(([id, l]) => {
     if (r.els.some((e) => e.id === id))
       l.forEach(([lv, n, note]) => {
-        if (ch.level >= lv && I['Spell:' + n]) o.push({ id: 'Spell:' + n, name: n, note });
+        const sid = n.includes(':') ? n : 'Spell:' + n; // 5.2 content gives full spell ids
+        if (ch.level >= lv && I[sid]) o.push({ id: sid, name: I[sid].name, note });
       });
   });
   r.sels

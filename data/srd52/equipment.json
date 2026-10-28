@@ -1,7 +1,7 @@
 {
  "elements": [
   {
-   "id": "Gear:Acid",
+   "id": "Gear:Acid (5.2)",
    "type": "Gear",
    "name": "Acid",
    "desc": "When you take the Attack action, you can replace one of your attacks with throwing a vial of Acid. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 2d6 Acid damage.",
@@ -12,7 +12,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Alchemist's Fire",
+   "id": "Gear:Alchemist's Fire (5.2)",
    "type": "Gear",
    "name": "Alchemist's Fire",
    "desc": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Alchemist's Fire. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 1d4 Fire damage and start burning (see “Rules Glossary”).",
@@ -23,29 +23,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Alchemist's Supplies",
-   "type": "Gear",
-   "name": "Alchemist's Supplies",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 5000,
-   "price": 50,
-   "wt": 8
-  },
-  {
-   "id": "Gear:Amulet",
-   "type": "Gear",
-   "name": "Amulet",
-   "desc": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic. A Cleric or Paladin can use a Holy Symbol as a Spellcasting Focus.\n\nThe table indicates whether a Holy Symbol needs to be held, worn, or borne on fabric (such as a tabard or banner) or a Shield.",
-   "rules": [],
-   "cg": "Spellcasting Focus",
-   "cp": 500,
-   "price": 5,
-   "wt": 1
-  },
-  {
-   "id": "Gear:Antitoxin",
+   "id": "Gear:Antitoxin (5.2)",
    "type": "Gear",
    "name": "Antitoxin",
    "desc": "As a Bonus Action, you can drink a vial of Antitoxin to gain Advantage on saving throws to avoid or end the Poisoned condition for 1 hour.",
@@ -56,7 +34,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Arrows",
+   "id": "Gear:Arrows (5.2)",
    "type": "Gear",
    "name": "Arrows",
    "desc": "Ammunition",
@@ -68,29 +46,7 @@
    "bn": 20
   },
   {
-   "id": "Gear:Backpack",
-   "type": "Gear",
-   "name": "Backpack",
-   "desc": "A Backpack holds up to 30 pounds within 1 cubic foot. It can also serve as a saddlebag.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 200,
-   "price": 2,
-   "wt": 5
-  },
-  {
-   "id": "Gear:Bagpipes",
-   "type": "Gear",
-   "name": "Bagpipes",
-   "desc": "Musical Instrument",
-   "rules": [],
-   "cg": "Musical Instruments",
-   "cp": 3000,
-   "price": 30,
-   "wt": 6
-  },
-  {
-   "id": "Gear:Ball bearings",
+   "id": "Gear:Ball bearings (5.2)",
    "type": "Gear",
    "name": "Ball bearings",
    "desc": "As a Utilize action, you can spill Ball Bearings from their pouch. They spread to cover a level, 10-footsquare area within 10 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 10 Dexterity saving throw or have the Prone condition. It takes 10 minutes to recover the Ball Bearings.",
@@ -101,18 +57,7 @@
    "wt": 2
   },
   {
-   "id": "Gear:Barrel",
-   "type": "Gear",
-   "name": "Barrel",
-   "desc": "A Barrel holds up to 40 gallons of liquid or up to 4 cubic feet of dry goods.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 200,
-   "price": 2,
-   "wt": 70
-  },
-  {
-   "id": "Gear:Basket",
+   "id": "Gear:Basket (5.2)",
    "type": "Gear",
    "name": "Basket",
    "desc": "A Basket holds up to 40 pounds within 2 cubic feet.",
@@ -123,7 +68,7 @@
    "wt": 2
   },
   {
-   "id": "Weapon:Battleaxe",
+   "id": "Weapon:Battleaxe (5.2)",
    "type": "Weapon",
    "name": "Battleaxe",
    "desc": "Damage 1d8 slashing. Versatile (1d10). Mastery: Topple. Martial Melee weapon.",
@@ -135,7 +80,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Bedroll",
+   "id": "Gear:Bedroll (5.2)",
    "type": "Gear",
    "name": "Bedroll",
    "desc": "A Bedroll sleeps one Small or Medium creature. While in a Bedroll, you automatically succeed on saving throws against extreme cold (see “Gameplay Toolbox”).",
@@ -146,7 +91,7 @@
    "wt": 25
   },
   {
-   "id": "Gear:Bell",
+   "id": "Gear:Bell (5.2)",
    "type": "Gear",
    "name": "Bell",
    "desc": "When rung as a Utilize action, a Bell produces a sound that can be heard up to 60 feet away.",
@@ -157,7 +102,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Blanket",
+   "id": "Gear:Blanket (5.2)",
    "type": "Gear",
    "name": "Blanket",
    "desc": "While wrapped in a blanket, you have Advantage on saving throws against extreme cold (see “Gameplay Toolbox”).",
@@ -168,18 +113,7 @@
    "wt": 3
   },
   {
-   "id": "Gear:Block and tackle",
-   "type": "Gear",
-   "name": "Block and tackle",
-   "desc": "A Block and Tackle allows you to hoist up to four times the weight you can normally lift.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 100,
-   "price": 1,
-   "wt": 5
-  },
-  {
-   "id": "Weapon:Blowgun",
+   "id": "Weapon:Blowgun (5.2)",
    "type": "Weapon",
    "name": "Blowgun",
    "desc": "Damage 1 piercing. Ammunition (25/100), Loading. Mastery: Vex. Martial Ranged weapon.",
@@ -191,18 +125,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Book",
-   "type": "Gear",
-   "name": "Book",
-   "desc": "A Book contains fiction or nonfiction. If you consult an accurate nonfiction Book about its topic, you gain a +5 bonus to Intelligence (Arcana, History, Nature, or Religion) checks you make about that topic.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 2500,
-   "price": 25,
-   "wt": 5
-  },
-  {
-   "id": "Gear:Bolts",
+   "id": "Gear:Bolts (5.2)",
    "type": "Gear",
    "name": "Bolts",
    "desc": "Ammunition",
@@ -214,7 +137,7 @@
    "bn": 20
   },
   {
-   "id": "Gear:Bottle, Glass",
+   "id": "Gear:Bottle, Glass (5.2)",
    "type": "Gear",
    "name": "Bottle, Glass",
    "desc": "A Glass Bottle holds up to 11/2 pints.",
@@ -225,7 +148,7 @@
    "wt": 2
   },
   {
-   "id": "Armor:Breastplate",
+   "id": "Armor:Breastplate (5.2)",
    "type": "Armor",
    "name": "Breastplate",
    "desc": "Medium armor. Base AC 14 + Dex modifier (max 2).",
@@ -241,29 +164,7 @@
    "kind": "Medium"
   },
   {
-   "id": "Gear:Brewer's Supplies",
-   "type": "Gear",
-   "name": "Brewer's Supplies",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 2000,
-   "price": 20,
-   "wt": 9
-  },
-  {
-   "id": "Gear:Bucket",
-   "type": "Gear",
-   "name": "Bucket",
-   "desc": "A Bucket holds up to half a cubic foot of contents.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 5,
-   "price": 0.05,
-   "wt": 2
-  },
-  {
-   "id": "Gear:Bullets, Firearm",
+   "id": "Gear:Bullets, Firearm (5.2)",
    "type": "Gear",
    "name": "Bullets, Firearm",
    "desc": "Ammunition",
@@ -275,7 +176,7 @@
    "bn": 10
   },
   {
-   "id": "Gear:Bullets, Sling",
+   "id": "Gear:Bullets, Sling (5.2)",
    "type": "Gear",
    "name": "Bullets, Sling",
    "desc": "Ammunition",
@@ -287,7 +188,7 @@
    "bn": 20
   },
   {
-   "id": "Gear:Burglar's Pack",
+   "id": "Gear:Burglar's Pack (5.2)",
    "type": "Gear",
    "name": "Burglar's Pack",
    "desc": "A Burglar's Pack contains the following items: Backpack, Ball Bearings, Bell, 10 Candles, Crowbar, Hooded Lantern, 7 flasks of Oil, 5 days of Rations, Rope, Tinderbox, and Waterskin.\n\nContains: Backpack, Ball bearings, Bell, Candle x10, Crowbar, Lantern, Hooded, Flask x7, Oil x7, Rations x5, Rope, Tinderbox, Waterskin.",
@@ -298,18 +199,7 @@
    "wt": 20
   },
   {
-   "id": "Gear:Calligrapher's Supplies",
-   "type": "Gear",
-   "name": "Calligrapher's Supplies",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 1000,
-   "price": 10,
-   "wt": 5
-  },
-  {
-   "id": "Gear:Caltrops",
+   "id": "Gear:Caltrops (5.2)",
    "type": "Gear",
    "name": "Caltrops",
    "desc": "As a Utilize action, you can spread Caltrops from their bag to cover a 5-foot-square area within 5 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 15 Dexterity saving throw or take 1 Piercing damage and have its Speed reduced to 0 until the start of its next turn. It takes 10 minutes to recover the Caltrops.",
@@ -320,40 +210,7 @@
    "wt": 2
   },
   {
-   "id": "Gear:Candle",
-   "type": "Gear",
-   "name": "Candle",
-   "desc": "For 1 hour, a lit Candle sheds Bright Light in a 5-foot radius and Dim Light for an additional 5 feet.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 1,
-   "price": 0.01,
-   "wt": 0
-  },
-  {
-   "id": "Gear:Carpenter's Tools",
-   "type": "Gear",
-   "name": "Carpenter's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 800,
-   "price": 8,
-   "wt": 6
-  },
-  {
-   "id": "Gear:Cartographer's Tools",
-   "type": "Gear",
-   "name": "Cartographer's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 1500,
-   "price": 15,
-   "wt": 6
-  },
-  {
-   "id": "Gear:Case, Crossbow Bolt",
+   "id": "Gear:Case, Crossbow Bolt (5.2)",
    "type": "Gear",
    "name": "Case, Crossbow Bolt",
    "desc": "A Crossbow Bolt Case holds up to 20 Bolts.",
@@ -364,7 +221,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Case, Map or Scroll",
+   "id": "Gear:Case, Map or Scroll (5.2)",
    "type": "Gear",
    "name": "Case, Map or Scroll",
    "desc": "A Map or Scroll Case holds up to 10 sheets of paper or 5 sheets of parchment.",
@@ -375,7 +232,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Chain",
+   "id": "Gear:Chain (5.2)",
    "type": "Gear",
    "name": "Chain",
    "desc": "As a Utilize action, you can wrap a Chain around an unwilling creature within 5 feet of yourself that has the Grappled, Incapacitated, or Restrained condition if you succeed on a DC 13 Strength (Athletics) check. If the creature's legs are bound, the creature has the Restrained condition until it escapes. Escaping the Chain requires the creature to make a successful DC 18 Dexterity (Acrobatics) check as an action. Bursting the Chain requires a successful DC 20 Strength (Athletics) check as an action.",
@@ -386,7 +243,7 @@
    "wt": 6
   },
   {
-   "id": "Armor:Chain Mail",
+   "id": "Armor:Chain Mail (5.2)",
    "type": "Armor",
    "name": "Chain Mail",
    "desc": "Heavy armor. Base AC 16. Stealth disadvantage. Requires Strength 13.",
@@ -402,7 +259,7 @@
    "kind": "Heavy"
   },
   {
-   "id": "Armor:Chain Shirt",
+   "id": "Armor:Chain Shirt (5.2)",
    "type": "Armor",
    "name": "Chain Shirt",
    "desc": "Medium armor. Base AC 13 + Dex modifier (max 2).",
@@ -418,7 +275,7 @@
    "kind": "Medium"
   },
   {
-   "id": "Gear:Chest",
+   "id": "Gear:Chest (5.2)",
    "type": "Gear",
    "name": "Chest",
    "desc": "A Chest holds up to 12 cubic feet of contents.",
@@ -429,7 +286,7 @@
    "wt": 20
   },
   {
-   "id": "Gear:Climber's Kit",
+   "id": "Gear:Climber's Kit (5.2)",
    "type": "Gear",
    "name": "Climber's Kit",
    "desc": "A Climber's Kit includes boot tips, gloves, pitons, and a harness. As a Utilize action, you can use the Climber's Kit to anchor yourself; when you do, you can't fall more than 25 feet from the anchor point, and you can't move more than 25 feet from there without undoing the anchor as a Bonus Action.",
@@ -440,7 +297,7 @@
    "wt": 8
   },
   {
-   "id": "Gear:Clothes, Fine",
+   "id": "Gear:Clothes, Fine (5.2)",
    "type": "Gear",
    "name": "Clothes, Fine",
    "desc": "Fine Clothes are made of expensive fabrics and adorned with expertly crafted details. Some events and locations admit only people wearing these clothes.",
@@ -451,7 +308,7 @@
    "wt": 3
   },
   {
-   "id": "Gear:Clothes, Traveler's",
+   "id": "Gear:Clothes, Traveler's (5.2)",
    "type": "Gear",
    "name": "Clothes, Traveler's",
    "desc": "Traveler's Clothes are resilient garments designed for travel in various environments.",
@@ -462,7 +319,7 @@
    "wt": 4
   },
   {
-   "id": "Weapon:Club",
+   "id": "Weapon:Club (5.2)",
    "type": "Weapon",
    "name": "Club",
    "desc": "Damage 1d4 bludgeoning. Light. Mastery: Slow. Simple Melee weapon.",
@@ -474,18 +331,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Cobbler's Tools",
-   "type": "Gear",
-   "name": "Cobbler's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 500,
-   "price": 5,
-   "wt": 5
-  },
-  {
-   "id": "Gear:Component Pouch",
+   "id": "Gear:Component Pouch (5.2)",
    "type": "Gear",
    "name": "Component Pouch",
    "desc": "A Component Pouch is watertight and filled with compartments that hold all the free Material components of your spells.",
@@ -496,7 +342,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Cook's Utensils",
+   "id": "Gear:Cook's Utensils (5.2)",
    "type": "Gear",
    "name": "Cook's Utensils",
    "desc": "Tool",
@@ -507,7 +353,7 @@
    "wt": 8
   },
   {
-   "id": "Gear:Costume",
+   "id": "Gear:Costume (5.2)",
    "type": "Gear",
    "name": "Costume",
    "desc": "While wearing a Costume, you have Advantage on any ability check you make to impersonate the person or type of person it represents.",
@@ -518,29 +364,7 @@
    "wt": 4
   },
   {
-   "id": "Gear:Crowbar",
-   "type": "Gear",
-   "name": "Crowbar",
-   "desc": "Using a Crowbar gives you Advantage on Strength checks where the Crowbar's leverage can be applied.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 200,
-   "price": 2,
-   "wt": 5
-  },
-  {
-   "id": "Gear:Crystal",
-   "type": "Gear",
-   "name": "Crystal",
-   "desc": "Spellcasting Focu",
-   "rules": [],
-   "cg": "Spellcasting Focus",
-   "cp": 1000,
-   "price": 10,
-   "wt": 1
-  },
-  {
-   "id": "Weapon:Dagger",
+   "id": "Weapon:Dagger (5.2)",
    "type": "Weapon",
    "name": "Dagger",
    "desc": "Damage 1d4 piercing. Finesse, Light, Thrown (20/60). Mastery: Nick. Simple Melee weapon.",
@@ -552,7 +376,7 @@
    "cat": "simple"
   },
   {
-   "id": "Weapon:Dart",
+   "id": "Weapon:Dart (5.2)",
    "type": "Weapon",
    "name": "Dart",
    "desc": "Damage 1d4 piercing. Finesse, Thrown (20/60). Mastery: Vex. Simple Ranged weapon.",
@@ -564,7 +388,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Dice",
+   "id": "Gear:Dice (5.2)",
    "type": "Gear",
    "name": "Dice",
    "desc": "Tool",
@@ -575,7 +399,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Diplomat's Pack",
+   "id": "Gear:Diplomat's Pack (5.2)",
    "type": "Gear",
    "name": "Diplomat's Pack",
    "desc": "A Diplomat's Pack contains the following items: Chest, Fine Clothes, Ink, 5 Ink Pens, Lamp, 2 Map or Scroll Cases, 4 flasks of Oil, 5 sheets of Paper, 5 sheets of Parchment, Perfume, and Tinderbox.\n\nContains: Chest, Clothes, Fine, Ink, Ink Pen x5, Lamp, Case, Map or Scroll x2, Flask x4, Oil x4, Paper x5, Parchment x5, Perfume, Tinderbox.",
@@ -586,18 +410,7 @@
    "wt": 20
   },
   {
-   "id": "Gear:Disguise Kit",
-   "type": "Gear",
-   "name": "Disguise Kit",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 2500,
-   "price": 25,
-   "wt": 3
-  },
-  {
-   "id": "Gear:Dragonchess",
+   "id": "Gear:Dragonchess (5.2)",
    "type": "Gear",
    "name": "Dragonchess",
    "desc": "Tool",
@@ -608,29 +421,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Drum",
-   "type": "Gear",
-   "name": "Drum",
-   "desc": "Musical Instrument",
-   "rules": [],
-   "cg": "Musical Instruments",
-   "cp": 600,
-   "price": 6,
-   "wt": 3
-  },
-  {
-   "id": "Gear:Dulcimer",
-   "type": "Gear",
-   "name": "Dulcimer",
-   "desc": "Musical Instrument",
-   "rules": [],
-   "cg": "Musical Instruments",
-   "cp": 2500,
-   "price": 25,
-   "wt": 10
-  },
-  {
-   "id": "Gear:Dungeoneer's Pack",
+   "id": "Gear:Dungeoneer's Pack (5.2)",
    "type": "Gear",
    "name": "Dungeoneer's Pack",
    "desc": "A Dungeoneer's Pack contains the following items: Backpack, Caltrops, Crowbar, 2 flasks of Oil, 10 days of Rations, Rope, Tinderbox, 10 Torches, and Waterskin.\n\nContains: Backpack, Caltrops x10, Crowbar, Flask x2, Oil x2, Rations x10, Rope, Tinderbox, Torch x10, Waterskin.",
@@ -641,29 +432,7 @@
    "wt": 55
   },
   {
-   "id": "Gear:Emblem",
-   "type": "Gear",
-   "name": "Emblem",
-   "desc": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic. A Cleric or Paladin can use a Holy Symbol as a Spellcasting Focus.\n\nThe table indicates whether a Holy Symbol needs to be held, worn, or borne on fabric (such as a tabard or banner) or a Shield.",
-   "rules": [],
-   "cg": "Spellcasting Focus",
-   "cp": 500,
-   "price": 5,
-   "wt": 0
-  },
-  {
-   "id": "Gear:Entertainer's Pack",
-   "type": "Gear",
-   "name": "Entertainer's Pack",
-   "desc": "Contains: Backpack, Bedroll, Costume x2, Candle x5, Rations x5, Waterskin, Disguise Kit.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 4000,
-   "price": 40,
-   "wt": 0
-  },
-  {
-   "id": "Gear:Explorer's Pack",
+   "id": "Gear:Explorer's Pack (5.2)",
    "type": "Gear",
    "name": "Explorer's Pack",
    "desc": "An Explorer’s Pack contains the following items: Backpack, Bedroll, 2 flasks of Oil, 10 days of Rations, Rope, Tinderbox, 10 Torches, and Waterskin.\n\nContains: Backpack, Bedroll, Oil x2, Rations x10, Rope, Tinderbox, Torch x10, Waterskin.",
@@ -674,7 +443,7 @@
    "wt": 55
   },
   {
-   "id": "Weapon:Flail",
+   "id": "Weapon:Flail (5.2)",
    "type": "Weapon",
    "name": "Flail",
    "desc": "Damage 1d8 bludgeoning. Mastery: Sap. Martial Melee weapon.",
@@ -686,7 +455,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Flask",
+   "id": "Gear:Flask (5.2)",
    "type": "Gear",
    "name": "Flask",
    "desc": "A Flask holds up to 1 pint.",
@@ -697,29 +466,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Flute",
-   "type": "Gear",
-   "name": "Flute",
-   "desc": "Musical Instrument",
-   "rules": [],
-   "cg": "Musical Instruments",
-   "cp": 200,
-   "price": 2,
-   "wt": 1
-  },
-  {
-   "id": "Gear:Forgery Kit",
-   "type": "Gear",
-   "name": "Forgery Kit",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 1500,
-   "price": 15,
-   "wt": 5
-  },
-  {
-   "id": "Weapon:Glaive",
+   "id": "Weapon:Glaive (5.2)",
    "type": "Weapon",
    "name": "Glaive",
    "desc": "Damage 1d10 slashing. Heavy, Reach, Two-Handed. Mastery: Graze. Martial Melee weapon.",
@@ -731,18 +478,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Glassblower's Tools",
-   "type": "Gear",
-   "name": "Glassblower's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 3000,
-   "price": 30,
-   "wt": 5
-  },
-  {
-   "id": "Gear:Grappling Hook",
+   "id": "Gear:Grappling Hook (5.2)",
    "type": "Gear",
    "name": "Grappling Hook",
    "desc": "As a Utilize action, you can throw the Grappling Hook at a railing, a ledge, or another catch within 50 feet of yourself, and the hook catches on if you succeed on a DC 13 Dexterity (Acrobatics) check. If you tied a Rope to the hook, you can then climb it.",
@@ -753,7 +489,7 @@
    "wt": 4
   },
   {
-   "id": "Weapon:Greataxe",
+   "id": "Weapon:Greataxe (5.2)",
    "type": "Weapon",
    "name": "Greataxe",
    "desc": "Damage 1d12 slashing. Heavy, Two-Handed. Mastery: Cleave. Martial Melee weapon.",
@@ -765,7 +501,7 @@
    "cat": "martial"
   },
   {
-   "id": "Weapon:Greatclub",
+   "id": "Weapon:Greatclub (5.2)",
    "type": "Weapon",
    "name": "Greatclub",
    "desc": "Damage 1d8 bludgeoning. Two-Handed. Mastery: Push. Simple Melee weapon.",
@@ -777,7 +513,7 @@
    "cat": "simple"
   },
   {
-   "id": "Weapon:Greatsword",
+   "id": "Weapon:Greatsword (5.2)",
    "type": "Weapon",
    "name": "Greatsword",
    "desc": "Damage 2d6 slashing. Heavy, Two-Handed. Mastery: Graze. Martial Melee weapon.",
@@ -789,7 +525,7 @@
    "cat": "martial"
   },
   {
-   "id": "Weapon:Halberd",
+   "id": "Weapon:Halberd (5.2)",
    "type": "Weapon",
    "name": "Halberd",
    "desc": "Damage 1d10 slashing. Heavy, Reach, Two-Handed. Mastery: Cleave. Martial Melee weapon.",
@@ -801,7 +537,7 @@
    "cat": "martial"
   },
   {
-   "id": "Armor:Half-Plate Armor",
+   "id": "Armor:Half-Plate Armor (5.2)",
    "type": "Armor",
    "name": "Half-Plate Armor",
    "desc": "Medium armor. Base AC 15 + Dex modifier (max 2). Stealth disadvantage.",
@@ -817,7 +553,7 @@
    "kind": "Medium"
   },
   {
-   "id": "Weapon:Hand Crossbow",
+   "id": "Weapon:Hand Crossbow (5.2)",
    "type": "Weapon",
    "name": "Hand Crossbow",
    "desc": "Damage 1d6 piercing. Ammunition (30/120), Light, Loading. Mastery: Vex. Martial Ranged weapon.",
@@ -829,7 +565,7 @@
    "cat": "martial"
   },
   {
-   "id": "Weapon:Handaxe",
+   "id": "Weapon:Handaxe (5.2)",
    "type": "Weapon",
    "name": "Handaxe",
    "desc": "Damage 1d6 slashing. Light, Thrown (20/60). Mastery: Vex. Simple Melee weapon.",
@@ -841,18 +577,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Healer's Kit",
-   "type": "Gear",
-   "name": "Healer's Kit",
-   "desc": "A Healer's Kit has ten uses. As a Utilize action, you can expend one of its uses to stabilize an Unconscious creature that has 0 Hit Points without needing to make a Wisdom (Medicine) check.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 500,
-   "price": 5,
-   "wt": 3
-  },
-  {
-   "id": "Weapon:Heavy Crossbow",
+   "id": "Weapon:Heavy Crossbow (5.2)",
    "type": "Weapon",
    "name": "Heavy Crossbow",
    "desc": "Damage 1d10 piercing. Ammunition (100/400), Heavy, Loading, Two-Handed. Mastery: Push. Martial Ranged weapon.",
@@ -864,18 +589,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Herbalism Kit",
-   "type": "Gear",
-   "name": "Herbalism Kit",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 500,
-   "price": 5,
-   "wt": 3
-  },
-  {
-   "id": "Armor:Hide Armor",
+   "id": "Armor:Hide Armor (5.2)",
    "type": "Armor",
    "name": "Hide Armor",
    "desc": "Light armor. Base AC 12 + Dex modifier.",
@@ -891,7 +605,7 @@
    "kind": "Light"
   },
   {
-   "id": "Gear:Holy Water",
+   "id": "Gear:Holy Water (5.2)",
    "type": "Gear",
    "name": "Holy Water",
    "desc": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Holy Water. Target one creature you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 2d8 Radiant damage if it is a Fiend or an Undead.",
@@ -902,18 +616,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Horn",
-   "type": "Gear",
-   "name": "Horn",
-   "desc": "Musical Instrument",
-   "rules": [],
-   "cg": "Musical Instruments",
-   "cp": 300,
-   "price": 3,
-   "wt": 2
-  },
-  {
-   "id": "Gear:Hunting Trap",
+   "id": "Gear:Hunting Trap (5.2)",
    "type": "Gear",
    "name": "Hunting Trap",
    "desc": "As a Utilize action, you can set a Hunting Trap, which is a sawtooth steel ring that snaps shut when a creature steps on a pressure plate in the center. The trap is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground. A creature that steps on the plate must succeed on a DC 13 Dexterity saving throw or take 1d4 Piercing damage and have its Speed reduced to 0 until the start of its next turn. Thereafter, until the creature breaks free of the trap, its movement is limited by the length of the chain (typically 3 feet). A creature can use its action to make a DC 13 Strength (Athletics) check, freeing itself or another creature within its reach on a success. Each failed check deals 1 Piercing damage to the trapped creature.",
@@ -924,7 +627,7 @@
    "wt": 25
   },
   {
-   "id": "Gear:Ink",
+   "id": "Gear:Ink (5.2)",
    "type": "Gear",
    "name": "Ink",
    "desc": "Ink comes in a 1-ounce bottle, which provides enough ink to write about 500 pages.",
@@ -935,7 +638,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Ink Pen",
+   "id": "Gear:Ink Pen (5.2)",
    "type": "Gear",
    "name": "Ink Pen",
    "desc": "Using Ink, an Ink Pen is used to write or draw.",
@@ -946,7 +649,7 @@
    "wt": 0
   },
   {
-   "id": "Weapon:Javelin",
+   "id": "Weapon:Javelin (5.2)",
    "type": "Weapon",
    "name": "Javelin",
    "desc": "Damage 1d6 piercing. Thrown (30/120). Mastery: Slow. Simple Melee weapon.",
@@ -958,18 +661,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Jeweler's Tools",
-   "type": "Gear",
-   "name": "Jeweler's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 2500,
-   "price": 25,
-   "wt": 2
-  },
-  {
-   "id": "Gear:Jug",
+   "id": "Gear:Jug (5.2)",
    "type": "Gear",
    "name": "Jug",
    "desc": "A Jug holds up to 1 gallon.",
@@ -980,7 +672,7 @@
    "wt": 4
   },
   {
-   "id": "Gear:Ladder",
+   "id": "Gear:Ladder (5.2)",
    "type": "Gear",
    "name": "Ladder",
    "desc": "A Ladder is 10 feet tall. You must climb to move up or down it. Lamp (5 SP)",
@@ -991,18 +683,7 @@
    "wt": 25
   },
   {
-   "id": "Gear:Lamp",
-   "type": "Gear",
-   "name": "Lamp",
-   "desc": "A Lamp burns Oil as fuel to cast Bright Light in a 15- foot radius and Dim Light for an additional 30 feet",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 50,
-   "price": 0.5,
-   "wt": 1
-  },
-  {
-   "id": "Weapon:Lance",
+   "id": "Weapon:Lance (5.2)",
    "type": "Weapon",
    "name": "Lance",
    "desc": "Damage 1d10 piercing. Heavy, Reach, Two-Handed. Mastery: Topple. Martial Melee weapon.",
@@ -1014,7 +695,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Lantern, Bullseye",
+   "id": "Gear:Lantern, Bullseye (5.2)",
    "type": "Gear",
    "name": "Lantern, Bullseye",
    "desc": "A Bullseye Lantern burns Oil as fuel to cast Bright Light in a 60-foot Cone and Dim Light for an additional 60 feet.",
@@ -1025,7 +706,7 @@
    "wt": 2
   },
   {
-   "id": "Gear:Lantern, Hooded",
+   "id": "Gear:Lantern, Hooded (5.2)",
    "type": "Gear",
    "name": "Lantern, Hooded",
    "desc": "A Hooded Lantern burns Oil as fuel to cast Bright Light in a 30-foot radius and Dim Light for an additional 30 feet. As a Bonus Action, you can lower the hood, reducing the light to Dim Light in a 5-foot radius, or raise it again.",
@@ -1036,7 +717,7 @@
    "wt": 2
   },
   {
-   "id": "Armor:Leather Armor",
+   "id": "Armor:Leather Armor (5.2)",
    "type": "Armor",
    "name": "Leather Armor",
    "desc": "Light armor. Base AC 11 + Dex modifier.",
@@ -1052,18 +733,7 @@
    "kind": "Light"
   },
   {
-   "id": "Gear:Leatherworker's Tools",
-   "type": "Gear",
-   "name": "Leatherworker's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 500,
-   "price": 5,
-   "wt": 5
-  },
-  {
-   "id": "Weapon:Light Crossbow",
+   "id": "Weapon:Light Crossbow (5.2)",
    "type": "Weapon",
    "name": "Light Crossbow",
    "desc": "Damage 1d8 piercing. Ammunition (80/320), Loading, Two-Handed. Mastery: Slow. Simple Ranged weapon.",
@@ -1075,7 +745,7 @@
    "cat": "simple"
   },
   {
-   "id": "Weapon:Light Hammer",
+   "id": "Weapon:Light Hammer (5.2)",
    "type": "Weapon",
    "name": "Light Hammer",
    "desc": "Damage 1d4 bludgeoning. Light, Thrown (20/60). Mastery: Nick. Simple Melee weapon.",
@@ -1087,18 +757,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Lock",
-   "type": "Gear",
-   "name": "Lock",
-   "desc": "A Lock comes with a key. Without the key, a creature can use Thieves' Tools to pick this Lock with a successful DC 15 Dexterity (Sleight of Hand) check.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 1000,
-   "price": 10,
-   "wt": 1
-  },
-  {
-   "id": "Weapon:Longbow",
+   "id": "Weapon:Longbow (5.2)",
    "type": "Weapon",
    "name": "Longbow",
    "desc": "Damage 1d8 piercing. Ammunition (150/600), Heavy, Two-Handed. Mastery: Slow. Martial Ranged weapon.",
@@ -1110,7 +769,7 @@
    "cat": "martial"
   },
   {
-   "id": "Weapon:Longsword",
+   "id": "Weapon:Longsword (5.2)",
    "type": "Weapon",
    "name": "Longsword",
    "desc": "Damage 1d8 slashing. Versatile (1d10). Mastery: Sap. Martial Melee weapon.",
@@ -1122,29 +781,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Lute",
-   "type": "Gear",
-   "name": "Lute",
-   "desc": "Musical Instrument",
-   "rules": [],
-   "cg": "Musical Instruments",
-   "cp": 3500,
-   "price": 35,
-   "wt": 2
-  },
-  {
-   "id": "Gear:Lyre",
-   "type": "Gear",
-   "name": "Lyre",
-   "desc": "Musical Instrument",
-   "rules": [],
-   "cg": "Musical Instruments",
-   "cp": 3000,
-   "price": 30,
-   "wt": 2
-  },
-  {
-   "id": "Weapon:Mace",
+   "id": "Weapon:Mace (5.2)",
    "type": "Weapon",
    "name": "Mace",
    "desc": "Damage 1d6 bludgeoning. Mastery: Sap. Simple Melee weapon.",
@@ -1156,7 +793,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Magnifying Glass",
+   "id": "Gear:Magnifying Glass (5.2)",
    "type": "Gear",
    "name": "Magnifying Glass",
    "desc": "A Magnifying Glass grants Advantage on any ability check made to appraise or inspect a highly detailed item. Lighting a fire with a Magnifying Glass requires light as bright as sunlight to focus, tinder to ignite, and about 5 minutes for the fire to ignite.",
@@ -1167,29 +804,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Manacles",
-   "type": "Gear",
-   "name": "Manacles",
-   "desc": "As a Utilize action, you can use Manacles to bind an unwilling Small or Medium creature within 5 feet of yourself that has the Grappled, Incapacitated, or Restrained condition if you succeed on a DC 13 Dexterity (Sleight of Hand) check. While bound, a creature has Disadvantage on attack rolls, and the creature is Restrained if the Manacles are attached to a chain or hook that is fixed in place. Escaping the Manacles requires a successful DC 20 Dexterity (Sleight of Hand) check as an action. Bursting them requires a successful DC 25 Strength (Athletics) check as an action.\n\nEach set of Manacles comes with a key. Without the key, a creature can use Thieves' Tools to pick the Manacles' lock with a successful DC 15 Dexterity (Sleight of Hand) check.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 200,
-   "price": 2,
-   "wt": 6
-  },
-  {
-   "id": "Gear:Mason's Tools",
-   "type": "Gear",
-   "name": "Mason's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 1000,
-   "price": 10,
-   "wt": 8
-  },
-  {
-   "id": "Gear:Map",
+   "id": "Gear:Map (5.2)",
    "type": "Gear",
    "name": "Map",
    "desc": "If you consult an accurate Map, you gain a +5 bonus to Wisdom (Survival) checks you make to find your way in the place represented on it.",
@@ -1200,7 +815,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Mirror",
+   "id": "Gear:Mirror (5.2)",
    "type": "Gear",
    "name": "Mirror",
    "desc": "A handheld steel Mirror is useful for personal cosmetics but also for peeking around corners and reflecting light as a signal.",
@@ -1211,7 +826,7 @@
    "wt": 0.5
   },
   {
-   "id": "Weapon:Maul",
+   "id": "Weapon:Maul (5.2)",
    "type": "Weapon",
    "name": "Maul",
    "desc": "Damage 2d6 bludgeoning. Heavy, Two-Handed. Mastery: Topple. Martial Melee weapon.",
@@ -1223,7 +838,7 @@
    "cat": "martial"
   },
   {
-   "id": "Weapon:Morningstar",
+   "id": "Weapon:Morningstar (5.2)",
    "type": "Weapon",
    "name": "Morningstar",
    "desc": "Damage 1d8 piercing. Mastery: Sap. Martial Melee weapon.",
@@ -1235,7 +850,7 @@
    "cat": "martial"
   },
   {
-   "id": "Weapon:Musket",
+   "id": "Weapon:Musket (5.2)",
    "type": "Weapon",
    "name": "Musket",
    "desc": "Damage 1d12 piercing. Ammunition (40/120), Loading, Two-Handed. Mastery: Slow. Martial Ranged weapon.",
@@ -1247,18 +862,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Navigator's Tools",
-   "type": "Gear",
-   "name": "Navigator's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 2500,
-   "price": 25,
-   "wt": 2
-  },
-  {
-   "id": "Gear:Needles",
+   "id": "Gear:Needles (5.2)",
    "type": "Gear",
    "name": "Needles",
    "desc": "Ammunition",
@@ -1270,7 +874,7 @@
    "bn": 50
   },
   {
-   "id": "Gear:Net",
+   "id": "Gear:Net (5.2)",
    "type": "Gear",
    "name": "Net",
    "desc": "When you take the Attack action, you can replace one of your attacks with throwing a Net. Target a creature you can see within 15 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or have the Restrained condition until it escapes. The target succeeds automatically if it is Huge or larger.\n\nTo escape, the target or a creature within 5 feet of it must take an action to make a DC 10 Strength (Athletics) check, freeing the Restrained creature on a success. Destroying the Net (AC 10; 5 HP; Immunity to Bludgeoning, Poison, and Psychic damage) also frees the target, ending the effect.",
@@ -1281,7 +885,7 @@
    "wt": 3
   },
   {
-   "id": "Gear:Oil",
+   "id": "Gear:Oil (5.2)",
    "type": "Gear",
    "name": "Oil",
    "desc": "You can douse a creature, object, or space with Oil or use it as fuel, as detailed below.\n\nDousing a Creature or an Object. When you take the Attack action, you can replace one of your attacks with throwing an Oil flask. Target one creature or object within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or be covered in oil. If the target takes Fire damage before the oil dries (after 1 minute), the target takes an extra 5 Fire damage from burning oil.\n\nDousing a Space. You can take the Utilize action to pour an Oil flask on level ground to cover a 5-foot-square area within 5 feet of yourself. If lit, the oil burns until the end of the turn 2 rounds from when the oil was lit (or 12 seconds) and deals 5 Fire damage to any creature that enters the area or ends its turn there. A creature can take this damage only once per turn.\n\nFuel.  Oil serves as fuel for Lamps and Lanterns. Once lit, a flask of Oil burns for 6 hours in a Lamp or Lantern. That duration doesn't need to be consecutive; you can extinguish the burning Oil (as a Utilize action) and rekindle it again until it has burned for a total of 6 hours",
@@ -1292,18 +896,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Orb",
-   "type": "Gear",
-   "name": "Orb",
-   "desc": "Spellcasting Focu",
-   "rules": [],
-   "cg": "Spellcasting Focus",
-   "cp": 2000,
-   "price": 20,
-   "wt": 3
-  },
-  {
-   "id": "Armor:Padded Armor",
+   "id": "Armor:Padded Armor (5.2)",
    "type": "Armor",
    "name": "Padded Armor",
    "desc": "Light armor. Base AC 11 + Dex modifier. Stealth disadvantage.",
@@ -1319,29 +912,7 @@
    "kind": "Light"
   },
   {
-   "id": "Gear:Painter's Supplies",
-   "type": "Gear",
-   "name": "Painter's Supplies",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 1000,
-   "price": 10,
-   "wt": 5
-  },
-  {
-   "id": "Gear:Pan flute",
-   "type": "Gear",
-   "name": "Pan flute",
-   "desc": "Musical Instrument",
-   "rules": [],
-   "cg": "Musical Instruments",
-   "cp": 1200,
-   "price": 12,
-   "wt": 2
-  },
-  {
-   "id": "Gear:Paper",
+   "id": "Gear:Paper (5.2)",
    "type": "Gear",
    "name": "Paper",
    "desc": "One sheet of Paper can hold about 250 handwritten words.",
@@ -1352,7 +923,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Parchment",
+   "id": "Gear:Parchment (5.2)",
    "type": "Gear",
    "name": "Parchment",
    "desc": "One sheet of Parchment can hold about 250 handwritten words.",
@@ -1363,7 +934,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Perfume",
+   "id": "Gear:Perfume (5.2)",
    "type": "Gear",
    "name": "Perfume",
    "desc": "Perfume comes in a 4-ounce vial. For 1 hour after applying Perfume to yourself, you have Advantage on Charisma (Persuasion) checks made to influence an Indifferent Humanoid within 5 feet of yourself.",
@@ -1374,7 +945,7 @@
    "wt": 0
   },
   {
-   "id": "Weapon:Pike",
+   "id": "Weapon:Pike (5.2)",
    "type": "Weapon",
    "name": "Pike",
    "desc": "Damage 1d10 piercing. Heavy, Reach, Two-Handed. Mastery: Push. Martial Melee weapon.",
@@ -1386,7 +957,7 @@
    "cat": "martial"
   },
   {
-   "id": "Weapon:Pistol",
+   "id": "Weapon:Pistol (5.2)",
    "type": "Weapon",
    "name": "Pistol",
    "desc": "Damage 1d10 piercing. Ammunition (30/90), Loading. Mastery: Vex. Martial Ranged weapon.",
@@ -1398,7 +969,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Poisoner's Kit",
+   "id": "Gear:Poisoner's Kit (5.2)",
    "type": "Gear",
    "name": "Poisoner's Kit",
    "desc": "Tool",
@@ -1409,7 +980,7 @@
    "wt": 2
   },
   {
-   "id": "Armor:Plate Armor",
+   "id": "Armor:Plate Armor (5.2)",
    "type": "Armor",
    "name": "Plate Armor",
    "desc": "Heavy armor. Base AC 18. Stealth disadvantage. Requires Strength 15.",
@@ -1425,7 +996,7 @@
    "kind": "Heavy"
   },
   {
-   "id": "Gear:Playing Cards",
+   "id": "Gear:Playing Cards (5.2)",
    "type": "Gear",
    "name": "Playing Cards",
    "desc": "Tool",
@@ -1436,7 +1007,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Poison, Basic",
+   "id": "Gear:Poison, Basic (5.2)",
    "type": "Gear",
    "name": "Poison, Basic",
    "desc": "As a Bonus Action, you can use a vial of Basic Poison to coat one weapon or up to three pieces of ammunition. A creature that takes Piercing or Slashing damage from the poisoned weapon or ammunition takes an extra 1d4 Poison damage. Once applied, the poison retains potency for 1 minute or until its damage is dealt, whichever comes first.",
@@ -1447,7 +1018,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Pole",
+   "id": "Gear:Pole (5.2)",
    "type": "Gear",
    "name": "Pole",
    "desc": "A Pole is 10 feet long. You can use it to touch something up to 10 feet away. If you must make a Strength (Athletics) check as part of a High or Long Jump, you can use the Pole to vault, giving yourself Advantage on the check.",
@@ -1458,7 +1029,7 @@
    "wt": 7
   },
   {
-   "id": "Gear:Pot, Iron",
+   "id": "Gear:Pot, Iron (5.2)",
    "type": "Gear",
    "name": "Pot, Iron",
    "desc": "An Iron Pot holds up to 1 gallon.",
@@ -1469,7 +1040,7 @@
    "wt": 10
   },
   {
-   "id": "Gear:Potion of Healing",
+   "id": "Gear:Potion of Healing (5.2)",
    "type": "Gear",
    "name": "Potion of Healing",
    "desc": "This potion is a magic item. As a Bonus Action, you can drink it or administer it to another creature within 5 feet of yourself. The creature that drinks the magical red fluid in this vial regains 2d4 + 2 Hit Points.",
@@ -1480,29 +1051,7 @@
    "wt": 0.5
   },
   {
-   "id": "Gear:Potter's Tools",
-   "type": "Gear",
-   "name": "Potter's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 1000,
-   "price": 10,
-   "wt": 3
-  },
-  {
-   "id": "Gear:Pouch",
-   "type": "Gear",
-   "name": "Pouch",
-   "desc": "A Pouch holds up to 6 pounds within one-fifth of a cubic foot.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 50,
-   "price": 0.5,
-   "wt": 1
-  },
-  {
-   "id": "Gear:Priest's Pack",
+   "id": "Gear:Priest's Pack (5.2)",
    "type": "Gear",
    "name": "Priest's Pack",
    "desc": "A Priest's Pack contains the following items: Backpack, Blanket, Holy Water, Lamp, 7 days of Rations, Robe, and Tinderbox.\n\nContains: Backpack, Blanket, Holy Water, Lamp, Rations x7, Robe, Tinderbox.",
@@ -1513,7 +1062,7 @@
    "wt": 29
   },
   {
-   "id": "Weapon:Quarterstaff",
+   "id": "Weapon:Quarterstaff (5.2)",
    "type": "Weapon",
    "name": "Quarterstaff",
    "desc": "Damage 1d6 bludgeoning. Versatile (1d8). Mastery: Topple. Simple Melee weapon.",
@@ -1525,18 +1074,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Quiver",
-   "type": "Gear",
-   "name": "Quiver",
-   "desc": "A Quiver holds up to 20 Arrows.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 100,
-   "price": 1,
-   "wt": 1
-  },
-  {
-   "id": "Gear:Ram, Portable",
+   "id": "Gear:Ram, Portable (5.2)",
    "type": "Gear",
    "name": "Ram, Portable",
    "desc": "You can use a Portable Ram to break down doors. When doing so, you gain a +4 bonus to the Strength check. One other character can help you use the ram, giving you Advantage on this check.",
@@ -1547,7 +1085,7 @@
    "wt": 35
   },
   {
-   "id": "Weapon:Rapier",
+   "id": "Weapon:Rapier (5.2)",
    "type": "Weapon",
    "name": "Rapier",
    "desc": "Damage 1d8 piercing. Finesse. Mastery: Vex. Martial Melee weapon.",
@@ -1559,7 +1097,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Rations",
+   "id": "Gear:Rations (5.2)",
    "type": "Gear",
    "name": "Rations",
    "desc": "Rations consist of travel-ready food, including jerky, dried fruit, hardtack, and nuts. See \"Malnutrition\" in \"Rules Glossary\" for the risks of not eating.",
@@ -1570,18 +1108,7 @@
    "wt": 2
   },
   {
-   "id": "Gear:Reliquary",
-   "type": "Gear",
-   "name": "Reliquary",
-   "desc": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic. A Cleric or Paladin can use a Holy Symbol as a Spellcasting Focus.\n\nThe table indicates whether a Holy Symbol needs to be held, worn, or borne on fabric (such as a tabard or banner) or a Shield.",
-   "rules": [],
-   "cg": "Spellcasting Focus",
-   "cp": 500,
-   "price": 5,
-   "wt": 2
-  },
-  {
-   "id": "Armor:Ring Mail",
+   "id": "Armor:Ring Mail (5.2)",
    "type": "Armor",
    "name": "Ring Mail",
    "desc": "Heavy armor. Base AC 14. Stealth disadvantage.",
@@ -1597,7 +1124,7 @@
    "kind": "Heavy"
   },
   {
-   "id": "Gear:Robe",
+   "id": "Gear:Robe (5.2)",
    "type": "Gear",
    "name": "Robe",
    "desc": "A Robe has vocational or ceremonial significance. Some events and locations admit only people wearing a Robe bearing certain colors or symbols.",
@@ -1608,18 +1135,7 @@
    "wt": 1
   },
   {
-   "id": "Gear:Rod",
-   "type": "Gear",
-   "name": "Rod",
-   "desc": "Spellcasting Focu",
-   "rules": [],
-   "cg": "Spellcasting Focus",
-   "cp": 1000,
-   "price": 10,
-   "wt": 2
-  },
-  {
-   "id": "Gear:Rope",
+   "id": "Gear:Rope (5.2)",
    "type": "Gear",
    "name": "Rope",
    "desc": "As a Utilize action, you can tie a knot with Rope if you succeed on a DC 10 Dexterity (Sleight of Hand) check. The Rope can be burst with a successful DC 20 Strength (Athletics) check.\n\nYou can bind an unwilling creature with the Rope only if the creature has the Grappled, Incapacitated, or Restrained condition. If the creature's legs are bound, the creature has the Restrained condition until it escapes. Escaping the Rope requires the creature to make a successful DC 15 Dexterity (Acrobatics) check as an action.",
@@ -1630,7 +1146,7 @@
    "wt": 5
   },
   {
-   "id": "Gear:Sack",
+   "id": "Gear:Sack (5.2)",
    "type": "Gear",
    "name": "Sack",
    "desc": "A Sack holds up to 30 pounds within 1 cubic foot.",
@@ -1641,7 +1157,7 @@
    "wt": 1
   },
   {
-   "id": "Armor:Scale Mail",
+   "id": "Armor:Scale Mail (5.2)",
    "type": "Armor",
    "name": "Scale Mail",
    "desc": "Medium armor. Base AC 14 + Dex modifier (max 2). Stealth disadvantage.",
@@ -1657,7 +1173,7 @@
    "kind": "Medium"
   },
   {
-   "id": "Gear:Scholar's Pack",
+   "id": "Gear:Scholar's Pack (5.2)",
    "type": "Gear",
    "name": "Scholar's Pack",
    "desc": "A Scholar's Pack contains the following items: Backpack, Blanket, Book, Ink, Ink Pen, Lamp, 10 flasks of Oil, 10 sheets of Parchment, and Tinderbox.\n\nContains: Backpack, Blanket, Book, Ink, Ink Pen, Lamp, Oil x10, Parchment x10, Tinderbox.",
@@ -1668,7 +1184,7 @@
    "wt": 22
   },
   {
-   "id": "Weapon:Scimitar",
+   "id": "Weapon:Scimitar (5.2)",
    "type": "Weapon",
    "name": "Scimitar",
    "desc": "Damage 1d6 slashing. Finesse, Light. Mastery: Nick. Martial Melee weapon.",
@@ -1680,18 +1196,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Shawm",
-   "type": "Gear",
-   "name": "Shawm",
-   "desc": "Musical Instrument",
-   "rules": [],
-   "cg": "Musical Instruments",
-   "cp": 200,
-   "price": 2,
-   "wt": 1
-  },
-  {
-   "id": "Armor:Shield",
+   "id": "Armor:Shield (5.2)",
    "type": "Armor",
    "name": "Shield",
    "desc": "A shield grants +2 AC while equipped.",
@@ -1707,7 +1212,7 @@
    "kind": "Shield"
   },
   {
-   "id": "Weapon:Shortbow",
+   "id": "Weapon:Shortbow (5.2)",
    "type": "Weapon",
    "name": "Shortbow",
    "desc": "Damage 1d6 piercing. Ammunition (80/320), Two-Handed. Mastery: Vex. Simple Ranged weapon.",
@@ -1719,7 +1224,7 @@
    "cat": "simple"
   },
   {
-   "id": "Weapon:Shortsword",
+   "id": "Weapon:Shortsword (5.2)",
    "type": "Weapon",
    "name": "Shortsword",
    "desc": "Damage 1d6 piercing. Finesse, Light. Mastery: Vex. Martial Melee weapon.",
@@ -1731,18 +1236,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Shovel",
-   "type": "Gear",
-   "name": "Shovel",
-   "desc": "Working for 1 hour, you can use a Shovel to dig a hole that is 5 feet on each side in soil or similar material.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 200,
-   "price": 2,
-   "wt": 5
-  },
-  {
-   "id": "Weapon:Sickle",
+   "id": "Weapon:Sickle (5.2)",
    "type": "Weapon",
    "name": "Sickle",
    "desc": "Damage 1d4 slashing. Light. Mastery: Nick. Simple Melee weapon.",
@@ -1754,7 +1248,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Signal Whistle",
+   "id": "Gear:Signal Whistle (5.2)",
    "type": "Gear",
    "name": "Signal Whistle",
    "desc": "When blown as a Utilize action, a Signal Whistle produces a sound that can be heard up to 600 feet away.",
@@ -1765,7 +1259,7 @@
    "wt": 0
   },
   {
-   "id": "Weapon:Sling",
+   "id": "Weapon:Sling (5.2)",
    "type": "Weapon",
    "name": "Sling",
    "desc": "Damage 1d4 piercing. Ammunition (30/120). Mastery: Slow. Simple Ranged weapon.",
@@ -1777,18 +1271,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Smith's Tools",
-   "type": "Gear",
-   "name": "Smith's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 2000,
-   "price": 20,
-   "wt": 8
-  },
-  {
-   "id": "Weapon:Spear",
+   "id": "Weapon:Spear (5.2)",
    "type": "Weapon",
    "name": "Spear",
    "desc": "Damage 1d6 piercing. Thrown (20/60), Versatile (1d8). Mastery: Sap. Simple Melee weapon.",
@@ -1800,18 +1283,7 @@
    "cat": "simple"
   },
   {
-   "id": "Gear:Spellbook",
-   "type": "Gear",
-   "name": "Spellbook",
-   "desc": "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 5000,
-   "price": 50,
-   "wt": 3
-  },
-  {
-   "id": "Gear:Spell Scroll, Cantrip",
+   "id": "Gear:Spell Scroll, Cantrip (5.2)",
    "type": "Gear",
    "name": "Spell Scroll, Cantrip",
    "desc": "A Spell Scroll (Cantrip) or Spell Scroll (Level 1) is a magic item that bears the words of a cantrip or level 1 spell, respectively, determined by the scroll's creator. If the spell is on your class's spell list, you can read the scroll and cast the spell using its normal casting time and without providing any Material components.\n\nIf the spell requires a saving throw or an attack roll, the spell save DC is 13, and the attack bonus is +5. The scroll disintegrates when the casting is completed.",
@@ -1822,7 +1294,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Spell Scroll, Level 1",
+   "id": "Gear:Spell Scroll, Level 1 (5.2)",
    "type": "Gear",
    "name": "Spell Scroll, Level 1",
    "desc": "A Spell Scroll (Cantrip) or Spell Scroll (Level 1) is a magic item that bears the words of a cantrip or level 1 spell, respectively, determined by the scroll's creator. If the spell is on your class's spell list, you can read the scroll and cast the spell using its normal casting time and without providing any Material components.\n\nIf the spell requires a saving throw or an attack roll, the spell save DC is 13, and the attack bonus is +5. The scroll disintegrates when the casting is completed.",
@@ -1833,7 +1305,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Spikes, Iron",
+   "id": "Gear:Spikes, Iron (5.2)",
    "type": "Gear",
    "name": "Spikes, Iron",
    "desc": "Iron Spikes come in bundles of ten. As a Utilize action, you can use a blunt object, such as a Light Hammer, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a Rope or Chain to the Spike.",
@@ -1844,7 +1316,7 @@
    "wt": 2
   },
   {
-   "id": "Armor:Splint Armor",
+   "id": "Armor:Splint Armor (5.2)",
    "type": "Armor",
    "name": "Splint Armor",
    "desc": "Heavy armor. Base AC 17. Stealth disadvantage. Requires Strength 15.",
@@ -1860,7 +1332,7 @@
    "kind": "Heavy"
   },
   {
-   "id": "Gear:Sprig of Mistletoe",
+   "id": "Gear:Sprig of Mistletoe (5.2)",
    "type": "Gear",
    "name": "Sprig of Mistletoe",
    "desc": "Spellcasting Focu",
@@ -1871,29 +1343,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Spyglass",
-   "type": "Gear",
-   "name": "Spyglass",
-   "desc": "Objects viewed through a Spyglass are magnified to twice their size.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 100000,
-   "price": 1000,
-   "wt": 1
-  },
-  {
-   "id": "Gear:Staff",
-   "type": "Gear",
-   "name": "Staff",
-   "desc": "Spellcasting Focu",
-   "rules": [],
-   "cg": "Spellcasting Focus",
-   "cp": 500,
-   "price": 5,
-   "wt": 4
-  },
-  {
-   "id": "Gear:String",
+   "id": "Gear:String (5.2)",
    "type": "Gear",
    "name": "String",
    "desc": "String is 10 feet long. You can tie a knot in it as a Utilize action.",
@@ -1904,7 +1354,7 @@
    "wt": 0
   },
   {
-   "id": "Armor:Studded Leather Armor",
+   "id": "Armor:Studded Leather Armor (5.2)",
    "type": "Armor",
    "name": "Studded Leather Armor",
    "desc": "Light armor. Base AC 12 + Dex modifier.",
@@ -1920,7 +1370,7 @@
    "kind": "Light"
   },
   {
-   "id": "Gear:Tent",
+   "id": "Gear:Tent (5.2)",
    "type": "Gear",
    "name": "Tent",
    "desc": "A Tent sleeps up to two Small or Medium creatures.",
@@ -1931,18 +1381,7 @@
    "wt": 20
   },
   {
-   "id": "Gear:Thieves' Tools",
-   "type": "Gear",
-   "name": "Thieves' Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 2500,
-   "price": 25,
-   "wt": 1
-  },
-  {
-   "id": "Gear:Three-Dragon Ante",
+   "id": "Gear:Three-Dragon Ante (5.2)",
    "type": "Gear",
    "name": "Three-Dragon Ante",
    "desc": "Tool",
@@ -1953,40 +1392,7 @@
    "wt": 0
   },
   {
-   "id": "Gear:Tinderbox",
-   "type": "Gear",
-   "name": "Tinderbox",
-   "desc": "A Tinderbox is a small container holding flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a Candle, Lamp, Lantern, or Torch—or anything else with exposed fuel—takes a Bonus Action. Lighting any other fire takes 1 minute.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 50,
-   "price": 0.5,
-   "wt": 1
-  },
-  {
-   "id": "Gear:Tinker's Tools",
-   "type": "Gear",
-   "name": "Tinker's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 5000,
-   "price": 50,
-   "wt": 10
-  },
-  {
-   "id": "Gear:Torch",
-   "type": "Gear",
-   "name": "Torch",
-   "desc": "A Torch burns for 1 hour, casting Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. When you take the Attack action, you can attack with the Torch, using it as a Simple Melee weapon. On a hit, the target takes 1 Fire damage.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 1,
-   "price": 0.01,
-   "wt": 1
-  },
-  {
-   "id": "Weapon:Trident",
+   "id": "Weapon:Trident (5.2)",
    "type": "Weapon",
    "name": "Trident",
    "desc": "Damage 1d6 piercing. Thrown (20/60), Versatile (1d8). Mastery: Topple. Martial Melee weapon.",
@@ -1998,18 +1404,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Vial",
-   "type": "Gear",
-   "name": "Vial",
-   "desc": "A Vial holds up to 4 ounces.",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 100,
-   "price": 1,
-   "wt": 0
-  },
-  {
-   "id": "Gear:Viol",
+   "id": "Gear:Viol (5.2)",
    "type": "Gear",
    "name": "Viol",
    "desc": "Musical Instrument",
@@ -2020,18 +1415,7 @@
    "wt": 2
   },
   {
-   "id": "Gear:Wand",
-   "type": "Gear",
-   "name": "Wand",
-   "desc": "Spellcasting Focu",
-   "rules": [],
-   "cg": "Spellcasting Focus",
-   "cp": 1000,
-   "price": 10,
-   "wt": 1
-  },
-  {
-   "id": "Weapon:Warhammer",
+   "id": "Weapon:Warhammer (5.2)",
    "type": "Weapon",
    "name": "Warhammer",
    "desc": "Damage 1d8 bludgeoning. Versatile (1d10). Mastery: Push. Martial Melee weapon.",
@@ -2043,7 +1427,7 @@
    "cat": "martial"
   },
   {
-   "id": "Weapon:War Pick",
+   "id": "Weapon:War Pick (5.2)",
    "type": "Weapon",
    "name": "War Pick",
    "desc": "Damage 1d8 piercing. Versatile (1d10). Mastery: Sap. Martial Melee weapon.",
@@ -2055,29 +1439,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Waterskin",
-   "type": "Gear",
-   "name": "Waterskin",
-   "desc": "A Waterskin holds up to 4 pints. If you don't drink sufficient water, you risk dehydration (see “Rules Glossary”).",
-   "rules": [],
-   "cg": "Adventuring Gear",
-   "cp": 20,
-   "price": 0.2,
-   "wt": 5
-  },
-  {
-   "id": "Gear:Weaver's Tools",
-   "type": "Gear",
-   "name": "Weaver's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 100,
-   "price": 1,
-   "wt": 5
-  },
-  {
-   "id": "Weapon:Whip",
+   "id": "Weapon:Whip (5.2)",
    "type": "Weapon",
    "name": "Whip",
    "desc": "Damage 1d4 slashing. Finesse, Reach. Mastery: Slow. Martial Melee weapon.",
@@ -2089,18 +1451,7 @@
    "cat": "martial"
   },
   {
-   "id": "Gear:Woodcarver's Tools",
-   "type": "Gear",
-   "name": "Woodcarver's Tools",
-   "desc": "Tool",
-   "rules": [],
-   "cg": "Tools",
-   "cp": 100,
-   "price": 1,
-   "wt": 5
-  },
-  {
-   "id": "Gear:Yew Wand",
+   "id": "Gear:Yew Wand (5.2)",
    "type": "Gear",
    "name": "Yew Wand",
    "desc": "Spellcasting Focu",
