@@ -34,7 +34,7 @@ function spellRows(n, r, mode) {
   });
 }
 const srow = ({ s, on, m }) =>
-  `<div class="rw${on ? ' on' : ''}${pv && pv.id === s.id && pv.k === 'spell' ? ' pv' : ''}" data-a="pv" data-id="${esc(s.id)}" data-k="spell"><span>${m}${esc(s.name)}</span><span class="src"><i>${esc(lvTxt(s))}</i> ${vsm(s)}</span></div>`;
+  `<div class="rw${on ? ' on' : ''}${pv && pv.id === s.id && pv.k === 'spell' ? ' pv' : ''}" data-a="pv" data-id="${esc(s.id)}" data-k="spell"><span>${m}${esc(s.name)}</span><span class="src">${s.src ? esc(s.src) + ' · ' : ''}<i>${esc(lvTxt(s))}</i> ${vsm(s)}</span></div>`;
 function fillList() {
   const el = $('#sl');
   if (!el) return;
@@ -134,7 +134,7 @@ function spellPane(s) {
     .map((p) => `<p>${esc(p)}</p>`)
     .join(
       '',
-    )}<p class="hint">${esc(s.lists.join(', '))}</p><p><button data-a="pick" data-k="spell" data-id="${esc(s.id)}">${lab}</button></p>`;
+    )}<p class="hint">${s.src ? esc(s.src) + ' · ' : ''}${esc(s.lists.join(', '))}</p><p><button data-a="pick" data-k="spell" data-id="${esc(s.id)}">${lab}</button></p>`;
 }
 const secChip = (n, r) =>
   n === 'Bard' && msp === 'cast' && secretsN(r)
@@ -147,7 +147,7 @@ const featPanel = (r) => {
         f
           .map(
             (s) =>
-              `<div class="rw" data-a="pv" data-id="${esc(s.id)}" data-k="spell"><span>${esc(s.name)}</span><span class="src">${esc(s.note)}</span></div>`,
+              `<div class="rw" data-a="pv" data-id="${esc(s.id)}" data-k="spell"><span>${esc(s.name)}</span><span class="src">${(idx()[s.id] || {}).src ? esc(idx()[s.id].src) + ' · ' : ''}${esc(s.note)}</span></div>`,
           )
           .join('')
     : '';

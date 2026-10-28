@@ -40,6 +40,7 @@ js/
   pdf/
     fields.js              maps character data to the official sheet's form fields
     export.js              builds the data, downloads and previews the PDF
+    cards.js               spell and item cards, added as extra pages after the sheet
   ui/                      one file per screen
     shell.js               top/sub/status bars and the draw cycle
     events.js              every click, key press and file choice, as named actions
@@ -89,6 +90,15 @@ Later packs replace earlier elements that have the same id, so homebrew can over
 | `{"expertise": 2, "level": 3}` | choose two proficient skills to double |
 | `{"pf": ["w:Longswords", "t:Thieves' tools"]}` | proficiencies (`a:` armor, `w:` weapons, `t:` tools) |
 | `"level": N` on any rule | only from that class level |
+| `{"resource": {"id": "tp", "name": "Tinker points", "rest": "L", "min": 1, "max": [{"class": "Tinkerer"}, {"mod": "int"}], "note": "gadgets"}}` | a limited-use resource, shown on the Sheet tab with Use / Restore and covered by the Short rest / Long rest buttons. `rest` is `"S"` or `"L"` (default `"L"`), `min` is a floor, `note` is small text. `max` is a number, `"unlimited"`, or a part or a list of parts that are added together (see below). |
+| `{"acFormula": {"base": 10, "add": ["dex", "con"], "noShield": true}}` | AC while wearing no armor. The highest formula wins. `noShield` turns it off while a shield is equipped. |
+| `{"speedBonus": {"max": 10, "noHeavy": true}}` | extra speed. `max` takes the same parts as `resource`. `noHeavy` turns it off in heavy armor, `unarmored` turns it off in any armor or with a shield. |
+| `{"halfProf": {"abilities": "all", "round": "down"}}` | a half-proficiency bonus on checks you are not proficient in, including initiative when Dexterity is covered. `abilities` is `"all"` or a list such as `["str", "dex", "con"]`; `round` is `"up"` or `"down"`. |
+| `{"saveBonus": {"mod": "cha", "min": 1}}` | a bonus to all saving throws (`n` adds a flat number instead). |
+
+**Parts for `max`:** `{"n": 3}` (a number), `{"class": "Tinkerer"}` (your level in that class), `{"class": "Tinkerer", "table": [20 numbers]}` (a lookup by class level), `{"mod": "int"}` (an ability modifier) and `{"pb": true}` (proficiency bonus). Any part can take `"mult"` and `"div"` (rounded down). A list adds its parts, so `[{"class": "Tinkerer"}, {"mod": "int"}]` is level plus Intelligence modifier.
+
+These rules work on any element, usually a Class Feature. Grant the feature from a class with `"level": N` and the bonus starts at that class level. `data/homebrew/test-pack.json` is a larger example that uses every one of them.
 
 ### Element types and their extra fields
 
@@ -106,9 +116,24 @@ Run `python3 tools/validate_pack.py my-pack.json` before sharing. `data/homebrew
 
 Start → **Sources**: paste a link to a pack or catalog (for example a `raw.githubusercontent.com` link), choose a file, or paste JSON. It is cached in the browser. **Refresh** fetches the newest version, and the checkbox turns a source on or off.
 
+The **Missing content** list on the same screen shows any saved character that uses something that is not available right now, for example because its homebrew source is switched off, and says which source to turn on.
+
 ## Saved characters
 
 Characters are kept in the browser, and **Save** downloads a `*.hearth.json` file you can open again from the Start screen. A character file stores your *choices*, not computed numbers, so it keeps working when the rules data changes.
+
+## Character options
+
+Open **Character options** (top right) to change how a character is built: average hit points, feats, multiclassing, and **Ability scores above 20**, which lets scores go up to 30 for NPCs and monsters. Point buy stays capped at 15; use the standard array or rolled scores for higher numbers.
+
+## The sheet PDF
+
+**Download official sheet** fills the fillable sheet and adds extra pages at the end:
+
+- **Spell cards** for every spell the character has ready: cantrips, prepared spells (or known spells for Bard, Sorcerer, Warlock and Ranger), domain and oath spells, and racial or feature spells. Nine poker-size cards per page. Long spells shrink and then continue on a second card.
+- **Item cards** for equipped weapons, attuned or equipped magic items, and potions you press **Equip** on in the Inventory. Weapon cards show the character's own attack bonus and damage.
+
+Both are built in `js/pdf/cards.js`; set `INCLUDE_CANTRIPS = false` at the top of that file to leave cantrips out.
 
 ## Licenses
 
