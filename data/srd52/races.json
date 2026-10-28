@@ -1,0 +1,1169 @@
+{
+ "elements": [
+  {
+   "id": "Racial Trait:Darkvision (60 ft.)",
+   "type": "Racial Trait",
+   "name": "Darkvision (60 ft.)",
+   "desc": "You have Darkvision with a range of 60 feet.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Draconic Flight",
+   "type": "Racial Trait",
+   "name": "Draconic Flight",
+   "desc": "When you reach character level 5, you can channel draconic magic to give yourself temporary flight. As a Bonus Action, you sprout spectral wings on your back that last for 10 minutes or until you retract the wings (no action required) or have the Incapacitated condition. During that time, you have a Fly Speed equal to your Speed. Your wings appear to be made of the same energy as your Breath Weapon. Once you use this trait, you can't use it again until you finish a Long Rest.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Darkvision (120 ft.)",
+   "type": "Racial Trait",
+   "name": "Darkvision (120 ft.)",
+   "desc": "You have Darkvision with a range of 120 feet.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Dwarven Resilience",
+   "type": "Racial Trait",
+   "name": "Dwarven Resilience",
+   "desc": "You have Resistance to Poison damage. You also have Advantage on saving throws you make to avoid or end the Poisoned condition.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Dwarven Toughness",
+   "type": "Racial Trait",
+   "name": "Dwarven Toughness",
+   "desc": "Your Hit Point maximum increases by 1, and it increases by 1 again whenever you gain a level.",
+   "rules": [
+    {
+     "stat": {
+      "hpl": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Stonecunning",
+   "type": "Racial Trait",
+   "name": "Stonecunning",
+   "desc": "As a Bonus Action, you gain Tremorsense with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked.\n\nYou can use this Bonus Action a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+   "rules": [
+    {
+     "resource": {
+      "id": "stonecunning",
+      "name": "Stonecunning",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Fey Ancestry",
+   "type": "Racial Trait",
+   "name": "Fey Ancestry",
+   "desc": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Keen Senses",
+   "type": "Racial Trait",
+   "name": "Keen Senses",
+   "desc": "You have proficiency in the Insight, Perception, or Survival skill.",
+   "rules": [
+    {
+     "select": {
+      "name": "Keen Senses",
+      "n": 1,
+      "from": [
+       "Insight",
+       "Perception",
+       "Survival"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Trance",
+   "type": "Racial Trait",
+   "name": "Trance",
+   "desc": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Gnomish Cunning",
+   "type": "Racial Trait",
+   "name": "Gnomish Cunning",
+   "desc": "You have Advantage on Intelligence, Wisdom, and Charisma saving throws.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Large Form",
+   "type": "Racial Trait",
+   "name": "Large Form",
+   "desc": "Starting at character level 5, you can change your size to Large as a Bonus Action if you're in a big enough space. This transformation lasts for 10 minutes or until you end it (no action required). For that duration, you have Advantage on Strength checks, and your Speed increases by 10 feet. Once you use this trait, you can't use it again until you finish a Long Rest.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Powerful Build",
+   "type": "Racial Trait",
+   "name": "Powerful Build",
+   "desc": "You have Advantage on any ability check you make to end the Grappled condition. You also count as one size larger when determining your carrying capacity.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Brave",
+   "type": "Racial Trait",
+   "name": "Brave",
+   "desc": "You have Advantage on saving throws you make to avoid or end the Frightened condition.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Halfling Nimbleness",
+   "type": "Racial Trait",
+   "name": "Halfling Nimbleness",
+   "desc": "You can move through the space of any creature that is a size larger than you, but you can't stop in the same space.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Luck",
+   "type": "Racial Trait",
+   "name": "Luck",
+   "desc": "When you roll a 1 on the d20 of a D20 Test, you can reroll the die, and you must use the new roll.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Naturally Stealthy",
+   "type": "Racial Trait",
+   "name": "Naturally Stealthy",
+   "desc": "You can take the Hide action even when you are obscured only by a creature that is at least one size larger than you.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Resourceful",
+   "type": "Racial Trait",
+   "name": "Resourceful",
+   "desc": "You gain Heroic Inspiration whenever you finish a Long Rest.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Skillful",
+   "type": "Racial Trait",
+   "name": "Skillful",
+   "desc": "You gain proficiency in one skill of your choice.",
+   "rules": [
+    {
+     "select": {
+      "name": "Skillful",
+      "n": 1,
+      "from": [
+       "Acrobatics",
+       "Animal Handling",
+       "Arcana",
+       "Athletics",
+       "Deception",
+       "History",
+       "Insight",
+       "Intimidation",
+       "Investigation",
+       "Medicine",
+       "Nature",
+       "Perception",
+       "Performance",
+       "Persuasion",
+       "Religion",
+       "Sleight of Hand",
+       "Stealth",
+       "Survival"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Versatile",
+   "type": "Racial Trait",
+   "name": "Versatile",
+   "desc": "You gain an Origin feat of your choice (see \"Feats\"). Skilled is recommended.",
+   "rules": [
+    {
+     "select": {
+      "name": "Origin feat",
+      "type": "Feat",
+      "cls": "origin"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Adrenaline Rush",
+   "type": "Racial Trait",
+   "name": "Adrenaline Rush",
+   "desc": "You can take the Dash action as a Bonus Action. When you do so, you gain a number of Temporary Hit Points equal to your Proficiency Bonus.\n\nYou can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest.",
+   "rules": [
+    {
+     "resource": {
+      "id": "adrenaline-rush",
+      "name": "Adrenaline Rush",
+      "rest": "S",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Relentless Endurance",
+   "type": "Racial Trait",
+   "name": "Relentless Endurance",
+   "desc": "When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead. Once you use this trait, you can't do so again until you finish a Long Rest.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Otherworldly Presence",
+   "type": "Racial Trait",
+   "name": "Otherworldly Presence",
+   "desc": "You know the Thaumaturgy cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Breath Weapon: Acid",
+   "type": "Racial Trait",
+   "name": "Breath Weapon: Acid",
+   "desc": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of magical energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide (choose the shape each time). Each creature in that area must make a Dexterity saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus). On a failed save, a creature takes 1d10 acid damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10).\n\nYou can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+   "rules": [
+    {
+     "resource": {
+      "id": "breath-weapon-acid",
+      "name": "Breath Weapon: Acid",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Damage Resistance: Acid",
+   "type": "Racial Trait",
+   "name": "Damage Resistance: Acid",
+   "desc": "You have Resistance to acid damage, as determined by your Draconic Ancestry trait.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Breath Weapon: Lightning",
+   "type": "Racial Trait",
+   "name": "Breath Weapon: Lightning",
+   "desc": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of magical energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide (choose the shape each time). Each creature in that area must make a Dexterity saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus). On a failed save, a creature takes 1d10 lightning damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10).\n\nYou can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+   "rules": [
+    {
+     "resource": {
+      "id": "breath-weapon-lightning",
+      "name": "Breath Weapon: Lightning",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Damage Resistance: Lightning",
+   "type": "Racial Trait",
+   "name": "Damage Resistance: Lightning",
+   "desc": "You have Resistance to lightning damage, as determined by your Draconic Ancestry trait.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Breath Weapon: Fire",
+   "type": "Racial Trait",
+   "name": "Breath Weapon: Fire",
+   "desc": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of magical energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide (choose the shape each time). Each creature in that area must make a Dexterity saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus). On a failed save, a creature takes 1d10 fire damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10).\n\nYou can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+   "rules": [
+    {
+     "resource": {
+      "id": "breath-weapon-fire",
+      "name": "Breath Weapon: Fire",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Damage Resistance: Fire",
+   "type": "Racial Trait",
+   "name": "Damage Resistance: Fire",
+   "desc": "You have Resistance to fire damage, as determined by your Draconic Ancestry trait.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Breath Weapon: Poison",
+   "type": "Racial Trait",
+   "name": "Breath Weapon: Poison",
+   "desc": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of magical energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide (choose the shape each time). Each creature in that area must make a Dexterity saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus). On a failed save, a creature takes 1d10 poison damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10).\n\nYou can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+   "rules": [
+    {
+     "resource": {
+      "id": "breath-weapon-poison",
+      "name": "Breath Weapon: Poison",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Damage Resistance: Poison",
+   "type": "Racial Trait",
+   "name": "Damage Resistance: Poison",
+   "desc": "You have Resistance to poison damage, as determined by your Draconic Ancestry trait.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Breath Weapon: Cold",
+   "type": "Racial Trait",
+   "name": "Breath Weapon: Cold",
+   "desc": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of magical energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide (choose the shape each time). Each creature in that area must make a Dexterity saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus). On a failed save, a creature takes 1d10 cold damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10).\n\nYou can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+   "rules": [
+    {
+     "resource": {
+      "id": "breath-weapon-cold",
+      "name": "Breath Weapon: Cold",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Damage Resistance: Cold",
+   "type": "Racial Trait",
+   "name": "Damage Resistance: Cold",
+   "desc": "You have Resistance to cold damage, as determined by your Draconic Ancestry trait.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Wood Elf: Movement Speed Increase",
+   "type": "Racial Trait",
+   "name": "Wood Elf: Movement Speed Increase",
+   "desc": "Your Movement Speed increases to 35 feet.",
+   "rules": []
+  },
+  {
+   "id": "Racial Trait:Giant Ancestry: Cloud's Jaunt",
+   "type": "Racial Trait",
+   "name": "Giant Ancestry: Cloud's Jaunt",
+   "desc": "As a Bonus Action, you magically teleport up to 30 feet to an unoccupied space you can see.",
+   "rules": [
+    {
+     "resource": {
+      "id": "giant-ancestry-cloud-s-jaunt",
+      "name": "Cloud's Jaunt",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Giant Ancestry: Fire's Burn",
+   "type": "Racial Trait",
+   "name": "Giant Ancestry: Fire's Burn",
+   "desc": "When you hit a target with an attack roll and deal damage to it, you can also deal 1d10 Fire damage to that target.",
+   "rules": [
+    {
+     "resource": {
+      "id": "giant-ancestry-fire-s-burn",
+      "name": "Fire's Burn",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Giant Ancestry: Frost's Chill",
+   "type": "Racial Trait",
+   "name": "Giant Ancestry: Frost's Chill",
+   "desc": "When you hit a target with an attack roll and deal damage to it, you can also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn.",
+   "rules": [
+    {
+     "resource": {
+      "id": "giant-ancestry-frost-s-chill",
+      "name": "Frost's Chill",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Giant Ancestry: Hill's Tumble",
+   "type": "Racial Trait",
+   "name": "Giant Ancestry: Hill's Tumble",
+   "desc": "When you hit a Large or smaller creature with an attack roll and deal damage to it, you can give that target the Prone condition.",
+   "rules": [
+    {
+     "resource": {
+      "id": "giant-ancestry-hill-s-tumble",
+      "name": "Hill's Tumble",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Giant Ancestry: Stone's Endurance",
+   "type": "Racial Trait",
+   "name": "Giant Ancestry: Stone's Endurance",
+   "desc": "When you take damage, you can take a Reaction to roll 1d12. Add your Constitution modifier to the number rolled and reduce the damage by that total.",
+   "rules": [
+    {
+     "resource": {
+      "id": "giant-ancestry-stone-s-endurance",
+      "name": "Stone's Endurance",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Giant Ancestry: Storm's Thunder",
+   "type": "Racial Trait",
+   "name": "Giant Ancestry: Storm's Thunder",
+   "desc": "When you take damage from a creature within 60 feet of you, you can take a Reaction to deal 1d8 Thunder damage to that creature.",
+   "rules": [
+    {
+     "resource": {
+      "id": "giant-ancestry-storm-s-thunder",
+      "name": "Storm's Thunder",
+      "rest": "L",
+      "max": {
+       "pb": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Racial Trait:Damage Resistance: Necrotic",
+   "type": "Racial Trait",
+   "name": "Damage Resistance: Necrotic",
+   "desc": "You have Resistance to Necrotic damage.",
+   "rules": []
+  },
+  {
+   "id": "Race:Dragonborn",
+   "type": "Race",
+   "name": "Dragonborn",
+   "desc": "Humanoid. Medium. Speed 30 ft. Traits: Darkvision (60 ft.), Draconic Flight.",
+   "rules": [
+    {
+     "stat": {
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Racial Trait:Darkvision (60 ft.)"
+    },
+    {
+     "grant": "Racial Trait:Draconic Flight"
+    },
+    {
+     "select": {
+      "name": "Draconic Ancestor",
+      "type": "Sub Race",
+      "supports": "Race:Dragonborn"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Race:Dwarf",
+   "type": "Race",
+   "name": "Dwarf",
+   "desc": "Humanoid. Medium. Speed 30 ft. Traits: Darkvision (120 ft.), Dwarven Resilience, Dwarven Toughness, Stonecunning.",
+   "rules": [
+    {
+     "stat": {
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Racial Trait:Darkvision (120 ft.)"
+    },
+    {
+     "grant": "Racial Trait:Dwarven Resilience"
+    },
+    {
+     "grant": "Racial Trait:Dwarven Toughness"
+    },
+    {
+     "grant": "Racial Trait:Stonecunning"
+    }
+   ]
+  },
+  {
+   "id": "Race:Elf",
+   "type": "Race",
+   "name": "Elf",
+   "desc": "Humanoid. Medium. Speed 30 ft. Traits: Darkvision (60 ft.), Fey Ancestry, Keen Senses, Trance.",
+   "rules": [
+    {
+     "stat": {
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Racial Trait:Darkvision (60 ft.)"
+    },
+    {
+     "grant": "Racial Trait:Fey Ancestry"
+    },
+    {
+     "grant": "Racial Trait:Keen Senses"
+    },
+    {
+     "grant": "Racial Trait:Trance"
+    },
+    {
+     "select": {
+      "name": "Elven Lineage",
+      "type": "Sub Race",
+      "supports": "Race:Elf"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Race:Gnome",
+   "type": "Race",
+   "name": "Gnome",
+   "desc": "Humanoid. Small. Speed 30 ft. Traits: Darkvision (60 ft.), Gnomish Cunning.",
+   "rules": [
+    {
+     "stat": {
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Racial Trait:Darkvision (60 ft.)"
+    },
+    {
+     "grant": "Racial Trait:Gnomish Cunning"
+    },
+    {
+     "select": {
+      "name": "Gnomish Lineage",
+      "type": "Sub Race",
+      "supports": "Race:Gnome"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Race:Goliath",
+   "type": "Race",
+   "name": "Goliath",
+   "desc": "Humanoid. Medium. Speed 35 ft. Traits: Large Form, Powerful Build.",
+   "rules": [
+    {
+     "stat": {
+      "speed": 35
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Racial Trait:Large Form"
+    },
+    {
+     "grant": "Racial Trait:Powerful Build"
+    },
+    {
+     "select": {
+      "name": "Giant Ancestry",
+      "type": "Sub Race",
+      "supports": "Race:Goliath"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Race:Halfling",
+   "type": "Race",
+   "name": "Halfling",
+   "desc": "Humanoid. Small. Speed 30 ft. Traits: Brave, Halfling Nimbleness, Luck, Naturally Stealthy.",
+   "rules": [
+    {
+     "stat": {
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Racial Trait:Brave"
+    },
+    {
+     "grant": "Racial Trait:Halfling Nimbleness"
+    },
+    {
+     "grant": "Racial Trait:Luck"
+    },
+    {
+     "grant": "Racial Trait:Naturally Stealthy"
+    }
+   ]
+  },
+  {
+   "id": "Race:Human",
+   "type": "Race",
+   "name": "Human",
+   "desc": "Humanoid. Medium. Speed 30 ft. Traits: Resourceful, Skillful, Versatile.",
+   "rules": [
+    {
+     "stat": {
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Racial Trait:Resourceful"
+    },
+    {
+     "grant": "Racial Trait:Skillful"
+    },
+    {
+     "grant": "Racial Trait:Versatile"
+    }
+   ]
+  },
+  {
+   "id": "Race:Orc",
+   "type": "Race",
+   "name": "Orc",
+   "desc": "Humanoid. Medium. Speed 30 ft. Traits: Adrenaline Rush, Darkvision (120 ft.), Relentless Endurance.",
+   "rules": [
+    {
+     "stat": {
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Racial Trait:Adrenaline Rush"
+    },
+    {
+     "grant": "Racial Trait:Darkvision (120 ft.)"
+    },
+    {
+     "grant": "Racial Trait:Relentless Endurance"
+    }
+   ]
+  },
+  {
+   "id": "Race:Tiefling",
+   "type": "Race",
+   "name": "Tiefling",
+   "desc": "Humanoid. Medium or Small (your choice). Speed 30 ft. Traits: Darkvision (60 ft.), Otherworldly Presence.",
+   "rules": [
+    {
+     "stat": {
+      "speed": 30
+     }
+    },
+    {
+     "grant": "Language:Common"
+    },
+    {
+     "grant": "Racial Trait:Darkvision (60 ft.)"
+    },
+    {
+     "grant": "Racial Trait:Otherworldly Presence"
+    },
+    {
+     "select": {
+      "name": "Fiendish Legacy",
+      "type": "Sub Race",
+      "supports": "Race:Tiefling"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Sub Race:Black Dragon",
+   "type": "Sub Race",
+   "name": "Black Dragon",
+   "desc": "Draconic Ancestor: Black.  Damage type: Acid.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Acid"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Acid"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:Blue Dragon",
+   "type": "Sub Race",
+   "name": "Blue Dragon",
+   "desc": "Draconic Ancestor: Blue.  Damage type: Lightning.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Lightning"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Lightning"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:Brass Dragon",
+   "type": "Sub Race",
+   "name": "Brass Dragon",
+   "desc": "Draconic Ancestor: Brass.  Damage type: Fire.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Fire"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Fire"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:Bronze Dragon",
+   "type": "Sub Race",
+   "name": "Bronze Dragon",
+   "desc": "Draconic Ancestor: Bronze.  Damage type: Lightning.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Lightning"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Lightning"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:Copper Dragon",
+   "type": "Sub Race",
+   "name": "Copper Dragon",
+   "desc": "Draconic Ancestor: Copper.  Damage type: Acid.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Acid"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Acid"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:Gold Dragon",
+   "type": "Sub Race",
+   "name": "Gold Dragon",
+   "desc": "Draconic Ancestor: Gold.  Damage type: Fire.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Fire"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Fire"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:Green Dragon",
+   "type": "Sub Race",
+   "name": "Green Dragon",
+   "desc": "Draconic Ancestor: Green.  Damage type: Poison.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Poison"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Poison"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:Red Dragon",
+   "type": "Sub Race",
+   "name": "Red Dragon",
+   "desc": "Draconic Ancestor: Red.  Damage type: Fire.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Fire"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Fire"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:Silver Dragon",
+   "type": "Sub Race",
+   "name": "Silver Dragon",
+   "desc": "Draconic Ancestor: Silver.  Damage type: Cold.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Cold"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Cold"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:White Dragon",
+   "type": "Sub Race",
+   "name": "White Dragon",
+   "desc": "Draconic Ancestor: White.  Damage type: Cold.",
+   "rules": [
+    {
+     "grant": "Racial Trait:Breath Weapon: Cold"
+    },
+    {
+     "grant": "Racial Trait:Damage Resistance: Cold"
+    }
+   ],
+   "supports": "Race:Dragonborn"
+  },
+  {
+   "id": "Sub Race:Drow",
+   "type": "Sub Race",
+   "name": "Drow",
+   "desc": "Elven Lineage: Drow. Spells: Dancing Lights (level 1), Faerie Fire (level 3), Darkness (level 5).",
+   "rules": [
+    {
+     "grant": "Racial Trait:Darkvision (120 ft.)"
+    }
+   ],
+   "supports": "Race:Elf",
+   "featSpells": [
+    [
+     1,
+     "Dancing Lights",
+     "lineage spell"
+    ],
+    [
+     3,
+     "Faerie Fire",
+     "lineage spell"
+    ],
+    [
+     5,
+     "Darkness",
+     "lineage spell"
+    ]
+   ]
+  },
+  {
+   "id": "Sub Race:High Elf",
+   "type": "Sub Race",
+   "name": "High Elf",
+   "desc": "Elven Lineage: High Elf. Spells: High Elf: Cantrip Versatility (level 1), Detect Magic (level 3), Misty Step (level 5).",
+   "rules": [],
+   "supports": "Race:Elf",
+   "featSpells": [
+    [
+     1,
+     "Prestidigitation",
+     "lineage spell"
+    ],
+    [
+     3,
+     "Detect Magic",
+     "lineage spell"
+    ],
+    [
+     5,
+     "Misty Step",
+     "lineage spell"
+    ]
+   ]
+  },
+  {
+   "id": "Sub Race:Wood Elf",
+   "type": "Sub Race",
+   "name": "Wood Elf",
+   "desc": "Elven Lineage: Wood Elf. Spells: Longstrider (level 3), Pass without Trace (level 5).",
+   "rules": [
+    {
+     "stat": {
+      "speed": 35
+     }
+    },
+    {
+     "grant": "Racial Trait:Wood Elf: Movement Speed Increase"
+    }
+   ],
+   "supports": "Race:Elf",
+   "featSpells": [
+    [
+     3,
+     "Longstrider",
+     "lineage spell"
+    ],
+    [
+     5,
+     "Pass without Trace",
+     "lineage spell"
+    ]
+   ]
+  },
+  {
+   "id": "Sub Race:Forest Gnome",
+   "type": "Sub Race",
+   "name": "Forest Gnome",
+   "desc": "Gnomish Lineage: Forest Gnome. Spells: Gnomish Lineage: Forest Gnome (level 1), Minor Illusion (level 1).",
+   "rules": [],
+   "supports": "Race:Gnome",
+   "featSpells": [
+    [
+     1,
+     "Speak with Animals",
+     "lineage spell"
+    ],
+    [
+     1,
+     "Minor Illusion",
+     "lineage spell"
+    ]
+   ]
+  },
+  {
+   "id": "Sub Race:Rock Gnome",
+   "type": "Sub Race",
+   "name": "Rock Gnome",
+   "desc": "Gnomish Lineage: Rock Gnome. Spells: Gnomish Lineage: Rock Gnome (level 1), Mending (level 1).",
+   "rules": [],
+   "supports": "Race:Gnome",
+   "featSpells": [
+    [
+     1,
+     "Prestidigitation",
+     "lineage spell"
+    ],
+    [
+     1,
+     "Mending",
+     "lineage spell"
+    ]
+   ]
+  },
+  {
+   "id": "Sub Race:Cloud's Jaunt",
+   "type": "Sub Race",
+   "name": "Cloud's Jaunt",
+   "desc": "Giant Ancestry: Cloud's Jaunt. ",
+   "rules": [
+    {
+     "grant": "Racial Trait:Giant Ancestry: Cloud's Jaunt"
+    }
+   ],
+   "supports": "Race:Goliath"
+  },
+  {
+   "id": "Sub Race:Fire's Burn",
+   "type": "Sub Race",
+   "name": "Fire's Burn",
+   "desc": "Giant Ancestry: Fire's Burn. ",
+   "rules": [
+    {
+     "grant": "Racial Trait:Giant Ancestry: Fire's Burn"
+    }
+   ],
+   "supports": "Race:Goliath"
+  },
+  {
+   "id": "Sub Race:Frost's Chill",
+   "type": "Sub Race",
+   "name": "Frost's Chill",
+   "desc": "Giant Ancestry: Frost's Chill. ",
+   "rules": [
+    {
+     "grant": "Racial Trait:Giant Ancestry: Frost's Chill"
+    }
+   ],
+   "supports": "Race:Goliath"
+  },
+  {
+   "id": "Sub Race:Hill's Tumble",
+   "type": "Sub Race",
+   "name": "Hill's Tumble",
+   "desc": "Giant Ancestry: Hill's Tumble. ",
+   "rules": [
+    {
+     "grant": "Racial Trait:Giant Ancestry: Hill's Tumble"
+    }
+   ],
+   "supports": "Race:Goliath"
+  },
+  {
+   "id": "Sub Race:Stone's Endurance",
+   "type": "Sub Race",
+   "name": "Stone's Endurance",
+   "desc": "Giant Ancestry: Stone's Endurance. ",
+   "rules": [
+    {
+     "grant": "Racial Trait:Giant Ancestry: Stone's Endurance"
+    }
+   ],
+   "supports": "Race:Goliath"
+  },
+  {
+   "id": "Sub Race:Storm's Thunder",
+   "type": "Sub Race",
+   "name": "Storm's Thunder",
+   "desc": "Giant Ancestry: Storm's Thunder. ",
+   "rules": [
+    {
+     "grant": "Racial Trait:Giant Ancestry: Storm's Thunder"
+    }
+   ],
+   "supports": "Race:Goliath"
+  },
+  {
+   "id": "Sub Race:Abyssal",
+   "type": "Sub Race",
+   "name": "Abyssal",
+   "desc": "Fiendish Legacy: Abyssal. Spells: Poison Spray (level 1), Ray of Sickness (level 3), Hold Person (level 5).",
+   "rules": [
+    {
+     "grant": "Racial Trait:Damage Resistance: Poison"
+    }
+   ],
+   "supports": "Race:Tiefling",
+   "featSpells": [
+    [
+     1,
+     "Poison Spray",
+     "lineage spell"
+    ],
+    [
+     3,
+     "Ray of Sickness",
+     "lineage spell"
+    ],
+    [
+     5,
+     "Hold Person",
+     "lineage spell"
+    ]
+   ]
+  },
+  {
+   "id": "Sub Race:Chthonic",
+   "type": "Sub Race",
+   "name": "Chthonic",
+   "desc": "Fiendish Legacy: Chthonic. Spells: Chill Touch (level 1), False Life (level 3), Ray of Enfeeblement (level 5).",
+   "rules": [
+    {
+     "grant": "Racial Trait:Damage Resistance: Necrotic"
+    }
+   ],
+   "supports": "Race:Tiefling",
+   "featSpells": [
+    [
+     1,
+     "Chill Touch",
+     "lineage spell"
+    ],
+    [
+     3,
+     "False Life",
+     "lineage spell"
+    ],
+    [
+     5,
+     "Ray of Enfeeblement",
+     "lineage spell"
+    ]
+   ]
+  },
+  {
+   "id": "Sub Race:Infernal",
+   "type": "Sub Race",
+   "name": "Infernal",
+   "desc": "Fiendish Legacy: Infernal. Spells: Fire Bolt (level 1), Hellish Rebuke (level 3), Darkness (level 5).",
+   "rules": [
+    {
+     "grant": "Racial Trait:Damage Resistance: Fire"
+    }
+   ],
+   "supports": "Race:Tiefling",
+   "featSpells": [
+    [
+     1,
+     "Fire Bolt",
+     "lineage spell"
+    ],
+    [
+     3,
+     "Hellish Rebuke",
+     "lineage spell"
+    ],
+    [
+     5,
+     "Darkness",
+     "lineage spell"
+    ]
+   ]
+  }
+ ]
+}
