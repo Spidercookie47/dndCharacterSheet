@@ -11,6 +11,8 @@
  "files": [
   "races.json",
   "languages.json",
+  "classes.json",
+  "subclasses.json",
   "spells.json",
   "equipment.json",
   "magic-items.json",

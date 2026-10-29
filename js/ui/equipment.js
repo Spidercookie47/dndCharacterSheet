@@ -86,7 +86,7 @@ function startView(r) {
             g.o
               .map((o, oi) => {
                 const on = (se[gi] || 0) === oi;
-                return `<label class="opt" style="font-weight:400"><input type="radio" name="sg${gi}" data-se="${gi}" value="${oi}"${on ? ' checked' : ''}><span>${o.map((p, pi) => (p.i ? esc(nm(p.i)) + (p.q > 1 ? ' ×' + p.q : '') : `<select data-sk="${gi}.${oi}.${pi}" style="width:auto">${(SEQC[p.c] || []).map((x) => `<option value="${esc(x)}"${se['k' + gi + '.' + oi + '.' + pi] === x ? ' selected' : ''}>${esc(nm(x))}</option>`).join('')}</select>`)).join(' + ')}</span></label>`;
+                return `<label class="opt" style="font-weight:400"><input type="radio" name="sg${gi}" data-se="${gi}" value="${oi}"${on ? ' checked' : ''}><span>${o.map((p, pi) => (p.i ? esc(nm(p.i)) + (p.q > 1 ? ' ×' + p.q : '') : p.gp ? p.gp + ' gp' : `<select data-sk="${gi}.${oi}.${pi}" style="width:auto">${(SEQC[p.c] || []).map((x) => `<option value="${esc(x)}"${se['k' + gi + '.' + oi + '.' + pi] === x ? ' selected' : ''}>${esc(nm(x))}</option>`).join('')}</select>`)).join(' + ')}</span></label>`;
               })
               .join(''),
         )
@@ -115,6 +115,7 @@ function addStart() {
       o = g.o[oi] || g.o[0];
     o.forEach((p, pi) => {
       if (p.i) add(p.i, p.q);
+      else if (p.gp) ch.coins = { ...(ch.coins || {}), gp: ((ch.coins || {}).gp || 0) + p.gp };
       else {
         const id = se['k' + gi + '.' + oi + '.' + pi] || (SEQC[p.c] || [])[0];
         if (id) add(id, p.q);

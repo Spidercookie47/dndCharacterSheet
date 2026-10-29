@@ -1,0 +1,6650 @@
+{
+ "elements": [
+  {
+   "id": "Class:Barbarian (5.2)",
+   "type": "Class",
+   "name": "Barbarian (5.2)",
+   "desc": "Hit die d12. Primary ability: Strength.",
+   "rules": [
+    {
+     "grant": "save:str"
+    },
+    {
+     "grant": "save:con"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Animal Handling",
+       "Athletics",
+       "Intimidation",
+       "Nature",
+       "Perception",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Rage (Barbarian) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Unarmored Defense (Barbarian) (5.2)",
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery",
+      "type": "Weapon",
+      "n": 2,
+      "ids": [
+       "Weapon:Battleaxe (5.2)",
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Flail (5.2)",
+       "Weapon:Glaive (5.2)",
+       "Weapon:Greataxe (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Greatsword (5.2)",
+       "Weapon:Halberd (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Lance (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Longsword (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Maul (5.2)",
+       "Weapon:Morningstar (5.2)",
+       "Weapon:Pike (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Trident (5.2)",
+       "Weapon:Warhammer (5.2)",
+       "Weapon:War Pick (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Danger Sense (Barbarian) (5.2)",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Reckless Attack (Barbarian) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Barbarian Subclass",
+      "type": "Subclass",
+      "supports": "Class:Barbarian (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Primal Knowledge (Barbarian) (5.2)",
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery (more)",
+      "type": "Weapon",
+      "n": 1,
+      "ids": [
+       "Weapon:Battleaxe (5.2)",
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Flail (5.2)",
+       "Weapon:Glaive (5.2)",
+       "Weapon:Greataxe (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Greatsword (5.2)",
+       "Weapon:Halberd (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Lance (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Longsword (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Maul (5.2)",
+       "Weapon:Morningstar (5.2)",
+       "Weapon:Pike (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Trident (5.2)",
+       "Weapon:Warhammer (5.2)",
+       "Weapon:War Pick (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Extra Attack (Barbarian) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Fast Movement (Barbarian) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Feral Instinct (Barbarian) (5.2)",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Instinctive Pounce (Barbarian) (5.2)",
+     "level": 7
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "grant": "Class Feature:Brutal Strike (Barbarian) (5.2)",
+     "level": 9
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery (more)",
+      "type": "Weapon",
+      "n": 1,
+      "ids": [
+       "Weapon:Battleaxe (5.2)",
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Flail (5.2)",
+       "Weapon:Glaive (5.2)",
+       "Weapon:Greataxe (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Greatsword (5.2)",
+       "Weapon:Halberd (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Lance (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Longsword (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Maul (5.2)",
+       "Weapon:Morningstar (5.2)",
+       "Weapon:Pike (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Trident (5.2)",
+       "Weapon:Warhammer (5.2)",
+       "Weapon:War Pick (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Relentless Rage (Barbarian) (5.2)",
+     "level": 11
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "grant": "Class Feature:Improved Brutal Strike (Barbarian) (5.2)",
+     "level": 13
+    },
+    {
+     "grant": "Class Feature:Persistent Rage (Barbarian) (5.2)",
+     "level": 15
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "grant": "Class Feature:Indomitable Might (Barbarian) (5.2)",
+     "level": 18
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Primal Champion (Barbarian) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 12,
+   "wp": [
+    "simple",
+    "martial"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "mp": [
+    "a:Shields",
+    "w:Martial weapons"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Greataxe, 4 Handaxes, Explorer's Pack, and 15 GP or (b) 75 GP",
+      "o": [
+       [
+        {
+         "i": "Weapon:Greataxe (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Handaxe (5.2)",
+         "q": 4
+        },
+        {
+         "i": "Gear:Explorer's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 15
+        }
+       ],
+       [
+        {
+         "gp": 75
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "str"
+   ]
+  },
+  {
+   "id": "Class:Bard (5.2)",
+   "type": "Class",
+   "name": "Bard (5.2)",
+   "desc": "Hit die d8. Primary ability: Charisma.",
+   "rules": [
+    {
+     "grant": "save:dex"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 3)",
+      "n": 3,
+      "from": [
+       "Acrobatics",
+       "Animal Handling",
+       "Arcana",
+       "Athletics",
+       "Deception",
+       "History",
+       "Insight",
+       "Intimidation",
+       "Investigation",
+       "Medicine",
+       "Nature",
+       "Perception",
+       "Performance",
+       "Persuasion",
+       "Religion",
+       "Sleight of Hand",
+       "Stealth",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Bardic Inspiration (Bard) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Spellcasting (Bard) (5.2)",
+     "level": 1
+    },
+    {
+     "expertise": 2,
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Jack of All Trades (Bard) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Bard Subclass",
+      "type": "Subclass",
+      "supports": "Class:Bard (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Font of Inspiration (Bard) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Countercharm (Bard) (5.2)",
+     "level": 7
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "expertise": 2,
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Magical Secrets (Bard) (5.2)",
+     "level": 10
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "grant": "Class Feature:Superior Inspiration (Bard) (5.2)",
+     "level": 18
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Words of Creation (Bard) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple"
+   ],
+   "ap": [
+    "a:Light armor",
+    "w:Simple weapons"
+   ],
+   "mp": [
+    "a:Light armor"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Leather Armor, 2 Daggers, Musical Instrument of your choice, Entertainer’s Pack, and 19 GP; or (b) 90 GP",
+      "o": [
+       [
+        {
+         "i": "Armor:Leather Armor (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Dagger (5.2)",
+         "q": 2
+        },
+        {
+         "i": "Gear:Entertainer's Pack",
+         "q": 1
+        },
+        {
+         "gp": 19
+        }
+       ],
+       [
+        {
+         "gp": 90
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "cha"
+   ],
+   "casting": {
+    "ability": "cha",
+    "mode": "prep",
+    "half": false,
+    "halfUp": false,
+    "rows": [
+     [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": null,
+    "prep": [
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     17,
+     18,
+     18,
+     19,
+     20,
+     21,
+     22
+    ],
+    "list": "Bard"
+   }
+  },
+  {
+   "id": "Class:Cleric (5.2)",
+   "type": "Class",
+   "name": "Cleric (5.2)",
+   "desc": "Hit die d8. Primary ability: Wisdom.",
+   "rules": [
+    {
+     "grant": "save:wis"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "History",
+       "Insight",
+       "Medicine",
+       "Persuasion",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Divine Order (Cleric) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Spellcasting (Cleric) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Channel Divinity (Cleric) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Cleric Subclass",
+      "type": "Subclass",
+      "supports": "Class:Cleric (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Sear Undead (Cleric) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Blessed Strikes (Cleric) (5.2)",
+     "level": 7
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "grant": "Class Feature:Divine Intervention (Cleric) (5.2)",
+     "level": 10
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "grant": "Class Feature:Improved Blessed Strikes (Cleric) (5.2)",
+     "level": 14
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Greater Divine Intervention (Cleric) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Simple weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Chain Shirt, Shield, Mace, Holy Symbol, Priest's Pack, and 7 GP; or (b) 110 GP",
+      "o": [
+       [
+        {
+         "i": "Armor:Chain Shirt (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Armor:Shield (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Mace (5.2)",
+         "q": 1
+        },
+        {
+         "c": "holy-symbols",
+         "q": 1
+        },
+        {
+         "i": "Gear:Priest's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 7
+        }
+       ],
+       [
+        {
+         "gp": 110
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "wis"
+   ],
+   "casting": {
+    "ability": "wis",
+    "mode": "prep",
+    "half": false,
+    "halfUp": false,
+    "rows": [
+     [
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": null,
+    "prep": [
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     17,
+     18,
+     18,
+     19,
+     20,
+     21,
+     22
+    ],
+    "list": "Cleric"
+   }
+  },
+  {
+   "id": "Class:Druid (5.2)",
+   "type": "Class",
+   "name": "Druid (5.2)",
+   "desc": "Hit die d8. Primary ability: Wisdom.",
+   "rules": [
+    {
+     "grant": "save:int"
+    },
+    {
+     "grant": "save:wis"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Arcana",
+       "Animal Handling",
+       "Insight",
+       "Medicine",
+       "Nature",
+       "Perception",
+       "Religion",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "pf": [
+      "t:Herbalism Kit"
+     ]
+    },
+    {
+     "grant": "Language:Druidic"
+    },
+    {
+     "grant": "Class Feature:Druidic (Druid) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Primal Order (Druid) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Spellcasting (Druid) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Wild Shape (Druid) (5.2)",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Wild Companion (Druid) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Druid Subclass",
+      "type": "Subclass",
+      "supports": "Class:Druid (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Wild Resurgence (Druid) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Elemental Fury (Druid) (5.2)",
+     "level": 7
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "grant": "Class Feature:Improved Elemental Fury (Druid) (5.2)",
+     "level": 15
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "grant": "Class Feature:Beast Spells (Druid) (5.2)",
+     "level": 18
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Archdruid (Druid) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Shields",
+    "w:Simple weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Shields"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Leather Armor, Shield, Sickle, Druidic Focus (Quarterstaff), Explorer's Pack, Herbalism Kit, and 9 GP; or (a) 50 GP",
+      "o": [
+       [
+        {
+         "i": "Armor:Leather Armor (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Armor:Shield (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Sickle (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Quarterstaff (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Gear:Explorer's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Gear:Herbalism Kit",
+         "q": 1
+        },
+        {
+         "gp": 9
+        }
+       ],
+       [
+        {
+         "gp": 50
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "wis"
+   ],
+   "casting": {
+    "ability": "wis",
+    "mode": "prep",
+    "half": false,
+    "halfUp": false,
+    "rows": [
+     [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": null,
+    "prep": [
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     17,
+     18,
+     18,
+     19,
+     20,
+     21,
+     22
+    ],
+    "list": "Druid"
+   }
+  },
+  {
+   "id": "Class:Fighter (5.2)",
+   "type": "Class",
+   "name": "Fighter (5.2)",
+   "desc": "Hit die d10. Primary ability: Strength or Dexterity.",
+   "rules": [
+    {
+     "grant": "save:str"
+    },
+    {
+     "grant": "save:con"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Acrobatics",
+       "Animal Handling",
+       "Athletics",
+       "History",
+       "Insight",
+       "Intimidation",
+       "Perception",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "select": {
+      "name": "Fighting Style",
+      "type": "Fighting Style",
+      "ids": [
+       "Fighting Style:Archery (5.2)",
+       "Fighting Style:Defense (5.2)",
+       "Fighting Style:Great Weapon Fighting (5.2)",
+       "Fighting Style:Two-Weapon Fighting (5.2)"
+      ]
+     },
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Second Wind (Fighter) (5.2)",
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery",
+      "type": "Weapon",
+      "n": 3,
+      "ids": [
+       "Weapon:Battleaxe (5.2)",
+       "Weapon:Blowgun (5.2)",
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Dart (5.2)",
+       "Weapon:Flail (5.2)",
+       "Weapon:Glaive (5.2)",
+       "Weapon:Greataxe (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Greatsword (5.2)",
+       "Weapon:Halberd (5.2)",
+       "Weapon:Hand Crossbow (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Heavy Crossbow (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Lance (5.2)",
+       "Weapon:Light Crossbow (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Longbow (5.2)",
+       "Weapon:Longsword (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Maul (5.2)",
+       "Weapon:Morningstar (5.2)",
+       "Weapon:Musket (5.2)",
+       "Weapon:Pike (5.2)",
+       "Weapon:Pistol (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortbow (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Sling (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Trident (5.2)",
+       "Weapon:Warhammer (5.2)",
+       "Weapon:War Pick (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Action Surge (Fighter) (5.2)",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Tactical Mind (Fighter) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Fighter Subclass",
+      "type": "Subclass",
+      "supports": "Class:Fighter (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery (more)",
+      "type": "Weapon",
+      "n": 1,
+      "ids": [
+       "Weapon:Battleaxe (5.2)",
+       "Weapon:Blowgun (5.2)",
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Dart (5.2)",
+       "Weapon:Flail (5.2)",
+       "Weapon:Glaive (5.2)",
+       "Weapon:Greataxe (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Greatsword (5.2)",
+       "Weapon:Halberd (5.2)",
+       "Weapon:Hand Crossbow (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Heavy Crossbow (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Lance (5.2)",
+       "Weapon:Light Crossbow (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Longbow (5.2)",
+       "Weapon:Longsword (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Maul (5.2)",
+       "Weapon:Morningstar (5.2)",
+       "Weapon:Musket (5.2)",
+       "Weapon:Pike (5.2)",
+       "Weapon:Pistol (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortbow (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Sling (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Trident (5.2)",
+       "Weapon:Warhammer (5.2)",
+       "Weapon:War Pick (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Extra Attack (Fighter) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Tactical Shift (Fighter) (5.2)",
+     "level": 5
+    },
+    {
+     "asi": 1,
+     "level": 6
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "grant": "Class Feature:Indomitable (Fighter) (5.2)",
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Tactical Master (Fighter) (5.2)",
+     "level": 9
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery (more)",
+      "type": "Weapon",
+      "n": 1,
+      "ids": [
+       "Weapon:Battleaxe (5.2)",
+       "Weapon:Blowgun (5.2)",
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Dart (5.2)",
+       "Weapon:Flail (5.2)",
+       "Weapon:Glaive (5.2)",
+       "Weapon:Greataxe (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Greatsword (5.2)",
+       "Weapon:Halberd (5.2)",
+       "Weapon:Hand Crossbow (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Heavy Crossbow (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Lance (5.2)",
+       "Weapon:Light Crossbow (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Longbow (5.2)",
+       "Weapon:Longsword (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Maul (5.2)",
+       "Weapon:Morningstar (5.2)",
+       "Weapon:Musket (5.2)",
+       "Weapon:Pike (5.2)",
+       "Weapon:Pistol (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortbow (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Sling (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Trident (5.2)",
+       "Weapon:Warhammer (5.2)",
+       "Weapon:War Pick (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Two Extra Attacks (Fighter) (5.2)",
+     "level": 11
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "grant": "Class Feature:Studied Attacks (Fighter) (5.2)",
+     "level": 13
+    },
+    {
+     "asi": 1,
+     "level": 14
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery (more)",
+      "type": "Weapon",
+      "n": 1,
+      "ids": [
+       "Weapon:Battleaxe (5.2)",
+       "Weapon:Blowgun (5.2)",
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Dart (5.2)",
+       "Weapon:Flail (5.2)",
+       "Weapon:Glaive (5.2)",
+       "Weapon:Greataxe (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Greatsword (5.2)",
+       "Weapon:Halberd (5.2)",
+       "Weapon:Hand Crossbow (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Heavy Crossbow (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Lance (5.2)",
+       "Weapon:Light Crossbow (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Longbow (5.2)",
+       "Weapon:Longsword (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Maul (5.2)",
+       "Weapon:Morningstar (5.2)",
+       "Weapon:Musket (5.2)",
+       "Weapon:Pike (5.2)",
+       "Weapon:Pistol (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortbow (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Sling (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Trident (5.2)",
+       "Weapon:Warhammer (5.2)",
+       "Weapon:War Pick (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 16
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Three Extra Attacks (Fighter) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 10,
+   "wp": [
+    "simple",
+    "martial"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Heavy armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Martial weapons"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Chain Mail, Greatsword, Flail, 8 Javelins, Dungeoneer’s Pack, and 4 GP; (b) Studded Leather Armor, Scimitar, Shortsword, Longbow, 20 Arrows, Quiver, Dungeoneer’s Pack, and 11 GP; or (c) 155 GP",
+      "o": [
+       [
+        {
+         "i": "Armor:Chain Mail (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Greatsword (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Flail (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Javelin (5.2)",
+         "q": 8
+        },
+        {
+         "i": "Gear:Dungeoneer's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 4
+        }
+       ],
+       [
+        {
+         "i": "Armor:Studded Leather Armor (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Scimitar (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Shortsword (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Longbow (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Gear:Arrows (5.2)",
+         "q": 20
+        },
+        {
+         "i": "Gear:Quiver",
+         "q": 1
+        },
+        {
+         "i": "Gear:Dungeoneer's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 11
+        }
+       ],
+       [
+        {
+         "gp": 155
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "str",
+    "dex"
+   ]
+  },
+  {
+   "id": "Class:Monk (5.2)",
+   "type": "Class",
+   "name": "Monk (5.2)",
+   "desc": "Hit die d8. Primary ability: Dexterity and Wisdom.",
+   "rules": [
+    {
+     "grant": "save:dex"
+    },
+    {
+     "grant": "save:str"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Acrobatics",
+       "Athletics",
+       "History",
+       "Insight",
+       "Religion",
+       "Stealth"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Martial Arts (Monk) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Unarmored Defense (Monk) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Monk's Focus (Monk) (5.2)",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Unarmored Movement (Monk) (5.2)",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Uncanny Metabolism (Monk) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Monk Subclass",
+      "type": "Subclass",
+      "supports": "Class:Monk (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Deflect Attacks (Monk) (5.2)",
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Slow Fall (Monk) (5.2)",
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Extra Attack (Monk) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Stunning Strike (Monk) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Empowered Strikes (Monk) (5.2)",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Evasion (Monk) (5.2)",
+     "level": 7
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "grant": "Class Feature:Acrobatic Movement (Monk) (5.2)",
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Heightened Focus (Monk) (5.2)",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Self-Restoration (Monk) (5.2)",
+     "level": 10
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "grant": "Class Feature:Deflect Energy (Monk) (5.2)",
+     "level": 13
+    },
+    {
+     "grant": "Class Feature:Disciplined Survivor (Monk) (5.2)",
+     "level": 14
+    },
+    {
+     "grant": "Class Feature:Perfect Focus (Monk) (5.2)",
+     "level": 15
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "grant": "Class Feature:Superior Defense (Monk) (5.2)",
+     "level": 18
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Body and Mind (Monk) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple",
+    "Scimitar",
+    "Shortsword",
+    "Hand Crossbow"
+   ],
+   "ap": [
+    "w:Simple weapons",
+    "w:Scimitars",
+    "w:Shortswords",
+    "w:Hand Crossbows"
+   ],
+   "mp": [],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Spear, 5 Daggers, Artisan’s Tools or Musical Instrument chosen for the tool proficiency above, Explorer’s Pack, and 11 GP; or (b) 50 GP",
+      "o": [
+       [
+        {
+         "i": "Weapon:Spear (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Dagger (5.2)",
+         "q": 5
+        },
+        {
+         "i": "Gear:Explorer's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 11
+        }
+       ],
+       [
+        {
+         "gp": 50
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "&",
+    "dex",
+    "wis"
+   ]
+  },
+  {
+   "id": "Class:Paladin (5.2)",
+   "type": "Class",
+   "name": "Paladin (5.2)",
+   "desc": "Hit die d10. Primary ability: Strength and Charisma.",
+   "rules": [
+    {
+     "grant": "save:wis"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Athletics",
+       "Insight",
+       "Intimidation",
+       "Medicine",
+       "Persuasion",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Lay On Hands (Paladin) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Spellcasting (Paladin) (5.2)",
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery",
+      "type": "Weapon",
+      "n": 2,
+      "ids": [
+       "Weapon:Battleaxe (5.2)",
+       "Weapon:Blowgun (5.2)",
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Dart (5.2)",
+       "Weapon:Flail (5.2)",
+       "Weapon:Glaive (5.2)",
+       "Weapon:Greataxe (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Greatsword (5.2)",
+       "Weapon:Halberd (5.2)",
+       "Weapon:Hand Crossbow (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Heavy Crossbow (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Lance (5.2)",
+       "Weapon:Light Crossbow (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Longbow (5.2)",
+       "Weapon:Longsword (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Maul (5.2)",
+       "Weapon:Morningstar (5.2)",
+       "Weapon:Musket (5.2)",
+       "Weapon:Pike (5.2)",
+       "Weapon:Pistol (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortbow (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Sling (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Trident (5.2)",
+       "Weapon:Warhammer (5.2)",
+       "Weapon:War Pick (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Fighting Style",
+      "type": "Fighting Style",
+      "ids": [
+       "Fighting Style:Archery (5.2)",
+       "Fighting Style:Defense (5.2)",
+       "Fighting Style:Great Weapon Fighting (5.2)",
+       "Fighting Style:Two-Weapon Fighting (5.2)"
+      ]
+     },
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Paladin's Smite (Paladin) (5.2)",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Channel Divinity (Paladin) (5.2)",
+     "level": 3
+    },
+    {
+     "select": {
+      "name": "Paladin Subclass",
+      "type": "Subclass",
+      "supports": "Class:Paladin (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Extra Attack (Paladin) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Faithful Steed (Paladin) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Aura of Protection (Paladin) (5.2)",
+     "level": 6
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "grant": "Class Feature:Abjure Foes (Paladin) (5.2)",
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Aura of Courage (Paladin) (5.2)",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Radiant Strikes (Paladin) (5.2)",
+     "level": 11
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "grant": "Class Feature:Restoring Touch (Paladin) (5.2)",
+     "level": 14
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "grant": "Class Feature:Aura Expansion (Paladin) (5.2)",
+     "level": 18
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    }
+   ],
+   "hd": 10,
+   "wp": [
+    "simple",
+    "martial"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Heavy armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Martial weapons"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Chain Mail, Shield, Longsword, 6 Javelins, Holy Symbol, Priest’s Pack, and 9 GP; or (b) 150 GP",
+      "o": [
+       [
+        {
+         "i": "Armor:Chain Mail (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Armor:Shield (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Longsword (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Javelin (5.2)",
+         "q": 6
+        },
+        {
+         "c": "holy-symbols",
+         "q": 1
+        },
+        {
+         "i": "Gear:Priest's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 9
+        }
+       ],
+       [
+        {
+         "gp": 150
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "&",
+    "str",
+    "cha"
+   ],
+   "casting": {
+    "ability": "cha",
+    "mode": "prep",
+    "half": true,
+    "halfUp": true,
+    "rows": [
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "known": null,
+    "prep": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     6,
+     7,
+     7,
+     9,
+     9,
+     10,
+     10,
+     11,
+     11,
+     12,
+     12,
+     14,
+     14,
+     15,
+     15
+    ],
+    "list": "Paladin"
+   }
+  },
+  {
+   "id": "Class:Ranger (5.2)",
+   "type": "Class",
+   "name": "Ranger (5.2)",
+   "desc": "Hit die d10. Primary ability: Dexterity and Wisdom.",
+   "rules": [
+    {
+     "grant": "save:dex"
+    },
+    {
+     "grant": "save:str"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 3)",
+      "n": 3,
+      "from": [
+       "Animal Handling",
+       "Athletics",
+       "Insight",
+       "Investigation",
+       "Nature",
+       "Perception",
+       "Stealth",
+       "Survival"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Favored Enemy (Ranger) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Spellcasting (Ranger) (5.2)",
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery",
+      "type": "Weapon",
+      "n": 2,
+      "ids": [
+       "Weapon:Battleaxe (5.2)",
+       "Weapon:Blowgun (5.2)",
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Dart (5.2)",
+       "Weapon:Flail (5.2)",
+       "Weapon:Glaive (5.2)",
+       "Weapon:Greataxe (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Greatsword (5.2)",
+       "Weapon:Halberd (5.2)",
+       "Weapon:Hand Crossbow (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Heavy Crossbow (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Lance (5.2)",
+       "Weapon:Light Crossbow (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Longbow (5.2)",
+       "Weapon:Longsword (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Maul (5.2)",
+       "Weapon:Morningstar (5.2)",
+       "Weapon:Musket (5.2)",
+       "Weapon:Pike (5.2)",
+       "Weapon:Pistol (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortbow (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Sling (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Trident (5.2)",
+       "Weapon:Warhammer (5.2)",
+       "Weapon:War Pick (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Deft Explorer (Ranger) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Fighting Style",
+      "type": "Fighting Style",
+      "ids": [
+       "Fighting Style:Archery (5.2)",
+       "Fighting Style:Defense (5.2)",
+       "Fighting Style:Great Weapon Fighting (5.2)",
+       "Fighting Style:Two-Weapon Fighting (5.2)"
+      ]
+     },
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Ranger Subclass",
+      "type": "Subclass",
+      "supports": "Class:Ranger (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Extra Attack (Ranger) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Roving (Ranger) (5.2)",
+     "level": 6
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "expertise": 2,
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Tireless (Ranger) (5.2)",
+     "level": 10
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "grant": "Class Feature:Relentless Hunter (Ranger) (5.2)",
+     "level": 13
+    },
+    {
+     "grant": "Class Feature:Nature's Veil (Ranger) (5.2)",
+     "level": 14
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "grant": "Class Feature:Precise Hunter (Ranger) (5.2)",
+     "level": 17
+    },
+    {
+     "grant": "Class Feature:Feral Senses (Ranger) (5.2)",
+     "level": 18
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Foe Slayer (Ranger) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 10,
+   "wp": [
+    "simple",
+    "martial"
+   ],
+   "ap": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Simple weapons",
+    "w:Martial weapons"
+   ],
+   "mp": [
+    "a:Light armor",
+    "a:Medium armor",
+    "a:Shields",
+    "w:Martial weapons"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Studded Leather Armor, Scimitar, Shortsword, Longbow, 20 Arrows, Quiver, Druidic Focus (sprig of mistletoe), Explorer's Pack, and 7 GP; or (b) 150 GP",
+      "o": [
+       [
+        {
+         "i": "Armor:Studded Leather Armor (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Scimitar (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Shortsword (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Longbow (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Gear:Arrows (5.2)",
+         "q": 20
+        },
+        {
+         "i": "Gear:Quiver",
+         "q": 1
+        },
+        {
+         "i": "Gear:Sprig of Mistletoe (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Gear:Explorer's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 7
+        }
+       ],
+       [
+        {
+         "gp": 150
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "&",
+    "dex",
+    "wis"
+   ],
+   "casting": {
+    "ability": "wis",
+    "mode": "prep",
+    "half": true,
+    "halfUp": true,
+    "rows": [
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "known": null,
+    "prep": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     6,
+     7,
+     7,
+     9,
+     9,
+     10,
+     10,
+     11,
+     11,
+     12,
+     12,
+     14,
+     14,
+     15,
+     15
+    ],
+    "list": "Ranger"
+   }
+  },
+  {
+   "id": "Class:Rogue (5.2)",
+   "type": "Class",
+   "name": "Rogue (5.2)",
+   "desc": "Hit die d8. Primary ability: Dexterity.",
+   "rules": [
+    {
+     "grant": "save:dex"
+    },
+    {
+     "grant": "save:int"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 4)",
+      "n": 4,
+      "from": [
+       "Acrobatics",
+       "Athletics",
+       "Deception",
+       "Insight",
+       "Intimidation",
+       "Investigation",
+       "Perception",
+       "Performance",
+       "Persuasion",
+       "Sleight of Hand",
+       "Stealth"
+      ]
+     }
+    },
+    {
+     "pf": [
+      "t:Thieves' Tools"
+     ]
+    },
+    {
+     "grant": "Language:Thieves' Cant"
+    },
+    {
+     "expertise": 2,
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Sneak Attack (Rogue) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Thieves' Cant (Rogue) (5.2)",
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Weapon Mastery",
+      "type": "Weapon",
+      "n": 2,
+      "ids": [
+       "Weapon:Club (5.2)",
+       "Weapon:Dagger (5.2)",
+       "Weapon:Dart (5.2)",
+       "Weapon:Greatclub (5.2)",
+       "Weapon:Hand Crossbow (5.2)",
+       "Weapon:Handaxe (5.2)",
+       "Weapon:Javelin (5.2)",
+       "Weapon:Light Crossbow (5.2)",
+       "Weapon:Light Hammer (5.2)",
+       "Weapon:Mace (5.2)",
+       "Weapon:Quarterstaff (5.2)",
+       "Weapon:Rapier (5.2)",
+       "Weapon:Scimitar (5.2)",
+       "Weapon:Shortbow (5.2)",
+       "Weapon:Shortsword (5.2)",
+       "Weapon:Sickle (5.2)",
+       "Weapon:Sling (5.2)",
+       "Weapon:Spear (5.2)",
+       "Weapon:Whip (5.2)"
+      ]
+     },
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Cunning Action (Rogue) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Rogue Subclass",
+      "type": "Subclass",
+      "supports": "Class:Rogue (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Steady Aim (Rogue) (5.2)",
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Cunning Strike (Rogue) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Uncanny Dodge (Rogue) (5.2)",
+     "level": 5
+    },
+    {
+     "expertise": 2,
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Evasion (Rogue) (5.2)",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Reliable Talent (Rogue) (5.2)",
+     "level": 7
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Improved Cunning Strike (Rogue) (5.2)",
+     "level": 11
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "grant": "Class Feature:Devious Strikes (Rogue) (5.2)",
+     "level": 14
+    },
+    {
+     "grant": "Class Feature:Slippery Mind (Rogue) (5.2)",
+     "level": 15
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "grant": "Class Feature:Elusive (Rogue) (5.2)",
+     "level": 18
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Stroke of Luck (Rogue) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple",
+    "Longsword",
+    "Rapier",
+    "Scimitar",
+    "Shortsword",
+    "Whip",
+    "Hand Crossbow"
+   ],
+   "ap": [
+    "a:Light armor",
+    "w:Simple weapons",
+    "w:Longswords",
+    "w:Rapiers",
+    "w:Scimitars",
+    "w:Shortswords",
+    "w:Whips",
+    "w:Hand Crossbows"
+   ],
+   "mp": [
+    "a:Light armor"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Leather Armor, 2 Daggers, Shortsword, Shortbow, 20 Arrows, Quiver, Thieves’ Tools, Burglar’s Pack, and 8 GP; (b) 100 GP",
+      "o": [
+       [
+        {
+         "i": "Armor:Leather Armor (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Dagger (5.2)",
+         "q": 2
+        },
+        {
+         "i": "Weapon:Shortsword (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Shortbow (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Gear:Arrows (5.2)",
+         "q": 20
+        },
+        {
+         "i": "Gear:Quiver",
+         "q": 1
+        },
+        {
+         "i": "Gear:Thieves' Tools",
+         "q": 1
+        },
+        {
+         "i": "Gear:Burglar's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 8
+        }
+       ],
+       [
+        {
+         "gp": 100
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "dex"
+   ]
+  },
+  {
+   "id": "Class:Sorcerer (5.2)",
+   "type": "Class",
+   "name": "Sorcerer (5.2)",
+   "desc": "Hit die d6. Primary ability: Charisma.",
+   "rules": [
+    {
+     "grant": "save:con"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Arcana",
+       "Deception",
+       "Insight",
+       "Intimidation",
+       "Persuasion",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Innate Sorcery (Sorcerer) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Spellcasting (Sorcerer) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Font of Magic (Sorcerer) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Metamagic",
+      "type": "Metamagic",
+      "n": 2
+     },
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Metamagic (Sorcerer) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Sorcerer Subclass",
+      "type": "Subclass",
+      "supports": "Class:Sorcerer (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Sorcerous Restoration (Sorcerer) (5.2)",
+     "level": 5
+    },
+    {
+     "grant": "Class Feature:Sorcery Incarnate (Sorcerer) (5.2)",
+     "level": 7
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "select": {
+      "name": "Metamagic (more)",
+      "type": "Metamagic",
+      "n": 2
+     },
+     "level": 10
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "select": {
+      "name": "Metamagic (more)",
+      "type": "Metamagic",
+      "n": 2
+     },
+     "level": 17
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Arcane Apotheosis (Sorcerer) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 6,
+   "wp": [
+    "simple"
+   ],
+   "ap": [
+    "w:Simple weapons"
+   ],
+   "mp": [],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Spear, 2 Daggers, Arcane Focus (crystal), Dungeoneer’s Pack, and 28 GP; or (b) 50 GP",
+      "o": [
+       [
+        {
+         "i": "Armor:Leather Armor (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Dagger (5.2)",
+         "q": 2
+        },
+        {
+         "i": "Gear:Crystal",
+         "q": 1
+        },
+        {
+         "i": "Gear:Dungeoneer's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 28
+        }
+       ],
+       [
+        {
+         "gp": 50
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "cha"
+   ],
+   "casting": {
+    "ability": "cha",
+    "mode": "prep",
+    "half": false,
+    "halfUp": false,
+    "rows": [
+     [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      6,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": null,
+    "prep": [
+     2,
+     4,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     17,
+     18,
+     18,
+     19,
+     20,
+     21,
+     22
+    ],
+    "list": "Sorcerer"
+   }
+  },
+  {
+   "id": "Class:Warlock (5.2)",
+   "type": "Class",
+   "name": "Warlock (5.2)",
+   "desc": "Hit die d8. Primary ability: Charisma.",
+   "rules": [
+    {
+     "grant": "save:wis"
+    },
+    {
+     "grant": "save:cha"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Arcana",
+       "Deception",
+       "History",
+       "Intimidation",
+       "Investigation",
+       "Nature",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Pact Magic (Warlock) (5.2)",
+     "level": 1
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocations",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Eldritch Invocations (Warlock) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Magical Cunning (Warlock) (5.2)",
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocations (more)",
+      "type": "Invocation",
+      "n": 2
+     },
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Warlock Subclass",
+      "type": "Subclass",
+      "supports": "Class:Warlock (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocations (more)",
+      "type": "Invocation",
+      "n": 2
+     },
+     "level": 5
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocations (more)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 7
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "grant": "Class Feature:Contact Patron (Warlock) (5.2)",
+     "level": 9
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocations (more)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Mystic Arcanum (Warlock) (5.2)",
+     "level": 11
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocations (more)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 12
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocations (more)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 15
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "select": {
+      "name": "Eldritch Invocations (more)",
+      "type": "Invocation",
+      "n": 1
+     },
+     "level": 18
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Eldritch Master (Warlock) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 8,
+   "wp": [
+    "simple"
+   ],
+   "ap": [
+    "a:Light armor",
+    "w:Simple weapons"
+   ],
+   "mp": [
+    "a:Light armor"
+   ],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) Leather Armor, Sickle, 2 Daggers, Arcane Focus (orb), Book, Scholar’s Pack, and 15 GP; or (b) 100 GP",
+      "o": [
+       [
+        {
+         "i": "Armor:Leather Armor (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Sickle (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Weapon:Dagger (5.2)",
+         "q": 2
+        },
+        {
+         "i": "Gear:Orb",
+         "q": 1
+        },
+        {
+         "i": "Gear:Book",
+         "q": 1
+        },
+        {
+         "i": "Gear:Scholar's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 15
+        }
+       ],
+       [
+        {
+         "gp": 100
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "cha"
+   ],
+   "casting": {
+    "ability": "cha",
+    "mode": "prep",
+    "half": false,
+    "halfUp": false,
+    "rows": [
+     [
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ]
+    ],
+    "known": null,
+    "prep": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     10,
+     11,
+     11,
+     12,
+     12,
+     13,
+     13,
+     14,
+     14,
+     15,
+     15
+    ],
+    "list": "Warlock"
+   }
+  },
+  {
+   "id": "Class:Wizard (5.2)",
+   "type": "Class",
+   "name": "Wizard (5.2)",
+   "desc": "Hit die d6. Primary ability: Intelligence.",
+   "rules": [
+    {
+     "grant": "save:int"
+    },
+    {
+     "grant": "save:wis"
+    },
+    {
+     "select": {
+      "name": "Skills (choose 2)",
+      "n": 2,
+      "from": [
+       "Arcana",
+       "History",
+       "Insight",
+       "Investigation",
+       "Medicine",
+       "Religion"
+      ]
+     }
+    },
+    {
+     "grant": "Class Feature:Arcane Recovery (Wizard) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Ritual Adept (Wizard) (5.2)",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Spellcasting (Wizard) (5.2)",
+     "level": 1
+    },
+    {
+     "expertise": 1,
+     "level": 2
+    },
+    {
+     "select": {
+      "name": "Wizard Subclass",
+      "type": "Subclass",
+      "supports": "Class:Wizard (5.2)"
+     },
+     "level": 3
+    },
+    {
+     "asi": 1,
+     "level": 4
+    },
+    {
+     "grant": "Class Feature:Memorize Spell (Wizard) (5.2)",
+     "level": 5
+    },
+    {
+     "asi": 1,
+     "level": 8
+    },
+    {
+     "asi": 1,
+     "level": 12
+    },
+    {
+     "asi": 1,
+     "level": 16
+    },
+    {
+     "grant": "Class Feature:Spell Mastery (Wizard) (5.2)",
+     "level": 18
+    },
+    {
+     "asi": 1,
+     "level": 19,
+     "epic": true
+    },
+    {
+     "grant": "Class Feature:Signature Spells (Wizard) (5.2)",
+     "level": 20
+    }
+   ],
+   "hd": 6,
+   "wp": [
+    "simple"
+   ],
+   "ap": [
+    "w:Simple weapons"
+   ],
+   "mp": [],
+   "start": {
+    "f": [],
+    "g": [
+     {
+      "d": "(a) 2 Daggers, Arcane Focus (Quarterstaff), Robe, Spellbook, Scholar’s Pack, and 5 GP; or (b) 55 GP",
+      "o": [
+       [
+        {
+         "i": "Weapon:Dagger (5.2)",
+         "q": 2
+        },
+        {
+         "i": "Weapon:Quarterstaff (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Gear:Robe (5.2)",
+         "q": 1
+        },
+        {
+         "i": "Gear:Spellbook",
+         "q": 1
+        },
+        {
+         "i": "Gear:Scholar's Pack (5.2)",
+         "q": 1
+        },
+        {
+         "gp": 5
+        }
+       ],
+       [
+        {
+         "gp": 55
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   "prereq": [
+    "int"
+   ],
+   "casting": {
+    "ability": "int",
+    "mode": "book",
+    "half": false,
+    "halfUp": false,
+    "rows": [
+     [
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3,
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+     ],
+     [
+      5,
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+     ]
+    ],
+    "known": null,
+    "prep": [
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     17,
+     18,
+     18,
+     19,
+     20,
+     21,
+     22
+    ],
+    "list": "Wizard"
+   }
+  },
+  {
+   "id": "Class Feature:Rage (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Rage",
+   "desc": "You can imbue yourself with a primal power called Rage, a force that grants you extraordinary might and resilience. You can enter it as a Bonus Action if you aren't wearing Heavy armor.",
+   "rules": [
+    {
+     "resource": {
+      "id": "rage52",
+      "name": "Rage",
+      "max": {
+       "class": "Barbarian (5.2)",
+       "table": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6
+       ]
+      },
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Unarmored Defense (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Unarmored Defense",
+   "desc": "While you aren't wearing any armor, your base Ar- mor Class equals 10 plus your Dexterity and Consti- tution modifiers. You can use a Shield and still gain this benefit.",
+   "rules": [
+    {
+     "acFormula": {
+      "base": 10,
+      "add": [
+       "dex",
+       "con"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Danger Sense (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Danger Sense",
+   "desc": "You gain an uncanny sense of when things aren't as they should be, giving you an edge when you dodge perils. You have Advantage on Dexterity saving throws unless you have the Incapacitated condition.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Reckless Attack (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Reckless Attack",
+   "desc": "You can throw aside all concern for defense to at- tack with increased ferocity. When you make your first attack roll on your turn, you can decide to at- tack recklessly.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Primal Knowledge (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Primal Knowledge",
+   "desc": "You gain proficiency in another skill of your choice from the skill list available to Barbarians at level 1.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Extra Attack (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Extra Attack",
+   "desc": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Fast Movement (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Fast Movement",
+   "desc": "Your speed increases by 10 feet while you aren't wearing Heavy armor.",
+   "rules": [
+    {
+     "speedBonus": {
+      "max": 10,
+      "noHeavy": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Feral Instinct (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Feral Instinct",
+   "desc": "Your instincts are so honed that you have Advan- tage on Initiative rolls.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Instinctive Pounce (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Instinctive Pounce",
+   "desc": "As part of the Bonus Action you take to enter your Rage, you can move up to half your Speed.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Brutal Strike (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Brutal Strike",
+   "desc": "If you use Reckless Attack, you can forgo any Ad- vantage on one Strength-based attack roll of your choice on your turn. The chosen attack roll mustn't have Disadvantage.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Relentless Rage (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Relentless Rage",
+   "desc": "Your Rage can keep you fighting despite grievous wounds. If you drop to 0 Hit Points while your Rage is active and don't die outright, you can make a DC 10 Constitution saving throw.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Improved Brutal Strike (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Improved Brutal Strike",
+   "desc": "You have honed new ways to attack furiously. The following effects are now among your Brutal Strike options.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Persistent Rage (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Persistent Rage",
+   "desc": "When you roll Initiative, you can regain all ex- pended uses of Rage. After you regain uses of Rage in this way, you can't do so again until you finish a Long Rest.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Indomitable Might (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Indomitable Might",
+   "desc": "If your total for a Strength check or Strength saving throw is less than your Strength score, you can use that score in place of the total.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Primal Champion (Barbarian) (5.2)",
+   "type": "Class Feature",
+   "name": "Primal Champion",
+   "desc": "You embody primal power. Your Strength and Con- stitution scores increase by 4, to a maximum of 25.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Bardic Inspiration (Bard) (5.2)",
+   "type": "Class Feature",
+   "name": "Bardic Inspiration",
+   "desc": "You can supernaturally inspire others through words, music, or dance. This inspiration is repre- sented by your Bardic Inspiration die, which is a d6.",
+   "rules": [
+    {
+     "resource": {
+      "id": "bi52",
+      "name": "Bardic Inspiration",
+      "max": {
+       "mod": "cha"
+      },
+      "rest": "L",
+      "min": 1,
+      "restShort": {
+       "class": "Bard (5.2)",
+       "level": 5
+      },
+      "note": "short rest from level 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Spellcasting (Bard) (5.2)",
+   "type": "Class Feature",
+   "name": "Spellcasting",
+   "desc": "You have learned to cast spells through your bardic arts. See \"Spells\" for the rules on spellcasting.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Jack of All Trades (Bard) (5.2)",
+   "type": "Class Feature",
+   "name": "Jack of All Trades",
+   "desc": "You can add half your Proficiency Bonus (round down) to any ability check you make that uses a skill proficiency you lack and that doesn't otherwise use your Proficiency Bonus.",
+   "rules": [
+    {
+     "halfProf": {
+      "abilities": "all",
+      "round": "down"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Font of Inspiration (Bard) (5.2)",
+   "type": "Class Feature",
+   "name": "Font of Inspiration",
+   "desc": "You now regain all your expended uses of Bardic In- spiration when you finish a Short or Long Rest.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Countercharm (Bard) (5.2)",
+   "type": "Class Feature",
+   "name": "Countercharm",
+   "desc": "You can use musical notes or words of power to dis- rupt mind-influencing effects.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Magical Secrets (Bard) (5.2)",
+   "type": "Class Feature",
+   "name": "Magical Secrets",
+   "desc": "You've learned secrets from various magical tradi- tions. Whenever you reach a Bard level (including this level) and the Prepared Spells number in the Bard Features table increases, you can choose any of your new prepared spells...",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Superior Inspiration (Bard) (5.2)",
+   "type": "Class Feature",
+   "name": "Superior Inspiration",
+   "desc": "When you roll Initiative, you regain expended uses of Bardic Inspiration until you have two if you have fewer than that.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Words of Creation (Bard) (5.2)",
+   "type": "Class Feature",
+   "name": "Words of Creation",
+   "desc": "You have mastered two of the Words of Creation: the words of life and death. You therefore always have the Power Word Heal and Power Word Kill spells prepared.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Divine Order (Cleric) (5.2)",
+   "type": "Class Feature",
+   "name": "Divine Order",
+   "desc": "You have dedicated yourself to one of the following sacred roles of your choice.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Spellcasting (Cleric) (5.2)",
+   "type": "Class Feature",
+   "name": "Spellcasting",
+   "desc": "You have learned to cast spells through prayer and meditation. See \"Spells\" for the rules on spellcasting.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Channel Divinity (Cleric) (5.2)",
+   "type": "Class Feature",
+   "name": "Channel Divinity",
+   "desc": "You can channel divine energy directly from the Outer Planes to fuel magical effects. You start with two such effects: Divine Spark and Turn Undead, each of which is described below.",
+   "rules": [
+    {
+     "resource": {
+      "id": "cd52",
+      "name": "Channel Divinity",
+      "max": {
+       "class": "Cleric (5.2)",
+       "table": [
+        0,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+       ]
+      },
+      "rest": "L",
+      "note": "1 back on a short rest"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Sear Undead (Cleric) (5.2)",
+   "type": "Class Feature",
+   "name": "Sear Undead",
+   "desc": "Whenever you use Turn Undead, you can roll a number of d8s equal to your Wisdom modifier (minimum of 1d8) and add the rolls together.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Blessed Strikes (Cleric) (5.2)",
+   "type": "Class Feature",
+   "name": "Blessed Strikes",
+   "desc": "Divine power infuses you in battle. You gain one of the following options of your choice (if you get either option from a Cleric subclass in an older book, use only the option you choose for this feature).",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Divine Intervention (Cleric) (5.2)",
+   "type": "Class Feature",
+   "name": "Divine Intervention",
+   "desc": "You can call on your deity or pantheon to intervene on your behalf. As a Magic action, choose any Cleric spell of level 5 or lower that doesn't require a",
+   "rules": [
+    {
+     "resource": {
+      "id": "di52",
+      "name": "Divine Intervention",
+      "max": 1,
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Improved Blessed Strikes (Cleric) (5.2)",
+   "type": "Class Feature",
+   "name": "Improved Blessed Strikes",
+   "desc": "The option you chose for Blessed Strikes grows more powerful.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Greater Divine Intervention (Cleric) (5.2)",
+   "type": "Class Feature",
+   "name": "Greater Divine Intervention",
+   "desc": "You can call on even more powerful divine intervention. When you use your Divine Intervention feature, you can choose Wish when you select a spell.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Druidic (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Druidic",
+   "desc": "You know Druidic, the secret language of Druids. While learning this ancient tongue, you also unlocked the magic of communicating with animals; you always have the Speak with Animals spell prepared.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Primal Order (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Primal Order",
+   "desc": "You have dedicated yourself to one of the following sacred roles of your choice.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Spellcasting (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Spellcasting",
+   "desc": "You have learned to cast spells through studying the mystical forces of nature. See \"Spells\" for the rules on spellcasting.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Wild Shape (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Wild Shape",
+   "desc": "The power of nature allows you to assume the form of an animal. As a Bonus Action, you shape-shift into a Beast form that you have learned for this feature (see \"Known Forms\" below).",
+   "rules": [
+    {
+     "resource": {
+      "id": "ws52",
+      "name": "Wild Shape",
+      "max": {
+       "class": "Druid (5.2)",
+       "table": [
+        0,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4
+       ]
+      },
+      "rest": "L",
+      "note": "1 back on a short rest"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Wild Companion (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Wild Companion",
+   "desc": "You can summon a nature spirit that assumes an animal form to aid you. As a Magic action, you can expend a spell slot or a use of Wild Shape to cast the Find Familiar spell without Material components.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Wild Resurgence (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Wild Resurgence",
+   "desc": "Once on each of your turns, if you have no uses of Wild Shape left, you can give yourself one use by expending a spell slot (no action required).",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Elemental Fury (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Elemental Fury",
+   "desc": "The might of the elements flows through you. You gain one of the following options of your choice.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Improved Elemental Fury (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Improved Elemental Fury",
+   "desc": "The option you chose for Elemental Fury grows more powerful, as detailed below.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Beast Spells (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Beast Spells",
+   "desc": "While using Wild Shape, you can cast spells in Beast form, except for any spell that has a Material component with a cost specified or that consumes its Material component.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Archdruid (Druid) (5.2)",
+   "type": "Class Feature",
+   "name": "Archdruid",
+   "desc": "The vitality of nature constantly blooms within you, granting you the following benefits.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Second Wind (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Second Wind",
+   "desc": "You have a limited well of physical and mental stamina that you can draw on. As a Bonus Action, you can use it to regain Hit Points equal to 1d10 plus your Fighter level.",
+   "rules": [
+    {
+     "resource": {
+      "id": "sw52",
+      "name": "Second Wind",
+      "max": {
+       "class": "Fighter (5.2)",
+       "table": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+       ]
+      },
+      "rest": "L",
+      "note": "1 back on a short rest"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Action Surge (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Action Surge",
+   "desc": "You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action, except the Magic action.",
+   "rules": [
+    {
+     "resource": {
+      "id": "as52",
+      "name": "Action Surge",
+      "max": {
+       "class": "Fighter (5.2)",
+       "table": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2
+       ]
+      },
+      "rest": "S"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Tactical Mind (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Tactical Mind",
+   "desc": "You have a mind for tactics on and off the battlefield. When you fail an ability check, you can expend a use of your Second Wind to push yourself toward success.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Extra Attack (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Extra Attack",
+   "desc": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Tactical Shift (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Tactical Shift",
+   "desc": "Whenever you activate your Second Wind with a Bonus Action, you can move up to half your Speed without provoking Opportunity Attacks.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Indomitable (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Indomitable",
+   "desc": "If you fail a saving throw, you can reroll it with a bonus equal to your Fighter level. You must use the new roll, and you can't use this feature again until you finish a Long Rest.",
+   "rules": [
+    {
+     "resource": {
+      "id": "ind52",
+      "name": "Indomitable",
+      "max": {
+       "class": "Fighter (5.2)",
+       "table": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3
+       ]
+      },
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Tactical Master (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Tactical Master",
+   "desc": "When you attack with a weapon whose mastery property you can use, you can replace that property with the Push, Sap, or Slow property for that attack.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Two Extra Attacks (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Two Extra Attacks",
+   "desc": "You can attack three times instead of once whenever you take the Attack action on your turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Studied Attacks (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Studied Attacks",
+   "desc": "You study your opponents and learn from each attack you make. If you make an attack roll against a creature and miss, you have Advantage on your next attack roll against that creature before the end of your next turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Three Extra Attacks (Fighter) (5.2)",
+   "type": "Class Feature",
+   "name": "Three Extra Attacks",
+   "desc": "You can attack four times instead of once whenever you take the Attack action on your turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Martial Arts (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Martial Arts",
+   "desc": "Your practice of martial arts gives you mastery of combat styles that use your Unarmed Strike and Monk weapons, which are the following:",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Unarmored Defense (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Unarmored Defense",
+   "desc": "While you aren't wearing armor or wielding a Shield, your base Armor Class equals 10 plus your Dexterity and Wisdom modifiers.",
+   "rules": [
+    {
+     "acFormula": {
+      "base": 10,
+      "add": [
+       "dex",
+       "wis"
+      ],
+      "noShield": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Monk's Focus (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Monk's Focus",
+   "desc": "Your focus and martial training allow you to harness a well of extraordinary energy within yourself. This energy is represented by Focus Points.",
+   "rules": [
+    {
+     "resource": {
+      "id": "focus52",
+      "name": "Focus points",
+      "max": {
+       "class": "Monk (5.2)",
+       "table": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+       ]
+      },
+      "rest": "S"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Unarmored Movement (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Unarmored Movement",
+   "desc": "Your speed increases by 10 feet while you aren't wearing armor or wielding a Shield. This bonus increases when you reach certain Monk levels, as shown on the Monk Features table.",
+   "rules": [
+    {
+     "speedBonus": {
+      "unarmored": true,
+      "max": {
+       "class": "Monk (5.2)",
+       "table": [
+        0,
+        10,
+        10,
+        10,
+        10,
+        15,
+        15,
+        15,
+        15,
+        20,
+        20,
+        20,
+        20,
+        25,
+        25,
+        25,
+        25,
+        30,
+        30,
+        30
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Uncanny Metabolism (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Uncanny Metabolism",
+   "desc": "When you roll Initiative, you can regain all expended Focus Points. When you do so, roll your Martial Arts die, and regain a number of Hit Points equal to your Monk level plus the number rolled.",
+   "rules": [
+    {
+     "resource": {
+      "id": "um52",
+      "name": "Uncanny Metabolism",
+      "max": 1,
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Deflect Attacks (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Deflect Attacks",
+   "desc": "When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage, you can take a Reaction to reduce the attack's total damage against you.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Slow Fall (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Slow Fall",
+   "desc": "You can take a Reaction when you fall to reduce any damage you take from the fall by an amount equal to five times your Monk level.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Extra Attack (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Extra Attack",
+   "desc": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Stunning Strike (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Stunning Strike",
+   "desc": "Once per turn when you hit a creature with a Monk weapon or an Unarmed Strike, you can expend 1 Focus Point to attempt a stunning strike. The target must make a Constitution saving throw.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Empowered Strikes (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Empowered Strikes",
+   "desc": "Whenever you deal damage with your Unarmed Strike, it can deal your choice of Force damage or its normal damage type.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Evasion (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Evasion",
+   "desc": "When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Acrobatic Movement (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Acrobatic Movement",
+   "desc": "While you aren't wearing armor or wielding a Shield, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the movement.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Heightened Focus (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Heightened Focus",
+   "desc": "Your Flurry of Blows, Patient Defense, and Step of the Wind gain the following benefits.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Self-Restoration (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Self-Restoration",
+   "desc": "Through sheer force of will, you can remove one of the following conditions from yourself at the",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Deflect Energy (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Deflect Energy",
+   "desc": "You can now use your Deflect Attacks feature against attacks that deal any damage type, not just Bludgeoning, Piercing, or Slashing.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Disciplined Survivor (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Disciplined Survivor",
+   "desc": "Your physical and mental discipline grant you proficiency in all saving throws.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Perfect Focus (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Perfect Focus",
+   "desc": "When you roll Initiative and don't use Uncanny Metabolism, you regain expended Focus Points until you have 4 if you have 3 or fewer.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Superior Defense (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Superior Defense",
+   "desc": "At the start of your turn, you can expend 3 Focus Points to bolster yourself against harm for 1 minute or until you have the Incapacitated condition. During that time, you have Resistance to all damage except Force damage.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Body and Mind (Monk) (5.2)",
+   "type": "Class Feature",
+   "name": "Body and Mind",
+   "desc": "You have developed your body and mind to new heights. Your Dexterity and Wisdom scores increase by 4, to a maximum of 25.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Lay On Hands (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Lay On Hands",
+   "desc": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you finish a Long Rest. With that pool, you can restore a total number of Hit Points equal to five times your Paladin level.",
+   "rules": [
+    {
+     "resource": {
+      "id": "loh52",
+      "name": "Lay on Hands (pool)",
+      "max": {
+       "class": "Paladin (5.2)",
+       "mult": 5
+      },
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Spellcasting (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Spellcasting",
+   "desc": "You have learned to cast spells through prayer and meditation. See \"Spells\" for the rules on spellcasting.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Paladin's Smite (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Paladin's Smite",
+   "desc": "You always have the Divine Smite spell prepared. In addition, you can cast it without expending a spell slot, but you must finish a Long Rest before you can cast it in this way again.",
+   "rules": [
+    {
+     "resource": {
+      "id": "smite52",
+      "name": "Paladin's Smite (free cast)",
+      "max": 1,
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Channel Divinity (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Channel Divinity",
+   "desc": "You can channel divine energy directly from the Outer Planes, using it to fuel magical effects. You start with one such effect: Divine Sense, which is described below.",
+   "rules": [
+    {
+     "resource": {
+      "id": "pcd52",
+      "name": "Channel Divinity",
+      "max": {
+       "class": "Paladin (5.2)",
+       "table": [
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+       ]
+      },
+      "rest": "L",
+      "note": "1 back on a short rest"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Extra Attack (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Extra Attack",
+   "desc": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Faithful Steed (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Faithful Steed",
+   "desc": "You can call on the aid of an otherworldly steed. You always have the Find Steed spell prepared.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Aura of Protection (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Aura of Protection",
+   "desc": "You radiate a protective, unseeable aura in a 10-foot Emanation that originates from you. The aura is inactive while you have the Incapacitated condition.",
+   "rules": [
+    {
+     "saveBonus": {
+      "mod": "cha",
+      "min": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Abjure Foes (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Abjure Foes",
+   "desc": "As a Magic action, you can expend one use of this class's Channel Divinity to overwhelm foes with awe.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Aura of Courage (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Aura of Courage",
+   "desc": "You and your allies have Immunity to the Frightened condition while in your Aura of Protection. If a Frightened ally enters the aura, that condition has no effect on that ally while there.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Radiant Strikes (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Radiant Strikes",
+   "desc": "Your strikes now carry supernatural power. When you hit a target with an attack roll using a Melee weapon or an Unarmed Strike, the target takes an extra 1d8 Radiant damage.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Restoring Touch (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Restoring Touch",
+   "desc": "When you use Lay On Hands on a creature, you can also remove one or more of the following conditions from the creature: Blinded, Charmed, Deafened, Frightened, Paralyzed, or Stunned.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Aura Expansion (Paladin) (5.2)",
+   "type": "Class Feature",
+   "name": "Aura Expansion",
+   "desc": "Your Aura of Protection is now a 30-foot Emanation.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Favored Enemy (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Favored Enemy",
+   "desc": "You always have the Hunter's Mark spell prepared. You can cast it twice without expending a spell slot, and you regain all expended uses of this ability when you finish a Long Rest.",
+   "rules": [
+    {
+     "resource": {
+      "id": "fe52",
+      "name": "Hunter's Mark (free casts)",
+      "max": {
+       "class": "Ranger (5.2)",
+       "table": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6
+       ]
+      },
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Spellcasting (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Spellcasting",
+   "desc": "You have learned to channel the magical essence of nature to cast spells. See \"Spells\" for the rules on spellcasting.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Deft Explorer (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Deft Explorer",
+   "desc": "Thanks to your travels, you gain the following benefits.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Extra Attack (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Extra Attack",
+   "desc": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Roving (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Roving",
+   "desc": "Your Speed increases by 10 feet while you aren't wearing Heavy armor. You also have a Climb Speed and a Swim Speed equal to your Speed.",
+   "rules": [
+    {
+     "speedBonus": {
+      "max": 10,
+      "noHeavy": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Tireless (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Tireless",
+   "desc": "Primal forces now help fuel you on your journeys, granting you the following benefits.",
+   "rules": [
+    {
+     "resource": {
+      "id": "tl52",
+      "name": "Tireless",
+      "max": {
+       "mod": "wis"
+      },
+      "rest": "L",
+      "min": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Relentless Hunter (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Relentless Hunter",
+   "desc": "Taking damage can't break your Concentration on Hunter's Mark.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Nature's Veil (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Nature's Veil",
+   "desc": "You invoke spirits of nature to magically hide yourself. As a Bonus Action, you can give yourself the Invisible condition until the end of your next turn.",
+   "rules": [
+    {
+     "resource": {
+      "id": "nv52",
+      "name": "Nature's Veil",
+      "max": {
+       "pb": true
+      },
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Precise Hunter (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Precise Hunter",
+   "desc": "You have Advantage on attack rolls against the creature currently marked by your Hunter's Mark.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Feral Senses (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Feral Senses",
+   "desc": "Your connection to the forces of nature grants you Blindsight with a range of 30 feet.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Foe Slayer (Ranger) (5.2)",
+   "type": "Class Feature",
+   "name": "Foe Slayer",
+   "desc": "The damage die of your Hunter's Mark is a d10 rather than a d6.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Sneak Attack (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Sneak Attack",
+   "desc": "You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack roll if you have Advantage on the roll and the attack uses a Finesse or a...",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Thieves' Cant (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Thieves' Cant",
+   "desc": "You picked up various languages in the communities where you plied your roguish talents. You know Thieves' Cant and one other language of your choice, which you choose from the language tables in \"Character Creation.\"",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Cunning Action (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Cunning Action",
+   "desc": "Your quick thinking and agility allow you to move and act quickly. On your turn, you can take one of the following actions as a Bonus Action: Dash, Disengage, or Hide.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Steady Aim (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Steady Aim",
+   "desc": "As a Bonus Action, you give yourself Advantage on your next attack roll on the current turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Cunning Strike (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Cunning Strike",
+   "desc": "You've developed cunning ways to use your Sneak Attack. When you deal Sneak Attack damage, you can add one of the following Cunning Strike effects.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Uncanny Dodge (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Uncanny Dodge",
+   "desc": "When an attacker that you can see hits you with an attack roll, you can take a Reaction to halve the attack's damage against you (round down).",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Evasion (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Evasion",
+   "desc": "You can nimbly dodge out of the way of certain dangers.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Reliable Talent (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Reliable Talent",
+   "desc": "Whenever you make an ability check that uses one of your skill or tool proficiencies, you can treat a d20 roll of 9 or lower as a 10.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Improved Cunning Strike (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Improved Cunning Strike",
+   "desc": "You can use up to two Cunning Strike effects when you deal Sneak Attack damage, paying the die cost for each effect.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Devious Strikes (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Devious Strikes",
+   "desc": "You've practiced new ways to use your Sneak Attack deviously. The following effects are now among your Cunning Strike options.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Slippery Mind (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Slippery Mind",
+   "desc": "Your cunning mind is exceptionally difficult to control.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Elusive (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Elusive",
+   "desc": "You're so evasive that attackers rarely gain the upper hand against you. No attack roll can have Advantage against you unless you have the Incapacitated condition.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Stroke of Luck (Rogue) (5.2)",
+   "type": "Class Feature",
+   "name": "Stroke of Luck",
+   "desc": "You have a marvelous knack for succeeding when you need to. If you fail a D20 Test, you can turn the roll into a 20.",
+   "rules": [
+    {
+     "resource": {
+      "id": "sol52",
+      "name": "Stroke of Luck",
+      "max": 1,
+      "rest": "S"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Innate Sorcery (Sorcerer) (5.2)",
+   "type": "Class Feature",
+   "name": "Innate Sorcery",
+   "desc": "An event in your past left an indelible mark on you, infusing you with simmering magic.",
+   "rules": [
+    {
+     "resource": {
+      "id": "is52",
+      "name": "Innate Sorcery",
+      "max": 2,
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Spellcasting (Sorcerer) (5.2)",
+   "type": "Class Feature",
+   "name": "Spellcasting",
+   "desc": "Drawing from your innate magic, you can cast spells. See \"Spells\" for the rules on spellcasting.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Font of Magic (Sorcerer) (5.2)",
+   "type": "Class Feature",
+   "name": "Font of Magic",
+   "desc": "You can tap into the wellspring of magic within yourself. This wellspring is represented by Sorcery Points, which allow you to create a variety of magical effects.",
+   "rules": [
+    {
+     "resource": {
+      "id": "sp52",
+      "name": "Sorcery points",
+      "max": {
+       "class": "Sorcerer (5.2)",
+       "table": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+       ]
+      },
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Metamagic (Sorcerer) (5.2)",
+   "type": "Class Feature",
+   "name": "Metamagic",
+   "desc": "Because your magic flows from within, you can alter your spells to suit your needs; you gain two Metamagic options of your choice from \"Metamagic Options\" later in this class’s description.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Sorcerous Restoration (Sorcerer) (5.2)",
+   "type": "Class Feature",
+   "name": "Sorcerous Restoration",
+   "desc": "When you finish a Short Rest, you can regain expended Sorcery Points, but no more than a number equal to half your Sorcerer level (round down). Once you use this feature, you can’t do so again until you finish a Long Rest.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Sorcery Incarnate (Sorcerer) (5.2)",
+   "type": "Class Feature",
+   "name": "Sorcery Incarnate",
+   "desc": "If you have no uses of Innate Sorcery left, you can use it if you spend 2 Sorcery Points when you take the Bonus Action to activate it.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Arcane Apotheosis (Sorcerer) (5.2)",
+   "type": "Class Feature",
+   "name": "Arcane Apotheosis",
+   "desc": "While your Innate Sorcery feature is active, you can use one Metamagic option on each of your turns without spending Sorcery Points on it.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Pact Magic (Warlock) (5.2)",
+   "type": "Class Feature",
+   "name": "Pact Magic",
+   "desc": "Through occult ceremony, you have formed a pact with a mysterious entity to gain magical powers.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Eldritch Invocations (Warlock) (5.2)",
+   "type": "Class Feature",
+   "name": "Eldritch Invocations",
+   "desc": "You have unearthed Eldritch Invocations, pieces of forbidden knowledge that imbue you with an abiding magical ability or other lessons. You gain one invocation of your choice, such as Pact of the Tome.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Magical Cunning (Warlock) (5.2)",
+   "type": "Class Feature",
+   "name": "Magical Cunning",
+   "desc": "You can perform an esoteric rite for 1 minute. At the end of it, you regain expended Pact Magic spell slots but no more than a number equal to half your maximum (round up).",
+   "rules": [
+    {
+     "resource": {
+      "id": "mc52",
+      "name": "Magical Cunning",
+      "max": 1,
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Contact Patron (Warlock) (5.2)",
+   "type": "Class Feature",
+   "name": "Contact Patron",
+   "desc": "In the past, you usually contacted your patron through intermediaries. Now you can communicate directly; you always have the Contact Other Plane spell prepared.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Mystic Arcanum (Warlock) (5.2)",
+   "type": "Class Feature",
+   "name": "Mystic Arcanum",
+   "desc": "Your patron grants you a magical secret called an arcanum. Choose one level 6 Warlock spell as this arcanum.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Eldritch Master (Warlock) (5.2)",
+   "type": "Class Feature",
+   "name": "Eldritch Master",
+   "desc": "When you use your Magical Cunning feature, you regain all your expended Pact Magic spell slots.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Arcane Recovery (Wizard) (5.2)",
+   "type": "Class Feature",
+   "name": "Arcane Recovery",
+   "desc": "You can regain some of your magical energy by studying your spellbook. When you finish a Short Rest, you can choose expended spell slots to recover.",
+   "rules": [
+    {
+     "resource": {
+      "id": "ar52",
+      "name": "Arcane Recovery",
+      "max": 1,
+      "rest": "L"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Class Feature:Ritual Adept (Wizard) (5.2)",
+   "type": "Class Feature",
+   "name": "Ritual Adept",
+   "desc": "You can cast any spell as a Ritual if that spell has the Ritual tag and the spell is in your spellbook. You needn’t have the spell prepared, but you must read from the book to cast a spell in this way.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Spellcasting (Wizard) (5.2)",
+   "type": "Class Feature",
+   "name": "Spellcasting",
+   "desc": "As a student of arcane magic, you have learned to cast spells. See \"Spells\" for the rules on spellcasting.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Memorize Spell (Wizard) (5.2)",
+   "type": "Class Feature",
+   "name": "Memorize Spell",
+   "desc": "Whenever you finish a Short Rest, you can study your spellbook and replace one of the level 1+ Wizard spells you have prepared for your Spellcasting feature with another level 1+ spell from the book.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Spell Mastery (Wizard) (5.2)",
+   "type": "Class Feature",
+   "name": "Spell Mastery",
+   "desc": "You have achieved such mastery over certain spells that you can cast them at will. Choose a level 1 and a level 2 spell in your spellbook that have a casting time of an action.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Signature Spells (Wizard) (5.2)",
+   "type": "Class Feature",
+   "name": "Signature Spells",
+   "desc": "Choose two level 3 spells in your spellbook as your signature spells. You always have these spells prepared, and you can cast each of them once at level 3 without expending a spell slot.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Frenzy (Path of the Berserker) (5.2)",
+   "type": "Class Feature",
+   "name": "Frenzy",
+   "desc": "If you use Reckless Attack while your Rage is active, you deal extra damage to the first target you hit on your turn with a Strength-based attack.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Mindless Rage (Path of the Berserker) (5.2)",
+   "type": "Class Feature",
+   "name": "Mindless Rage",
+   "desc": "You have Immunity to the Charmed and Frightened conditions while your Rage is active. If you're Charmed or Frightened when you enter your Rage, the condition ends on you.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Retaliation (Path of the Berserker) (5.2)",
+   "type": "Class Feature",
+   "name": "Retaliation",
+   "desc": "When you take damage from a creature that is within 5 feet of you, you can take a Reaction to make one melee attack against that creature, using a weapon or an Unarmed Strike.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Intimidating Presence (Path of the Berserker) (5.2)",
+   "type": "Class Feature",
+   "name": "Intimidating Presence",
+   "desc": "As a Bonus Action, you can strike terror into others with your menacing presence and primal power.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Bonus Proficiencies (College of Lore) (5.2)",
+   "type": "Class Feature",
+   "name": "Bonus Proficiencies",
+   "desc": "You gain proficiency with three skills of your choice.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Cutting Words (College of Lore) (5.2)",
+   "type": "Class Feature",
+   "name": "Cutting Words",
+   "desc": "You learn to use your wit to supernaturally distract, confuse, and otherwise sap the confidence and competence of others.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Magical Discoveries (College of Lore) (5.2)",
+   "type": "Class Feature",
+   "name": "Magical Discoveries",
+   "desc": "You learn two spells of your choice. These spells can come from the Cleric, Druid, or Wizard spell list or any combination thereof (see a class's section for its spell list).",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Peerless Skill (College of Lore) (5.2)",
+   "type": "Class Feature",
+   "name": "Peerless Skill",
+   "desc": "When you make an ability check or attack roll and fail, you can expend one use of Bardic Inspiration; roll the Bardic Inspiration die, and add the number rolled to the d20, potentially turning a failure into a success.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Disciple of Life (Life Domain) (5.2)",
+   "type": "Class Feature",
+   "name": "Disciple of Life",
+   "desc": "When a spell you cast with a spell slot restores Hit Points to a creature, that creature regains additional Hit Points on the turn you cast the spell. The additional Hit Points equal 2 plus the spell slot's level.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Life Domain Spells (Life Domain) (5.2)",
+   "type": "Class Feature",
+   "name": "Life Domain Spells",
+   "desc": "Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Life Domain Spells table, you thereafter always have the listed spells prepared.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Preserve Life (Life Domain) (5.2)",
+   "type": "Class Feature",
+   "name": "Preserve Life",
+   "desc": "As a Magic action, you present your Holy Symbol and expend a use of your Channel Divinity to evoke healing energy that can restore a number of Hit Points equal to five times your Cleric level.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Blessed Healer (Life Domain) (5.2)",
+   "type": "Class Feature",
+   "name": "Blessed Healer",
+   "desc": "The healing spells you cast on others heal you as well. Immediately after you cast a spell with a spell slot that restores Hit Points to one or more creatures other than yourself, you regain Hit Points equal to 2 plus the spell...",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Supreme Healing (Life Domain) (5.2)",
+   "type": "Class Feature",
+   "name": "Supreme Healing",
+   "desc": "When you would normally roll one or more dice to restore Hit Points to a creature with a spell or Channel Divinity, don't roll those dice for the healing; instead use the highest number possible for each die.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Circle of the Land Spells (Circle of the Land) (5.2)",
+   "type": "Class Feature",
+   "name": "Circle of the Land Spells",
+   "desc": "Whenever you finish a Long Rest, choose one type of land: arid, polar, temperate, or tropical. You have the matching circle spells prepared for your Druid level and lower.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Land's Aid (Circle of the Land) (5.2)",
+   "type": "Class Feature",
+   "name": "Land's Aid",
+   "desc": "As a Magic action, you can expend a use of your Wild Shape and choose a point within 60 feet of yourself. Vitality-giving flowers and life-draining thorns appear for a moment in a 10-foot-radius Sphere centered on that point.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Natural Recovery (Circle of the Land) (5.2)",
+   "type": "Class Feature",
+   "name": "Natural Recovery",
+   "desc": "You can cast one of the level 1+ spells that you have prepared from your Circle Spells feature without expending a spell slot, and you must finish a Long Rest before you do so again.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Nature's Ward (Circle of the Land) (5.2)",
+   "type": "Class Feature",
+   "name": "Nature's Ward",
+   "desc": "You are immune to the Poisoned condition, and you have Resistance to a damage type associated with your current land choice in the Circle Spells feature, as shown in the Nature's Ward table.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Nature's Sanctuary (Circle of the Land) (5.2)",
+   "type": "Class Feature",
+   "name": "Nature's Sanctuary",
+   "desc": "As a Magic action, you can expend a use of your Wild Shape and cause spectral trees and vines to appear in a 15-foot Cube on the ground within 120 feet of yourself.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Improved Critical (Champion) (5.2)",
+   "type": "Class Feature",
+   "name": "Improved Critical",
+   "desc": "Your attack rolls with weapons and Unarmed Strikes can score a Critical Hit on a roll of 19 or 20 on the d20.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Remarkable Athlete (Champion) (5.2)",
+   "type": "Class Feature",
+   "name": "Remarkable Athlete",
+   "desc": "Thanks to your athleticism, you have Advantage on Initiative rolls and Strength (Athletics) checks.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Additional Fighting Style (Champion) (5.2)",
+   "type": "Class Feature",
+   "name": "Additional Fighting Style",
+   "desc": "You gain another Fighting Style feat of your choice.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Heroic Warrior (Champion) (5.2)",
+   "type": "Class Feature",
+   "name": "Heroic Warrior",
+   "desc": "The thrill of battle drives you toward victory. During combat, you can give yourself Heroic Inspiration whenever you start your turn without it.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Superior Critical (Champion) (5.2)",
+   "type": "Class Feature",
+   "name": "Superior Critical",
+   "desc": "Your attack rolls with weapons and Unarmed Strikes can now score a Critical Hit on a roll of 18-20 on the d20.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Survivor (Champion) (5.2)",
+   "type": "Class Feature",
+   "name": "Survivor",
+   "desc": "You attain the pinnacle of resilience in battle, giving you these benefits.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Open Hand Technique (Warrior of the Open Hand) (5.2)",
+   "type": "Class Feature",
+   "name": "Open Hand Technique",
+   "desc": "Whenever you hit a creature with an attack granted by your Flurry of Blows, you can impose one of the following effects on that target.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Wholeness of Body (Warrior of the Open Hand) (5.2)",
+   "type": "Class Feature",
+   "name": "Wholeness of Body",
+   "desc": "You gain the ability to heal yourself. As a Bonus Action, you can roll your Martial Arts die. You regain a number of Hit Points equal to the number rolled",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Fleet Step (Warrior of the Open Hand) (5.2)",
+   "type": "Class Feature",
+   "name": "Fleet Step",
+   "desc": "When you take a Bonus Action other than Step of the Wind, you can also use Step of the Wind immediately after that Bonus Action.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Quivering Palm (Warrior of the Open Hand) (5.2)",
+   "type": "Class Feature",
+   "name": "Quivering Palm",
+   "desc": "You gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an Unarmed Strike, you can expend 4 Focus Points to start these imperceptible vibrations, which last",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Oath of Devotion Spells (Oath of Devotion) (5.2)",
+   "type": "Class Feature",
+   "name": "Oath of Devotion Spells",
+   "desc": "The magic of your oath ensures you always have certain spells ready; when you reach a Paladin level specified in the Oath of Devotion Spells table, you thereafter always have the listed spells prepared.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Sacred Weapon (Oath of Devotion) (5.2)",
+   "type": "Class Feature",
+   "name": "Sacred Weapon",
+   "desc": "When you take the Attack action, you can expend one use of your Channel Divinity to imbue one Melee weapon that you are holding with positive energy.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Aura of Devotion (Oath of Devotion) (5.2)",
+   "type": "Class Feature",
+   "name": "Aura of Devotion",
+   "desc": "You and your allies have Immunity to the Charmed condition while in your Aura of Protection. If a Charmed ally enters the aura, that condition has no effect on that ally while there.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Smite of Protection (Oath of Devotion) (5.2)",
+   "type": "Class Feature",
+   "name": "Smite of Protection",
+   "desc": "Your magical smite now radiates protective energy. Whenever you cast Divine Smite, you and your allies have Half Cover while in your Aura of Protection.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Holy Nimbus (Oath of Devotion) (5.2)",
+   "type": "Class Feature",
+   "name": "Holy Nimbus",
+   "desc": "As a Bonus Action, you can imbue your Aura of Protection with holy power, granting the benefits below for 10 minutes or until you end them (no action required).",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Hunter's Lore (Hunter) (5.2)",
+   "type": "Class Feature",
+   "name": "Hunter's Lore",
+   "desc": "You can call on the forces of nature to reveal certain strengths and weaknesses of your prey.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Hunter's Prey (Hunter) (5.2)",
+   "type": "Class Feature",
+   "name": "Hunter's Prey",
+   "desc": "You gain one of the following feature options of your choice. Whenever you finish a Short or Long Rest, you can replace the chosen option with the other one.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Defensive Tactics (Hunter) (5.2)",
+   "type": "Class Feature",
+   "name": "Defensive Tactics",
+   "desc": "You gain one of the following feature options of your choice. Whenever you finish a Short or Long Rest, you can replace the chosen option with the other one.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Superior Hunter's Prey (Hunter) (5.2)",
+   "type": "Class Feature",
+   "name": "Superior Hunter's Prey",
+   "desc": "Once per turn when you deal damage to a creature marked by your Hunter's Mark, you can also deal that spell's extra damage to a different creature that you can see within 30 feet of the first creature.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Superior Hunter's Defense (Hunter) (5.2)",
+   "type": "Class Feature",
+   "name": "Superior Hunter's Defense",
+   "desc": "When you take damage, you can take a Reaction to give yourself Resistance to that damage and any other damage of the same type until the end of the current turn.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Fast Hands (Thief) (5.2)",
+   "type": "Class Feature",
+   "name": "Fast Hands",
+   "desc": "As a Bonus Action, you can do one of the following.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Second-Story Work (Thief) (5.2)",
+   "type": "Class Feature",
+   "name": "Second-Story Work",
+   "desc": "You've trained to get into especially hard-to-reach places, granting you these benefits.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Supreme Sneak (Thief) (5.2)",
+   "type": "Class Feature",
+   "name": "Supreme Sneak",
+   "desc": "You gain the following Cunning Strike option.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Use Magic Device (Thief) (5.2)",
+   "type": "Class Feature",
+   "name": "Use Magic Device",
+   "desc": "You've learned how to maximize use of magic items, granting you the following benefits.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Thief's Reflexes (Thief) (5.2)",
+   "type": "Class Feature",
+   "name": "Thief's Reflexes",
+   "desc": "You are adept at laying ambushes and quickly escaping danger. You can take two turns during the first round of any combat. You take your first turn at your normal Initiative and your second turn at your Initiative minus 10.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Draconic Resilience (Draconic Sorcery) (5.2)",
+   "type": "Class Feature",
+   "name": "Draconic Resilience",
+   "desc": "The magic in your body manifests physical traits of your draconic gift. Your Hit Point maximum increases by 3, and it increases by 1 whenever you gain another Sorcerer level.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Draconic Spells (Draconic Sorcery) (5.2)",
+   "type": "Class Feature",
+   "name": "Draconic Spells",
+   "desc": "When you reach a Sorcerer level specified in the Draconic Spells table, you thereafter always have the listed spells prepared.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Elemental Affinity (Draconic Sorcery) (5.2)",
+   "type": "Class Feature",
+   "name": "Elemental Affinity",
+   "desc": "Your draconic magic has an affinity with a damage type associated with dragons. Choose one of those types: Acid, Cold, Fire, Lightning, or Poison.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Dragon Wings (Draconic Sorcery) (5.2)",
+   "type": "Class Feature",
+   "name": "Dragon Wings",
+   "desc": "As a Bonus Action, you can cause draconic wings to appear on your back. The wings last for 1 hour or until you dismiss them (no action required). For the duration, you have a Fly Speed of 60 feet.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Dragon Companion (Draconic Sorcery) (5.2)",
+   "type": "Class Feature",
+   "name": "Dragon Companion",
+   "desc": "You can cast Summon Dragon without a Material component. You can also cast it once without a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Dark One's Blessing (Fiend Patron) (5.2)",
+   "type": "Class Feature",
+   "name": "Dark One's Blessing",
+   "desc": "When you reduce an enemy to 0 Hit Points, you gain Temporary Hit Points equal to your Charisma modifier plus your Warlock level (minimum of 1 Temporary Hit Point).",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Fiend Spells (Fiend Patron) (5.2)",
+   "type": "Class Feature",
+   "name": "Fiend Spells",
+   "desc": "The magic of your patron ensures you always have certain spells ready; when you reach a Warlock level specified in the Fiend Spells table, you thereafter always have the listed spells prepared.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Dark One's Own Luck (Fiend Patron) (5.2)",
+   "type": "Class Feature",
+   "name": "Dark One's Own Luck",
+   "desc": "You can call on your fiendish patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add 1d10 to your roll.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Fiendish Resilience (Fiend Patron) (5.2)",
+   "type": "Class Feature",
+   "name": "Fiendish Resilience",
+   "desc": "Choose one damage type, other than Force, whenever you finish a Short or Long Rest. You have Resistance to that damage type until you choose a different one with this feature.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Hurl Through Hell (Fiend Patron) (5.2)",
+   "type": "Class Feature",
+   "name": "Hurl Through Hell",
+   "desc": "Once per turn when you hit a creature with an attack roll, you can try to instantly transport the target through the Lower Planes.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Evocation Savant (Evoker) (5.2)",
+   "type": "Class Feature",
+   "name": "Evocation Savant",
+   "desc": "Choose two Wizard spells from the Evocation school, each of which must be no higher than level 2, and add them to your spellbook for free.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Potent Cantrip (Evoker) (5.2)",
+   "type": "Class Feature",
+   "name": "Potent Cantrip",
+   "desc": "Your damaging cantrips affect even creatures that avoid the brunt of the effect. When you cast a cantrip at a creature and you miss with the attack roll or the target succeeds on a saving throw against the cantrip, the target...",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Sculpt Spells (Evoker) (5.2)",
+   "type": "Class Feature",
+   "name": "Sculpt Spells",
+   "desc": "You can create pockets of relative safety within the effects of your evocations. When you cast an Evocation spell that affects other creatures that you can see, you can choose a number of them equal to 1 plus the spell's level.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Empowered Evocation (Evoker) (5.2)",
+   "type": "Class Feature",
+   "name": "Empowered Evocation",
+   "desc": "Whenever you cast a Wizard spell from the Evocation school, you can add your Intelligence modifier to one damage roll of that spell.",
+   "rules": []
+  },
+  {
+   "id": "Class Feature:Overchannel (Evoker) (5.2)",
+   "type": "Class Feature",
+   "name": "Overchannel",
+   "desc": "You can increase the power of your spells. When you cast a Wizard spell with a spell slot of levels 1-5 that deals damage, you can deal maximum damage with that spell on the turn you cast it.",
+   "rules": []
+  },
+  {
+   "id": "Land Type:Arid (5.2)",
+   "type": "Land Type",
+   "name": "Arid",
+   "desc": "Circle spells for the arid land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid (5.2)",
+    "levels": {
+     "3": [
+      "Spell:Blur (5.2)",
+      "Spell:Burning Hands (5.2)",
+      "Spell:Fire Bolt (5.2)"
+     ],
+     "5": [
+      "Spell:Fireball (5.2)"
+     ],
+     "7": [
+      "Spell:Blight (5.2)"
+     ],
+     "9": [
+      "Spell:Wall of Stone (5.2)"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Land Type:Polar (5.2)",
+   "type": "Land Type",
+   "name": "Polar",
+   "desc": "Circle spells for the polar land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid (5.2)",
+    "levels": {
+     "3": [
+      "Spell:Fog Cloud (5.2)",
+      "Spell:Hold Person (5.2)",
+      "Spell:Ray of Frost (5.2)"
+     ],
+     "5": [
+      "Spell:Sleet Storm (5.2)"
+     ],
+     "7": [
+      "Spell:Ice Storm (5.2)"
+     ],
+     "9": [
+      "Spell:Cone of Cold (5.2)"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Land Type:Temperate (5.2)",
+   "type": "Land Type",
+   "name": "Temperate",
+   "desc": "Circle spells for the temperate land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid (5.2)",
+    "levels": {
+     "3": [
+      "Spell:Misty Step (5.2)",
+      "Spell:Shocking Grasp (5.2)",
+      "Spell:Sleep (5.2)"
+     ],
+     "5": [
+      "Spell:Lightning Bolt (5.2)"
+     ],
+     "7": [
+      "Spell:Freedom of Movement (5.2)"
+     ],
+     "9": [
+      "Spell:Tree Stride (5.2)"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Land Type:Tropical (5.2)",
+   "type": "Land Type",
+   "name": "Tropical",
+   "desc": "Circle spells for the tropical land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid (5.2)",
+    "levels": {
+     "3": [
+      "Spell:Acid Splash (5.2)",
+      "Spell:Ray of Sickness (5.2)",
+      "Spell:Web (5.2)"
+     ],
+     "5": [
+      "Spell:Stinking Cloud (5.2)"
+     ],
+     "7": [
+      "Spell:Polymorph (5.2)"
+     ],
+     "9": [
+      "Spell:Insect Plague (5.2)"
+     ]
+    }
+   }
+  }
+ ]
+}

@@ -67,7 +67,7 @@ function resources(r, c) {
         'hb:' + (x.id || e.id + ':' + x.name),
         x.name,
         Math.max(x.min || 0, resMax(x.max, c, L)),
-        x.rest === 'S' ? 'S' : 'L',
+        x.rest === 'S' || (x.restShort && L(x.restShort.class) >= x.restShort.level) ? 'S' : 'L',
         x.note,
       );
     }),

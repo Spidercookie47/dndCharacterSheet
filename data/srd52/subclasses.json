@@ -1,0 +1,426 @@
+{
+ "elements": [
+  {
+   "id": "Subclass:Path of the Berserker (5.2)",
+   "type": "Subclass",
+   "name": "Path of the Berserker",
+   "desc": "Channel Rage into Violent Fury. Barbarians who walk the Path of the Berserker direct their Rage primarily toward violence. Their path is one of untrammeled fury, and they thrill in the chaos of battle as they allow their Rage to seize and empower them.",
+   "rules": [
+    {
+     "grant": "Class Feature:Frenzy (Path of the Berserker) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Mindless Rage (Path of the Berserker) (5.2)",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Retaliation (Path of the Berserker) (5.2)",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Intimidating Presence (Path of the Berserker) (5.2)",
+     "level": 14
+    }
+   ],
+   "supports": "Class:Barbarian (5.2)"
+  },
+  {
+   "id": "Subclass:College of Lore (5.2)",
+   "type": "Subclass",
+   "name": "College of Lore",
+   "desc": "Plumb the Depths of Magical Knowledge. Bards of the College of Lore collect spells and secrets from diverse sources, such as scholarly tomes, mystical rites, and peasant tales.",
+   "rules": [
+    {
+     "grant": "Class Feature:Bonus Proficiencies (College of Lore) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Cutting Words (College of Lore) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Magical Discoveries (College of Lore) (5.2)",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Peerless Skill (College of Lore) (5.2)",
+     "level": 14
+    }
+   ],
+   "supports": "Class:Bard (5.2)"
+  },
+  {
+   "id": "Subclass:Life Domain (5.2)",
+   "type": "Subclass",
+   "name": "Life Domain",
+   "desc": "Soothe the Hurts of the World. The Life Domain focuses on the positive energy that helps sustain all life in the multiverse. Clerics who tap into this domain are masters of healing, using that life force to cure many hurts.",
+   "rules": [
+    {
+     "grant": "Class Feature:Disciple of Life (Life Domain) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Life Domain Spells (Life Domain) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Preserve Life (Life Domain) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Blessed Healer (Life Domain) (5.2)",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Supreme Healing (Life Domain) (5.2)",
+     "level": 17
+    }
+   ],
+   "supports": "Class:Cleric (5.2)",
+   "prepared": {
+    "class": "Cleric (5.2)",
+    "levels": {
+     "3": [
+      "Spell:Aid (5.2)",
+      "Spell:Bless (5.2)",
+      "Spell:Cure Wounds (5.2)",
+      "Spell:Lesser Restoration (5.2)"
+     ],
+     "5": [
+      "Spell:Mass Healing Word (5.2)",
+      "Spell:Revivify (5.2)"
+     ],
+     "7": [
+      "Spell:Aura of Life (5.2)",
+      "Spell:Death Ward (5.2)"
+     ],
+     "9": [
+      "Spell:Greater Restoration (5.2)",
+      "Spell:Mass Cure Wounds (5.2)"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Subclass:Circle of the Land (5.2)",
+   "type": "Subclass",
+   "name": "Circle of the Land",
+   "desc": "Celebrate Connection to the Natural World. The Circle of the Land comprises mystics and sages who safeguard ancient knowledge and rites. These Druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic.",
+   "rules": [
+    {
+     "grant": "Class Feature:Circle of the Land Spells (Circle of the Land) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Land's Aid (Circle of the Land) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Natural Recovery (Circle of the Land) (5.2)",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Nature's Ward (Circle of the Land) (5.2)",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Nature's Sanctuary (Circle of the Land) (5.2)",
+     "level": 14
+    },
+    {
+     "select": {
+      "name": "Land Type",
+      "type": "Land Type",
+      "ids": [
+       "Land Type:Arid (5.2)",
+       "Land Type:Polar (5.2)",
+       "Land Type:Temperate (5.2)",
+       "Land Type:Tropical (5.2)"
+      ]
+     },
+     "level": 3
+    }
+   ],
+   "supports": "Class:Druid (5.2)"
+  },
+  {
+   "id": "Subclass:Champion (5.2)",
+   "type": "Subclass",
+   "name": "Champion",
+   "desc": "Pursue Physical Excellence in Combat. A Champion focuses on the development of martial prowess in a relentless pursuit of victory. Champions combine rigorous training with physical excellence to deal devastating blows, withstand peril, and garner glory.",
+   "rules": [
+    {
+     "grant": "Class Feature:Improved Critical (Champion) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Remarkable Athlete (Champion) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Additional Fighting Style (Champion) (5.2)",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Heroic Warrior (Champion) (5.2)",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Superior Critical (Champion) (5.2)",
+     "level": 15
+    },
+    {
+     "grant": "Class Feature:Survivor (Champion) (5.2)",
+     "level": 18
+    }
+   ],
+   "supports": "Class:Fighter (5.2)"
+  },
+  {
+   "id": "Subclass:Warrior of the Open Hand (5.2)",
+   "type": "Subclass",
+   "name": "Warrior of the Open Hand",
+   "desc": "Master Unarmed Combat Techniques. Warriors of the Open Hand are masters of unarmed combat. They learn techniques to push and trip their opponents and manipulate their own energy to protect themselves from harm.",
+   "rules": [
+    {
+     "grant": "Class Feature:Open Hand Technique (Warrior of the Open Hand) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Wholeness of Body (Warrior of the Open Hand) (5.2)",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Fleet Step (Warrior of the Open Hand) (5.2)",
+     "level": 11
+    },
+    {
+     "grant": "Class Feature:Quivering Palm (Warrior of the Open Hand) (5.2)",
+     "level": 17
+    }
+   ],
+   "supports": "Class:Monk (5.2)"
+  },
+  {
+   "id": "Subclass:Oath of Devotion (5.2)",
+   "type": "Subclass",
+   "name": "Oath of Devotion",
+   "desc": "Uphold the Ideals of Justice and Order. The Oath of Devotion binds Paladins to the ideals of justice and order. These Paladins meet the archetype of the knight in shining armor.",
+   "rules": [
+    {
+     "grant": "Class Feature:Oath of Devotion Spells (Oath of Devotion) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Sacred Weapon (Oath of Devotion) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Aura of Devotion (Oath of Devotion) (5.2)",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Smite of Protection (Oath of Devotion) (5.2)",
+     "level": 15
+    },
+    {
+     "grant": "Class Feature:Holy Nimbus (Oath of Devotion) (5.2)",
+     "level": 20
+    }
+   ],
+   "supports": "Class:Paladin (5.2)"
+  },
+  {
+   "id": "Subclass:Hunter (5.2)",
+   "type": "Subclass",
+   "name": "Hunter",
+   "desc": "Protect Nature and People from Destruction. You stalk prey in the wilds and elsewhere, using your abilities as a Hunter to protect nature and people everywhere from forces that would destroy them.",
+   "rules": [
+    {
+     "grant": "Class Feature:Hunter's Lore (Hunter) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Hunter's Prey (Hunter) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Defensive Tactics (Hunter) (5.2)",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Superior Hunter's Prey (Hunter) (5.2)",
+     "level": 11
+    },
+    {
+     "grant": "Class Feature:Superior Hunter's Defense (Hunter) (5.2)",
+     "level": 15
+    }
+   ],
+   "supports": "Class:Ranger (5.2)"
+  },
+  {
+   "id": "Subclass:Thief (5.2)",
+   "type": "Subclass",
+   "name": "Thief",
+   "desc": "Hunt for Treasure as a Classic Adventurer. A mix of burglar, treasure hunter, and explorer, you are the epitome of an adventurer.",
+   "rules": [
+    {
+     "grant": "Class Feature:Fast Hands (Thief) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Second-Story Work (Thief) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Supreme Sneak (Thief) (5.2)",
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Use Magic Device (Thief) (5.2)",
+     "level": 13
+    },
+    {
+     "grant": "Class Feature:Thief's Reflexes (Thief) (5.2)",
+     "level": 17
+    }
+   ],
+   "supports": "Class:Rogue (5.2)"
+  },
+  {
+   "id": "Subclass:Draconic Sorcery (5.2)",
+   "type": "Subclass",
+   "name": "Draconic Sorcery",
+   "desc": "Breathe the Magic of Dragons. Your innate magic comes from the gift of a dragon. Perhaps an ancient dragon facing death bequeathed some of its magical power to you or your ancestor. You might have absorbed magic from a site infused with dragons' power.",
+   "rules": [
+    {
+     "grant": "Class Feature:Draconic Resilience (Draconic Sorcery) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Draconic Spells (Draconic Sorcery) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Elemental Affinity (Draconic Sorcery) (5.2)",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Dragon Wings (Draconic Sorcery) (5.2)",
+     "level": 14
+    },
+    {
+     "grant": "Class Feature:Dragon Companion (Draconic Sorcery) (5.2)",
+     "level": 18
+    }
+   ],
+   "supports": "Class:Sorcerer (5.2)",
+   "prepared": {
+    "class": "Sorcerer (5.2)",
+    "levels": {
+     "3": [
+      "Spell:Alter Self (5.2)",
+      "Spell:Chromatic Orb (5.2)",
+      "Spell:Command (5.2)",
+      "Spell:Dragon's Breath (5.2)"
+     ],
+     "5": [
+      "Spell:Fear (5.2)",
+      "Spell:Fly (5.2)"
+     ],
+     "7": [
+      "Spell:Arcane Eye (5.2)",
+      "Spell:Charm Monster (5.2)"
+     ],
+     "9": [
+      "Spell:Legend Lore (5.2)",
+      "Spell:Summon Dragon (5.2)"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Subclass:Fiend Patron (5.2)",
+   "type": "Subclass",
+   "name": "Fiend Patron",
+   "desc": "Make a Deal with the Lower Planes. Your pact draws on the Lower Planes, the realms of perdition. You might forge a bargain with a demon lord, an archdevil, or another fiend that is especially mighty.",
+   "rules": [
+    {
+     "grant": "Class Feature:Dark One's Blessing (Fiend Patron) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Fiend Spells (Fiend Patron) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Dark One's Own Luck (Fiend Patron) (5.2)",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Fiendish Resilience (Fiend Patron) (5.2)",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Hurl Through Hell (Fiend Patron) (5.2)",
+     "level": 14
+    }
+   ],
+   "supports": "Class:Warlock (5.2)",
+   "prepared": {
+    "class": "Warlock (5.2)",
+    "levels": {
+     "3": [
+      "Spell:Burning Hands (5.2)",
+      "Spell:Command (5.2)",
+      "Spell:Scorching Ray (5.2)",
+      "Spell:Suggestion (5.2)"
+     ],
+     "5": [
+      "Spell:Fireball (5.2)",
+      "Spell:Stinking Cloud (5.2)"
+     ],
+     "7": [
+      "Spell:Fire Shield (5.2)",
+      "Spell:Wall of Fire (5.2)"
+     ],
+     "9": [
+      "Spell:Geas (5.2)",
+      "Spell:Insect Plague (5.2)"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Subclass:Evoker (5.2)",
+   "type": "Subclass",
+   "name": "Evoker",
+   "desc": "Create Explosive Elemental Effects. Your studies focus on magic that creates powerful elemental effects such as bitter cold, searing flame, rolling thunder, crackling lightning, and burning acid.",
+   "rules": [
+    {
+     "grant": "Class Feature:Evocation Savant (Evoker) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Potent Cantrip (Evoker) (5.2)",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Sculpt Spells (Evoker) (5.2)",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Empowered Evocation (Evoker) (5.2)",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Overchannel (Evoker) (5.2)",
+     "level": 14
+    }
+   ],
+   "supports": "Class:Wizard (5.2)"
+  }
+ ]
+}
