@@ -5,7 +5,7 @@ function sheetHTML() {
     cl = r.els.filter((e) => e.type === 'Class')[0],
     rc = r.els.find((e) => e.type === 'Race'),
     sr = r.els.find((e) => e.type === 'Sub Race');
-  const feats = r.els.filter((e) => /Trait|Feature|Style/.test(e.type));
+  const feats = r.els.filter((e) => /Trait|Feature|Style|^Feat$/.test(e.type));
   return `<h2>${esc(ch.name || 'Unnamed hero')}</h2><p class="sub">Level ${ch.level} ${esc(sr?.name || rc?.name || '—')} ${esc(cl?.name || '(no class)')}${ch.bg ? ' · ' + esc(ch.bg.split(':')[1]) : ''}</p>
 <div class="stats"><div class="stat"><b>${c.ac}</b><span>Armor Class</span></div><div class="stat"><b>${c.hp || '—'}</b><span>Hit Points</span></div><div class="stat"><b>${c.speed} ft</b><span>Speed</span></div><div class="stat"><b>${sg(c.pb)}</b><span>Proficiency</span></div></div>
 <div class="abg">${AB.map((a) => `<div class="ab"><span>${a.toUpperCase()}</span><b>${sg(mod(c.sc[a]))}</b><span>${c.sc[a]}</span></div>`).join('')}</div>

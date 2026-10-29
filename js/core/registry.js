@@ -10,7 +10,9 @@ let CLX = {},
   KN = {},
   MODE = {},
   HALF = {},
-  CA = {}; // spellcasting, keyed by class name
+  CA = {},
+  LN = {},
+  PT = {}; // spellcasting, keyed by class name (LN: the spell list a class uses, usually its own name)
 let PRE = {},
   SEQ = {}; // multiclass prerequisites, starting equipment (class id / name)
 let DOM2 = {},
@@ -31,7 +33,7 @@ function T(type, name, desc, rules = [], x = {}) {
 }
 
 function buildTables(tables) {
-  [CLX, KN, MODE, HALF, CA, PRE, SEQ, DOM2, EXP, FS, MEF].forEach((o) =>
+  [CLX, KN, MODE, HALF, CA, LN, PT, PRE, SEQ, DOM2, EXP, FS, MEF].forEach((o) =>
     Object.keys(o).forEach((k) => delete o[k]),
   );
   for (const e of DB) {
@@ -40,8 +42,10 @@ function buildTables(tables) {
         const c = e.casting;
         CLX[e.name] = c.rows;
         CA[e.name] = c.ability;
+        LN[e.name] = c.list || e.name;
+        if (c.prep) PT[e.name] = c.prep; // prepared spells by class level (5.2 style)
         MODE[e.name] = c.mode;
-        if (c.half) HALF[e.name] = 1;
+        if (c.half) HALF[e.name] = c.halfUp ? 2 : 1; // 2 = round up when multiclassing (5.2)
         if (c.known) KN[e.name] = c.known;
       }
       if (e.prereq) PRE[e.id] = e.prereq;

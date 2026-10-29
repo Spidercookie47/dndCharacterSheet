@@ -1,0 +1,25 @@
+{
+ "elements": [
+  {
+   "id": "Language:Common Sign Language",
+   "type": "Language",
+   "name": "Common Sign Language",
+   "desc": "Common Sign Language is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
+   "id": "Language:Druidic",
+   "type": "Language",
+   "name": "Druidic",
+   "desc": "Druidic is a language your character can speak, read and write. (Rare language.)",
+   "rules": []
+  },
+  {
+   "id": "Language:Thieves' Cant",
+   "type": "Language",
+   "name": "Thieves' Cant",
+   "desc": "Thieves' Cant is a language your character can speak, read and write. (Rare language.)",
+   "rules": []
+  }
+ ]
+}

@@ -6,7 +6,9 @@ function resolve(ch) {
     exp = [],
     pfs = new Set(),
     langs = [],
-    fx = [];
+    fx = [],
+    sb = { race: {}, bg: {}, other: {} }; // ability increases by source
+  let src = 'other';
   const I = idx(),
     els = [],
     sels = [],
@@ -41,13 +43,17 @@ function resolve(ch) {
       if (r.asi) {
         const k = id + '@' + r.level,
           c = ch.asi && ch.asi[k];
-        asi.push({ key: k, cls: e.name, level: r.level });
+        asi.push({ key: k, cls: e.name, level: r.level, epic: !!r.epic });
         if (c && c.t === 'f' && c.f) add(c.f);
         return;
       }
       if (r.grant) give(r.grant);
       if (r.acFormula || r.speedBonus || r.halfProf || r.saveBonus) fx.push(r);
-      if (r.stat) for (const k in r.stat) stats[k] = k === 'speed' ? r.stat[k] : (stats[k] || 0) + r.stat[k];
+      if (r.stat)
+        for (const k in r.stat) {
+          stats[k] = k === 'speed' ? r.stat[k] : (stats[k] || 0) + r.stat[k];
+          if (AB.includes(k)) sb[src][k] = (sb[src][k] || 0) + r.stat[k];
+        }
       if (r.select) {
         const s = r.select,
           key = id + '#' + i,
@@ -75,10 +81,12 @@ function resolve(ch) {
   }
   give('Language:Common');
   const lc = classLevels(ch);
-  [ch.race, ch.bg].forEach((x) => {
+  [ch.race, ch.bg].forEach((x, i) => {
     cur = ch.level;
+    src = i ? 'bg' : 'race';
     x && add(x);
   });
+  src = 'other';
   Object.entries(lc).forEach(([k, n], i) => {
     if (!k) return;
     cur = n;
@@ -86,9 +94,9 @@ function resolve(ch) {
     add(k);
   });
   {
-    const WL = classLevels(ch)['Class:Warlock'] || 0,
+    const WL = classLevels(ch)['Class:Warlock'] || classLevels(ch)['Class:Warlock (5.2)'] || 0,
       pbs = new Set(sels.filter((s) => s.kind === 'Pact Boon').flatMap((s) => s.chosen)),
-      wc = (ch.sp && ch.sp.Warlock && ch.sp.Warlock.c) || [];
+      wc = ((ch.sp && (ch.sp.Warlock || ch.sp['Warlock (5.2)'])) || {}).c || [];
     const ok = (o) =>
       (!o.lv || o.lv <= WL) &&
       (!o.pb || pbs.has('Pact Boon:Pact of the ' + o.pb)) &&
@@ -99,7 +107,7 @@ function resolve(ch) {
         s.chosen = s.chosen.filter((c) => s.opts.some((o) => o.id === c));
       }
     });
-    ['Language', 'Metamagic', 'Invocation', 'Favored Enemy', 'Favored Terrain', 'Land Type'].forEach((K) => {
+    ['Language', 'Metamagic', 'Invocation', 'Favored Enemy', 'Favored Terrain', 'Land Type', 'Weapon'].forEach((K) => {
       const kn = K === 'Language' ? new Set(langs.filter((x) => !x.pk).map((x) => x.id)) : new Set(),
         L = sels.filter((s) => s.kind === K),
         taken = new Set(kn);
@@ -116,7 +124,26 @@ function resolve(ch) {
       });
     });
   }
-  return { els, sels, stats, prof, asi, exp, pfs, langs, fx, cls: I[ch.cls] };
+  /* Ability score increases come from the race (5.1 style) OR the background (5.2 style), never both.
+     ch.boost = 'race' | 'bg'; when empty, a background that lists abilities means 'bg', otherwise 'race'. */
+  const bgEl = I[ch.bg],
+    mode = ch.boost || (bgEl && bgEl.abilities ? 'bg' : 'race'),
+    drop = mode === 'bg' ? 'race' : 'bg',
+    bgb = {};
+  AB.forEach((a) => {
+    if (sb[drop][a]) stats[a] = (stats[a] || 0) - sb[drop][a];
+  });
+  if (mode === 'bg' && bgEl && bgEl.abilities) {
+    const ab = bgEl.abilities;
+    if (ch.bgt === '111') ab.forEach((a) => (bgb[a] = 1));
+    else if (ch.bgt === '21') {
+      if (ch.bga && ab.includes(ch.bga)) bgb[ch.bga] = 2;
+      if (ch.bgb && ab.includes(ch.bgb) && ch.bgb !== ch.bga) bgb[ch.bgb] = 1;
+    }
+    Object.entries(bgb).forEach(([a, v]) => (stats[a] = (stats[a] || 0) + v));
+  }
+  const boostBy = { mode, race: mode === 'race' ? sb.race : {}, bg: mode === 'bg' ? Object.assign({}, sb.bg, bgb) : {}, other: sb.other };
+  return { els, sels, stats, prof, asi, exp, pfs, langs, fx, boostBy, cls: I[ch.cls] };
 }
 function calc(ch, r) {
   const sc = {};

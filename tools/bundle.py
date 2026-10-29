@@ -17,8 +17,10 @@ html = re.sub(r'<!-- BUNDLE:vendor -->.*?<!-- /BUNDLE:vendor -->',
 
 # data
 bundle = {}
-idx = json.loads(rd('data/srd/index.json')); bundle['data/srd/index.json'] = idx
-for f in idx['files']: bundle['data/srd/' + f] = json.loads(rd('data/srd/' + f))
+for d in ('data/srd51', 'data/srd52'):
+    if not os.path.exists(os.path.join(root, d, 'index.json')): print('skipping', d, '(not found)'); continue
+    idx = json.loads(rd(d + '/index.json')); bundle[d + '/index.json'] = idx
+    for f in idx['files']: bundle[d + '/' + f] = json.loads(rd(d + '/' + f))
 pdf = base64.b64encode(open(os.path.join(root, 'assets/5E_CharacterSheet_Fillable.pdf'), 'rb').read()).decode()
 safe = lambda s: re.sub(r'</(script)', r'<\\/\1', s, flags=re.I)
 data = ('<script>window.__HS_BUNDLE__=' + safe(json.dumps(bundle, ensure_ascii=True, separators=(',', ':'))) + ';'

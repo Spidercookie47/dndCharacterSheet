@@ -8,21 +8,27 @@ const clv = (n) => classLevels(ch)['Class:' + n] || 0,
   cantN = (n) => CLX[n][clv(n) - 1][0],
   knownN = (n) => (KN[n] ? KN[n][clv(n) - 1] : 0),
   bookN = (n) => 6 + 2 * (clv(n) - 1),
-  prepN = (n, c) => Math.max(1, abOf(n, c) + (n === 'Paladin' ? Math.floor(clv(n) / 2) : clv(n)));
+  prepN = (n, c) =>
+    PT[n] ? PT[n][clv(n) - 1] || 0 : Math.max(1, abOf(n, c) + (n === 'Paladin' ? Math.floor(clv(n) / 2) : clv(n)));
+const isW = (n) => n === 'Warlock' || n === 'Warlock (5.2)'; // Pact Magic classes from either edition
 function slotsFor(r) {
   const cs = casters(r),
-    nw = cs.filter((n) => n !== 'Warlock');
+    nw = cs.filter((n) => !isW(n));
   let sl = Array(9).fill(0),
     comb = false;
   if (nw.length === 1) sl = CLX[nw[0]][clv(nw[0]) - 1].slice(1);
   else if (nw.length > 1) {
     comb = true;
-    const L = nw.reduce((s, n) => s + (HALF[n] ? Math.floor(clv(n) / 2) : clv(n)), 0);
+    const L = nw.reduce(
+      (s, n) => s + (HALF[n] ? (HALF[n] === 2 ? Math.ceil(clv(n) / 2) : Math.floor(clv(n) / 2)) : clv(n)),
+      0,
+    ); // 5.2 half casters round up
     if (L > 0) sl = CLX.Cleric[Math.min(20, L) - 1].slice(1);
   }
   let pact = null;
-  if (cs.includes('Warlock')) {
-    const w = CLX.Warlock[clv('Warlock') - 1].slice(1),
+  const wn = cs.find(isW);
+  if (wn) {
+    const w = CLX[wn][clv(wn) - 1].slice(1),
       i = w.findIndex((x) => x > 0);
     if (i >= 0) pact = { n: w[i], l: i + 1 };
   }
@@ -30,7 +36,7 @@ function slotsFor(r) {
 }
 function topLv(n, r) {
   const s = slotsFor(r);
-  if (n === 'Warlock') return s.pact ? s.pact.l : 0;
+  if (isW(n)) return s.pact ? s.pact.l : 0;
   let t = 0;
   s.sl.forEach((x, i) => {
     if (x) t = i + 1;
@@ -43,7 +49,7 @@ function domOf(r, n) {
     const d = DOM2[e.id];
     if (d && d.c === n)
       Object.entries(d).forEach(([k, v]) => {
-        if (k !== 'c' && +k <= clv(n)) o.push(...v.map((x) => 'Spell:' + x));
+        if (k !== 'c' && +k <= clv(n)) o.push(...v.map((x) => (x.includes(':') ? x : 'Spell:' + x)));
       });
   });
   return o;
@@ -153,7 +159,7 @@ function casterInfo(r, c) {
   if (!cs.length) return null;
   const n = cs[0];
   return {
-    cls: cs.join(' / '),
+    cls: cs.map((x) => x.replace(/ \(5\.2\)$/, '')).join(' / '),
     ab: CA[n].toUpperCase(),
     dc: 8 + c.pb + abOf(n, c),
     atk: c.pb + abOf(n, c) + magicB(ch).spA,
@@ -170,7 +176,7 @@ const secretsN = (r) => {
 };
 const knownT = (n, r) => knownN(n) + (n === 'Bard' ? secretsN(r) : 0);
 function inList(s, n, r) {
-  if (s.lists.includes(n)) return true;
+  if (s.lists.includes(LN[n] || n)) return true;
   return Object.entries(EXP).some(
     ([k, v]) => v.c === n && v.list.includes(s.name) && r.els.some((e) => e.id === k),
   );
@@ -181,7 +187,8 @@ function featSpells(r) {
   Object.entries(FS).forEach(([id, l]) => {
     if (r.els.some((e) => e.id === id))
       l.forEach(([lv, n, note]) => {
-        if (ch.level >= lv && I['Spell:' + n]) o.push({ id: 'Spell:' + n, name: n, note });
+        const sid = n.includes(':') ? n : 'Spell:' + n; // 5.2 content gives full spell ids
+        if (ch.level >= lv && I[sid]) o.push({ id: sid, name: I[sid].name, note });
       });
   });
   r.sels

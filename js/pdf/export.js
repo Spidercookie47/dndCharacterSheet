@@ -48,7 +48,7 @@ function model() {
       let sub = subs.find((e) => matchSub(e, k, clsName));
       // last resort: single class + single subclass → use it
       if (!sub && entries.length === 1 && subs.length === 1) sub = subs[0];
-      return clsName + (sub ? ' (' + sub.name + ')' : '') + ' ' + n;
+      return clsName.replace(/ \(5\.2\)$/, '') + (sub ? ' (' + sub.name + ')' : '') + ' ' + n;
     })
     .join(' / ');
 
@@ -76,7 +76,7 @@ function model() {
     saves: c.sv,
     skills: c.sk,
     features: r.els
-      .filter((e) => /Trait|Feature|Style/.test(e.type))
+      .filter((e) =>/Trait|Feature|Style|^Feat$/.test(e.type))
       .map((f) => f.name + ': ' + f.desc)
       .join('\n'),
     equipment:

@@ -63,10 +63,33 @@ const KP = (r) =>
     .concat([...r.pfs].map((x) => PFN[x[0]] + ': ' + x.slice(2)));
 function abTab() {
   const r = resolve(ch),
+    I = idx(),
+    bgEl = I[ch.bg],
+    by = r.boostBy,
     pts = AB.reduce(
       (t, a) => t + ({ 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 }[ch.ab[a]] ?? 99),
       0,
-    );
+    ),
+    sel = (k, v, opts, ph) =>
+      `<select data-f="${k}" style="width:auto"><option value="">${ph}</option>${opts.map(([val, txt]) => `<option value="${val}"${v === val ? ' selected' : ''}>${txt}</option>`).join('')}</select>`,
+    bgAb = bgEl && bgEl.abilities;
+  let boost =
+    `<div class="ph"><span>Ability score increases</span></div><p class="hint">Your scores can be raised by your race (SRD 5.1 style) or by your background (SRD 5.2 style), not both. Using now: <b>${by.mode === 'bg' ? 'Background' + (bgEl && bgEl.src ? ' (' + esc(bgEl.src) + ')' : '') : 'Race'}</b>.</p>` +
+    `<div class="bar">${sel('boost', ch.boost || '', [['race', 'Race'], ['bg', 'Background']], 'Automatic')}</div>`;
+  if (by.mode === 'bg') {
+    if (bgAb) {
+      const opts = bgAb.map((a) => [a, AN[a]]);
+      boost +=
+        `<div class="bar" style="margin-top:6px">${sel('bgt', ch.bgt || '', [['21', '+2 and +1'], ['111', '+1 to each of the three']], 'How does your background raise your scores?')}` +
+        (ch.bgt === '21' ? `+2 ${sel('bga', ch.bga || '', opts, 'ability…')} +1 ${sel('bgb', ch.bgb || '', opts, 'ability…')}` : '') +
+        `</div><p class="hint">${esc(bgEl.name)} can raise: ${bgAb.map((a) => AN[a]).join(', ')}.</p>`;
+    } else boost += '<p class="hint">Choose a background that lists ability scores (SRD 5.2) to use this, or switch to Race.</p>';
+  }
+  const note = (a) =>
+    [['base ' + ch.ab[a]], by.race[a] && ['race ' + sg(by.race[a])], by.bg[a] && ['background ' + sg(by.bg[a])], by.other[a] && ['other ' + sg(by.other[a])]]
+      .filter(Boolean)
+      .map((x) => x[0])
+      .join(' · ');
   return `<div class="bar">${[
     ['array', 'Standard array'],
     ['buy', 'Point buy'],
@@ -79,8 +102,8 @@ function abTab() {
  <div class="abs">${AB.map((a) => {
    const b = r.stats[a] || 0,
      t = ch.ab[a] + b;
-   return `<div class="abc"><small>${AN[a]}</small><b>${t}</b><span class="m">${sg(mod(t))}</span><div><button data-a="ab" data-k="${a}" data-d="-1">▼</button> <button data-a="ab" data-k="${a}" data-d="1">▲</button></div><small>base ${ch.ab[a]}${b ? ' · race ' + sg(b) : ''}</small></div>`;
- }).join('')}</div>`;
+   return `<div class="abc"><small>${AN[a]}</small><b>${t}</b><span class="m">${sg(mod(t))}</span><div><button data-a="ab" data-k="${a}" data-d="-1">▼</button> <button data-a="ab" data-k="${a}" data-d="1">▲</button></div><small>${note(a)}</small></div>`;
+ }).join('')}</div>${boost}`;
 }
 function expHtml(r) {
   ch.exp = ch.exp || {};
@@ -104,6 +127,7 @@ function expHtml(r) {
 function renderBuild() {
   const m = $('#main');
   m.className = 'main';
+  if (!KIND.class.includes('Weapon')) KIND.class.push('Weapon'); // Weapon Mastery picks (5.2) show on the Class tab
   const r = resolve(ch);
   let L = '',
     R = '';
@@ -118,7 +142,7 @@ function renderBuild() {
   } else if (sub === 'abil') {
     L = abTab();
     R =
-      '<h2>Ability scores</h2><p>Ability scores describe your strengths and weaknesses. Race bonuses are added on top of the base scores you set here.</p><p class="hint">Standard array assigns 15, 14, 13, 12, 10, 8. Point buy lets you spend 27 points on scores from 8 to 15.</p>';
+      '<h2>Ability scores</h2><p>Ability scores describe your strengths and weaknesses. Increases from your race or your background are added on top of the base scores you set here.</p><p class="hint">Standard array assigns 15, 14, 13, 12, 10, 8. Point buy lets you spend 27 points on scores from 8 to 15.</p>';
   } else {
     const known = sub === 'lang' ? langList(r) : KP(r);
     L =

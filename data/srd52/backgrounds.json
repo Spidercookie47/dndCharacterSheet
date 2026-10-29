@@ -1,0 +1,183 @@
+{
+ "elements": [
+  {
+   "id": "Background:Acolyte (5.2)",
+   "type": "Background",
+   "name": "Acolyte",
+   "desc": "Ability scores: Intelligence, Wisdom, Charisma. Origin feat: Magic Initiate (Cleric). Skills: Insight, Religion. Tool: Calligrapher's Supplies.",
+   "rules": [
+    {
+     "grant": "skill:Insight"
+    },
+    {
+     "grant": "skill:Religion"
+    },
+    {
+     "pf": [
+      "t:Calligrapher's Supplies"
+     ]
+    },
+    {
+     "grant": "Feat:Magic Initiate (Cleric) (5.2)"
+    },
+    {
+     "select": {
+      "name": "Languages",
+      "type": "Language",
+      "n": 2,
+      "ids": [
+       "Language:Common Sign Language",
+       "Language:Draconic",
+       "Language:Dwarvish",
+       "Language:Elvish",
+       "Language:Giant",
+       "Language:Gnomish",
+       "Language:Goblin",
+       "Language:Halfling",
+       "Language:Orc"
+      ]
+     }
+    }
+   ],
+   "abilities": [
+    "int",
+    "wis",
+    "cha"
+   ],
+   "equipment": "Choose A or B: (A) Calligrapher's Supplies, Book (prayers), Holy Symbol, Parchment (10 sheets), Robe, 8 GP; or (B) 50 GP"
+  },
+  {
+   "id": "Background:Criminal (5.2)",
+   "type": "Background",
+   "name": "Criminal",
+   "desc": "Ability scores: Dexterity, Constitution, Intelligence. Origin feat: Alert. Skills: Sleight of Hand, Stealth. Tool: Thieves' Tools.",
+   "rules": [
+    {
+     "grant": "skill:Sleight of Hand"
+    },
+    {
+     "grant": "skill:Stealth"
+    },
+    {
+     "pf": [
+      "t:Thieves' Tools"
+     ]
+    },
+    {
+     "grant": "Feat:Alert (5.2)"
+    },
+    {
+     "select": {
+      "name": "Languages",
+      "type": "Language",
+      "n": 2,
+      "ids": [
+       "Language:Common Sign Language",
+       "Language:Draconic",
+       "Language:Dwarvish",
+       "Language:Elvish",
+       "Language:Giant",
+       "Language:Gnomish",
+       "Language:Goblin",
+       "Language:Halfling",
+       "Language:Orc"
+      ]
+     }
+    }
+   ],
+   "abilities": [
+    "dex",
+    "con",
+    "int"
+   ],
+   "equipment": "Choose A or B: (A) 2 Daggers, Thieves' Tools, Crowbar, 2 Pouches, Traveler's Clothes, 16 GP; or (B) 50 GP"
+  },
+  {
+   "id": "Background:Sage (5.2)",
+   "type": "Background",
+   "name": "Sage",
+   "desc": "Ability scores: Constitution, Intelligence, Wisdom. Origin feat: Magic Initiate (Wizard). Skills: Arcana, History. Tool: Calligrapher's Supplies.",
+   "rules": [
+    {
+     "grant": "skill:Arcana"
+    },
+    {
+     "grant": "skill:History"
+    },
+    {
+     "pf": [
+      "t:Calligrapher's Supplies"
+     ]
+    },
+    {
+     "grant": "Feat:Magic Initiate (Wizard) (5.2)"
+    },
+    {
+     "select": {
+      "name": "Languages",
+      "type": "Language",
+      "n": 2,
+      "ids": [
+       "Language:Common Sign Language",
+       "Language:Draconic",
+       "Language:Dwarvish",
+       "Language:Elvish",
+       "Language:Giant",
+       "Language:Gnomish",
+       "Language:Goblin",
+       "Language:Halfling",
+       "Language:Orc"
+      ]
+     }
+    }
+   ],
+   "abilities": [
+    "con",
+    "int",
+    "wis"
+   ],
+   "equipment": "Choose A or B: (A) Quarterstaff, Calligrapher's Supplies, Book (history), Parchment (8 sheets), Robe, 8 GP; or (B) 50 GP"
+  },
+  {
+   "id": "Background:Soldier (5.2)",
+   "type": "Background",
+   "name": "Soldier",
+   "desc": "Ability scores: Strength, Dexterity, Constitution. Origin feat: Savage Attacker. Skills: Athletics, Intimidation.",
+   "rules": [
+    {
+     "grant": "skill:Athletics"
+    },
+    {
+     "grant": "skill:Intimidation"
+    },
+    {
+     "grant": "Feat:Savage Attacker (5.2)"
+    },
+    {
+     "select": {
+      "name": "Languages",
+      "type": "Language",
+      "n": 2,
+      "ids": [
+       "Language:Common Sign Language",
+       "Language:Draconic",
+       "Language:Dwarvish",
+       "Language:Elvish",
+       "Language:Giant",
+       "Language:Gnomish",
+       "Language:Goblin",
+       "Language:Halfling",
+       "Language:Orc"
+      ]
+     }
+    }
+   ],
+   "abilities": [
+    "str",
+    "dex",
+    "con"
+   ],
+   "equipment": "Choose A or B: (A) Spear, Shortbow, 20 Arrows, Gaming Set (same as above), Healer's Kit, Quiver, Traveler's Clothes, 14 GP; or (B) 50 GP"
+  }
+ ]
+}

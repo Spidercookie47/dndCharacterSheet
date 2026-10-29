@@ -2,8 +2,15 @@
    format as data/srd/. The SRD is just the first pack. Homebrew packs are added by link (any CORS
    enabled URL, e.g. raw.githubusercontent.com), by file or by pasting JSON, and are cached in the
    browser so they work offline afterwards. */
+/* The SRD editions that ship with the app. Both are always loaded; their ids never clash
+   (5.2 ids end in " (5.2)"), so a character can mix content from either edition. */
+const BUILTIN = [
+  { id: 'srd51', dir: 'data/srd51' },
+  { id: 'srd52', dir: 'data/srd52' },
+];
 const Loader = {
-  packs: [], // [{id,name,short,url,builtin,enabled,fetchedAt,count,json,error}]
+  packs: [],
+  loadErrors: [], // [{id,name,short,url,builtin,enabled,fetchedAt,count,json,error}]
   prefs: { enabled: {} },
   warnings: [],
 
@@ -86,32 +93,37 @@ const Loader = {
     return this.prefs.enabled[p.id] !== false;
   },
 
-  initBuiltin(srd) {
-    const s = srd.source || { id: 'srd', name: 'System Reference Document 5.1', short: 'SRD' };
-    this.packs = [
-      {
-        id: s.id || 'srd',
+  initBuiltin(list) {
+    this.packs = [].concat(list).map((srd) => {
+      const s = srd.source || {};
+      return {
+        id: s.id,
         name: s.name,
-        short: s.short || 'SRD',
+        short: s.short || s.name,
         builtin: true,
         json: srd,
         credit: s.credit,
         count: srd.elements.length,
-      },
-    ];
+      };
+    });
   },
-  // The standalone build ships the SRD inside the page, so it can load synchronously.
+  // The standalone build ships the SRD editions inside the page, so they can load synchronously.
   readBundled() {
     const b = window.__HS_BUNDLE__,
-      root = b['data/srd/index.json'],
-      out = { source: root.source, elements: [], info: {}, tables: {} };
-    for (const f of root.files) {
-      const j = b['data/srd/' + f];
-      out.elements.push(...(j.elements || []));
-      Object.assign(out.info, j.info || {});
-      Object.assign(out.tables, j.tables || {});
+      list = [];
+    for (const d of BUILTIN) {
+      const root = b[d.dir + '/index.json'];
+      if (!root) continue;
+      const out = { source: root.source, elements: [], info: {}, tables: {} };
+      for (const f of root.files) {
+        const j = b[d.dir + '/' + f];
+        out.elements.push(...(j.elements || []));
+        Object.assign(out.info, j.info || {});
+        Object.assign(out.tables, j.tables || {});
+      }
+      list.push(out);
     }
-    return out;
+    return list;
   },
   async loadCached() {
     for (const c of await Cache.all()) {
@@ -123,7 +135,17 @@ const Loader = {
   async boot() {
     // folder version: SRD comes from data/srd/*.json
     this.loadPrefs();
-    this.initBuiltin(await this.readSource('data/srd/index.json'));
+    const list = [];
+    this.loadErrors = [];
+    for (const d of BUILTIN) {
+      try {
+        list.push(await this.readSource(d.dir + '/index.json'));
+      } catch (e) {
+        if (d.id === 'srd51') throw e; // the 5.1 data is required; a missing 5.2 folder is only reported
+        this.loadErrors.push('Could not load ' + d.dir + ': ' + ((e && e.message) || e));
+      }
+    }
+    this.initBuiltin(list);
     this.rebuild();
     await this.loadCached();
   },
@@ -145,7 +167,8 @@ const Loader = {
         if (r.grant && !/^(skill|save):/.test(r.grant) && !ids[r.grant]) miss.add(r.grant);
       }),
     );
-    this.warnings = miss.size
+    this.warnings = (this.loadErrors || []).concat(
+      miss.size
       ? [
           'Some content refers to ' +
             miss.size +
@@ -153,7 +176,7 @@ const Loader = {
             [...miss].slice(0, 3).join(', ') +
             '.',
         ]
-      : [];
+      : []);
   },
 
   async install(json, meta) {

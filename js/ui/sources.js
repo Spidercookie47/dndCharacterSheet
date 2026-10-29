@@ -11,7 +11,7 @@ function sourcesHtml() {
     ? `<div class="rw" style="cursor:default;border-color:${srcMsg.ok ? 'var(--ok)' : 'var(--acc)'}"><span>${esc(srcMsg.text)}</span></div>`
     : '';
   const warn = Loader.warnings.map((w) => `<p class="hint">⚠ ${esc(w)}</p>`).join('');
-  const credit = (Loader.packs.find((p) => p.credit) || {}).credit;
+  const credits = Loader.packs.filter((p) => p.credit).map((p) => p.credit);
   return `<div class="ph"><span>Content sources</span></div>
     <p class="hint">Everything you can pick comes from a source. Turn a source off to hide its content. Characters keep working; missing content is simply not offered.</p>${rows}${warn}${m}
     ${missingHtml()}
@@ -21,7 +21,7 @@ function sourcesHtml() {
     <div class="bar" style="margin-top:10px"><label class="btn alt" style="margin:0">Add from file<input id="srcfile" type="file" accept=".json,application/json" hidden></label><button class="alt" data-a="srcpaste">Add pasted JSON</button></div>
     <label for="srcpaste">…or paste pack JSON here</label><textarea id="srcpaste" rows="5" placeholder='{ "source": { "name": "My Homebrew" }, "elements": [ ... ] }'>${esc(srcPaste)}</textarea>
     <p class="hint">Packs are cached in this browser after the first download, so they keep working offline. Use Refresh to fetch the newest version. Pack format and a template are in <code>data/homebrew/_template/</code>.</p>
-    ${credit ? `<div class="ph"><span>Credits</span></div><p class="hint">${esc(credit)}</p>` : ''}`;
+    ${credits.length ? `<div class="ph"><span>Credits</span></div>${credits.map((c) => `<p class="hint">${esc(c)}</p>`).join('')}` : ''}`;
 }
 let srcUrl = '',
   srcPaste = '';
