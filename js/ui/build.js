@@ -136,7 +136,11 @@ function renderBuild() {
     L =
       root(t, k, ty) +
       r.sels
-        .filter((s) => (KIND[sub] || []).includes(s.kind))
+                .filter((s) =>
+          sub === 'class'
+            ? KIND.class.includes(s.kind) || !['race', 'lang', 'prof'].some((k) => KIND[k].includes(s.kind))
+            : (KIND[sub] || []).includes(s.kind),
+        )
         .map(selPanel)
         .join('');
   } else if (sub === 'abil') {

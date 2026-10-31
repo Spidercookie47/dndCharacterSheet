@@ -12,7 +12,8 @@ let CLX = {},
   HALF = {},
   CA = {},
   LN = {},
-  PT = {}; // spellcasting, keyed by class name (LN: the spell list a class uses, usually its own name)
+  PT = {},
+  SUBC = {}; // spellcasting, keyed by class name (LN: the spell list a class uses; SUBC: the subclass that gives the class its casting)
 let PRE = {},
   SEQ = {}; // multiclass prerequisites, starting equipment (class id / name)
 let DOM2 = {},
@@ -33,7 +34,7 @@ function T(type, name, desc, rules = [], x = {}) {
 }
 
 function buildTables(tables) {
-  [CLX, KN, MODE, HALF, CA, LN, PT, PRE, SEQ, DOM2, EXP, FS, MEF].forEach((o) =>
+  [CLX, KN, MODE, HALF, CA, LN, PT, SUBC, PRE, SEQ, DOM2, EXP, FS, MEF].forEach((o) =>
     Object.keys(o).forEach((k) => delete o[k]),
   );
   for (const e of DB) {
@@ -50,6 +51,17 @@ function buildTables(tables) {
       }
       if (e.prereq) PRE[e.id] = e.prereq;
       if (e.start) SEQ[e.name] = e.start;
+    }
+    if (e.type === 'Subclass' && e.casting && e.supports && idx()[e.supports]) {
+      const c = e.casting,
+        h = idx()[e.supports].name;
+      CLX[h] = c.rows;
+      CA[h] = c.ability;
+      LN[h] = c.list || h;
+      MODE[h] = c.mode;
+      if (c.third) HALF[h] = 3; // 3 = one-third caster when multiclassing
+      if (c.known) KN[h] = c.known;
+      SUBC[h] = e.id; // only counts as a caster while this subclass is chosen
     }
     if (e.prepared) DOM2[e.id] = Object.assign({ c: e.prepared.class }, e.prepared.levels);
     if (e.expandedList) EXP[e.id] = { c: e.expandedList.class, list: e.expandedList.spells };

@@ -2,7 +2,7 @@
 const casters = (r) =>
   Object.keys(classLevels(ch))
     .map((k) => (idx()[k] || {}).name)
-    .filter((n) => CLX[n]);
+    .filter((n) => CLX[n] && (!SUBC[n] || r.els.some((e) => e.id === SUBC[n])));
 const clv = (n) => classLevels(ch)['Class:' + n] || 0,
   abOf = (n, c) => mod(c.sc[CA[n]]),
   cantN = (n) => CLX[n][clv(n) - 1][0],
@@ -20,7 +20,15 @@ function slotsFor(r) {
   else if (nw.length > 1) {
     comb = true;
     const L = nw.reduce(
-      (s, n) => s + (HALF[n] ? (HALF[n] === 2 ? Math.ceil(clv(n) / 2) : Math.floor(clv(n) / 2)) : clv(n)),
+      (s, n) =>
+        s +
+        (HALF[n] === 3
+          ? Math.floor(clv(n) / 3)
+          : HALF[n]
+            ? HALF[n] === 2
+              ? Math.ceil(clv(n) / 2)
+              : Math.floor(clv(n) / 2)
+            : clv(n)),
       0,
     ); // 5.2 half casters round up
     if (L > 0) sl = CLX.Cleric[Math.min(20, L) - 1].slice(1);
