@@ -27,8 +27,16 @@ function choose(k, id) {
   const cur = ch.picks[k] || [],
     s = resolve(ch).sels.find((x) => x.key === k),
     n = s ? s.n : 1;
-  ch.picks[k] =
-    n === 1 ? [id] : cur.includes(id) ? cur.filter((x) => x !== id) : cur.length < n ? [...cur, id] : cur;
+    ch.picks[k] =
+    n === 1
+      ? cur.includes(id)
+        ? []
+        : [id]
+      : cur.includes(id)
+        ? cur.filter((x) => x !== id)
+        : cur.length < n
+          ? [...cur, id]
+          : cur;
 }
 function baseDescPane() {
   const I = idx();
@@ -136,11 +144,7 @@ function renderBuild() {
     L =
       root(t, k, ty) +
       r.sels
-                .filter((s) =>
-          sub === 'class'
-            ? KIND.class.includes(s.kind) || !['race', 'lang', 'prof'].some((k) => KIND[k].includes(s.kind))
-            : (KIND[sub] || []).includes(s.kind),
-        )
+        .filter((s) => (KIND[sub] || []).includes(s.kind))
         .map(selPanel)
         .join('');
   } else if (sub === 'abil') {
