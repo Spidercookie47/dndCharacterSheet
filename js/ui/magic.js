@@ -80,10 +80,13 @@ function renderMagic() {
     cs = casters(r),
     I = idx();
   if (!cs.length) {
+    const s0 = pv && pv.k === 'spell' && I[pv.id];
     m.innerHTML =
       '<div class="left"><p class="hint">Pick a spellcasting class (Bard, Cleric, Druid, Paladin, Ranger, Sorcerer, Warlock or Wizard) on the Build tab.</p>' +
       featPanel(resolve(ch)) +
-      '</div><div class="right"></div>';
+      '</div><div class="right">' +
+      (s0 ? spellCard(s0) : '<p class="hint">Click a spell to read it.</p>') +
+      '</div>';
     return;
   }
   if (msp !== 'cast' && !cs.includes(msp)) msp = 'cast';
@@ -112,7 +115,13 @@ function renderMagic() {
   m.innerHTML = `<div class="left"><div class="ph"><span>${n}</span><span class="src">Ability <b>${AN[CA[n]]}</b> · Attack ${sg(c.pb + ab + magicB(ch).spA)} · Save DC ${8 + c.pb + ab}</span></div><p class="hint">Spell slots: ${sl}</p><div class="bar">${sel}<input type="text" id="spq" placeholder="Search spells…" value="${esc(spq)}" style="max-width:240px"></div><div class="chips">${chips}${secChip(n, r)}</div><div id="sl"></div>${featPanel(r)}</div><div class="right">${s ? spellPane(s) : '<p class="hint">Click a spell to read it.</p>'}</div>`;
   fillList();
 }
+const spellCard = (s) =>
+  `<h2>${esc(s.name)}</h2><p><i>${esc(lvTxt(s))}</i></p><p><b>Casting time:</b> ${esc(s.cast)}<br><b>Range:</b> ${esc(s.range)}<br><b>Components:</b> ${esc(s.comp.replace(/,/g, ', '))}${s.mat ? ' (' + esc(s.mat) + ')' : ''}<br><b>Duration:</b> ${esc(s.dur)}</p>${s.desc
+    .split('\n\n')
+    .map((p) => `<p>${esc(p)}</p>`)
+    .join('')}<p class="hint">${s.src ? esc(s.src) + ' · ' : ''}${esc(s.lists.join(', '))}</p>`;
 function spellPane(s) {
+  if (!casters(resolve(ch)).length) return spellCard(s);
   const r = resolve(ch),
     cs = casters(r),
     n = msp === 'cast' ? (cs.includes(spc) ? spc : cs[0]) : msp,
