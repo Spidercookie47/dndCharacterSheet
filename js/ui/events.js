@@ -56,6 +56,7 @@ on('pick', (d) => {
   chooseAny(d.k, d.id);
 });
 on('rm', (d) => {
+  if (d.k === 'cls') ch.lv = (ch.lv || []).map((e) => (e.c === ch.cls ? { ...e, c: '' } : e));
   ch[d.k] = '';
   pv = null;
 });

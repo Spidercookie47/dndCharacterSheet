@@ -27,7 +27,7 @@ function choose(k, id) {
   const cur = ch.picks[k] || [],
     s = resolve(ch).sels.find((x) => x.key === k),
     n = s ? s.n : 1;
-    ch.picks[k] =
+  ch.picks[k] =
     n === 1
       ? cur.includes(id)
         ? []
@@ -52,7 +52,9 @@ function baseDescPane() {
     on = root_ ? ch[pv.k] === pv.id : (ch.picks[pv.k] || []).includes(pv.id);
   return (
     describe(e) +
-    `<p><button data-a="pick" data-id="${esc(pv.id)}" data-k="${esc(pv.k)}"${on && root_ ? ' disabled' : ''}>${on ? (root_ ? 'Selected' : 'Remove') : 'Select'}</button></p>`
+    (on && root_
+      ? `<p><button data-a="rm" data-k="${esc(pv.k)}">Remove</button></p>`
+      : `<p><button data-a="pick" data-id="${esc(pv.id)}" data-k="${esc(pv.k)}">${on ? 'Remove' : 'Select'}</button></p>`)
   );
 }
 function descPane() {
@@ -61,7 +63,10 @@ function descPane() {
   const ro = ['race', 'cls', 'bg'].includes(pv.k),
     on = ro ? ch[pv.k] === pv.id : (ch.picks[pv.k] || []).includes(pv.id);
   return (
-    `<h2>${esc(e.name)}</h2><p><button data-a="pick" data-id="${esc(pv.id)}" data-k="${esc(pv.k)}"${on && ro ? ' disabled' : ''}>${on ? (ro ? 'Selected' : 'Remove') : 'Select'}</button></p>` +
+    `<h2>${esc(e.name)}</h2>` +
+    (on && ro
+      ? `<p><button data-a="rm" data-k="${esc(pv.k)}">Remove</button></p>`
+      : `<p><button data-a="pick" data-id="${esc(pv.id)}" data-k="${esc(pv.k)}">${on ? 'Remove' : 'Select'}</button></p>`) +
     (INFO[e.id][0] === '<' ? INFO[e.id] : rich(INFO[e.id]))
   );
 }
@@ -144,7 +149,11 @@ function renderBuild() {
     L =
       root(t, k, ty) +
       r.sels
-        .filter((s) => (KIND[sub] || []).includes(s.kind))
+        .filter((s) =>
+          sub === 'class'
+            ? KIND.class.includes(s.kind) || !['race', 'lang', 'prof'].some((k) => KIND[k].includes(s.kind))
+            : (KIND[sub] || []).includes(s.kind),
+        )
         .map(selPanel)
         .join('');
   } else if (sub === 'abil') {

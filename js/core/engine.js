@@ -106,8 +106,13 @@ function resolve(ch) {
         s.opts = s.opts.filter(ok);
         s.chosen = s.chosen.filter((c) => s.opts.some((o) => o.id === c));
       }
+      if (s.kind === 'Elemental Discipline') {
+        const ML = classLevels(ch)['Class:Monk'] || 0;
+        s.opts = s.opts.filter((o) => !o.lv || o.lv <= ML);
+        s.chosen = s.chosen.filter((c) => s.opts.some((o) => o.id === c));
+      }
     });
-    ['Language', 'Metamagic', 'Invocation', 'Favored Enemy', 'Favored Terrain', 'Land Type', 'Weapon'].forEach((K) => {
+    ['Language', 'Metamagic', 'Invocation', 'Favored Enemy', 'Favored Terrain', 'Land Type', 'Weapon', 'Elemental Discipline'].forEach((K) => {
       const kn = K === 'Language' ? new Set(langs.filter((x) => !x.pk).map((x) => x.id)) : new Set(),
         L = sels.filter((s) => s.kind === K),
         taken = new Set(kn);
