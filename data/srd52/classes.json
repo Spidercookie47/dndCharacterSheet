@@ -6308,7 +6308,7 @@
    "id": "Class Feature:Open Hand Technique (Warrior of the Open Hand) (5.2)",
    "type": "Class Feature",
    "name": "Open Hand Technique",
-   "desc": "Whenever you hit a creature with an attack granted by your Flurry of Blows, you can impose one of the following effects on that target.",
+   "desc": "Whenever you hit a creature with an attack granted by your Flurry of Blows, you can impose one of the following effects on that target:\n- Addle. The target can't make Opportunity Attacks until the start of its next turn.\n- Push. The target must succeed on a Strength saving throw against your Focus DC or be pushed up to 15 feet away from you.\n- Topple. The target must succeed on a Dexterity saving throw against your Focus DC or have the Prone condition.",
    "rules": []
   },
   {
