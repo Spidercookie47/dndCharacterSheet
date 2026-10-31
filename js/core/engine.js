@@ -148,7 +148,8 @@ function resolve(ch) {
     Object.entries(bgb).forEach(([a, v]) => (stats[a] = (stats[a] || 0) + v));
   }
   const boostBy = { mode, race: mode === 'race' ? sb.race : {}, bg: mode === 'bg' ? Object.assign({}, sb.bg, bgb) : {}, other: sb.other };
-  return { els, sels, stats, prof, asi, exp, pfs, langs, fx, boostBy, cls: I[ch.cls] };
+  const replaced = new Set(els.map((e) => e.replaces).filter(Boolean)); // an optional feature stands in for the standard one
+  return { els: els.filter((e) => !replaced.has(e.id)), sels, stats, prof, asi, exp, pfs, langs, fx, boostBy, cls: I[ch.cls] };
 }
 function calc(ch, r) {
   const sc = {};

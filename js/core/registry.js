@@ -100,6 +100,23 @@ function setRegistry(parts) {
     }
   }
   DB = [...map.values()];
+  /* Optional features: an element with "optionalFor": "Background:Noble" is offered as an extra pick on that
+     background, without the background having to be redefined. "replaces" names the standard feature it stands in for. */
+  const opt = {};
+  DB.forEach((e) => {
+    if (e.optionalFor) [].concat(e.optionalFor).forEach((t) => (opt[t] = opt[t] || []).push(e.id));
+  });
+  DB = DB.map((e) =>
+    opt[e.id]
+      ? {
+          ...e,
+          rules: [
+            ...(e.rules || []),
+            { select: { name: 'Optional feature', type: 'Background Feature', ids: opt[e.id] } },
+          ],
+        }
+      : e,
+  );
   INFO = info;
   _idx = null;
   buildTables(tables);

@@ -141,6 +141,7 @@ function renderBuild() {
   const m = $('#main');
   m.className = 'main';
   if (!KIND.class.includes('Weapon')) KIND.class.push('Weapon'); // Weapon Mastery picks (5.2) show on the Class tab
+  KIND.bg = KIND.bg || ['Background Feature']; // optional background features show on the Background tab
   const r = resolve(ch);
   let L = '',
     R = '';
@@ -151,7 +152,7 @@ function renderBuild() {
       r.sels
         .filter((s) =>
           sub === 'class'
-            ? KIND.class.includes(s.kind) || !['race', 'lang', 'prof'].some((k) => KIND[k].includes(s.kind))
+            ? KIND.class.includes(s.kind) || !['race', 'lang', 'prof', 'bg'].some((k) => KIND[k].includes(s.kind))
             : (KIND[sub] || []).includes(s.kind),
         )
         .map(selPanel)
