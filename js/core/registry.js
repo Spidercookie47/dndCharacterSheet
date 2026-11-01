@@ -117,6 +117,16 @@ function setRegistry(parts) {
         }
       : e,
   );
+  /* A race that a pack attaches sub races to (supports: "Race:Human") gets a Subrace pick if it has none yet. */
+  const hasSub = {};
+  DB.forEach((e) => {
+    if (e.type === 'Sub Race' && e.supports) hasSub[e.supports] = true;
+  });
+  DB = DB.map((e) =>
+    hasSub[e.id] && !(e.rules || []).some((r) => r.select && r.select.type === 'Sub Race' && r.select.supports === e.id)
+      ? { ...e, rules: [...(e.rules || []), { select: { name: 'Subrace', type: 'Sub Race', supports: e.id } }] }
+      : e,
+  );
   INFO = info;
   _idx = null;
   buildTables(tables);

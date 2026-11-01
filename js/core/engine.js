@@ -112,7 +112,7 @@ function resolve(ch) {
         s.chosen = s.chosen.filter((c) => s.opts.some((o) => o.id === c));
       }
     });
-    ['Language', 'Metamagic', 'Invocation', 'Favored Enemy', 'Favored Terrain', 'Land Type', 'Weapon', 'Elemental Discipline'].forEach((K) => {
+    ['Language', 'Metamagic', 'Invocation', 'Favored Enemy', 'Favored Terrain', 'Land Type', 'Weapon', 'Elemental Discipline', 'Class Feature'].forEach((K) => {
       const kn = K === 'Language' ? new Set(langs.filter((x) => !x.pk).map((x) => x.id)) : new Set(),
         L = sels.filter((s) => s.kind === K),
         taken = new Set(kn);

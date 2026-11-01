@@ -9,7 +9,7 @@ const clv = (n) => classLevels(ch)['Class:' + n] || 0,
   knownN = (n) => (KN[n] ? KN[n][clv(n) - 1] : 0),
   bookN = (n) => 6 + 2 * (clv(n) - 1),
   prepN = (n, c) =>
-    PT[n] ? PT[n][clv(n) - 1] || 0 : Math.max(1, abOf(n, c) + (n === 'Paladin' ? Math.floor(clv(n) / 2) : clv(n)));
+    PT[n] ? PT[n][clv(n) - 1] || 0 : Math.max(1, abOf(n, c) + (n === 'Paladin' || n === 'Artificer' ? Math.floor(clv(n) / 2) : clv(n)));
 const isW = (n) => n === 'Warlock' || n === 'Warlock (5.2)'; // Pact Magic classes from either edition
 function slotsFor(r) {
   const cs = casters(r),
