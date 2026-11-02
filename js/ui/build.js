@@ -141,6 +141,7 @@ function renderBuild() {
   const m = $('#main');
   m.className = 'main';
   if (!KIND.class.includes('Weapon')) KIND.class.push('Weapon'); // Weapon Mastery picks (5.2) show on the Class tab
+  if (!KIND.race.includes('Race Variant')) KIND.race.push('Race Variant'); // Race variant picks (Draconblood, Ravenite) show on the Race tab
   KIND.bg = KIND.bg || ['Background Feature']; // optional background features show on the Background tab
   const r = resolve(ch);
   let L = '',
