@@ -139,6 +139,11 @@ on('ab', (d) => {
 on('atkfill', () => {
   atkFill();
 });
+on('asif', (d) => {
+  ch.asi = ch.asi || {};
+  const v = (ch.asi[d.k] = ch.asi[d.k] || {});
+  v.f = v.f === d.id ? '' : d.id;
+});
 on('ex', (d) => {
   ch.exp = ch.exp || {};
   const k = d.k,
