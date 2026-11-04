@@ -16,4 +16,5 @@ let eqs = 'shop',
 let panel = null,
   optBk = null; // side panel ('lvl' | 'opt' | 'sheet') and the options backup for Cancel
 let lastPv = null; // last previewed row, to detect a double click
+let srcF = ''; // source filter for the Build, Magic and Equipment lists ('' = all)
 let srcMsg = null; // result of the last Sources action

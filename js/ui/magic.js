@@ -44,7 +44,7 @@ function fillList() {
   if (!cs.includes(spc)) spc = cs[0];
   const n = msp === 'cast' ? spc : msp,
     md = MODE[n],
-    fl = (x) => (!spl || String(x.s.lvl) === spl) && (!spq || x.s.name.toLowerCase().includes(spq)),
+    fl = (x) => srcOk(x.s) && (!spl || String(x.s.lvl) === spl) && (!spq || x.s.name.toLowerCase().includes(spq)),
     st = spOf(n);
   let h = '';
   const P = (t, right, k) => {
@@ -112,7 +112,7 @@ function renderMagic() {
     )
     .join('');
   const s = pv && pv.k === 'spell' && I[pv.id];
-  m.innerHTML = `<div class="left"><div class="ph"><span>${n}</span><span class="src">Ability <b>${AN[CA[n]]}</b> · Attack ${sg(c.pb + ab + magicB(ch).spA)} · Save DC ${8 + c.pb + ab}</span></div><p class="hint">Spell slots: ${sl}</p><div class="bar">${sel}<input type="text" id="spq" placeholder="Search spells…" value="${esc(spq)}" style="max-width:240px"></div><div class="chips">${chips}${secChip(n, r)}</div><div id="sl"></div>${featPanel(r)}</div><div class="right">${s ? spellPane(s) : '<p class="hint">Click a spell to read it.</p>'}</div>`;
+  m.innerHTML = `<div class="left"><div class="ph"><span>${n}</span><span class="src">Ability <b>${AN[CA[n]]}</b> · Attack ${sg(c.pb + ab + magicB(ch).spA)} · Save DC ${8 + c.pb + ab}</span></div><p class="hint">Spell slots: ${sl}</p><div class="bar">${sel}${srcSel()}<input type="text" id="spq" placeholder="Search spells…" value="${esc(spq)}" style="max-width:240px"></div><div class="chips">${chips}${secChip(n, r)}</div><div id="sl"></div>${featPanel(r)}</div><div class="right">${s ? spellPane(s) : '<p class="hint">Click a spell to read it.</p>'}</div>`;
   fillList();
 }
 const spellCard = (s) =>

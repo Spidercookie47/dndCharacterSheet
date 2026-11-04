@@ -1,6 +1,7 @@
 /* Build tab: race, class, background, ability scores, languages and proficiencies. */
 const rows = (opts, key, chosen) =>
   opts
+    .filter((o) => srcOk(o) || chosen.includes(o.id))
     .map(
       (o) =>
         `<div class="rw${chosen.includes(o.id) ? ' on' : ''}${pv && pv.id === o.id && pv.k === key ? ' pv' : ''}" data-a="pv" data-id="${esc(o.id)}" data-k="${esc(key)}"><span>${chosen.includes(o.id) ? '✓ ' : ''}${esc(o.name)}</span>${o.src ? `<span class="src">${esc(o.src)}</span>` : ''}</div>`,
@@ -142,6 +143,7 @@ function renderBuild() {
   m.className = 'main';
   if (!KIND.class.includes('Weapon')) KIND.class.push('Weapon'); // Weapon Mastery picks (5.2) show on the Class tab
   if (!KIND.race.includes('Race Variant')) KIND.race.push('Race Variant'); // Race variant picks (Draconblood, Ravenite) show on the Race tab
+  if (!KIND.race.includes('Feat')) KIND.race.push('Feat'); // Variant Human's feat pick shows on the Race tab
   KIND.bg = KIND.bg || ['Background Feature']; // optional background features show on the Background tab
   const r = resolve(ch);
   let L = '',
@@ -149,6 +151,7 @@ function renderBuild() {
   if (ROOT[sub]) {
     const [t, k, ty] = ROOT[sub];
     L =
+      `<div class="bar" style="margin-bottom:8px">${srcSel()}</div>` +
       root(t, k, ty) +
       r.sels
         .filter((s) =>

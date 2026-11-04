@@ -14,7 +14,7 @@ function eqPane(e) {
 function fillEq() {
   const el = $('#el');
   if (!el) return;
-  const rs = DB.filter((e) => e.cg === ecat && (!eqq || e.name.toLowerCase().includes(eqq)));
+  const rs = DB.filter((e) => e.cg === ecat && srcOk(e) && (!eqq || e.name.toLowerCase().includes(eqq)));
   el.innerHTML =
     rs
       .map(
@@ -152,7 +152,7 @@ function renderEquip() {
   if (eqs === 'shop') {
     const I = idx();
     const s = pv && pv.k === 'item' && I[pv.id];
-    m.innerHTML = `<div class="left"><div class="chips">${ECATS.map((k) => `<button class="lnk${ecat === k ? ' on' : ''}" data-a="ecat" data-v="${esc(k)}">${k}</button>`).join('')}</div><div class="bar"><input type="text" id="eqs" placeholder="Filter by name…" value="${esc(eqq)}" style="max-width:260px"></div><div class="ph"><span>${ecat}</span><span class="src">${ecat.startsWith('Magic') || /Wondrous|Rings|Rods|Staffs|Wands|Potions|Scrolls/.test(ecat) ? 'Rarity' : 'Price · Weight'}</span></div><div id="el"></div></div><div class="right">${s ? eqPane(s) : '<p class="hint">Click an item to read about it. Double-click it to add it, or use Buy to pay with your coins.</p>'}</div>`;
+    m.innerHTML = `<div class="left"><div class="chips">${ECATS.map((k) => `<button class="lnk${ecat === k ? ' on' : ''}" data-a="ecat" data-v="${esc(k)}">${k}</button>`).join('')}</div><div class="bar">${srcSel()}<input type="text" id="eqs" placeholder="Filter by name…" value="${esc(eqq)}" style="max-width:260px"></div><div class="ph"><span>${ecat}</span><span class="src">${ecat.startsWith('Magic') || /Wondrous|Rings|Rods|Staffs|Wands|Potions|Scrolls/.test(ecat) ? 'Rarity' : 'Price · Weight'}</span></div><div id="el"></div></div><div class="right">${s ? eqPane(s) : '<p class="hint">Click an item to read about it. Double-click it to add it, or use Buy to pay with your coins.</p>'}</div>`;
     fillEq();
   } else if (eqs === 'inv') m.innerHTML = `<div class="left">${invView(r, c)}</div>`;
   else if (eqs === 'start') m.innerHTML = `<div class="left">${startView(r)}</div>`;

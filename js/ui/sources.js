@@ -1,12 +1,25 @@
 /* Sources: choose which content packs are active, add homebrew by link, file or pasted JSON. */
 function sourcesHtml() {
-  const rows = Loader.packs
-    .map(
-      (p) => `<div class="rw" style="cursor:default;flex-wrap:wrap;align-items:center">
-    <label class="opt" style="margin:0;font-weight:600"><input type="checkbox" data-a="srctoggle" data-id="${esc(p.id)}"${p.enabled ? ' checked' : ''}><span>${esc(p.name)}<small>${p.count} elements${p.builtin ? ' · built in' : p.url ? ' · ' + esc(p.url) : ' · added from file'}${p.fetchedAt ? ' · cached ' + new Date(p.fetchedAt).toLocaleDateString() : ''}</small></span></label>
+  const byId = new Map(Loader.packs.map((p) => [p.id, p])),
+    seen = new Set(),
+    row = (p) => `<div class="rw" style="cursor:default;flex-wrap:wrap;align-items:center">
+    <label class="opt" style="margin:0;font-weight:600"><input class="sw" type="checkbox" data-a="srctoggle" data-id="${esc(p.id)}"${p.enabled ? ' checked' : ''}><span>${esc(p.name)}<small>${p.count} elements${p.builtin ? ' · built in' : p.url ? ' · ' + esc(p.url) : ' · added from file'}${p.fetchedAt ? ' · cached ' + new Date(p.fetchedAt).toLocaleDateString() : ''}</small></span></label>
     <span class="src" style="flex:0 0 auto">${p.builtin ? '' : (p.url ? `<button class="lnk" data-a="srcrefresh" data-id="${esc(p.id)}">Refresh</button>` : '') + `<button class="lnk" data-a="srcremove" data-id="${esc(p.id)}">Remove</button>`}</span></div>`,
-    )
+    tile = (p, q) =>
+      `<label class="tile${p.enabled ? ' on' : ''}" data-n="${esc(p.name.toLowerCase())}"${q && !p.name.toLowerCase().includes(q) ? ' style="display:none"' : ''}><input class="sw" type="checkbox" data-a="srctoggle" data-id="${esc(p.id)}"${p.enabled ? ' checked' : ''}><span><b>${esc(p.name)}</b><small>${p.count} elements</small></span></label>`;
+  const groups = srcGroups
+    .map((g) => {
+      const ps = g.ids.map((id) => byId.get(id)).filter(Boolean);
+      if (!ps.length) return '';
+      ps.forEach((p) => seen.add(p.id));
+      const q = (srcQ[g.id] || '').toLowerCase(),
+        n = ps.filter((p) => p.enabled).length;
+      return `<div class="ph"><span>${esc(g.name)}</span><span class="src">${n} / ${ps.length} on</span></div>
+    <div class="bar" style="margin:8px 0"><input type="text" data-gq="${esc(g.id)}" placeholder="Search ${esc(g.name)}…" value="${esc(srcQ[g.id] || '')}" style="max-width:260px"><button class="lnk" data-a="srcgall" data-g="${esc(g.id)}" data-v="1">All on</button><button class="lnk" data-a="srcgall" data-g="${esc(g.id)}" data-v="0">All off</button><button class="lnk" data-a="srcgrm" data-g="${esc(g.id)}">Remove group</button></div>
+    <div class="tiles" data-gt="${esc(g.id)}">${ps.map((p) => tile(p, q)).join('')}</div>`;
+    })
     .join('');
+  const rows = Loader.packs.filter((p) => !seen.has(p.id)).map(row).join('') + groups;
   const m = srcMsg
     ? `<div class="rw" style="cursor:default;border-color:${srcMsg.ok ? 'var(--ok)' : 'var(--acc)'}"><span>${esc(srcMsg.text)}</span></div>`
     : '';
@@ -23,11 +36,68 @@ function sourcesHtml() {
     <p class="hint">Packs are cached in this browser after the first download, so they keep working offline. Use Refresh to fetch the newest version. Pack format and a template are in <code>data/homebrew/_template/</code>.</p>
     ${credits.length ? `<div class="ph"><span>Credits</span></div>${credits.map((c) => `<p class="hint">${esc(c)}</p>`).join('')}` : ''}`;
 }
+function srcSel() {
+  const so = Loader.packs.filter((p) => p.enabled).map((p) => p.name);
+  if (srcF && !so.includes(srcF)) srcF = '';
+  return `<select data-sf title="Filter by source" style="width:auto;max-width:260px"><option value="">All sources</option>${so.map((n) => `<option value="${esc(n)}"${srcF === n ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select>`;
+}
+let _sm = null,
+  _smk = '';
+function srcMap() {
+  const k = Loader.packs.map((p) => p.id + p.enabled).join();
+  if (k !== _smk) {
+    _smk = k;
+    _sm = new Map();
+    Loader.packs.forEach((p) =>
+      ((p.json && p.json.elements) || []).forEach((e) => {
+        if (!_sm.has(e.id)) _sm.set(e.id, new Set());
+        _sm.get(e.id).add(p.name);
+      }),
+    );
+  }
+  return _sm;
+}
+const srcOk = (e) => {
+  if (!srcF) return true;
+  const s = srcMap().get(e.id);
+  return s ? s.has(srcF) : (e.src || '') === srcF;
+};
 let srcUrl = '',
   srcPaste = '';
-async function sourcesAction(fn) {
+let srcGroups = (() => {
+    try {
+      return JSON.parse(localStorage.getItem('hs-groups')) || [];
+    } catch (e) {
+      return [];
+    }
+  })(),
+  srcQ = {};
+const saveGroups = () => {
+  try {
+    localStorage.setItem('hs-groups', JSON.stringify(srcGroups));
+  } catch (e) {}
+};
+document.addEventListener('input', (e) => {
+  const g = e.target.dataset && e.target.dataset.gq;
+  if (g === undefined) return;
+  srcQ[g] = e.target.value;
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('.tiles').forEach((box) => {
+    if (box.dataset.gt === g) box.querySelectorAll('.tile').forEach((t) => (t.style.display = t.dataset.n.includes(q) ? '' : 'none'));
+  });
+});
+async function sourcesAction(fn, nameHint) {
   try {
     const r = await fn();
+    if (r.length > 1) {
+      const nm = ((await nameHint) || 'Collection').trim(),
+        id = nm.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        ids = r.map((x) => x.pack.id),
+        g = srcGroups.find((x) => x.id === id);
+      if (g) g.ids = [...new Set([...g.ids, ...ids])];
+      else srcGroups.push({ id, name: nm, ids });
+      saveGroups();
+    }
     srcMsg = {
       ok: true,
       text: !r.length

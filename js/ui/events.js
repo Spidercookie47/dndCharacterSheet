@@ -308,13 +308,39 @@ on('srcrefresh', (d) => {
   return false;
 });
 on('srcadd', () => {
-  srcUrl = ($('#srcurl') || {}).value || '';
-  sourcesAction(() => Loader.addUrl(srcUrl));
+  const u = (srcUrl = ($('#srcurl') || {}).value || '');
+  const nm = fetch(u)
+    .then((r) => r.json())
+    .then((j) => j.name)
+    .catch(() => '');
+  sourcesAction(() => Loader.addUrl(u), nm);
   return false;
 });
 on('srcpaste', () => {
-  srcPaste = ($('#srcpaste') || {}).value || '';
-  sourcesAction(() => Loader.addText(srcPaste));
+  const t = (srcPaste = ($('#srcpaste') || {}).value || '');
+  let nm = '';
+  try {
+    nm = JSON.parse(t).name;
+  } catch (x) {}
+  sourcesAction(() => Loader.addText(t), nm);
+  return false;
+});
+on('srcgall', (d) => {
+  const g = srcGroups.find((x) => x.id === d.g);
+  if (!g) return;
+  [...Loader.packs].forEach((p) => {
+    if (g.ids.includes(p.id) && !!p.enabled !== (d.v === '1')) Loader.toggle(p.id);
+  });
+});
+on('srcgrm', (d) => {
+  const g = srcGroups.find((x) => x.id === d.g);
+  if (!g || !confirm('Remove ' + g.name + ' and all its packs?')) return false;
+  sourcesAction(async () => {
+    for (const id of g.ids) if (Loader.packs.some((p) => p.id === id)) await Loader.remove(id);
+    srcGroups = srcGroups.filter((x) => x !== g);
+    saveGroups();
+    return [];
+  });
   return false;
 });
 
@@ -396,7 +422,10 @@ document.addEventListener('change', (e) => {
   const t = e.target,
     d = t.dataset,
     k = d.f;
-  if (d.asi) {
+  if (d.sf !== undefined) {
+    srcF = t.value;
+    draw();
+  } else if (d.asi) {
     const c = (ch.asi = ch.asi || {}),
       v = (c[d.asi] = c[d.asi] || {});
     v[d.p] = t.value;
@@ -458,7 +487,13 @@ document.addEventListener('change', (e) => {
     t.value = '';
   } else if (t.id === 'srcfile' && t.files[0]) {
     const f = t.files[0];
-    f.text().then((x) => sourcesAction(() => Loader.addText(x, f.name.replace(/\.json$/i, ''))));
+    f.text().then((x) => {
+      let nm = f.name.replace(/\.json$/i, '');
+      try {
+        nm = JSON.parse(x).name || nm;
+      } catch (z) {}
+      sourcesAction(() => Loader.addText(x, f.name.replace(/\.json$/i, '')), nm);
+    });
     t.value = '';
   }
 });

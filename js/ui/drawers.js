@@ -52,7 +52,7 @@ function drawer() {
         h +=
           '<div class="ph"><span>Multiclass</span></div>' +
           ofType('Class')
-            .filter((e) => !lc[e.id])
+            .filter((e) => !lc[e.id] && srcOk(e))
             .map((e) => {
               const bad = [...Object.keys(lc), e.id].filter((x) => !preOk(x, sc));
               return `<div class="rw"><span>${esc(e.name)}${bad.length ? ` <span class="src">needs ${bad.map(preTxt).join('; ')}</span>` : ''}</span><button class="lnk" data-a="lvlup" data-c="${esc(e.id)}"${bad.length ? ' disabled' : ''}>Add level</button></div>`;
