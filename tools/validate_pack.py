@@ -6,10 +6,10 @@ import json, os, sys
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if len(sys.argv) < 2: sys.exit(__doc__)
 pack = json.load(open(sys.argv[1], encoding='utf-8'))
-srd = json.load(open(os.path.join(root, 'data/srd/index.json'), encoding='utf-8'))
+srd = json.load(open(os.path.join(root, 'data/5e/srd51/index.json'), encoding='utf-8'))
 known = {}
 for f in srd['files']:
-    for e in json.load(open(os.path.join(root, 'data/srd', f), encoding='utf-8')).get('elements', []): known[e['id']] = e['type']
+    for e in json.load(open(os.path.join(root, 'data/5e/srd51', f), encoding='utf-8')).get('elements', []): known[e['id']] = e['type']
 types = set(known.values())
 errors, warns, seen = [], [], set()
 els = pack.get('elements', pack if isinstance(pack, list) else [])

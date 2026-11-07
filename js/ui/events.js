@@ -8,13 +8,28 @@ const on = (name, fn) => {
 const chooseAny = (k, id) => (k === 'item' ? addQ(id, eqn) : k === 'spell' ? toggleSpell(id) : choose(k, id));
 
 /* ---- navigation ---- */
+on('system', (d) => {
+  system = d.v;
+});
+on('mode', (d) => {
+  if (store.chars.some((c) => c.id === ch.id)) persist();
+  mode = d.v;
+  mfocus = false;
+  if (startSub === 'mons') startSub = 'chars';
+  if (!!ch.dm !== (mode === 'dm')) ch = fresh(mode === 'dm'); // each mode has its own characters
+  tab = 'start';
+  panel = null;
+  pv = null;
+});
 on('tab', (d) => {
   tab = d.v;
   pv = null;
+  if ((d.v === 'start' && panel === 'add') || panel === 'mfeat') panel = null;
 });
 on('sub', (d) => {
   sub = d.v;
   pv = null;
+  if (panel === 'add' && (d.v === 'race' || d.v === 'class')) panel = null;
 });
 on('startsub', (d) => {
   startSub = d.v;
@@ -63,13 +78,15 @@ on('rm', (d) => {
 
 /* ---- characters ---- */
 on('new', () => {
-  ch = fresh();
+  mfocus = false;
+  ch = fresh(mode === 'dm');
   persist();
   tab = 'build';
   sub = 'race';
   pv = null;
 });
 on('open', (d) => {
+  mfocus = false;
   ch = store.chars.find((c) => c.id === d.id) || ch;
   tab = 'build';
   sub = 'race';
@@ -84,7 +101,7 @@ on('delno', () => {
 on('delyes', (d) => {
   store.chars = store.chars.filter((c) => c.id !== d.id);
   if (ch.id === d.id) {
-    ch = fresh();
+    ch = fresh(mode === 'dm');
     store.cur = null;
   }
   delId = null;
@@ -126,7 +143,7 @@ on('ab', (d) => {
     n = ch.ab[k] + +d.d,
     buy = ch.method === 'buy',
     lo = buy ? 8 : 3,
-    hi = buy ? 15 : ch.opt.uncap ? 30 : 18;
+    hi = buy ? 15 : ch.dm ? 30 : 18;
   if (n < lo || (n > hi && +d.d > 0)) return false;
   const old = ch.ab[k];
   ch.ab[k] = n;
@@ -156,6 +173,23 @@ on('ex', (d) => {
       note(id + ' already has expertise.');
     else a.push(id);
   } else note('Choose only ' + (s ? s.n : 2) + ' skills for this feature.');
+});
+
+/* ---- DM mode: the + panel (extra feats, languages, spells; no level limit) ---- */
+on('xopen', () => {
+  xt = tab === 'magic' ? 'spell' : tab === 'build' && sub === 'lang' ? 'lang' : 'feat';
+  panel = panel === 'add' ? null : 'add';
+});
+on('xtab', (d) => {
+  xt = d.v;
+  xq = '';
+});
+on('xadd', (d) => {
+  if (!ch.dm) return false;
+  ch.extra = ch.extra || {};
+  const a = (ch.extra[d.t] = ch.extra[d.t] || []),
+    i = a.indexOf(d.id);
+  i >= 0 ? a.splice(i, 1) : a.push(d.id);
 });
 
 /* ---- side panels: level up, options, sheet summary ---- */
@@ -369,6 +403,9 @@ document.addEventListener('input', (e) => {
     chrome();
     const s = $('#hpt');
     if (s) s.textContent = calc(ch, resolve(ch)).hp;
+  } else if (t.id === 'xq') {
+    xq = t.value.toLowerCase();
+    fillX();
   } else if (t.id === 'spq') {
     spq = t.value.toLowerCase();
     fillList();
@@ -406,13 +443,19 @@ function loadCharacterFile(text) {
     note('That file is not valid JSON.');
     return;
   }
+  if (j && j.format === 'hearthscribe-monster' && j.monster) {
+    importMon(j.monster);
+    return;
+  }
   if (!j || !/^(aurora-web|hearthscribe)-character$/.test(j.format) || !j.character) {
     note('That is not a Hearthscribe character file.');
     return;
   }
   const c = j.character,
-    b = fresh();
+    b = fresh(mode === 'dm');
   ch = { ...b, ...c, ab: { ...b.ab, ...c.ab }, picks: c.picks || {}, d: c.d || {} };
+  ch.dm = mode === 'dm';
+  mfocus = false;
   persist();
   tab = 'build';
   sub = 'race';

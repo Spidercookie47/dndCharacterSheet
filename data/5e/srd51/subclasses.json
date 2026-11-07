@@ -1,0 +1,428 @@
+{
+ "elements": [
+  {
+   "id": "Divine Domain:Life Domain",
+   "type": "Divine Domain",
+   "name": "Life Domain",
+   "desc": "Gain domain spells and Life features.",
+   "rules": [
+    {
+     "grant": "Class Feature:Bonus Proficiency",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Disciple of Life",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Channel Divinity: Preserve Life",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Blessed Healer",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Divine Strike",
+     "level": 8
+    },
+    {
+     "grant": "Class Feature:Supreme Healing",
+     "level": 17
+    }
+   ],
+   "prepared": {
+    "class": "Cleric",
+    "levels": {
+     "1": [
+      "Bless",
+      "Cure Wounds"
+     ],
+     "3": [
+      "Lesser Restoration",
+      "Spiritual Weapon"
+     ],
+     "5": [
+      "Beacon of Hope",
+      "Revivify"
+     ],
+     "7": [
+      "Death Ward",
+      "Guardian of Faith"
+     ],
+     "9": [
+      "Mass Cure Wounds",
+      "Raise Dead"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Subclass:Path of the Berserker",
+   "type": "Subclass",
+   "name": "Path of the Berserker",
+   "desc": "Channel your rage into frenzied violence.",
+   "rules": [
+    {
+     "grant": "Class Feature:Frenzy",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Mindless Rage",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Intimidating Presence",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Retaliation",
+     "level": 14
+    }
+   ],
+   "supports": "Class:Barbarian"
+  },
+  {
+   "id": "Subclass:College of Lore",
+   "type": "Subclass",
+   "name": "College of Lore",
+   "desc": "Collectors of knowledge who delight in wit and secrets.",
+   "rules": [
+    {
+     "grant": "Class Feature:Lore Bonus Proficiencies",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Cutting Words",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Additional Magical Secrets",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Peerless Skill",
+     "level": 14
+    }
+   ],
+   "supports": "Class:Bard"
+  },
+  {
+   "id": "Subclass:Circle of the Land",
+   "type": "Subclass",
+   "name": "Circle of the Land",
+   "desc": "Mystics who draw power from the land they call home.",
+   "rules": [
+    {
+     "grant": "Class Feature:Bonus Cantrip",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Natural Recovery",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Circle Spells",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Land's Stride",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Nature's Ward",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Nature's Sanctuary",
+     "level": 14
+    },
+    {
+     "select": {
+      "name": "Land Type",
+      "type": "Land Type",
+      "n": 1
+     },
+     "level": 2
+    }
+   ],
+   "supports": "Class:Druid"
+  },
+  {
+   "id": "Subclass:Champion",
+   "type": "Subclass",
+   "name": "Champion",
+   "desc": "Raw physical excellence honed to deadly perfection.",
+   "rules": [
+    {
+     "grant": "Class Feature:Improved Critical",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Remarkable Athlete",
+     "level": 7
+    },
+    {
+     "select": {
+      "name": "Additional Fighting Style",
+      "type": "Fighting Style",
+      "cls": "F"
+     },
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Superior Critical",
+     "level": 15
+    },
+    {
+     "grant": "Class Feature:Survivor",
+     "level": 18
+    }
+   ],
+   "supports": "Class:Fighter"
+  },
+  {
+   "id": "Subclass:Way of the Open Hand",
+   "type": "Subclass",
+   "name": "Way of the Open Hand",
+   "desc": "Masters of martial arts combat who manipulate their enemy’s ki.",
+   "rules": [
+    {
+     "grant": "Class Feature:Open Hand Technique",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Wholeness of Body",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Tranquility",
+     "level": 11
+    },
+    {
+     "grant": "Class Feature:Quivering Palm",
+     "level": 17
+    }
+   ],
+   "supports": "Class:Monk"
+  },
+  {
+   "id": "Subclass:Oath of Devotion",
+   "type": "Subclass",
+   "name": "Oath of Devotion",
+   "desc": "The ideal of the knight in shining armor.",
+   "rules": [
+    {
+     "grant": "Class Feature:Channel Divinity: Sacred Weapon",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Turn the Unholy",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Devotion Oath Spells",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Aura of Devotion",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Purity of Spirit",
+     "level": 15
+    },
+    {
+     "grant": "Class Feature:Holy Nimbus",
+     "level": 20
+    }
+   ],
+   "supports": "Class:Paladin",
+   "prepared": {
+    "class": "Paladin",
+    "levels": {
+     "3": [
+      "Protection from Evil and Good",
+      "Sanctuary"
+     ],
+     "5": [
+      "Lesser Restoration",
+      "Zone of Truth"
+     ],
+     "9": [
+      "Beacon of Hope",
+      "Dispel Magic"
+     ],
+     "13": [
+      "Freedom of Movement",
+      "Guardian of Faith"
+     ],
+     "17": [
+      "Commune",
+      "Flame Strike"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Subclass:Hunter",
+   "type": "Subclass",
+   "name": "Hunter",
+   "desc": "Protectors of nature who hunt the deadliest threats.",
+   "rules": [
+    {
+     "grant": "Class Feature:Hunter's Prey",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Defensive Tactics",
+     "level": 7
+    },
+    {
+     "grant": "Class Feature:Hunter Multiattack",
+     "level": 11
+    },
+    {
+     "grant": "Class Feature:Superior Hunter's Defense",
+     "level": 15
+    }
+   ],
+   "supports": "Class:Ranger"
+  },
+  {
+   "id": "Subclass:Thief",
+   "type": "Subclass",
+   "name": "Thief",
+   "desc": "A burglar, bandit or treasure hunter.",
+   "rules": [
+    {
+     "grant": "Class Feature:Fast Hands",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Second-Story Work",
+     "level": 3
+    },
+    {
+     "grant": "Class Feature:Supreme Sneak",
+     "level": 9
+    },
+    {
+     "grant": "Class Feature:Use Magic Device",
+     "level": 13
+    },
+    {
+     "grant": "Class Feature:Thief's Reflexes",
+     "level": 17
+    }
+   ],
+   "supports": "Class:Rogue"
+  },
+  {
+   "id": "Subclass:Draconic Bloodline",
+   "type": "Subclass",
+   "name": "Draconic Bloodline",
+   "desc": "Your innate magic comes from draconic magic in your blood.",
+   "rules": [
+    {
+     "grant": "Class Feature:Dragon Ancestor",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Draconic Resilience",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Elemental Affinity",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Dragon Wings",
+     "level": 14
+    },
+    {
+     "grant": "Class Feature:Draconic Presence",
+     "level": 18
+    },
+    {
+     "select": {
+      "name": "Dragon Ancestor",
+      "type": "Dragon Ancestor",
+      "n": 1
+     },
+     "level": 1
+    }
+   ],
+   "supports": "Class:Sorcerer"
+  },
+  {
+   "id": "Subclass:The Fiend",
+   "type": "Subclass",
+   "name": "The Fiend",
+   "desc": "You have made a pact with a fiend from the lower planes.",
+   "rules": [
+    {
+     "grant": "Class Feature:Dark One's Blessing",
+     "level": 1
+    },
+    {
+     "grant": "Class Feature:Dark One's Own Luck",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Fiendish Resilience",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Hurl Through Hell",
+     "level": 14
+    }
+   ],
+   "supports": "Class:Warlock",
+   "expandedList": {
+    "class": "Warlock",
+    "spells": [
+     "Burning Hands",
+     "Command",
+     "Blindness/Deafness",
+     "Scorching Ray",
+     "Fireball",
+     "Stinking Cloud",
+     "Fire Shield",
+     "Wall of Fire",
+     "Flame Strike",
+     "Hallow"
+    ]
+   }
+  },
+  {
+   "id": "Subclass:School of Evocation",
+   "type": "Subclass",
+   "name": "School of Evocation",
+   "desc": "You focus on magic that creates powerful elemental effects.",
+   "rules": [
+    {
+     "grant": "Class Feature:Evocation Savant",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Sculpt Spells",
+     "level": 2
+    },
+    {
+     "grant": "Class Feature:Potent Cantrip",
+     "level": 6
+    },
+    {
+     "grant": "Class Feature:Empowered Evocation",
+     "level": 10
+    },
+    {
+     "grant": "Class Feature:Overchannel",
+     "level": 14
+    }
+   ],
+   "supports": "Class:Wizard"
+  }
+ ]
+}

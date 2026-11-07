@@ -5,8 +5,8 @@
 /* The SRD editions that ship with the app. Both are always loaded; their ids never clash
    (5.2 ids end in " (5.2)"), so a character can mix content from either edition. */
 const BUILTIN = [
-  { id: 'srd51', dir: 'data/srd51' },
-  { id: 'srd52', dir: 'data/srd52' },
+  { id: 'srd51', dir: 'data/5e/srd51' },
+  { id: 'srd52', dir: 'data/5e/srd52' },
 ];
 const Loader = {
   packs: [],

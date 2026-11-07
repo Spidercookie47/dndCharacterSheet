@@ -1,0 +1,742 @@
+{
+ "elements": [
+  {
+   "id": "Metamagic:Careful Spell",
+   "type": "Metamagic",
+   "name": "Careful Spell",
+   "desc": "When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell’s full force. To do so, you spend 1 sorce",
+   "rules": []
+  },
+  {
+   "id": "Metamagic:Distant Spell",
+   "type": "Metamagic",
+   "name": "Distant Spell",
+   "desc": "When you cast a spell that has a range of 5 feet or greater, you can spend 1 sorcery point to double the range of the spell. When you cast a spell that has a range of tou",
+   "rules": []
+  },
+  {
+   "id": "Metamagic:Empowered Spell",
+   "type": "Metamagic",
+   "name": "Empowered Spell",
+   "desc": "When you roll damage for a spell, you can spend 1 sorcery point to reroll a number of the damage dice up to your Charisma modifier (minimum of one). You must use the new ",
+   "rules": []
+  },
+  {
+   "id": "Metamagic:Extended Spell",
+   "type": "Metamagic",
+   "name": "Extended Spell",
+   "desc": "When you cast a spell that has a duration of 1 minute or longer, you can spend 1 sorcery point to double its duration, to a maximum duration of 24 hours.",
+   "rules": []
+  },
+  {
+   "id": "Metamagic:Heightened Spell",
+   "type": "Metamagic",
+   "name": "Heightened Spell",
+   "desc": "When you cast a spell that forces a creature to make a saving throw to resist its effects, you can spend 3 sorcery points to give one target of the spell disadvantage on ",
+   "rules": []
+  },
+  {
+   "id": "Metamagic:Quickened Spell",
+   "type": "Metamagic",
+   "name": "Quickened Spell",
+   "desc": "When you cast a spell that has a casting time of 1 action, you can spend 2 sorcery points to change the casting time to 1 bonus action for this casting.",
+   "rules": []
+  },
+  {
+   "id": "Metamagic:Subtle Spell",
+   "type": "Metamagic",
+   "name": "Subtle Spell",
+   "desc": "When you cast a spell, you can spend 1 sorcery point to cast it without any somatic or verbal components.",
+   "rules": []
+  },
+  {
+   "id": "Metamagic:Twinned Spell",
+   "type": "Metamagic",
+   "name": "Twinned Spell",
+   "desc": "When you cast a spell that targets only one creature and doesn’t have a range of self, you can spend a number of sorcery points equal to the spell’s level to target a sec",
+   "rules": []
+  },
+  {
+   "id": "Pact Boon:Pact of the Chain",
+   "type": "Pact Boon",
+   "name": "Pact of the Chain",
+   "desc": "You learn the find familiar spell and can cast it as a ritual. The spell doesn’t count against your number of spells known. When you cast the spell, you can choose one of",
+   "rules": []
+  },
+  {
+   "id": "Pact Boon:Pact of the Blade",
+   "type": "Pact Boon",
+   "name": "Pact of the Blade",
+   "desc": "You can use your action to create a pact weapon in your empty hand. You can choose the form that this melee weapon takes each time you create it. You are proficient with ",
+   "rules": []
+  },
+  {
+   "id": "Pact Boon:Pact of the Tome",
+   "type": "Pact Boon",
+   "name": "Pact of the Tome",
+   "desc": "Your patron gives you a grimoire called a Book of Shadows. When you gain this feature, choose three cantrips from any class’s spell list (the three needn’t be from the sa",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Agonizing Blast",
+   "type": "Invocation",
+   "name": "Agonizing Blast",
+   "desc": "When you cast eldritch blast, add your Charisma modifier to the damage it deals on a hit.",
+   "rules": [],
+   "sp": "Eldritch Blast"
+  },
+  {
+   "id": "Invocation:Armor of Shadows",
+   "type": "Invocation",
+   "name": "Armor of Shadows",
+   "desc": "You can cast mage armor on yourself at will, without expending a spell slot or material components.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Ascendant Step",
+   "type": "Invocation",
+   "name": "Ascendant Step",
+   "desc": "You can cast levitate on yourself at will, without expending a spell slot or material components.",
+   "rules": [],
+   "lv": 9
+  },
+  {
+   "id": "Invocation:Beast Speech",
+   "type": "Invocation",
+   "name": "Beast Speech",
+   "desc": "You can cast speak with animals at will, without expending a spell slot.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Beguiling Influence",
+   "type": "Invocation",
+   "name": "Beguiling Influence",
+   "desc": "You gain proficiency in the Deception and Persuasion skills.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Bewitching Whispers",
+   "type": "Invocation",
+   "name": "Bewitching Whispers",
+   "desc": "You can cast compulsion once using a warlock spell slot. You can’t do so again until you finish a long rest.",
+   "rules": [],
+   "lv": 7
+  },
+  {
+   "id": "Invocation:Book of Ancient Secrets",
+   "type": "Invocation",
+   "name": "Book of Ancient Secrets",
+   "desc": "You can now inscribe magical rituals in your Book of Shadows. Choose two 1st-level spells that have the ritual tag from any class’s spell list (the two needn’t be from th",
+   "rules": [],
+   "pb": "Tome"
+  },
+  {
+   "id": "Invocation:Chains of Carceri",
+   "type": "Invocation",
+   "name": "Chains of Carceri",
+   "desc": "You can cast hold monster at will—targeting a celestial, fiend, or elemental—without expending a spell slot or material components. You must finish a long rest before you",
+   "rules": [],
+   "lv": 15,
+   "pb": "Chain"
+  },
+  {
+   "id": "Invocation:Devil’s Sight",
+   "type": "Invocation",
+   "name": "Devil’s Sight",
+   "desc": "You can see normally in darkness, both magical and nonmagical, to a distance of 120 feet.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Dreadful Word",
+   "type": "Invocation",
+   "name": "Dreadful Word",
+   "desc": "You can cast confusion once using a warlock spell slot. You can’t do so again until you finish a long rest.",
+   "rules": [],
+   "lv": 7
+  },
+  {
+   "id": "Invocation:Eldritch Sight",
+   "type": "Invocation",
+   "name": "Eldritch Sight",
+   "desc": "You can cast detect magic at will, without expending a spell slot.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Eldritch Spear",
+   "type": "Invocation",
+   "name": "Eldritch Spear",
+   "desc": "When you cast eldritch blast, its range is 300 feet.",
+   "rules": [],
+   "sp": "Eldritch Blast"
+  },
+  {
+   "id": "Invocation:Eyes of the Rune Keeper",
+   "type": "Invocation",
+   "name": "Eyes of the Rune Keeper",
+   "desc": "You can read all writing.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Fiendish Vigor",
+   "type": "Invocation",
+   "name": "Fiendish Vigor",
+   "desc": "You can cast false life on yourself at will as a 1st-level spell, without expending a spell slot or material components.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Gaze of Two Minds",
+   "type": "Invocation",
+   "name": "Gaze of Two Minds",
+   "desc": "You can use your action to touch a willing humanoid and perceive through its senses until the end of your next turn. As long as the creature is on the same plane of exist",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Lifedrinker",
+   "type": "Invocation",
+   "name": "Lifedrinker",
+   "desc": "When you hit a creature with your pact weapon, the creature takes extra necrotic damage equal to your Charisma modifier (minimum 1).",
+   "rules": [],
+   "lv": 12,
+   "pb": "Blade"
+  },
+  {
+   "id": "Invocation:Mask of Many Faces",
+   "type": "Invocation",
+   "name": "Mask of Many Faces",
+   "desc": "You can cast disguise self at will, without expending a spell slot.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Master of Myriad Forms",
+   "type": "Invocation",
+   "name": "Master of Myriad Forms",
+   "desc": "You can cast alter self at will, without expending a spell slot.",
+   "rules": [],
+   "lv": 15
+  },
+  {
+   "id": "Invocation:Minions of Chaos",
+   "type": "Invocation",
+   "name": "Minions of Chaos",
+   "desc": "You can cast conjure elemental once using a warlock spell slot. You can’t do so again until you finish a long rest.",
+   "rules": [],
+   "lv": 9
+  },
+  {
+   "id": "Invocation:Mire the Mind",
+   "type": "Invocation",
+   "name": "Mire the Mind",
+   "desc": "You can cast slow once using a warlock spell slot. You can’t do so again until you finish a long rest.",
+   "rules": [],
+   "lv": 5
+  },
+  {
+   "id": "Invocation:Misty Visions",
+   "type": "Invocation",
+   "name": "Misty Visions",
+   "desc": "You can cast silent image at will, without expending a spell slot or material components.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:One with Shadows",
+   "type": "Invocation",
+   "name": "One with Shadows",
+   "desc": "When you are in an area of dim light or darkness, you can use your action to become invisible until you move or take an action or a reaction.",
+   "rules": [],
+   "lv": 5
+  },
+  {
+   "id": "Invocation:Otherworldly Leap",
+   "type": "Invocation",
+   "name": "Otherworldly Leap",
+   "desc": "You can cast jump on yourself at will, without expending a spell slot or material components.",
+   "rules": [],
+   "lv": 9
+  },
+  {
+   "id": "Invocation:Repelling Blast",
+   "type": "Invocation",
+   "name": "Repelling Blast",
+   "desc": "When you hit a creature with eldritch blast, you can push the creature up to 10 feet away from you in a straight line.",
+   "rules": [],
+   "sp": "Eldritch Blast"
+  },
+  {
+   "id": "Invocation:Sculptor of Flesh",
+   "type": "Invocation",
+   "name": "Sculptor of Flesh",
+   "desc": "You can cast polymorph once using a warlock spell slot. You can’t do so again until you finish a long rest.",
+   "rules": [],
+   "lv": 7
+  },
+  {
+   "id": "Invocation:Sign of Ill Omen",
+   "type": "Invocation",
+   "name": "Sign of Ill Omen",
+   "desc": "You can cast bestow curse once using a warlock spell slot. You can’t do so again until you finish a long rest.",
+   "rules": [],
+   "lv": 5
+  },
+  {
+   "id": "Invocation:Thief of Five Fates",
+   "type": "Invocation",
+   "name": "Thief of Five Fates",
+   "desc": "You can cast bane once using a warlock spell slot. You can’t do so again until you finish a long rest.",
+   "rules": []
+  },
+  {
+   "id": "Invocation:Thirsting Blade",
+   "type": "Invocation",
+   "name": "Thirsting Blade",
+   "desc": "You can attack with your pact weapon twice, instead of once, whenever you take the Attack action on your turn.",
+   "rules": [],
+   "lv": 5,
+   "pb": "Blade"
+  },
+  {
+   "id": "Invocation:Visions of Distant Realms",
+   "type": "Invocation",
+   "name": "Visions of Distant Realms",
+   "desc": "You can cast arcane eye at will, without expending a spell slot.",
+   "rules": [],
+   "lv": 15
+  },
+  {
+   "id": "Invocation:Voice of the Chain Master",
+   "type": "Invocation",
+   "name": "Voice of the Chain Master",
+   "desc": "You can communicate telepathically with your familiar and perceive through your familiar’s senses as long as you are on the same plane of existence. Additionally, while p",
+   "rules": [],
+   "pb": "Chain"
+  },
+  {
+   "id": "Invocation:Whispers of the Grave",
+   "type": "Invocation",
+   "name": "Whispers of the Grave",
+   "desc": "You can cast speak with dead at will, without expending a spell slot.",
+   "rules": [],
+   "lv": 9
+  },
+  {
+   "id": "Invocation:Witch Sight",
+   "type": "Invocation",
+   "name": "Witch Sight",
+   "desc": "You can see the true form of any shapechanger or creature concealed by illusion or transmutation magic while the creature is within 30 feet of you and within line of sigh",
+   "rules": [],
+   "lv": 15
+  },
+  {
+   "id": "Favored Enemy:Aberrations",
+   "type": "Favored Enemy",
+   "name": "Aberrations",
+   "desc": "Your favored enemy type: aberrations. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Beasts",
+   "type": "Favored Enemy",
+   "name": "Beasts",
+   "desc": "Your favored enemy type: beasts. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Celestials",
+   "type": "Favored Enemy",
+   "name": "Celestials",
+   "desc": "Your favored enemy type: celestials. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Constructs",
+   "type": "Favored Enemy",
+   "name": "Constructs",
+   "desc": "Your favored enemy type: constructs. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Dragons",
+   "type": "Favored Enemy",
+   "name": "Dragons",
+   "desc": "Your favored enemy type: dragons. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Elementals",
+   "type": "Favored Enemy",
+   "name": "Elementals",
+   "desc": "Your favored enemy type: elementals. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Fey",
+   "type": "Favored Enemy",
+   "name": "Fey",
+   "desc": "Your favored enemy type: fey. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Fiends",
+   "type": "Favored Enemy",
+   "name": "Fiends",
+   "desc": "Your favored enemy type: fiends. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Giants",
+   "type": "Favored Enemy",
+   "name": "Giants",
+   "desc": "Your favored enemy type: giants. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Monstrosities",
+   "type": "Favored Enemy",
+   "name": "Monstrosities",
+   "desc": "Your favored enemy type: monstrosities. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Oozes",
+   "type": "Favored Enemy",
+   "name": "Oozes",
+   "desc": "Your favored enemy type: oozes. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Plants",
+   "type": "Favored Enemy",
+   "name": "Plants",
+   "desc": "Your favored enemy type: plants. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Undead",
+   "type": "Favored Enemy",
+   "name": "Undead",
+   "desc": "Your favored enemy type: undead. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Enemy:Humanoids (two races)",
+   "type": "Favored Enemy",
+   "name": "Humanoids (two races)",
+   "desc": "Your favored enemy type: humanoids (two races). You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
+   "rules": []
+  },
+  {
+   "id": "Favored Terrain:Arctic",
+   "type": "Favored Terrain",
+   "name": "Arctic",
+   "desc": "Your favored terrain: arctic. Travel benefits apply while you are in this terrain.",
+   "rules": []
+  },
+  {
+   "id": "Favored Terrain:Coast",
+   "type": "Favored Terrain",
+   "name": "Coast",
+   "desc": "Your favored terrain: coast. Travel benefits apply while you are in this terrain.",
+   "rules": []
+  },
+  {
+   "id": "Favored Terrain:Desert",
+   "type": "Favored Terrain",
+   "name": "Desert",
+   "desc": "Your favored terrain: desert. Travel benefits apply while you are in this terrain.",
+   "rules": []
+  },
+  {
+   "id": "Favored Terrain:Forest",
+   "type": "Favored Terrain",
+   "name": "Forest",
+   "desc": "Your favored terrain: forest. Travel benefits apply while you are in this terrain.",
+   "rules": []
+  },
+  {
+   "id": "Favored Terrain:Grassland",
+   "type": "Favored Terrain",
+   "name": "Grassland",
+   "desc": "Your favored terrain: grassland. Travel benefits apply while you are in this terrain.",
+   "rules": []
+  },
+  {
+   "id": "Favored Terrain:Mountain",
+   "type": "Favored Terrain",
+   "name": "Mountain",
+   "desc": "Your favored terrain: mountain. Travel benefits apply while you are in this terrain.",
+   "rules": []
+  },
+  {
+   "id": "Favored Terrain:Swamp",
+   "type": "Favored Terrain",
+   "name": "Swamp",
+   "desc": "Your favored terrain: swamp. Travel benefits apply while you are in this terrain.",
+   "rules": []
+  },
+  {
+   "id": "Land Type:Arctic",
+   "type": "Land Type",
+   "name": "Arctic",
+   "desc": "Circle spells for the arctic land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid",
+    "levels": {
+     "3": [
+      "Hold Person",
+      "Spike Growth"
+     ],
+     "5": [
+      "Sleet Storm",
+      "Slow"
+     ],
+     "7": [
+      "Freedom of Movement",
+      "Ice Storm"
+     ],
+     "9": [
+      "Commune With Nature",
+      "Cone of Cold"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Land Type:Coast",
+   "type": "Land Type",
+   "name": "Coast",
+   "desc": "Circle spells for the coast land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid",
+    "levels": {
+     "3": [
+      "Mirror Image",
+      "Misty Step"
+     ],
+     "5": [
+      "Water Breathing",
+      "Water Walk"
+     ],
+     "7": [
+      "Control Water",
+      "Freedom of Movement"
+     ],
+     "9": [
+      "Conjure Elemental",
+      "Scrying"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Land Type:Desert",
+   "type": "Land Type",
+   "name": "Desert",
+   "desc": "Circle spells for the desert land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid",
+    "levels": {
+     "3": [
+      "Blur",
+      "Silence"
+     ],
+     "5": [
+      "Create Food and Water",
+      "Protection From Energy"
+     ],
+     "7": [
+      "Blight",
+      "Hallucinatory Terrain"
+     ],
+     "9": [
+      "Insect Plague",
+      "Wall of Stone"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Land Type:Forest",
+   "type": "Land Type",
+   "name": "Forest",
+   "desc": "Circle spells for the forest land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid",
+    "levels": {
+     "3": [
+      "Barkskin",
+      "Spider Climb"
+     ],
+     "5": [
+      "Call Lightning",
+      "Plant Growth"
+     ],
+     "7": [
+      "Divination",
+      "Freedom of Movement"
+     ],
+     "9": [
+      "Commune With Nature",
+      "Tree Stride"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Land Type:Grassland",
+   "type": "Land Type",
+   "name": "Grassland",
+   "desc": "Circle spells for the grassland land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid",
+    "levels": {
+     "3": [
+      "Invisibility",
+      "Pass Without Trace"
+     ],
+     "5": [
+      "Daylight",
+      "Haste"
+     ],
+     "7": [
+      "Divination",
+      "Freedom of Movement"
+     ],
+     "9": [
+      "Dream",
+      "Insect Plague"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Land Type:Mountain",
+   "type": "Land Type",
+   "name": "Mountain",
+   "desc": "Circle spells for the mountain land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid",
+    "levels": {
+     "3": [
+      "Spider Climb",
+      "Spike Growth"
+     ],
+     "5": [
+      "Lightning Bolt",
+      "Meld Into Stone"
+     ],
+     "7": [
+      "Stone Shape",
+      "Stoneskin"
+     ],
+     "9": [
+      "Passwall",
+      "Wall of Stone"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Land Type:Swamp",
+   "type": "Land Type",
+   "name": "Swamp",
+   "desc": "Circle spells for the swamp land.",
+   "rules": [],
+   "prepared": {
+    "class": "Druid",
+    "levels": {
+     "3": [
+      "Acid Arrow",
+      "Darkness"
+     ],
+     "5": [
+      "Water Walk",
+      "Stinking Cloud"
+     ],
+     "7": [
+      "Freedom of Movement",
+      "Locate Creature"
+     ],
+     "9": [
+      "Insect Plague",
+      "Scrying"
+     ]
+    }
+   }
+  },
+  {
+   "id": "Dragon Ancestor:Black Dragon",
+   "type": "Dragon Ancestor",
+   "name": "Black Dragon",
+   "desc": "Acid damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Dragon Ancestor:Blue Dragon",
+   "type": "Dragon Ancestor",
+   "name": "Blue Dragon",
+   "desc": "Lightning damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Dragon Ancestor:Brass Dragon",
+   "type": "Dragon Ancestor",
+   "name": "Brass Dragon",
+   "desc": "Fire damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Dragon Ancestor:Bronze Dragon",
+   "type": "Dragon Ancestor",
+   "name": "Bronze Dragon",
+   "desc": "Lightning damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Dragon Ancestor:Copper Dragon",
+   "type": "Dragon Ancestor",
+   "name": "Copper Dragon",
+   "desc": "Acid damage. Breath weapon: 5 by 30 ft line, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Dragon Ancestor:Gold Dragon",
+   "type": "Dragon Ancestor",
+   "name": "Gold Dragon",
+   "desc": "Fire damage. Breath weapon: 15 ft cone, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Dragon Ancestor:Green Dragon",
+   "type": "Dragon Ancestor",
+   "name": "Green Dragon",
+   "desc": "Poison damage. Breath weapon: 15 ft cone, Constitution save.",
+   "rules": []
+  },
+  {
+   "id": "Dragon Ancestor:Red Dragon",
+   "type": "Dragon Ancestor",
+   "name": "Red Dragon",
+   "desc": "Fire damage. Breath weapon: 15 ft cone, Dexterity save.",
+   "rules": []
+  },
+  {
+   "id": "Dragon Ancestor:Silver Dragon",
+   "type": "Dragon Ancestor",
+   "name": "Silver Dragon",
+   "desc": "Cold damage. Breath weapon: 15 ft cone, Constitution save.",
+   "rules": []
+  },
+  {
+   "id": "Dragon Ancestor:White Dragon",
+   "type": "Dragon Ancestor",
+   "name": "White Dragon",
+   "desc": "Cold damage. Breath weapon: 15 ft cone, Constitution save.",
+   "rules": []
+  }
+ ]
+}

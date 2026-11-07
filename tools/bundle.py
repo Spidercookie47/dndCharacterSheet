@@ -17,11 +17,11 @@ html = re.sub(r'<!-- BUNDLE:vendor -->.*?<!-- /BUNDLE:vendor -->',
 
 # data
 bundle = {}
-for d in ('data/srd51', 'data/srd52'):
+for d in ('data/5e/srd51', 'data/5e/srd52'):
     if not os.path.exists(os.path.join(root, d, 'index.json')): print('skipping', d, '(not found)'); continue
     idx = json.loads(rd(d + '/index.json')); bundle[d + '/index.json'] = idx
     for f in idx['files']: bundle[d + '/' + f] = json.loads(rd(d + '/' + f))
-pdf = base64.b64encode(open(os.path.join(root, 'assets/5E_CharacterSheet_Fillable.pdf'), 'rb').read()).decode()
+pdf = base64.b64encode(open(os.path.join(root, 'assets/5e/5E_CharacterSheet_Fillable.pdf'), 'rb').read()).decode()
 safe = lambda s: re.sub(r'</(script)', r'<\\/\1', s, flags=re.I)
 data = ('<script>window.__HS_BUNDLE__=' + safe(json.dumps(bundle, ensure_ascii=True, separators=(',', ':'))) + ';'
         'window.__HS_PDF_B64__="' + pdf + '";window.HS_PDFJS_WORKER="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";</script>')

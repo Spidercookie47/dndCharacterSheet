@@ -1,0 +1,955 @@
+{
+ "elements": [
+  {
+   "id": "Monster:Goblin",
+   "type": "Monster",
+   "name": "Goblin",
+   "desc": "Small humanoid (goblinoid), neutral evil. Challenge 1/4.",
+   "stat": {
+    "size": "Small",
+    "type": "humanoid",
+    "tags": "goblinoid",
+    "align": "neutral evil",
+    "cr": "1/4",
+    "ab": {
+     "str": 8,
+     "dex": 14,
+     "con": 10,
+     "int": 10,
+     "wis": 8,
+     "cha": 8
+    },
+    "ac": 15,
+    "acNote": "leather armor, shield",
+    "hdn": 2,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "Common, Goblin",
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "skills": {
+     "Stealth": 2
+    },
+    "traits": [
+     {
+      "n": "Nimble Escape",
+      "d": "The goblin can take the Disengage or Hide action as a bonus action on each of its turns."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Scimitar",
+      "d": "*Melee Weapon Attack:* +4 to hit, reach 5 ft., one target. *Hit:* 5 (1d6 + 2) slashing damage."
+     },
+     {
+      "n": "Shortbow",
+      "d": "*Ranged Weapon Attack:* +4 to hit, range 80/320 ft., one target. *Hit:* 5 (1d6 + 2) piercing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Wolf",
+   "type": "Monster",
+   "name": "Wolf",
+   "desc": "Medium beast, unaligned. Challenge 1/4.",
+   "stat": {
+    "size": "Medium",
+    "type": "beast",
+    "align": "unaligned",
+    "cr": "1/4",
+    "ab": {
+     "str": 12,
+     "dex": 15,
+     "con": 12,
+     "int": 3,
+     "wis": 12,
+     "cha": 6
+    },
+    "ac": 13,
+    "acNote": "natural armor",
+    "hdn": 2,
+    "spd": {
+     "walk": 40
+    },
+    "hpAuto": true,
+    "skills": {
+     "Perception": 1,
+     "Stealth": 1
+    },
+    "traits": [
+     {
+      "n": "Keen Hearing and Smell",
+      "d": "The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell."
+     },
+     {
+      "n": "Pack Tactics",
+      "d": "The wolf has advantage on an attack roll against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally isn't incapacitated."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Bite",
+      "d": "*Melee Weapon Attack:* +4 to hit, reach 5 ft., one target. *Hit:* 7 (2d4 + 2) piercing damage. If the target is a creature, it must succeed on a DC 11 Strength saving throw or be knocked prone."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Skeleton",
+   "type": "Monster",
+   "name": "Skeleton",
+   "desc": "Medium undead, lawful evil. Challenge 1/4.",
+   "stat": {
+    "size": "Medium",
+    "type": "undead",
+    "align": "lawful evil",
+    "cr": "1/4",
+    "ab": {
+     "str": 10,
+     "dex": 14,
+     "con": 15,
+     "int": 6,
+     "wis": 8,
+     "cha": 5
+    },
+    "ac": 13,
+    "acNote": "armor scraps",
+    "hdn": 2,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "understands all languages it knew in life but can't speak",
+    "vuln": "bludgeoning",
+    "imm": "poison",
+    "cimm": "exhaustion, poisoned",
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "actions": [
+     {
+      "n": "Shortsword",
+      "d": "*Melee Weapon Attack:* +4 to hit, reach 5 ft., one target. *Hit:* 5 (1d6 + 2) piercing damage."
+     },
+     {
+      "n": "Shortbow",
+      "d": "*Ranged Weapon Attack:* +4 to hit, range 80/320 ft., one target. *Hit:* 5 (1d6 + 2) piercing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Zombie",
+   "type": "Monster",
+   "name": "Zombie",
+   "desc": "Medium undead, neutral evil. Challenge 1/4.",
+   "stat": {
+    "size": "Medium",
+    "type": "undead",
+    "align": "neutral evil",
+    "cr": "1/4",
+    "ab": {
+     "str": 13,
+     "dex": 6,
+     "con": 16,
+     "int": 3,
+     "wis": 6,
+     "cha": 5
+    },
+    "ac": 8,
+    "hdn": 3,
+    "spd": {
+     "walk": 20
+    },
+    "langs": "understands the languages it knew in life but can't speak",
+    "imm": "poison",
+    "cimm": "poisoned",
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "saves": {
+     "wis": true
+    },
+    "traits": [
+     {
+      "n": "Undead Fortitude",
+      "d": "If damage reduces the zombie to 0 hit points, it must make a Constitution saving throw with a DC of 5 + the damage taken, unless the damage is radiant or from a critical hit. On a success, the zombie drops to 1 hit point instead."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Slam",
+      "d": "*Melee Weapon Attack:* +3 to hit, reach 5 ft., one target. *Hit:* 4 (1d6 + 1) bludgeoning damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Orc",
+   "type": "Monster",
+   "name": "Orc",
+   "desc": "Medium humanoid (orc), chaotic evil. Challenge 1/2.",
+   "stat": {
+    "size": "Medium",
+    "type": "humanoid",
+    "tags": "orc",
+    "align": "chaotic evil",
+    "cr": "1/2",
+    "ab": {
+     "str": 16,
+     "dex": 12,
+     "con": 16,
+     "int": 7,
+     "wis": 11,
+     "cha": 10
+    },
+    "ac": 13,
+    "acNote": "hide armor",
+    "hdn": 2,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "Common, Orc",
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "skills": {
+     "Intimidation": 1
+    },
+    "traits": [
+     {
+      "n": "Aggressive",
+      "d": "As a bonus action, the orc can move up to its speed toward a hostile creature that it can see."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Greataxe",
+      "d": "*Melee Weapon Attack:* +5 to hit, reach 5 ft., one target. *Hit:* 9 (1d12 + 3) slashing damage."
+     },
+     {
+      "n": "Javelin",
+      "d": "*Melee or Ranged Weapon Attack:* +5 to hit, reach 5 ft. or range 30/120 ft., one target. *Hit:* 6 (1d6 + 3) piercing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Kobold",
+   "type": "Monster",
+   "name": "Kobold",
+   "desc": "Small humanoid (kobold), lawful evil. Challenge 1/8.",
+   "stat": {
+    "size": "Small",
+    "type": "humanoid",
+    "tags": "kobold",
+    "align": "lawful evil",
+    "cr": "1/8",
+    "ab": {
+     "str": 7,
+     "dex": 15,
+     "con": 9,
+     "int": 8,
+     "wis": 7,
+     "cha": 8
+    },
+    "ac": 12,
+    "hdn": 2,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "Common, Draconic",
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "traits": [
+     {
+      "n": "Sunlight Sensitivity",
+      "d": "While in sunlight, the kobold has disadvantage on attack rolls, as well as on Wisdom (Perception) checks that rely on sight."
+     },
+     {
+      "n": "Pack Tactics",
+      "d": "The kobold has advantage on an attack roll against a creature if at least one of the kobold's allies is within 5 feet of the creature and the ally isn't incapacitated."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Dagger",
+      "d": "*Melee Weapon Attack:* +4 to hit, reach 5 ft., one target. *Hit:* 4 (1d4 + 2) piercing damage."
+     },
+     {
+      "n": "Sling",
+      "d": "*Ranged Weapon Attack:* +4 to hit, range 30/120 ft., one target. *Hit:* 4 (1d4 + 2) bludgeoning damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Giant Rat",
+   "type": "Monster",
+   "name": "Giant Rat",
+   "desc": "Small beast, unaligned. Challenge 1/8.",
+   "stat": {
+    "size": "Small",
+    "type": "beast",
+    "align": "unaligned",
+    "cr": "1/8",
+    "ab": {
+     "str": 7,
+     "dex": 15,
+     "con": 11,
+     "int": 2,
+     "wis": 10,
+     "cha": 4
+    },
+    "ac": 12,
+    "hdn": 2,
+    "spd": {
+     "walk": 30
+    },
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "traits": [
+     {
+      "n": "Keen Smell",
+      "d": "The rat has advantage on Wisdom (Perception) checks that rely on smell."
+     },
+     {
+      "n": "Pack Tactics",
+      "d": "The rat has advantage on an attack roll against a creature if at least one of the rat's allies is within 5 feet of the creature and the ally isn't incapacitated."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Bite",
+      "d": "*Melee Weapon Attack:* +4 to hit, reach 5 ft., one target. *Hit:* 4 (1d4 + 2) piercing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Commoner",
+   "type": "Monster",
+   "name": "Commoner",
+   "desc": "Medium humanoid (any race), any alignment. Challenge 0.",
+   "stat": {
+    "size": "Medium",
+    "type": "humanoid",
+    "tags": "any race",
+    "align": "any alignment",
+    "cr": "0",
+    "ab": {
+     "str": 10,
+     "dex": 10,
+     "con": 10,
+     "int": 10,
+     "wis": 10,
+     "cha": 10
+    },
+    "ac": 10,
+    "hdn": 1,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "any one language (usually Common)",
+    "hpAuto": true,
+    "actions": [
+     {
+      "n": "Club",
+      "d": "*Melee Weapon Attack:* +2 to hit, reach 5 ft., one target. *Hit:* 2 (1d4) bludgeoning damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Bandit",
+   "type": "Monster",
+   "name": "Bandit",
+   "desc": "Medium humanoid (any race), any non-lawful alignment. Challenge 1/8.",
+   "stat": {
+    "size": "Medium",
+    "type": "humanoid",
+    "tags": "any race",
+    "align": "any non-lawful alignment",
+    "cr": "1/8",
+    "ab": {
+     "str": 11,
+     "dex": 12,
+     "con": 12,
+     "int": 10,
+     "wis": 10,
+     "cha": 10
+    },
+    "ac": 12,
+    "acNote": "leather armor",
+    "hdn": 2,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "any one language (usually Common)",
+    "hpAuto": true,
+    "actions": [
+     {
+      "n": "Scimitar",
+      "d": "*Melee Weapon Attack:* +3 to hit, reach 5 ft., one target. *Hit:* 4 (1d6 + 1) slashing damage."
+     },
+     {
+      "n": "Light Crossbow",
+      "d": "*Ranged Weapon Attack:* +3 to hit, range 80/320 ft., one target. *Hit:* 5 (1d8 + 1) piercing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Guard",
+   "type": "Monster",
+   "name": "Guard",
+   "desc": "Medium humanoid (any race), any alignment. Challenge 1/8.",
+   "stat": {
+    "size": "Medium",
+    "type": "humanoid",
+    "tags": "any race",
+    "align": "any alignment",
+    "cr": "1/8",
+    "ab": {
+     "str": 13,
+     "dex": 12,
+     "con": 12,
+     "int": 10,
+     "wis": 11,
+     "cha": 10
+    },
+    "ac": 16,
+    "acNote": "chain shirt, shield",
+    "hdn": 2,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "any one language (usually Common)",
+    "hpAuto": true,
+    "skills": {
+     "Perception": 1
+    },
+    "actions": [
+     {
+      "n": "Spear",
+      "d": "*Melee or Ranged Weapon Attack:* +3 to hit, reach 5 ft. or range 20/60 ft., one target. *Hit:* 4 (1d6 + 1) piercing damage, or 5 (1d8 + 1) piercing damage if used with two hands to make a melee attack."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Cultist",
+   "type": "Monster",
+   "name": "Cultist",
+   "desc": "Medium humanoid (any race), any non-good alignment. Challenge 1/8.",
+   "stat": {
+    "size": "Medium",
+    "type": "humanoid",
+    "tags": "any race",
+    "align": "any non-good alignment",
+    "cr": "1/8",
+    "ab": {
+     "str": 11,
+     "dex": 12,
+     "con": 10,
+     "int": 10,
+     "wis": 11,
+     "cha": 10
+    },
+    "ac": 12,
+    "acNote": "leather armor",
+    "hdn": 2,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "any one language (usually Common)",
+    "hpAuto": true,
+    "skills": {
+     "Deception": 1,
+     "Religion": 1
+    },
+    "traits": [
+     {
+      "n": "Dark Devotion",
+      "d": "The cultist has advantage on saving throws against being charmed or frightened."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Scimitar",
+      "d": "*Melee Weapon Attack:* +3 to hit, reach 5 ft., one target. *Hit:* 4 (1d6 + 1) slashing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Thug",
+   "type": "Monster",
+   "name": "Thug",
+   "desc": "Medium humanoid (any race), any non-good alignment. Challenge 1/2.",
+   "stat": {
+    "size": "Medium",
+    "type": "humanoid",
+    "tags": "any race",
+    "align": "any non-good alignment",
+    "cr": "1/2",
+    "ab": {
+     "str": 15,
+     "dex": 11,
+     "con": 14,
+     "int": 10,
+     "wis": 10,
+     "cha": 11
+    },
+    "ac": 11,
+    "acNote": "leather armor",
+    "hdn": 5,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "any one language (usually Common)",
+    "hpAuto": true,
+    "skills": {
+     "Intimidation": 1
+    },
+    "traits": [
+     {
+      "n": "Pack Tactics",
+      "d": "The thug has advantage on an attack roll against a creature if at least one of the thug's allies is within 5 feet of the creature and the ally isn't incapacitated."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Multiattack",
+      "d": "The thug makes two melee attacks."
+     },
+     {
+      "n": "Mace",
+      "d": "*Melee Weapon Attack:* +4 to hit, reach 5 ft., one creature. *Hit:* 5 (1d6 + 2) bludgeoning damage."
+     },
+     {
+      "n": "Heavy Crossbow",
+      "d": "*Ranged Weapon Attack:* +2 to hit, range 100/400 ft., one target. *Hit:* 5 (1d10) piercing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Hobgoblin",
+   "type": "Monster",
+   "name": "Hobgoblin",
+   "desc": "Medium humanoid (goblinoid), lawful evil. Challenge 1/2.",
+   "stat": {
+    "size": "Medium",
+    "type": "humanoid",
+    "tags": "goblinoid",
+    "align": "lawful evil",
+    "cr": "1/2",
+    "ab": {
+     "str": 13,
+     "dex": 12,
+     "con": 12,
+     "int": 10,
+     "wis": 10,
+     "cha": 9
+    },
+    "ac": 18,
+    "acNote": "chain mail, shield",
+    "hdn": 2,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "Common, Goblin",
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "traits": [
+     {
+      "n": "Martial Advantage",
+      "d": "Once per turn, the hobgoblin can deal an extra 7 (2d6) damage to a creature it hits with a weapon attack if that creature is within 5 feet of an ally of the hobgoblin that isn't incapacitated."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Longsword",
+      "d": "*Melee Weapon Attack:* +3 to hit, reach 5 ft., one target. *Hit:* 5 (1d8 + 1) slashing damage, or 6 (1d10 + 1) slashing damage if used with two hands."
+     },
+     {
+      "n": "Longbow",
+      "d": "*Ranged Weapon Attack:* +3 to hit, range 150/600 ft., one target. *Hit:* 5 (1d8 + 1) piercing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Gnoll",
+   "type": "Monster",
+   "name": "Gnoll",
+   "desc": "Medium humanoid (gnoll), chaotic evil. Challenge 1/2.",
+   "stat": {
+    "size": "Medium",
+    "type": "humanoid",
+    "tags": "gnoll",
+    "align": "chaotic evil",
+    "cr": "1/2",
+    "ab": {
+     "str": 14,
+     "dex": 12,
+     "con": 11,
+     "int": 6,
+     "wis": 10,
+     "cha": 7
+    },
+    "ac": 15,
+    "acNote": "hide armor, shield",
+    "hdn": 5,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "Gnoll",
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "traits": [
+     {
+      "n": "Rampage",
+      "d": "When the gnoll reduces a creature to 0 hit points with a melee attack on its turn, the gnoll can take a bonus action to move up to half its speed and make a bite attack."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Bite",
+      "d": "*Melee Weapon Attack:* +4 to hit, reach 5 ft., one creature. *Hit:* 4 (1d4 + 2) piercing damage."
+     },
+     {
+      "n": "Spear",
+      "d": "*Melee or Ranged Weapon Attack:* +4 to hit, reach 5 ft. or range 20/60 ft., one target. *Hit:* 5 (1d6 + 2) piercing damage, or 6 (1d8 + 2) piercing damage if used with two hands to make a melee attack."
+     },
+     {
+      "n": "Longbow",
+      "d": "*Ranged Weapon Attack:* +3 to hit, range 150/600 ft., one target. *Hit:* 5 (1d8 + 1) piercing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Bugbear",
+   "type": "Monster",
+   "name": "Bugbear",
+   "desc": "Medium humanoid (goblinoid), chaotic evil. Challenge 1.",
+   "stat": {
+    "size": "Medium",
+    "type": "humanoid",
+    "tags": "goblinoid",
+    "align": "chaotic evil",
+    "cr": "1",
+    "ab": {
+     "str": 15,
+     "dex": 14,
+     "con": 13,
+     "int": 8,
+     "wis": 11,
+     "cha": 9
+    },
+    "ac": 16,
+    "acNote": "hide armor, shield",
+    "hdn": 5,
+    "spd": {
+     "walk": 30
+    },
+    "langs": "Common, Goblin",
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "skills": {
+     "Stealth": 2,
+     "Survival": 1
+    },
+    "traits": [
+     {
+      "n": "Brute",
+      "d": "A melee weapon deals one extra die of its damage when the bugbear hits with it (included in the attack)."
+     },
+     {
+      "n": "Surprise Attack",
+      "d": "If the bugbear surprises a creature and hits it with an attack during the first round of combat, the target takes an extra 7 (2d6) damage from the attack."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Morningstar",
+      "d": "*Melee Weapon Attack:* +4 to hit, reach 5 ft., one target. *Hit:* 11 (2d8 + 2) piercing damage."
+     },
+     {
+      "n": "Javelin",
+      "d": "*Melee or Ranged Weapon Attack:* +4 to hit, reach 5 ft. or range 30/120 ft., one target. *Hit:* 9 (2d6 + 2) piercing damage in melee or 5 (1d6 + 2) piercing damage at range."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Giant Spider",
+   "type": "Monster",
+   "name": "Giant Spider",
+   "desc": "Large beast, unaligned. Challenge 1.",
+   "stat": {
+    "size": "Large",
+    "type": "beast",
+    "align": "unaligned",
+    "cr": "1",
+    "ab": {
+     "str": 14,
+     "dex": 16,
+     "con": 12,
+     "int": 2,
+     "wis": 11,
+     "cha": 4
+    },
+    "ac": 14,
+    "acNote": "natural armor",
+    "hdn": 4,
+    "spd": {
+     "walk": 30,
+     "climb": 30
+    },
+    "sen": {
+     "blindsight": 10,
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "skills": {
+     "Stealth": 2
+    },
+    "traits": [
+     {
+      "n": "Spider Climb",
+      "d": "The spider can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+     },
+     {
+      "n": "Web Sense",
+      "d": "While in contact with a web, the spider knows the exact location of any other creature in contact with the same web."
+     },
+     {
+      "n": "Web Walker",
+      "d": "The spider ignores movement restrictions caused by webbing."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Bite",
+      "d": "*Melee Weapon Attack:* +5 to hit, reach 5 ft., one creature. *Hit:* 7 (1d8 + 3) piercing damage, and the target must make a DC 11 Constitution saving throw, taking 9 (2d8) poison damage on a failed save, or half as much damage on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but poisoned for 1 hour, even after regaining hit points, and is paralyzed while poisoned in this way."
+     },
+     {
+      "n": "Web (Recharge 5-6)",
+      "d": "*Ranged Weapon Attack:* +5 to hit, range 30/60 ft., one creature. *Hit:* The target is restrained by webbing. As an action, the restrained target can make a DC 12 Strength check, bursting the webbing on a success. The webbing can also be attacked and destroyed (AC 10; hp 5; vulnerability to fire damage; immunity to bludgeoning, poison, and psychic damage)."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Brown Bear",
+   "type": "Monster",
+   "name": "Brown Bear",
+   "desc": "Large beast, unaligned. Challenge 1.",
+   "stat": {
+    "size": "Large",
+    "type": "beast",
+    "align": "unaligned",
+    "cr": "1",
+    "ab": {
+     "str": 19,
+     "dex": 10,
+     "con": 16,
+     "int": 2,
+     "wis": 13,
+     "cha": 7
+    },
+    "ac": 11,
+    "acNote": "natural armor",
+    "hdn": 4,
+    "spd": {
+     "walk": 40,
+     "climb": 30
+    },
+    "hpAuto": true,
+    "skills": {
+     "Perception": 1
+    },
+    "traits": [
+     {
+      "n": "Keen Smell",
+      "d": "The bear has advantage on Wisdom (Perception) checks that rely on smell."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Multiattack",
+      "d": "The bear makes two attacks: one with its bite and one with its claws."
+     },
+     {
+      "n": "Bite",
+      "d": "*Melee Weapon Attack:* +6 to hit, reach 5 ft., one target. *Hit:* 8 (1d8 + 4) piercing damage."
+     },
+     {
+      "n": "Claws",
+      "d": "*Melee Weapon Attack:* +6 to hit, reach 5 ft., one target. *Hit:* 11 (2d6 + 4) slashing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Dire Wolf",
+   "type": "Monster",
+   "name": "Dire Wolf",
+   "desc": "Large beast, unaligned. Challenge 1.",
+   "stat": {
+    "size": "Large",
+    "type": "beast",
+    "align": "unaligned",
+    "cr": "1",
+    "ab": {
+     "str": 17,
+     "dex": 15,
+     "con": 15,
+     "int": 3,
+     "wis": 12,
+     "cha": 7
+    },
+    "ac": 14,
+    "acNote": "natural armor",
+    "hdn": 5,
+    "spd": {
+     "walk": 50
+    },
+    "hpAuto": true,
+    "skills": {
+     "Perception": 1,
+     "Stealth": 1
+    },
+    "traits": [
+     {
+      "n": "Keen Hearing and Smell",
+      "d": "The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell."
+     },
+     {
+      "n": "Pack Tactics",
+      "d": "The wolf has advantage on an attack roll against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally isn't incapacitated."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Bite",
+      "d": "*Melee Weapon Attack:* +5 to hit, reach 5 ft., one target. *Hit:* 10 (2d6 + 3) piercing damage. If the target is a creature, it must succeed on a DC 13 Strength saving throw or be knocked prone."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Ogre",
+   "type": "Monster",
+   "name": "Ogre",
+   "desc": "Large giant, chaotic evil. Challenge 2.",
+   "stat": {
+    "size": "Large",
+    "type": "giant",
+    "align": "chaotic evil",
+    "cr": "2",
+    "ab": {
+     "str": 19,
+     "dex": 8,
+     "con": 16,
+     "int": 5,
+     "wis": 7,
+     "cha": 7
+    },
+    "ac": 11,
+    "acNote": "hide armor",
+    "hdn": 7,
+    "spd": {
+     "walk": 40
+    },
+    "langs": "Common, Giant",
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "actions": [
+     {
+      "n": "Greatclub",
+      "d": "*Melee Weapon Attack:* +6 to hit, reach 5 ft., one target. *Hit:* 13 (2d8 + 4) bludgeoning damage."
+     },
+     {
+      "n": "Javelin",
+      "d": "*Melee or Ranged Weapon Attack:* +6 to hit, reach 5 ft. or range 30/120 ft., one target. *Hit:* 11 (2d6 + 4) piercing damage."
+     }
+    ]
+   }
+  },
+  {
+   "id": "Monster:Owlbear",
+   "type": "Monster",
+   "name": "Owlbear",
+   "desc": "Large monstrosity, unaligned. Challenge 3.",
+   "stat": {
+    "size": "Large",
+    "type": "monstrosity",
+    "align": "unaligned",
+    "cr": "3",
+    "ab": {
+     "str": 20,
+     "dex": 12,
+     "con": 17,
+     "int": 3,
+     "wis": 12,
+     "cha": 7
+    },
+    "ac": 13,
+    "acNote": "natural armor",
+    "hdn": 7,
+    "spd": {
+     "walk": 40
+    },
+    "sen": {
+     "darkvision": 60
+    },
+    "hpAuto": true,
+    "skills": {
+     "Perception": 1
+    },
+    "traits": [
+     {
+      "n": "Keen Sight and Smell",
+      "d": "The owlbear has advantage on Wisdom (Perception) checks that rely on sight or smell."
+     }
+    ],
+    "actions": [
+     {
+      "n": "Multiattack",
+      "d": "The owlbear makes two attacks: one with its beak and one with its claws."
+     },
+     {
+      "n": "Beak",
+      "d": "*Melee Weapon Attack:* +7 to hit, reach 5 ft., one creature. *Hit:* 10 (1d10 + 5) piercing damage."
+     },
+     {
+      "n": "Claws",
+      "d": "*Melee Weapon Attack:* +7 to hit, reach 5 ft., one target. *Hit:* 14 (2d8 + 5) slashing damage."
+     }
+    ]
+   }
+  }
+ ]
+}

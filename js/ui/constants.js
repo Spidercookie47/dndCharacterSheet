@@ -94,3 +94,34 @@ const STARTSUB = [
   ['chars', 'Character collection'],
   ['sources', 'Sources'],
 ];
+const SYSTEMS = [['dnd5e', 'D&D 5e'], ['coc', 'Call of Cthulhu']];
+const DMTABS = [['dm', 'DM screen']];
+
+/* Monster maker (DM mode): its own tabs. The editor itself is in monster.js. */
+const MTABS = [
+  ['start', 'Start'],
+  ['mref', 'Reference'],
+  ['mbuild', 'Build'],
+  ['mblock', 'Stat block'],
+];
+const MSUBS = [
+  ['basic', 'Basics'],
+  ['abil', 'Ability scores'],
+  ['def', 'Defenses'],
+  ['sense', 'Senses & languages'],
+  ['traits', 'Traits'],
+  ['actions', 'Actions'],
+  ['leg', 'Legendary'],
+];
+const MRSUBS = [
+  ['blocks', 'Stat blocks'],
+  ['feat', 'Features'],
+];
+const STARTSUB_DM = [
+  ['chars', 'Characters'],
+  ['mons', 'Monsters'],
+  ['sources', 'Sources'],
+];
+const MACTS =
+  '<button class="lnk" data-a="msave">Save</button><button class="lnk" data-a="mpdf">Stat block PDF</button>';
+

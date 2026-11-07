@@ -1,6 +1,7 @@
 /* Application state: the character in progress, the saved collection, persistence. */
-const fresh = () => ({
+const fresh = (dm) => ({
   id: 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
+  dm: !!dm, // true = built in DM mode (scores up to 30, + button for extras)
   name: '',
   level: 1,
   race: '',
@@ -23,6 +24,7 @@ try {
 } catch (e) {}
 store.chars = store.chars || [];
 if (store.cur) ch = store.chars.find((c) => c.id === store.cur) || ch;
+if (ch.dm) ch = fresh(); // the app opens in player mode
 function persist() {
   const i = store.chars.findIndex((c) => c.id === ch.id);
   i < 0 ? store.chars.push(ch) : (store.chars[i] = ch);

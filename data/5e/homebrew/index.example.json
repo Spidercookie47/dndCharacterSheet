@@ -1,0 +1,8 @@
+{
+  "format": "hearthscribe-index",
+  "version": 1,
+  "name": "My homebrew catalog",
+  "packs": [
+    { "name": "Stoneborn and Tinkerer", "url": "_template/pack.json" }
+  ]
+}

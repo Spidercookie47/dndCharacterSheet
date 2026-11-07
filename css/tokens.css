@@ -1,63 +1,35 @@
-/* Colors and spacing tokens (dark by default, light follows the system setting). */
+/* Colors and spacing tokens: Blood moon (burgundy and bone) by default, light follows the system setting.
+   Users can change any color from the Theme button; see js/ui/theme.js. Other palettes are in css/themes/. */
 :root {
-  --bg: #141414;
-  --bar: #1f272d;
-  --sub: #0c0c0c;
-  --panel: #181b1e;
-  --head: #2a3641;
-  --ink: #e6e6e6;
-  --mut: #8d98a1;
-  --line: #2c353d;
-  --acc: #e0a030;
-  --ok: #5fb37a;
-  --sel: #232d36;
-  --btn: #2e6f73;
+  --bg: #1a1114;
+  --bar: #251d20;
+  --sub: #20171a;
+  --panel: #292023;
+  --head: #383033;
+  --ink: #efe4dc;
+  --mut: #9e9490;
+  --line: #433c3e;
+  --acc: #d68a6b;
+  --ok: #82c9a2;
+  --sel: #30282a;
+  --btn: #8e2a3a;
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 @media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']) {
-    --bg: #f1f3f5;
-    --bar: #d9e0e6;
-    --sub: #fff;
-    --panel: #fff;
-    --head: #cfd9e1;
-    --ink: #1d2733;
-    --mut: #5b6b79;
-    --line: #cfd8de;
-    --acc: #a8680a;
-    --ok: #2c7a4b;
-    --sel: #e3eef0;
-  }
-}
-:root {
-  --bg: #17121f;
-  --bar: #201830;
-  --sub: #1c1528;
-  --panel: #211a2e;
-  --head: #2f2542;
-  --ink: #efeaf7;
-  --mut: #a094b8;
-  --line: #3a2f4f;
-  --acc: #ff9a76;
-  --ok: #7fd6b0;
-  --sel: #2a2140;
-  --btn: #7b5cd6;
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme='dark']) {
-    --bg: #f4f2fa;
-    --bar: #fff;
-    --sub: #ebe7f6;
-    --panel: #fff;
-    --head: #e4def3;
-    --ink: #241b36;
-    --mut: #6a5f82;
-    --line: #d9d2ea;
-    --acc: #d4572e;
-    --ok: #1f8a62;
-    --sel: #efeaff;
-    --btn: #6a49c9;
+    --bg: #f6eeef;
+    --bar: #efe1e3;
+    --sub: #faf6f7;
+    --panel: #ffffff;
+    --head: #e6d0d4;
+    --ink: #1a080a;
+    --mut: #766b6c;
+    --line: #e4ccd0;
+    --acc: #7c503e;
+    --ok: #486f59;
+    --sel: #f4eaeb;
+    --btn: #802634;
   }
 }

@@ -1,0 +1,48 @@
+/* Call of Cthulhu theme. Active while <html data-sys="coc"> (set by chrome() in shell.js). Load after components.css. */
+html:root[data-sys='coc'] {
+  color-scheme: dark;
+  --bg: #070d0e; --bar: #0d1a1b; --sub: #0a1415; --panel: #0f1f20; --head: #183033;
+  --ink: #d9e4dc; --mut: #7f9a93; --line: #1f3a3b; --acc: #6fae8f; --ok: #6fae8f;
+  --sel: #14282a; --btn: #2f7a68; --gold: #c2b26b; --rust: #b5513a;
+}
+html[data-sys='coc'] body {
+  background: radial-gradient(1200px 500px at 70% -10%, #12302f 0%, transparent 60%), var(--bg);
+  font-family: Spectral, Georgia, serif;
+  font-size: 16px;
+}
+html[data-sys='coc'] h2,
+html[data-sys='coc'] h3,
+html[data-sys='coc'] .ph,
+html[data-sys='coc'] .brand {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-weight: 400;
+}
+html[data-sys='coc'] h3 { color: var(--gold); }
+html[data-sys='coc'] .brand svg { position: relative; top: -3px; } /* nudges the eye up to the text's visual center */
+html[data-sys='coc'] .brand { color: var(--acc); padding-bottom: 3px; } /* lines the title up with the system tab labels */
+
+.coc .case { font: 400 0.95rem 'Special Elite', 'Courier New', monospace; color: var(--mut); margin: 0 0 14px; }
+.coc .chars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+@media (max-width: 560px) { .coc .chars { grid-template-columns: repeat(2, 1fr); } }
+.coc .cc2 { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px 6px 6px; text-align: center; }
+.coc .cc2 span { display: block; font: 400 0.9rem 'Special Elite', monospace; color: var(--mut); }
+.coc .cc2 b { display: block; font: 400 2rem/1.1 'Special Elite', monospace; }
+.coc .cc2 i { display: block; font-style: normal; font-size: 0.8rem; color: var(--mut); }
+.coc .skl { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 22px; }
+@media (max-width: 700px) { .coc .skl { columns: 1; } }
+.coc .skl li { display: flex; gap: 8px; align-items: baseline; padding: 3px 0; border-bottom: 1px dotted var(--line); break-inside: avoid; }
+.coc .skl li span:first-child { flex: 1; }
+.coc .skl em { font-style: normal; color: var(--mut); font-size: 0.8rem; min-width: 56px; text-align: right; }
+.coc .skl b { font: 400 1.05rem 'Special Elite', monospace; min-width: 30px; text-align: right; }
+.coc .skl li.sel { background: var(--sel); box-shadow: inset 3px 0 var(--acc); padding-left: 6px; }
+.coc .skl li.mythos b { color: var(--rust); }
+.coc .gauge { position: relative; height: 26px; border-radius: 13px; background: #050a0a; border: 1px solid var(--line); overflow: hidden; margin: 12px 0 6px; }
+.coc .gauge .fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, #1f5c4f, var(--acc)); }
+.coc .gauge .tick { position: absolute; top: 0; bottom: 0; right: 0; width: 2px; background: var(--rust); }
+.coc .glbl { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--mut); }
+.coc .bigsan { font: 400 3rem/1 'Special Elite', monospace; }
+.coc .bigsan small { font-size: 1rem; color: var(--mut); }
+.coc .vit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+.coc .vit div { border: 1px solid var(--line); border-radius: 6px; padding: 6px; text-align: center; background: var(--bg); }
+.coc .vit b { display: block; font: 400 1.5rem 'Special Elite', monospace; }
+.coc .vit span { font-size: 0.85rem; color: var(--mut); }

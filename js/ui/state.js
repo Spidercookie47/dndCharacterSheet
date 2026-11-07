@@ -18,3 +18,8 @@ let panel = null,
 let lastPv = null; // last previewed row, to detect a double click
 let srcF = ''; // source filter for the Build, Magic and Equipment lists ('' = all)
 let srcMsg = null; // result of the last Sources action
+let mode = 'player'; // 'player' | 'dm'
+let system = 'dnd5e'; // active game system
+let xt = 'feat',
+  xq = ''; // DM + panel: which list (feat | lang | spell) and its search text
+let mfocus = false; // true while editing a monster (see monster.js); switches the tabs
