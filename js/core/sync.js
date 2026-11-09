@@ -26,7 +26,11 @@ const Sync = (() => {
 
   /* sync bookkeeping lives inside store, so it is saved with the characters.
      known[id] = { fileId, hash (content at last sync), u (Drive's `updated` at last sync) } */
-  const S = () => (store.sync = store.sync || { acct: '', email: '', known: {}, pendingDel: [], last: 0 });
+  const S = () => {
+    const s = (store.sync = store.sync || { acct: '', email: '', known: {}, pendingDel: [], last: 0 });
+    s.deleted = s.deleted || {}; // id -> when it was deleted here (never download these back)
+    return s;
+  };
   const saveStore = () => {
     try {
       localStorage.setItem('aw-store', JSON.stringify(store));
@@ -42,7 +46,9 @@ const Sync = (() => {
 
   /* ---------- content hash (ignores `updated`, empty values and key order) ---------- */
   const isEmpty = (v) =>
-    v === undefined || v === '' || (v && typeof v === 'object' && Object.keys(v).length === 0);
+    v === undefined ||
+    v === '' ||
+    (v && typeof v === 'object' && (Array.isArray(v) ? v.length === 0 : Object.keys(v).every((k) => isEmpty(v[k]))));
   function canon(v, top) {
     if (v === null || typeof v !== 'object') return JSON.stringify(v) ?? 'null';
     if (Array.isArray(v)) return '[' + v.map((x) => canon(x)).join(',') + ']';
@@ -68,7 +74,15 @@ const Sync = (() => {
     h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
     return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
   }
-  const hashOf = (c) => cyrb53(canon(c, true));
+  const hashOf = (c) => {
+    // fill in the defaults the app adds when it first draws a character (levels, options), so "opened" is not "edited"
+    if (typeof DB !== 'undefined' && DB.length) {
+      try {
+        ensureLv(c);
+      } catch (e) {}
+    }
+    return cyrb53(canon(c, true));
+  };
 
   /* ---------- Google sign-in (token flow, no server) ---------- */
   function loadGis() {
@@ -237,6 +251,13 @@ const Sync = (() => {
         r = await api('POST', `${UP}?uploadType=multipart&fields=id`, { upload: true, ...m });
       fileId = r.id;
     }
+    if (!store.chars.some((x) => x.id === c.id)) {
+      // deleted while it was uploading: remove the file we just created
+      s.pendingDel.push(fileId);
+      delete s.known[c.id];
+      again = true;
+      return;
+    }
     s.known[c.id] = { fileId, hash: h, u }; // if the user typed during the upload, hash differs and it syncs again
     stamped[c.id] = h;
   }
@@ -246,6 +267,10 @@ const Sync = (() => {
       return;
     }
     const c = await download(rm);
+    if (S().deleted[rm.id]) {
+      again = true; // deleted here while downloading: let the next pass remove the file
+      return;
+    }
     if (c) apply(c, rm);
   }
   async function conflict(local, rm) {
@@ -287,6 +312,15 @@ const Sync = (() => {
       const local = store.chars.find((c) => c.id === id),
         k = s.known[id];
       if (!local) {
+        if (s.deleted[id] || s.pendingDel.includes(rm.fileId)) {
+          try {
+            await api('DELETE', 'files/' + rm.fileId); // deleted here: remove it from Drive, don't bring it back
+          } catch (e) {
+            if (e.status !== 404) throw e;
+          }
+          s.pendingDel = s.pendingDel.filter((x) => x !== rm.fileId);
+          continue;
+        }
         await pull(rm);
         continue;
       }
@@ -305,9 +339,16 @@ const Sync = (() => {
         await push(c); // new here, or edited here after it was deleted elsewhere
       }
     }
+    for (const id of Object.keys(s.deleted))
+      if (!remote.has(id) && Date.now() - s.deleted[id] > 120000) delete s.deleted[id];
   }
   async function runSync() {
     if (!linked() || !GDRIVE_CLIENT_ID) return;
+    if (typeof DB === 'undefined' || !DB.length) {
+      setTimeout(runSync, 500); // content packs not loaded yet; hashing needs them
+      return;
+    }
+    migrate();
     if (running) {
       again = true;
       return;
@@ -338,6 +379,17 @@ const Sync = (() => {
       saveStore();
       paint();
     }
+  }
+  /* The hash definition changed in this version: treat what each device has right now as the synced baseline, once. */
+  function migrate() {
+    const s = S();
+    if (s.hv === 3) return;
+    Object.entries(s.known).forEach(([id, k]) => {
+      const c = store.chars.find((x) => x.id === id);
+      if (c) k.hash = hashOf(c);
+    });
+    s.hv = 3;
+    saveStore();
   }
   const schedule = () => {
     if (!linked() || state === 'reauth') return;
@@ -438,9 +490,22 @@ const Sync = (() => {
           state = navigator.onLine ? 'reauth' : 'offline';
           paint();
         });
+    /* Just before the app handles a click/keystroke, remember what the open character looked like, so that
+       only changes made by that action count as an edit. */
+    ['click', 'input', 'change', 'keydown'].forEach((t) =>
+      document.addEventListener(
+        t,
+        () => {
+          try {
+            if (ch && ch.id && stamped[ch.id] === undefined) stamped[ch.id] = hashOf(ch);
+          } catch (e) {}
+        },
+        true,
+      ),
+    );
     setInterval(() => {
       if (linked() && !document.hidden && navigator.onLine && state !== 'reauth') runSync();
-    }, 45000);
+    }, 15000);
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden && linked() && state !== 'reauth') runSync();
     });
@@ -453,20 +518,23 @@ const Sync = (() => {
     /* called from persist() on every save: stamps `updated` only when the content really changed */
     touch(c) {
       const h = hashOf(c),
-        k = S().known[c.id];
+        k = S().known[c.id],
+        seen = stamped[c.id];
+      if (S().deleted[c.id]) delete S().deleted[c.id];
       if (k && k.hash === h) {
         stamped[c.id] = h;
         return;
       }
-      if (stamped[c.id] === h) return;
+      if (seen === h) return;
       stamped[c.id] = h;
-      c.updated = Date.now();
+      if (seen !== undefined) c.updated = Date.now(); // a real change since we last looked; loading or opening never counts as "newer"
       schedule();
     },
     /* called when a character is deleted: remember to delete its Drive file too */
     onDelete(id) {
       const s = S(),
         k = s.known[id];
+      s.deleted[id] = Date.now(); // remembered even if it was never uploaded, so a late upload can't resurrect it
       if (k && k.fileId) s.pendingDel.push(k.fileId);
       delete s.known[id];
       delete stamped[id];
