@@ -410,6 +410,7 @@ const Sync = (() => {
       if (s.acct && s.acct !== acct) {
         s.known = {}; // different Google account: don't treat its files as deletions
         s.pendingDel = [];
+        s.deleted = {}; // ← and don't carry tombstones across accounts either
       }
       s.acct = acct;
       s.email = me.emailAddress || '';
@@ -430,9 +431,12 @@ const Sync = (() => {
     } catch (e) {}
     tokVal = '';
     tokExp = 0;
+    pend = null; // a token request in flight must not repopulate tokVal after disconnect
+    tokP = null;
     const s = S();
     s.known = {};
     s.pendingDel = [];
+    s.deleted = {};
     s.acct = '';
     s.email = '';
     saveStore();
@@ -520,14 +524,17 @@ const Sync = (() => {
       const h = hashOf(c),
         k = S().known[c.id],
         seen = stamped[c.id];
-      if (S().deleted[c.id]) delete S().deleted[c.id];
       if (k && k.hash === h) {
         stamped[c.id] = h;
         return;
       }
       if (seen === h) return;
       stamped[c.id] = h;
-      if (seen !== undefined) c.updated = Date.now(); // a real change since we last looked; loading or opening never counts as "newer"
+      if (seen !== undefined) {
+        // a real edit since we last looked
+        c.updated = Date.now();
+        if (S().deleted[c.id]) delete S().deleted[c.id]; // user re-edited a character that had been deleted: revive it
+      }
       schedule();
     },
     /* called when a character is deleted: remember to delete its Drive file too */
