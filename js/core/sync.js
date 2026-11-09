@@ -2,14 +2,14 @@
    (scope drive.appdata), so they never show up in the user's normal Drive.
    Needs: events.js (on), state.js (store, ch, persist, fresh), shell.js (draw), leveling.js (ensureLv).
    Load it AFTER events.js. Paste your OAuth Client ID below. */
-const GDRIVE_CLIENT_ID = '1070316252846-j5dmg5mlepi85idurbgv41m10qe52cls.apps.googleusercontent.com'; // e.g. '1234567890-abc123.apps.googleusercontent.com'
+const GDRIVE_CLIENT_ID = '1070316252846-j5dmg5mlepi85idurbgv41m10qe52cls.apps.googleusercontent.com';
 
 const Sync = (() => {
   const SCOPE = 'https://www.googleapis.com/auth/drive.appdata',
     API = 'https://www.googleapis.com/drive/v3/',
     UP = 'https://www.googleapis.com/upload/drive/v3/files',
     FLAG = 'hs-gdrive';
-  let state = 'off', // off | busy | ok | offline | error | reauth
+  let state = 'off',
     errMsg = '',
     tc = null,
     gisP = null,
@@ -22,13 +22,11 @@ const Sync = (() => {
     again = false,
     uiDirty = false,
     deferred = false;
-  const stamped = {}; // id -> content hash we already stamped `updated` for
+  const stamped = {};
 
-  /* sync bookkeeping lives inside store, so it is saved with the characters.
-     known[id] = { fileId, hash (content at last sync), u (Drive's `updated` at last sync) } */
   const S = () => {
     const s = (store.sync = store.sync || { acct: '', email: '', known: {}, pendingDel: [], last: 0 });
-    s.deleted = s.deleted || {}; // id -> when it was deleted here (never download these back)
+    s.deleted = s.deleted || {};
     return s;
   };
   const saveStore = () => {
@@ -44,7 +42,6 @@ const Sync = (() => {
     }
   };
 
-  /* ---------- content hash (ignores `updated`, empty values and key order) ---------- */
   const isEmpty = (v) =>
     v === undefined ||
     v === '' ||
@@ -75,7 +72,6 @@ const Sync = (() => {
     return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
   }
   const hashOf = (c) => {
-    // fill in the defaults the app adds when it first draws a character (levels, options), so "opened" is not "edited"
     if (typeof DB !== 'undefined' && DB.length) {
       try {
         ensureLv(c);
@@ -84,7 +80,6 @@ const Sync = (() => {
     return cyrb53(canon(c, true));
   };
 
-  /* ---------- Google sign-in (token flow, no server) ---------- */
   function loadGis() {
     return (gisP =
       gisP ||
@@ -118,7 +113,10 @@ const Sync = (() => {
           error_callback: (e) => {
             const p = pend;
             pend = null;
-            if (p) p.rej(Object.assign(new Error((e && e.type) || 'popup_failed'), { reauth: true }));
+            const msg = (e && e.type) === 'popup_failed_to_open'
+              ? 'Allow pop-ups for this site, then click Reconnect Drive.'
+              : ((e && e.type) || 'Sign-in failed');
+            if (p) p.rej(Object.assign(new Error(msg), { reauth: true }));
           },
         });
       pend = { res, rej };
@@ -134,25 +132,19 @@ const Sync = (() => {
   }
   async function token() {
     if (tokVal && Date.now() < tokExp) return tokVal;
-  await loadGis();
-  if (!linked()) throw new Error('not_connected');
-  // only reuse a token Google cached from a previous session;
-  // never open a popup from here
-  const t = await getToken('none');
-  if (!t) throw Object.assign(new Error('reauth_needed'), { reauth: true });
-  return t;
+    throw Object.assign(new Error('Sign in to Google Drive'), { reauth: true }); // only connect() may open a popup
   }
 
-  /* ---------- Drive REST ---------- */
   async function api(method, path, opt = {}) {
     const t = await token(),
       url = opt.upload ? path : API + path,
       headers = { Authorization: 'Bearer ' + t };
     if (opt.ct) headers['Content-Type'] = opt.ct;
     const r = await fetch(url, { method, headers, body: opt.body });
-    if (r.status === 401 && !opt.retried) {
+    if (r.status === 401) {
+      tokVal = '';
       tokExp = 0;
-      return api(method, path, { ...opt, retried: true });
+      throw Object.assign(new Error('Google Drive session expired'), { reauth: true });
     }
     if (!r.ok) throw Object.assign(new Error('Google Drive returned ' + r.status), { status: r.status });
     return r.status === 204 ? null : r.json();
@@ -187,10 +179,9 @@ const Sync = (() => {
       });
       pt = j.nextPageToken || '';
     } while (pt);
-    return out; // only returned when EVERY page was read, so deletions are never decided from a partial list
+    return out;
   }
 
-  /* ---------- helpers ---------- */
   const typing = () => {
     const a = document.activeElement;
     return !!a && (a.tagName === 'TEXTAREA' || (a.tagName === 'INPUT' && /text|number|search/.test(a.type)));
@@ -203,7 +194,7 @@ const Sync = (() => {
   }
   function redraw() {
     if (typeof DB !== 'undefined' && DB.length) draw();
-    else setTimeout(redraw, 500); // wait until the content packs have loaded
+    else setTimeout(redraw, 500);
   }
   async function download(rm) {
     const j = await api('GET', `files/${rm.fileId}?alt=media`),
@@ -233,14 +224,13 @@ const Sync = (() => {
     uiDirty = true;
   }
 
-  /* ---------- the sync itself ---------- */
   async function push(c) {
     const s = S(),
       h = hashOf(c),
-      body = JSON.stringify({ format: 'hearthscribe-character', version: 1, character: c });
-    c.updated = c.updated || Date.now();
-    const u = c.updated,
       k = s.known[c.id];
+    if (!c.updated || (k && c.updated <= k.u)) c.updated = Date.now(); // safety net: force a fresh timestamp
+    const u = c.updated;
+    const body = JSON.stringify({ format: 'hearthscribe-character', version: 1, character: c });
     let fileId = '';
     if (k && k.fileId) {
       try {
@@ -248,7 +238,7 @@ const Sync = (() => {
         await api('PATCH', `${UP}/${k.fileId}?uploadType=multipart&fields=id`, { upload: true, ...m });
         fileId = k.fileId;
       } catch (e) {
-        if (e.status !== 404) throw e; // file vanished: recreate it below
+        if (e.status !== 404) throw e;
       }
     }
     if (!fileId) {
@@ -257,23 +247,22 @@ const Sync = (() => {
       fileId = r.id;
     }
     if (!store.chars.some((x) => x.id === c.id)) {
-      // deleted while it was uploading: remove the file we just created
       s.pendingDel.push(fileId);
       delete s.known[c.id];
       again = true;
       return;
     }
-    s.known[c.id] = { fileId, hash: h, u }; // if the user typed during the upload, hash differs and it syncs again
+    s.known[c.id] = { fileId, hash: h, u };
     stamped[c.id] = h;
   }
   async function pull(rm) {
     if (ch.id === rm.id && typing()) {
-      deferred = true; // don't yank the page from under someone who is typing
+      deferred = true;
       return;
     }
     const c = await download(rm);
     if (S().deleted[rm.id]) {
-      again = true; // deleted here while downloading: let the next pass remove the file
+      again = true;
       return;
     }
     if (c) apply(c, rm);
@@ -296,7 +285,7 @@ const Sync = (() => {
     loser.name = (loser.name || 'Unnamed hero') + ' (conflict copy)';
     loser.updated = Date.now();
     delete s.known[loser.id];
-    store.chars.push(loser); // uploaded as a new character further down
+    store.chars.push(loser);
     uiDirty = true;
     if (remoteWins) apply(rc, rm);
     else await push(local);
@@ -312,14 +301,14 @@ const Sync = (() => {
       s.pendingDel = s.pendingDel.filter((x) => x !== fid);
     }
     const remote = await listRemote(),
-      suspicious = remote.size === 0 && Object.keys(s.known).length > 1; // never mass-delete on an empty answer
+      suspicious = remote.size === 0 && Object.keys(s.known).length > 1;
     for (const [id, rm] of remote) {
       const local = store.chars.find((c) => c.id === id),
         k = s.known[id];
       if (!local) {
         if (s.deleted[id] || s.pendingDel.includes(rm.fileId)) {
           try {
-            await api('DELETE', 'files/' + rm.fileId); // deleted here: remove it from Drive, don't bring it back
+            await api('DELETE', 'files/' + rm.fileId);
           } catch (e) {
             if (e.status !== 404) throw e;
           }
@@ -338,10 +327,10 @@ const Sync = (() => {
     for (const c of [...store.chars]) {
       if (remote.has(c.id)) continue;
       const k = s.known[c.id];
-      if (k && !suspicious && hashOf(c) === k.hash) removeLocal(c.id); // deleted on another device
+      if (k && !suspicious && hashOf(c) === k.hash) removeLocal(c.id);
       else {
         delete s.known[c.id];
-        await push(c); // new here, or edited here after it was deleted elsewhere
+        await push(c);
       }
     }
     for (const id of Object.keys(s.deleted))
@@ -350,7 +339,7 @@ const Sync = (() => {
   async function runSync() {
     if (!linked() || !GDRIVE_CLIENT_ID) return;
     if (typeof DB === 'undefined' || !DB.length) {
-      setTimeout(runSync, 500); // content packs not loaded yet; hashing needs them
+      setTimeout(runSync, 500);
       return;
     }
     migrate();
@@ -385,7 +374,6 @@ const Sync = (() => {
       paint();
     }
   }
-  /* The hash definition changed in this version: treat what each device has right now as the synced baseline, once. */
   function migrate() {
     const s = S();
     if (s.hv === 3) return;
@@ -399,10 +387,9 @@ const Sync = (() => {
   const schedule = () => {
     if (!linked() || state === 'reauth') return;
     clearTimeout(timer);
-    timer = setTimeout(runSync, 2000); // debounce: wait until the user pauses
+    timer = setTimeout(runSync, 2000);
   };
 
-  /* ---------- public hooks ---------- */
   async function connect() {
     try {
       state = 'busy';
@@ -413,9 +400,9 @@ const Sync = (() => {
         s = S(),
         acct = me.permissionId || me.emailAddress || '';
       if (s.acct && s.acct !== acct) {
-        s.known = {}; // different Google account: don't treat its files as deletions
+        s.known = {};
         s.pendingDel = [];
-        s.deleted = {}; // ← and don't carry tombstones across accounts either
+        s.deleted = {};
       }
       s.acct = acct;
       s.email = me.emailAddress || '';
@@ -436,7 +423,7 @@ const Sync = (() => {
     } catch (e) {}
     tokVal = '';
     tokExp = 0;
-    pend = null; // a token request in flight must not repopulate tokVal after disconnect
+    pend = null;
     tokP = null;
     const s = S();
     s.known = {};
@@ -449,10 +436,8 @@ const Sync = (() => {
     paint();
   }
 
-  /* ---------- status button ---------- */
   const ICON =
     '<svg viewBox="0 0 87.3 78" width="17" height="15" style="vertical-align:-2px;margin-right:7px" aria-hidden="true"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0-1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.5l5.85 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>';
-  /* cls = button style: 'alt' for the Start tab, 'lnk' for small link buttons. Can be placed in several spots at once. */
   function html(cls) {
     cls = cls || 'lnk';
     const wrap = (inner) => `<span class="syncst" data-cls="${cls}" style="display:inline-flex;gap:6px;align-items:center">${inner}</span>`;
@@ -478,7 +463,8 @@ const Sync = (() => {
 
   on('gsync', () => {
     if (!linked() || state === 'reauth' || state === 'off') connect();
-    else runSync();
+    else if (tokVal && Date.now() < tokExp) runSync();
+    else connect(); // token expired and no click to refresh silently → ask user to click again
     return false;
   });
   on('gout', () => {
@@ -488,19 +474,8 @@ const Sync = (() => {
 
   function init() {
     if (!GDRIVE_CLIENT_ID) return;
-  state = linked() ? 'busy' : 'off';
-  paint();
-  if (linked())
-    loadGis()
-      .then(() => token())  // token() only refreshes silently; no popup
-      .then((t) => (t ? runSync() : null))
-      .catch((e) => {
-        errMsg = (e && e.message) || '';
-        state = navigator.onLine ? 'reauth' : 'offline';
-        paint();
-      });
-    /* Just before the app handles a click/keystroke, remember what the open character looked like, so that
-       only changes made by that action count as an edit. */
+    state = linked() ? 'reauth' : 'off';
+    paint();
     ['click', 'input', 'change', 'keydown'].forEach((t) =>
       document.addEventListener(
         t,
@@ -513,18 +488,22 @@ const Sync = (() => {
       ),
     );
     setInterval(() => {
-      if (linked() && !document.hidden && navigator.onLine && state !== 'reauth') runSync();
+      if (!linked() || document.hidden || !navigator.onLine) return;
+      if (state === 'reauth' || state === 'off') return;
+      if (!tokVal || Date.now() >= tokExp) return;
+      runSync();
     }, 15000);
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && linked() && state !== 'reauth') runSync();
+      if (!document.hidden && linked() && state !== 'reauth' && tokVal && Date.now() < tokExp) runSync();
     });
-    window.addEventListener('online', () => linked() && state !== 'reauth' && runSync());
+    window.addEventListener('online', () => {
+      if (linked() && state !== 'reauth' && tokVal && Date.now() < tokExp) runSync();
+    });
   }
 
   return {
     html,
     init,
-    /* called from persist() on every save: stamps `updated` only when the content really changed */
     touch(c) {
       const h = hashOf(c),
         k = S().known[c.id],
@@ -535,18 +514,14 @@ const Sync = (() => {
       }
       if (seen === h) return;
       stamped[c.id] = h;
-      if (seen !== undefined) {
-        // a real edit since we last looked
-        c.updated = Date.now();
-        if (S().deleted[c.id]) delete S().deleted[c.id]; // user re-edited a character that had been deleted: revive it
-      }
+      c.updated = Date.now(); // always bump on a real content change
+      if (S().deleted[c.id]) delete S().deleted[c.id];
       schedule();
     },
-    /* called when a character is deleted: remember to delete its Drive file too */
     onDelete(id) {
       const s = S(),
         k = s.known[id];
-      s.deleted[id] = Date.now(); // remembered even if it was never uploaded, so a late upload can't resurrect it
+      s.deleted[id] = Date.now();
       if (k && k.fileId) s.pendingDel.push(k.fileId);
       delete s.known[id];
       delete stamped[id];
