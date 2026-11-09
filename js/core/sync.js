@@ -483,17 +483,17 @@ const Sync = (() => {
 
   function init() {
     if (!GDRIVE_CLIENT_ID) return;
-    state = linked() ? 'busy' : 'off';
-    paint();
-    if (linked())
-      loadGis()
-        .then(() => getToken('none'))
-        .then(() => runSync())
-        .catch((e) => {
-          errMsg = (e && e.message) || '';
-          state = navigator.onLine ? 'reauth' : 'offline';
-          paint();
-        });
+  state = linked() ? 'busy' : 'off';
+  paint();
+  if (linked())
+    loadGis()
+      .then(() => token())  // token() only refreshes silently; no popup
+      .then((t) => (t ? runSync() : null))
+      .catch((e) => {
+        errMsg = (e && e.message) || '';
+        state = navigator.onLine ? 'reauth' : 'offline';
+        paint();
+      });
     /* Just before the app handles a click/keystroke, remember what the open character looked like, so that
        only changes made by that action count as an edit. */
     ['click', 'input', 'change', 'keydown'].forEach((t) =>
