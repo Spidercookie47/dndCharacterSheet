@@ -51,12 +51,12 @@ function invView(r, c) {
                     ? ' <span class="src">stealth disadvantage</span>'
                     : ''
               : '';
-        return `<div class="rw${i.eq ? ' on' : ''}"><span data-a="pv" data-id="${esc(i.id)}" data-k="item">${i.eq ? '✓ ' : ''}${i.att ? '◆ ' : ''}${esc(e.name)} ×${i.q}${warn}${effTxt(e, i)}</span><span class="src">${((e.wt || 0) * i.q).toFixed(1)} lb</span>${can ? b('eqi', n, '', i.eq ? 'Unequip' : 'Equip') : ''}${e.att ? b('att', n, '', i.att ? 'Unattune' : 'Attune') : ''}${b('mv', n, -1, '↑')}${b('mv', n, 1, '↓')}${b('qty2', n, -1, '−')}${b('qty2', n, 1, '+')}${b('rmi2', n, '', '✕')}</div>`;
+        return `<div class="rw${i.eq ? ' on' : ''}"><span data-a="pv" data-id="${esc(i.id)}" data-k="item">${i.eq ? '✓ ' : ''}${i.att ? '◆ ' : ''}${esc(e.name)} ×${i.q}${warn}${effTxt(e, i)}${i.tp ? ' <span class="src">· ' + esc(i.tp) + '</span>' : ''}${i.desc ? '<div class="src">' + esc(i.desc) + '</div>' : ''}</span><span class="src">${((e.wt || 0) * i.q).toFixed(1)} lb</span>${can ? b('eqi', n, '', i.eq ? 'Unequip' : 'Equip') : ''}${e.att ? b('att', n, '', i.att ? 'Unattune' : 'Attune') : ''}${b('mv', n, -1, '↑')}${b('mv', n, 1, '↓')}${b('qty2', n, -1, '−')}${b('qty2', n, 1, '+')}${b('rmi2', n, '', '✕')}</div>`;
       })
       .join('') ||
       '<p class="hint">Nothing yet. Add items from the Equipment tab, or use Starting equipment.</p>') +
     `<div class="ph"><span>Coins</span></div><div class="bar">${['cp', 'sp', 'ep', 'gp', 'pp'].map((k) => `<label style="margin:0">${k.toUpperCase()} <input type="number" min="0" style="width:84px" data-f="c.${k}" value="${co[k] || 0}"></label>`).join('')}</div>` +
-    `<div class="ph"><span>Add a custom item</span></div><div class="bar"><input type="text" id="cin" placeholder="Name" value="${esc(cust.n)}" style="max-width:200px"><input type="number" id="ciw" placeholder="Weight (lb)" min="0" value="${esc(cust.w)}" style="width:120px"><input type="number" id="ciq" placeholder="Qty" min="1" value="${cust.q}" style="width:80px"><button data-a="cadd">Add</button></div>`
+    `<div class="ph"><span>Add a custom item</span></div><div class="fg"><label>Name<input type="text" id="cin" value="${esc(cust.n)}"></label><label>Type<select id="cit"><option value=""></option>${['Weapon', 'Armor', 'Wondrous item', 'Ring', 'Potion', 'Scroll', 'Wand', 'Staff', 'Rod', 'Gear'].map((x) => `<option${cust.t === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label><label>Weight (lb)<input type="number" id="ciw" min="0" value="${esc(cust.w)}"></label><label>Qty<input type="number" id="ciq" min="1" value="${cust.q}"></label></div>${cust.t === 'Weapon' ? `<div class="fg"><label>Damage dice<select id="cidc"><option value=""></option>${['1d4', '1d6', '1d8', '1d10', '1d12', '2d6'].map((x) => `<option${cust.dice === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label><label>Damage type<select id="cidt"><option value=""></option>${['slashing', 'piercing', 'bludgeoning'].map((x) => `<option${cust.dt === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label><label>Weapon kind<select id="ciwk"><option value="">Normal (Strength)</option><option value="finesse"${cust.wk === 'finesse' ? ' selected' : ''}>Finesse (Str or Dex)</option><option value="ranged"${cust.wk === 'ranged' ? ' selected' : ''}>Ranged (Dex)</option></select></label><label class="opt"><input type="checkbox" id="cimg"${cust.mg ? ' checked' : ''}><span>Magical weapon</span></label></div>` : ''}<label>Description<textarea id="cid" rows="3">${esc(cust.d)}</textarea></label><div class="fg"><label>AC bonus<input type="number" id="cia" value="${esc(cust.ac)}"></label><label>Saving throw bonus<input type="number" id="cis" value="${esc(cust.sv)}"></label><label>Saving throw applies to<select id="cisw"><option value="">All saving throws</option>${AB.map((a) => `<option value="${a}"${cust.svw === a ? ' selected' : ''}>${AN[a]} only</option>`).join('')}</select></label><label>Weapon attack and damage bonus<input type="number" id="ciwp" value="${esc(cust.wp)}"></label><label>Spell attack bonus<input type="number" id="cisp" value="${esc(cust.sp)}"></label></div><label>Resistances<input type="text" id="cir" value="${esc(cust.res)}" placeholder="fire, necrotic"></label><label class="opt"><input type="checkbox" id="cira"${cust.ra ? ' checked' : ''}><span>Requires attunement</span></label><p><button data-a="cadd">Add</button></p>`
   );
 }
 function startView(r) {
@@ -160,11 +160,15 @@ function renderEquip() {
     m.innerHTML = `<div class="left"><div class="ph"><span>Additional treasure and quest items</span></div><p class="hint">Gems, art objects, keys, letters and quest items. This goes on the sheet's treasure box.</p>${TA('treasure', 'Treasure and quest items', 12)}</div>`;
 }
 function effTxt(e, i) {
-  const d = MEF[e.id];
-  if (!d) return '';
-  const t = [];
+  const d = MEF[e.id] || i.fx,
+    t = [];
+  if (i.res) t.push('resist: ' + esc(i.res));
+  if (i.dice) t.push(esc(i.dice) + (i.dt ? ' ' + esc(i.dt) : ''));
+  if (i.mg) t.push('magical');
+  if (!d) return t.length ? ` <span class="src">${t.join(', ')}</span>` : '';
   if (d.ac) t.push('+' + d.ac + ' AC');
   if (d.saves) t.push('+' + d.saves + ' saves');
+  if (d.sa) Object.entries(d.sa).forEach(([a, v]) => t.push('+' + v + ' ' + AN[a] + ' saves'));
   if (d.brac) t.push('AC +' + d.brac + ' with no armor or shield');
   if (d.wpn) t.push('+' + d.wpn + ' to weapon rows');
   if (d.spA) t.push('+' + d.spA + ' spell attack');

@@ -199,7 +199,7 @@ function calc(ch, r) {
   const sv = {};
   AB.forEach((a) => {
     const p = r.prof.has('save:' + a);
-    sv[a] = { p, v: mod(sc[a]) + (p ? pb : 0) + aura };
+    sv[a] = { p, v: mod(sc[a]) + (p ? pb : 0) + aura + (magicB(ch).sa[a] || 0) };
   });
   return {
     sc,
@@ -250,14 +250,15 @@ function armorAC(c, r, ea, sc) {
   return b + (sh ? 2 : 0);
 }
 function magicB(c) {
-  const b = { ac: 0, saves: 0, wpn: 0, spA: 0, brac: 0, set: {} };
+  const b = { ac: 0, saves: 0, wpn: 0, spA: 0, brac: 0, set: {}, sa: {} };
   (c.inv || []).forEach((i) => {
-    const d = MEF[i.id];
+    const d = MEF[i.id] || i.fx;
     if (!d) return;
     if (d.att ? !i.att : !i.eq) return;
     ['ac', 'saves', 'wpn', 'spA', 'brac'].forEach((k) => {
       if (d[k]) b[k] += d[k];
     });
+    if (d.sa) Object.entries(d.sa).forEach(([a, v]) => (b.sa[a] = (b.sa[a] || 0) + v));
     if (d.set)
       Object.entries(d.set).forEach(([a, v]) => {
         b.set[a] = Math.max(b.set[a] || 0, v);

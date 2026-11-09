@@ -23,20 +23,21 @@ function atkFill() {
   const r = resolve(ch),
     c = calc(ch, r),
     I = idx(),
-    Wl = (ch.inv || []).filter((i) => i.eq && I[i.id] && I[i.id].type === 'Weapon').slice(0, 3);
+    Wl = (ch.inv || []).filter((i) => i.eq && ((I[i.id] && I[i.id].type === 'Weapon') || i.tp === 'Weapon')).slice(0, 3);
   if (!Wl.length) {
     note('Equip a weapon on the Equipment tab first.');
     return;
   }
 
   Wl.forEach((i, n) => {
-    const e = I[i.id],
-      rng = /Ammunition/.test(e.desc),
-      fin = /Finesse/.test(e.desc),
+    const cu = !I[i.id], // custom weapon from the inventory
+      e = cu ? ent(i) : I[i.id],
+      rng = cu ? i.wk === 'ranged' : /Ammunition/.test(e.desc),
+      fin = cu ? i.wk === 'finesse' : /Finesse/.test(e.desc),
       k = rng ? 'dex' : fin && c.sc.dex > c.sc.str ? 'dex' : 'str',
       m = mod(c.sc[k]),
-      pr = profW(r, e),
-      dm = e.desc.match(/Damage (\d+d\d+) (\w+)/) || [];
+      pr = cu || profW(r, e),
+      dm = cu ? [0, i.dice || '', i.dt || ''] : e.desc.match(/Damage (\d+d\d+) (\w+)/) || [];
     ch.d['a' + (n + 1) + 'n'] = e.name;
     const ar = rng && r.els.some((x) => x.type === 'Fighting Style' && x.name === 'Archery') ? 2 : 0,
       du =
@@ -49,7 +50,7 @@ function atkFill() {
     {
       const mw = magicB(ch).wpn;
       ch.d['a' + (n + 1) + 'b'] = sg(m + (pr ? c.pb : 0) + ar + mw);
-      ch.d['a' + (n + 1) + 'd'] = (dm[1] || '') + sg(m + du + mw) + ' ' + (dm[2] || '');
+      ch.d['a' + (n + 1) + 'd'] = (dm[1] || '') + sg(m + du + mw) + ' ' + (dm[2] || '') + (cu && i.mg ? ' (magical)' : '');
     }
   });
 }

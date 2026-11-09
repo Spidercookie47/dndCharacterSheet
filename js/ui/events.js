@@ -310,14 +310,33 @@ on('cadd', () => {
     note('Give the item a name.');
     return false;
   }
-  ch.inv.push({
+  const n = (v) => +v || 0,
+    fx = { ac: n(cust.ac), wpn: n(cust.wp), spA: n(cust.sp) };
+  Object.keys(fx).forEach((k) => !fx[k] && delete fx[k]);
+  if (n(cust.sv)) {
+    if (cust.svw) fx.sa = { [cust.svw]: n(cust.sv) };
+    else fx.saves = n(cust.sv);
+  }
+  const it = {
     id: 'c' + Date.now(),
     name: cust.n,
     wt: +cust.w || 0,
     q: Math.max(1, +cust.q || 1),
     eq: false,
-  });
-  cust = { n: '', w: '', q: 1 };
+  };
+  if (cust.t) it.tp = cust.t;
+  if (cust.d) it.desc = cust.d;
+  if (cust.res) it.res = cust.res;
+  if (cust.ra) it.ra = true;
+  if (cust.t === 'Weapon') {
+    if (cust.dice) it.dice = cust.dice;
+    if (cust.dt) it.dt = cust.dt;
+    if (cust.wk) it.wk = cust.wk;
+    if (cust.mg) it.mg = true;
+  }
+  if (Object.keys(fx).length) it.fx = cust.ra ? { ...fx, att: true } : fx;
+  ch.inv.push(it);
+  cust = { n: '', w: '', q: 1, t: '', d: '', ra: false, ac: '', sv: '', svw: '', wp: '', sp: '', res: '', dice: '', dt: '', wk: '', mg: false };
 });
 on('addstart', () => {
   addStart();
@@ -415,6 +434,19 @@ document.addEventListener('input', (e) => {
   } else if (t.id === 'cin') cust.n = t.value;
   else if (t.id === 'ciw') cust.w = t.value;
   else if (t.id === 'ciq') cust.q = t.value;
+  else if (t.id === 'cit') cust.t = t.value;
+  else if (t.id === 'cid') cust.d = t.value;
+  else if (t.id === 'cia') cust.ac = t.value;
+  else if (t.id === 'cis') cust.sv = t.value;
+  else if (t.id === 'cisw') cust.svw = t.value;
+  else if (t.id === 'cidc') cust.dice = t.value;
+  else if (t.id === 'cidt') cust.dt = t.value;
+  else if (t.id === 'ciwk') cust.wk = t.value;
+  else if (t.id === 'cimg') cust.mg = t.checked;
+  else if (t.id === 'ciwp') cust.wp = t.value;
+  else if (t.id === 'cisp') cust.sp = t.value;
+  else if (t.id === 'cir') cust.res = t.value;
+  else if (t.id === 'cira') cust.ra = t.checked;
   else if (t.id === 'eqn') eqn = Math.max(1, +t.value || 1);
   else if (t.id === 'srcurl') srcUrl = t.value;
   else if (t.id === 'srcpaste') srcPaste = t.value;
@@ -498,6 +530,9 @@ document.addEventListener('change', (e) => {
       persist();
       draw();
     }
+  } else if (t.id === 'cit') {
+    cust.t = t.value;
+    draw();
   } else if (t.id === 'eqn') {
     eqn = Math.max(1, +t.value || 1);
     draw();

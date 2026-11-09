@@ -12,7 +12,10 @@ function eqArmor(c, dm) {
   };
 }
 const ent = (i) =>
-  idx()[i.id] || (i.name ? { name: i.name, wt: i.wt || 0, type: 'Custom', cg: 'Custom' } : null);
+  idx()[i.id] ||
+  (i.name
+    ? { name: i.name, wt: i.wt || 0, type: i.fx || i.tp ? 'Magic' : 'Custom', cg: i.tp || 'Custom', desc: i.desc || '', att: !!i.ra }
+    : null);
 function addQ(id, q) {
   ch.inv = ch.inv || [];
   q = Math.max(1, +q || 1);

@@ -36,6 +36,7 @@ js/
     inventory.js           armor class from worn armor, buying with coins
     casting.js             spell slots (incl. multiclass), prepared/known spells
     resources.js           Rage, Ki, slots… and what a short/long rest restores
+    sync.js                Google Drive sync (optional): one JSON file per character in the hidden app folder
   data/
     cache.js               IndexedDB cache for downloaded packs
     loader.js              reads the SRD and packs, validates, merges, toggles sources
@@ -60,7 +61,7 @@ tools/
   validate_pack.py         check a homebrew pack
 ```
 
-The scripts are plain (non-module) files that share one global scope. Order matters, and `index.html` lists them in order. `js/ui/monster.js` goes after `events.js` and before `main.js`.
+The scripts are plain (non-module) files that share one global scope. Order matters, and `index.html` lists them in order. `js/ui/monster.js` goes after `events.js` and before `main.js`. `js/core/sync.js` also goes after `events.js`, because it uses `on`, `draw` and the state helpers.
 
 ## Content packs
 
@@ -128,6 +129,36 @@ The **Missing content** list on the same screen shows any saved character that u
 Characters are kept in the browser, and **Save** downloads a `*.hearth.json` file you can open again from the Start screen. A character file stores your *choices*, not computed numbers, so it keeps working when the rules data changes.
 
 Player and DM characters are kept in separate lists: the Start screen shows the characters of the mode you are in. Opening a character file puts it in the current mode, so that is also how you turn a player character into a DM one.
+
+## Google Drive sync (optional)
+
+Characters can sync between your devices through your own Google Drive. It runs entirely in the browser, with no backend.
+
+**Set it up**
+
+1. In the Google Cloud console, enable the Google Drive API and create an OAuth client ID of type Web application.
+2. Under Authorized JavaScript origins, add every address the app is served from, for example `https://you.github.io` and `http://localhost:8000`.
+3. Paste the client ID into `GDRIVE_CLIENT_ID` at the top of `js/core/sync.js`. While it is empty, the sync button asks for it.
+4. On the OAuth consent screen, fill in the app name, support email and developer contact, add a link to a privacy policy (a one-page static page on GitHub Pages is enough), and set the publishing status to **In production**. Left on Testing, sign-in is limited to 100 test users and expires after 7 days.
+
+The app only asks for the `drive.appdata` scope. It is a hidden app folder that never shows in your normal Drive, and Google does not require a verification review for it. Cost is $0.
+
+**Use it**
+
+Start → **Connect Google Drive**. The same button then shows the state: Syncing, Synced (with the time), Offline, Sync problem or Reconnect Drive. **Disconnect** stops syncing; your characters stay in the browser and in Drive.
+
+**How it works**
+
+- Each character is one JSON file, in the same format as **Save**.
+- Changes upload about 2 seconds after you stop editing. The app also checks Drive every 15 seconds, when the tab regains focus and when the connection returns.
+- Deleting a character deletes it from Drive too.
+- If the same character changed on two devices, the newer version wins and the other is kept as "Name (conflict copy)".
+
+**Good to know**
+
+- Google sign-in tokens last about one hour in a browser-only app. When the button says **Reconnect Drive**, click it once. Pop-ups must be allowed for the site.
+- It does not work from `file://`, because Google only accepts registered origins.
+- Edits go to Drive through two calls: `persist()` in `core/state.js` calls `Sync.touch(ch)`, and the `delyes` action in `ui/events.js` calls `Sync.onDelete(id)`.
 
 ## Character options
 

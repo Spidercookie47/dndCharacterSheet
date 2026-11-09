@@ -195,11 +195,12 @@ function itemView(x, r, c, soloWeapon) {
     q = x.i.q || 1,
     kind = pdfText(e.cg || e.type || 'Item').replace(/s$/, '');
   const stats = [];
-  const dm = (e.desc || '').match(/Damage (\d+d\d+) (\w+)/);
-  if (e.type === 'Weapon' && dm) {
-    const d = e.desc,
-      rng = /Ammunition/.test(d),
-      fin = /Finesse/.test(d),
+  const cw = !idx()[x.i.id] && x.i.tp === 'Weapon', // custom weapon
+    dm = cw ? [0, x.i.dice || '', x.i.dt || ''] : (e.desc || '').match(/Damage (\d+d\d+) (\w+)/);
+  if ((e.type === 'Weapon' || cw) && dm && (!cw || dm[1])) {
+    const d = e.desc || '',
+      rng = cw ? x.i.wk === 'ranged' : /Ammunition/.test(d),
+      fin = cw ? x.i.wk === 'finesse' : /Finesse/.test(d),
       k = rng ? 'dex' : fin && c.sc.dex > c.sc.str ? 'dex' : 'str',
       m = mod(c.sc[k]),
       mw = magicB(ch).wpn,
@@ -208,14 +209,14 @@ function itemView(x, r, c, soloWeapon) {
         !rng && soloWeapon && !/Two-handed|Heavy/.test(d) && r.els.some((y) => y.type === 'Fighting Style' && y.name === 'Dueling')
           ? 2
           : 0;
-    stats.push(['Attack', sg(m + (profW(r, e) ? c.pb : 0) + ar + mw)]);
+    stats.push(['Attack', sg(m + (cw || profW(r, e) ? c.pb : 0) + ar + mw)]);
     stats.push(['Damage', dm[1] + sg(m + du + mw) + ' ' + dm[2]]);
   }
   if (e.wt) stats.push(['Weight', e.wt + ' lb']);
   return {
     name: pdfText(e.name),
     level: 0,
-    sub: kind + (e.rar ? ', ' + pdfText(e.rar) : '') + (e.att ? ' (requires attunement)' : '') + (q > 1 ? ' x' + q : ''),
+    sub: kind + (x.i.mg ? ', magical' : '') + (e.rar ? ', ' + pdfText(e.rar) : '') + (e.att ? ' (requires attunement)' : '') + (q > 1 ? ' x' + q : ''),
     stats,
     body: pdfText(e.desc),
   };
@@ -225,15 +226,16 @@ function equippedItems() {
     c = calc(ch, r),
     rows = (ch.inv || []).map((i) => ({ i, e: ent(i) })).filter((x) => x.e && x.e.type);
   const byName = (a, b) => String(a.e.name).localeCompare(String(b.e.name));
-  const eqW = rows.filter((x) => x.e.type === 'Weapon' && x.i.eq);
+  const isCW = (x) => x.i.tp === 'Weapon' && !idx()[x.i.id],
+    isPot = (x) => x.e.cg === 'Potions' || x.i.tp === 'Potion';
+  const eqW = rows.filter((x) => (x.e.type === 'Weapon' || isCW(x)) && x.i.eq);
   const groups = [
-    rows.filter((x) => x.e.cg === 'Magic Weapons' && (x.i.eq || x.i.att)),
-    eqW,
+    rows.filter((x) => (x.e.cg === 'Magic Weapons' || (isCW(x) && x.i.mg)) && (x.i.eq || x.i.att)),
+    eqW.filter((x) => !(isCW(x) && x.i.mg)),
     rows.filter(
-      (x) =>
-        x.e.type === 'Magic' && !['Magic Weapons', 'Potions'].includes(x.e.cg) && (x.i.att || x.i.eq),
+      (x) => x.e.type === 'Magic' && !isCW(x) && !isPot(x) && x.e.cg !== 'Magic Weapons' && (x.i.att || x.i.eq),
     ),
-    rows.filter((x) => x.e.cg === 'Potions' && x.i.eq),
+    rows.filter((x) => isPot(x) && x.i.eq),
   ];
   return groups.flatMap((g) => g.sort(byName)).map((x) => itemView(x, r, c, eqW.length === 1));
 }
