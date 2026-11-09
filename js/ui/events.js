@@ -104,6 +104,7 @@ on('delyes', (d) => {
     ch = fresh(mode === 'dm');
     store.cur = null;
   }
+  if (typeof Sync !== 'undefined' && Sync.onDelete) Sync.onDelete(d.id); // record the deletion so the next sync removes the Drive file instead of re-downloading it
   delId = null;
   try {
     localStorage.setItem('aw-store', JSON.stringify(store));
