@@ -134,8 +134,13 @@ const Sync = (() => {
   }
   async function token() {
     if (tokVal && Date.now() < tokExp) return tokVal;
-    await loadGis();
-    return getToken('none'); // silent refresh; fails if Google needs the user to click
+  await loadGis();
+  if (!linked()) throw new Error('not_connected');
+  // only reuse a token Google cached from a previous session;
+  // never open a popup from here
+  const t = await getToken('none');
+  if (!t) throw Object.assign(new Error('reauth_needed'), { reauth: true });
+  return t;
   }
 
   /* ---------- Drive REST ---------- */

@@ -29,6 +29,7 @@ function persist() {
   const i = store.chars.findIndex((c) => c.id === ch.id);
   i < 0 ? store.chars.push(ch) : (store.chars[i] = ch);
   store.cur = ch.id;
+  if (typeof Sync !== 'undefined' && Sync.touch) Sync.touch(ch); // stamp `updated` and debounce a Drive upload
   try {
     localStorage.setItem('aw-store', JSON.stringify(store));
   } catch (e) {}
