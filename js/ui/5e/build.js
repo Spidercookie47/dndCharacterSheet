@@ -1,12 +1,11 @@
 /* Build tab: race, class, background, ability scores, languages and proficiencies. */
-const rows = (opts, key, chosen) =>
-  opts
-    .filter((o) => srcOk(o) || chosen.includes(o.id))
-    .map(
-      (o) =>
-        `<div class="rw${chosen.includes(o.id) ? ' on' : ''}${pv && pv.id === o.id && pv.k === key ? ' pv' : ''}" data-a="pv" data-id="${esc(o.id)}" data-k="${esc(key)}"><span>${chosen.includes(o.id) ? '✓ ' : ''}${esc(o.name)}</span>${o.src ? `<span class="src">${esc(o.src)}</span>` : ''}</div>`,
-    )
-    .join('');
+const rows = (opts, key, chosen, rm) =>
+  lfRows(
+    opts.filter((o) => srcOk(o) || chosen.includes(o.id)),
+    chosen,
+    (o) =>
+      `<div class="rw${chosen.includes(o.id) ? ' on' : ''}${pv && pv.id === o.id && pv.k === key ? ' pv' : ''}" data-lfn="${lfN(o)}" data-a="pv" data-id="${esc(o.id)}" data-k="${esc(key)}"><span>${chosen.includes(o.id) ? '✓ ' : ''}${esc(o.name)}</span><span class="src">${o.src ? esc(o.src) : ''}${rm && chosen.includes(o.id) ? `<b class="x" data-a="pick" data-id="${esc(o.id)}" data-k="${esc(key)}" title="Remove">✕</b>` : ''}</span></div>`,
+  );
 function root(t, k, ty) {
   const e = idx()[ch[k]];
   return (
@@ -16,9 +15,14 @@ function root(t, k, ty) {
       : rows(ofType(ty), k, []))
   );
 }
-const selPanel = (s) =>
-  `<div class="ph"><span>${esc(s.name)} · ${esc(s.owner)}</span><span>${s.chosen.length}/${s.n}</span></div>` +
-  rows(s.opts, s.key, s.chosen);
+const selPanel = (s) => {
+  // a feat pick that is full collapses to just the chosen feat(s); ✕ brings the full list back
+  const full = s.kind === 'Feat' && s.chosen.length >= s.n;
+  return (
+    `<div class="ph"><span>${esc(s.name)} · ${esc(s.owner)}</span><span>${s.chosen.length}/${s.n}</span></div>` +
+    rows(full ? s.opts.filter((o) => s.chosen.includes(o.id)) : s.opts, s.key, s.chosen, full)
+  );
+};
 function choose(k, id) {
   if (ROOT.race && ['race', 'cls', 'bg'].includes(k)) {
     ch[k] = id;
@@ -151,7 +155,7 @@ function renderBuild() {
   if (ROOT[sub]) {
     const [t, k, ty] = ROOT[sub];
     L =
-      `<div class="bar" style="margin-bottom:8px">${srcSel()}</div>` +
+      `<div class="bar" style="margin-bottom:8px">${srcSel()}${lfBar(sub)}</div>` +
       root(t, k, ty) +
       r.sels
         .filter((s) =>
@@ -179,4 +183,5 @@ function renderBuild() {
   if (!R) R = descPane();
   m.innerHTML = `<div class="left">${L}</div><div class="right">${R}</div>`;
   if (sub === 'prof' && r.exp.length) $('#main .left').insertAdjacentHTML('beforeend', expHtml(r));
+  lfApply();
 }
