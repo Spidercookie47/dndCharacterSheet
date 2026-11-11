@@ -330,98 +330,210 @@
    "type": "Favored Enemy",
    "name": "Aberrations",
    "desc": "Your favored enemy type: aberrations. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Beasts",
    "type": "Favored Enemy",
    "name": "Beasts",
    "desc": "Your favored enemy type: beasts. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Celestials",
    "type": "Favored Enemy",
    "name": "Celestials",
    "desc": "Your favored enemy type: celestials. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Constructs",
    "type": "Favored Enemy",
    "name": "Constructs",
    "desc": "Your favored enemy type: constructs. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Dragons",
    "type": "Favored Enemy",
    "name": "Dragons",
    "desc": "Your favored enemy type: dragons. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Elementals",
    "type": "Favored Enemy",
    "name": "Elementals",
    "desc": "Your favored enemy type: elementals. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Fey",
    "type": "Favored Enemy",
    "name": "Fey",
    "desc": "Your favored enemy type: fey. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Fiends",
    "type": "Favored Enemy",
    "name": "Fiends",
    "desc": "Your favored enemy type: fiends. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Giants",
    "type": "Favored Enemy",
    "name": "Giants",
    "desc": "Your favored enemy type: giants. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Monstrosities",
    "type": "Favored Enemy",
    "name": "Monstrosities",
    "desc": "Your favored enemy type: monstrosities. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Oozes",
    "type": "Favored Enemy",
    "name": "Oozes",
    "desc": "Your favored enemy type: oozes. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Plants",
    "type": "Favored Enemy",
    "name": "Plants",
    "desc": "Your favored enemy type: plants. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Undead",
    "type": "Favored Enemy",
    "name": "Undead",
    "desc": "Your favored enemy type: undead. You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Enemy:Humanoids (two races)",
    "type": "Favored Enemy",
    "name": "Humanoids (two races)",
    "desc": "Your favored enemy type: humanoids (two races). You have advantage on Wisdom (Survival) checks to track them and on Intelligence checks to recall information about them, and you learn one language they speak.",
-   "rules": []
+   "rules": [
+    {
+     "select": {
+      "name": "Language",
+      "type": "Language",
+      "n": 1
+     }
+    }
+   ]
   },
   {
    "id": "Favored Terrain:Arctic",
