@@ -111,6 +111,13 @@
    "name": "Undercommon",
    "desc": "Undercommon is a language your character can speak, read and write.",
    "rules": []
+  },
+  {
+   "id": "Language:Druidic",
+   "type": "Language",
+   "name": "Druidic",
+   "desc": "Druidic is the secret language of druids. It is a language your character can speak, read and write.",
+   "rules": []
   }
  ]
 }
