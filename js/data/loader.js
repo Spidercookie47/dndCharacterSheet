@@ -148,6 +148,7 @@ const Loader = {
     this.initBuiltin(list);
     this.rebuild();
     await this.loadCached();
+    this.watch();
   },
 
   rebuild() {
@@ -229,6 +230,114 @@ const Loader = {
     const p = this.packs.find((x) => x.id === id);
     if (!p || !p.url) throw new Error('This pack has no link to refresh from.');
     return this.addUrl(p.url);
+  },
+  /* ---------- update notices ---------- */
+  hash(j) {
+    const s = JSON.stringify(j);
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  },
+  // Re-reads every linked pack and returns the ids whose content changed online.
+  async checkUpdates() {
+    const out = [];
+    await Promise.all(
+      this.packs
+        .filter((p) => !p.builtin && p.url)
+        .map(async (p) => {
+          try {
+            const root = await this.getJson(p.url);
+            const j = Array.isArray(root.files) ? await this.readSource(p.url) : root;
+            if (this.hash(j) !== this.hash(p.json)) out.push(p.id);
+          } catch (e) {}
+        }),
+    );
+    return out;
+  },
+  // Compares version.json (next to index.html) with the version this browser last loaded.
+  async checkApp() {
+    if (window.__HS_BUNDLE__ || location.protocol === 'file:') return null;
+    try {
+      const r = await fetch('version.json', { cache: 'no-store' });
+      if (!r.ok) return null;
+      const v = String((await r.json()).version || '');
+      const seen = localStorage.getItem('hs-appver');
+      if (!seen) {
+        localStorage.setItem('hs-appver', v);
+        return null;
+      }
+      return v && v !== seen ? v : null;
+    } catch (e) {
+      return null;
+    }
+  },
+  // A small notice at the bottom of the page; one per key.
+  notice(key, text, label, go) {
+    this._notes = this._notes || {};
+    if (this._notes[key]) return;
+    let box = document.getElementById('upd');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'upd';
+      box.className = 'upd';
+      document.body.appendChild(box);
+    }
+    const el = document.createElement('div');
+    el.className = 'upd-i';
+    const msg = document.createElement('span');
+    msg.textContent = text;
+    const ok = document.createElement('button');
+    ok.textContent = label;
+    ok.onclick = async () => {
+      ok.disabled = true;
+      await go();
+    };
+    const no = document.createElement('button');
+    no.className = 'alt';
+    no.textContent = 'Later';
+    no.onclick = () => {
+      el.remove();
+      delete this._notes[key];
+    };
+    el.append(msg, ok, no);
+    box.appendChild(el);
+    this._notes[key] = el;
+  },
+  // Runs on start and whenever the tab is shown again (at most every 10 minutes).
+  watch() {
+    const run = async () => {
+      if (Date.now() - (this._last || 0) < 600000) return;
+      this._last = Date.now();
+      const ids = await this.checkUpdates();
+      if (ids.length) {
+        const names = ids
+          .map((id) => (this.packs.find((p) => p.id === id) || {}).short || id)
+          .join(', ');
+        this.notice('packs', 'Pack updated: ' + names, 'Update', async () => {
+          for (const id of ids) {
+            try {
+              await this.refresh(id);
+            } catch (e) {}
+          }
+          location.reload();
+        });
+      }
+      const v = await this.checkApp();
+      if (v)
+        this.notice('app', 'A new version of the site is available.', 'Refresh', async () => {
+          try {
+            localStorage.setItem('hs-appver', v);
+          } catch (e) {}
+          location.reload();
+        });
+    };
+    run();
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) run();
+    });
   },
   async remove(id) {
     await Cache.del(id);
