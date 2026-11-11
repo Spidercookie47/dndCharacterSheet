@@ -125,3 +125,14 @@ const STARTSUB_DM = [
 const MACTS =
   '<button class="lnk" data-a="msave">Save</button><button class="lnk" data-a="mpdf">Stat block PDF</button>';
 
+/* Weapon Mastery properties (SRD 5.2). Each weapon's desc names one: "Mastery: Topple." */
+const MASTERY = {
+  Cleave: "When you hit a creature with a melee attack using this weapon, you can make a melee attack against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier unless it is negative. Once per turn.",
+  Graze: "If your attack roll with this weapon misses a creature, you can still deal damage to it equal to the ability modifier you used for the attack. The damage is the weapon's type, and can only be increased by raising that modifier.",
+  Nick: 'When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. Once per turn.',
+  Push: 'If you hit a creature with this weapon, you can push it up to 10 feet straight away from you if it is Large or smaller.',
+  Sap: 'If you hit a creature with this weapon, it has Disadvantage on its next attack roll before the start of your next turn.',
+  Slow: "If you hit a creature with this weapon and deal damage, you can reduce its Speed by 10 feet until the start of your next turn. Multiple hits don't stack beyond 10 feet.",
+  Topple: 'If you hit a creature with this weapon, you can force it to make a Constitution saving throw (DC 8 + the ability modifier you used for the attack + your Proficiency Bonus). On a failure, it has the Prone condition.',
+  Vex: 'If you hit a creature with this weapon and deal damage, you have Advantage on your next attack roll against that creature before the end of your next turn.',
+};

@@ -212,13 +212,17 @@ function itemView(x, r, c, soloWeapon) {
     stats.push(['Attack', sg(m + (cw || profW(r, e) ? c.pb : 0) + ar + mw)]);
     stats.push(['Damage', dm[1] + sg(m + du + mw) + ' ' + dm[2]]);
   }
+  /* Weapon Mastery: only on weapons this character has actually picked as a mastery */
+  const mastered = r.sels.filter((y) => y.kind === 'Weapon').some((y) => y.chosen.includes(x.i.id)),
+    mn = mastered && typeof masteryName === 'function' ? masteryName(e) : '';
+  if (mn) stats.push(['Mastery', mn]);
   if (e.wt) stats.push(['Weight', e.wt + ' lb']);
   return {
     name: pdfText(e.name),
     level: 0,
     sub: kind + (x.i.mg ? ', magical' : '') + (e.rar ? ', ' + pdfText(e.rar) : '') + (e.att ? ' (requires attunement)' : '') + (q > 1 ? ' x' + q : ''),
     stats,
-    body: pdfText(e.desc),
+    body: pdfText(e.desc) + (mn && MASTERY[mn] ? '\n\nMastery - ' + mn + '. ' + pdfText(MASTERY[mn]) : ''),
   };
 }
 function equippedItems() {

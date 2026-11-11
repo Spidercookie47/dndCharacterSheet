@@ -8,6 +8,7 @@ function eqPane(e) {
       .split('\n\n')
       .map((p) => `<p>${esc(p)}</p>`)
       .join('') +
+    masteryBox(masteryName(e)) +
     `<div class="bar"><label style="margin:0">Quantity <input type="number" min="1" id="eqn" value="${eqn}" style="width:76px"></label><button data-a="addq" data-id="${esc(e.id)}">Add</button>${e.cp ? `<button class="alt" data-a="buy" data-id="${esc(e.id)}">Buy (${fmtP(e.cp * eqn)})</button>` : ''}</div>`
   );
 }
