@@ -379,6 +379,32 @@ on('srcpaste', () => {
   sourcesAction(() => Loader.addText(t), nm);
   return false;
 });
+/* Refresh several packs one after another; only packs with a link can be refreshed. */
+function refreshMany(ids) {
+  sourcesAction(async () => {
+    const out = [];
+    for (const id of ids) {
+      const p = Loader.packs.find((x) => x.id === id);
+      if (p && p.url) {
+        try {
+          out.push(...(await Loader.refresh(id)));
+        } catch (e) {
+          out.push({ pack: p, warnings: ['Could not refresh ' + p.name + ': ' + ((e && e.message) || e)] });
+        }
+      }
+    }
+    return out;
+  }, false);
+}
+on('srcrefall', () => {
+  refreshMany(Loader.packs.map((p) => p.id));
+  return false;
+});
+on('srcgrefresh', (d) => {
+  const g = srcGroups.find((x) => x.id === d.g);
+  if (g) refreshMany(g.ids);
+  return false;
+});
 on('srcgall', (d) => {
   const g = srcGroups.find((x) => x.id === d.g);
   if (!g) return;

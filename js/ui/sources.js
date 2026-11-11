@@ -6,7 +6,7 @@ function sourcesHtml() {
     <label class="opt" style="margin:0;font-weight:600"><input class="sw" type="checkbox" data-a="srctoggle" data-id="${esc(p.id)}"${p.enabled ? ' checked' : ''}><span>${esc(p.name)}<small>${p.count} elements${p.builtin ? ' · built in' : p.url ? ' · ' + esc(p.url) : ' · added from file'}${p.fetchedAt ? ' · cached ' + new Date(p.fetchedAt).toLocaleDateString() : ''}</small></span></label>
     <span class="src" style="flex:0 0 auto">${p.builtin ? '' : (p.url ? `<button class="lnk" data-a="srcrefresh" data-id="${esc(p.id)}">Refresh</button>` : '') + `<button class="lnk" data-a="srcremove" data-id="${esc(p.id)}">Remove</button>`}</span></div>`,
     tile = (p, q) =>
-      `<label class="tile${p.enabled ? ' on' : ''}" data-n="${esc(p.name.toLowerCase())}"${q && !p.name.toLowerCase().includes(q) ? ' style="display:none"' : ''}><input class="sw" type="checkbox" data-a="srctoggle" data-id="${esc(p.id)}"${p.enabled ? ' checked' : ''}><span><b>${esc(p.name)}</b><small>${p.count} elements</small></span></label>`;
+      `<label class="tile${p.enabled ? ' on' : ''}" data-n="${esc(p.name.toLowerCase())}"${q && !p.name.toLowerCase().includes(q) ? ' style="display:none"' : ''}><input class="sw" type="checkbox" data-a="srctoggle" data-id="${esc(p.id)}"${p.enabled ? ' checked' : ''}><span><b>${esc(p.name)}</b><small>${p.count} elements</small></span>${p.url ? `<button type="button" class="lnk" data-a="srcrefresh" data-id="${esc(p.id)}" title="Refresh this pack">↻</button>` : ''}</label>`;
   const groups = srcGroups
     .map((g) => {
       const ps = g.ids.map((id) => byId.get(id)).filter(Boolean);
@@ -15,7 +15,7 @@ function sourcesHtml() {
       const q = (srcQ[g.id] || '').toLowerCase(),
         n = ps.filter((p) => p.enabled).length;
       return `<div class="ph"><span>${esc(g.name)}</span><span class="src">${n} / ${ps.length} on</span></div>
-    <div class="bar" style="margin:8px 0"><input type="text" data-gq="${esc(g.id)}" placeholder="Search ${esc(g.name)}…" value="${esc(srcQ[g.id] || '')}" style="max-width:260px"><button class="lnk" data-a="srcgall" data-g="${esc(g.id)}" data-v="1">All on</button><button class="lnk" data-a="srcgall" data-g="${esc(g.id)}" data-v="0">All off</button><button class="lnk" data-a="srcgrm" data-g="${esc(g.id)}">Remove group</button></div>
+    <div class="bar" style="margin:8px 0"><input type="text" data-gq="${esc(g.id)}" placeholder="Search ${esc(g.name)}…" value="${esc(srcQ[g.id] || '')}" style="max-width:260px"><button class="lnk" data-a="srcgall" data-g="${esc(g.id)}" data-v="1">All on</button><button class="lnk" data-a="srcgall" data-g="${esc(g.id)}" data-v="0">All off</button><button class="lnk" data-a="srcgrefresh" data-g="${esc(g.id)}">Refresh all</button><button class="lnk" data-a="srcgrm" data-g="${esc(g.id)}">Remove group</button></div>
     <div class="tiles" data-gt="${esc(g.id)}">${ps.map((p) => tile(p, q)).join('')}</div>`;
     })
     .join('');
@@ -25,7 +25,7 @@ function sourcesHtml() {
     : '';
   const warn = Loader.warnings.map((w) => `<p class="hint">⚠ ${esc(w)}</p>`).join('');
   const credits = Loader.packs.filter((p) => p.credit).map((p) => p.credit);
-  return `<div class="ph"><span>Content sources</span></div>
+  return `<div class="ph"><span>Content sources</span><button class="lnk" data-a="srcrefall">Refresh all sources</button></div>
     <p class="hint">Everything you can pick comes from a source. Turn a source off to hide its content. Characters keep working; missing content is simply not offered.</p>${rows}${warn}${m}
     ${missingHtml()}
     <div class="ph"><span>Add a source</span></div>
@@ -89,7 +89,7 @@ document.addEventListener('input', (e) => {
 async function sourcesAction(fn, nameHint) {
   try {
     const r = await fn();
-    if (r.length > 1) {
+    if (r.length > 1 && nameHint !== false) {
       const nm = ((await nameHint) || 'Collection').trim(),
         id = nm.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         ids = r.map((x) => x.pack.id),
@@ -102,7 +102,7 @@ async function sourcesAction(fn, nameHint) {
       ok: true,
       text: !r.length
         ? 'Done.'
-        : 'Added ' +
+        : (nameHint === false ? 'Refreshed ' : 'Added ') +
           r.map((x) => x.pack.name).join(', ') +
           (r.some((x) => x.warnings.length)
             ? ' (with warnings: ' +
