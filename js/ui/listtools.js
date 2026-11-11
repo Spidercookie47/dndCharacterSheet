@@ -1,6 +1,6 @@
 /* List tools: sorting, search and small filters for the pick lists (race, class, background, feats).
    Load after events.js (needs on) and before build.js / asi.js render anything. */
-const LF_NAMES = { race: 'races', class: 'classes', bg: 'backgrounds', feat: 'feats' };
+const LF_NAMES = { race: 'races', class: 'classes', bg: 'backgrounds', feat: 'feats', lang: 'languages' };
 const LF_SORTS = [
   ['az', 'A–Z (all books together)'],
   ['za', 'Z–A'],

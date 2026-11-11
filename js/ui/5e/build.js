@@ -172,9 +172,13 @@ function renderBuild() {
   } else {
     const known = sub === 'lang' ? langList(r) : KP(r);
     L =
+      (sub === 'lang'
+        ? `<div class="bar" style="margin-bottom:8px">${srcSel()}${lfBar('lang')}</div>`
+        : '') +
       `<div class="ph"><span>Known ${sub === 'lang' ? 'languages' : 'proficiencies'}</span></div>` +
-      (known.map((n) => `<div class="rw"><span>${esc(n)}</span></div>`).join('') ||
-        '<p class="hint">Nothing yet.</p>') +
+      (known
+        .map((n) => `<div class="rw"${sub === 'lang' ? ` data-lfn="${esc(String(n).toLowerCase())}"` : ''}><span>${esc(n)}</span></div>`)
+        .join('') || '<p class="hint">Nothing yet.</p>') +
       r.sels
         .filter((s) => (sub === 'lang' ? s.kind === 'Language' : ['Skill', 'Tool', 'Gear'].includes(s.kind)))
         .map(selPanel)
