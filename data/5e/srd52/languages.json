@@ -1,6 +1,13 @@
 {
  "elements": [
   {
+   "id": "Language:Common",
+   "type": "Language",
+   "name": "Common",
+   "desc": "Common is a language your character can speak, read and write.",
+   "rules": []
+  },
+  {
    "id": "Language:Common Sign Language",
    "type": "Language",
    "name": "Common Sign Language",
