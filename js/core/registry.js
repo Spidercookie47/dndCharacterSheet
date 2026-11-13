@@ -61,6 +61,7 @@ function buildTables(tables) {
       MODE[h] = c.mode;
       if (c.third) HALF[h] = 3; // 3 = one-third caster when multiclassing
       if (c.known) KN[h] = c.known;
+      if (c.prep) PT[h] = c.prep;
       SUBC[h] = e.id; // only counts as a caster while this subclass is chosen
     }
     if (e.prepared) DOM2[e.id] = Object.assign({ c: e.prepared.class }, e.prepared.levels);
