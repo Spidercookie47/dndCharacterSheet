@@ -13,7 +13,7 @@ function sheetHTML() {
 <div><h3>Skills</h3><ul class="sk">${Object.entries(c.sk)
     .map(([n, s]) => `<li class="${s.p ? 'p' : ''}"><span>${n}</span><span>${sg(s.v)}</span></li>`)
     .join('')}</ul></div></div>
-<h3 style="margin-top:14px">Features</h3>${feats.map((f) => `<details><summary>${esc(f.name)}</summary>${INFO[f.id] && INFO[f.id][0] === '<' ? INFO[f.id] : '<p>' + esc(f.desc) + '</p>'}</details>`).join('') || '<p class="hint">Features from your race, class and background appear here.</p>'}`;
+<h3 style="margin-top:14px">Features</h3>${feats.map((f) => `<details><summary>${esc(f.name)}</summary>${INFO[f.id] && INFO[f.id][0] === '<' ? clean(INFO[f.id]) : '<p>' + esc(f.desc) + '</p>'}</details>`).join('') || '<p class="hint">Features from your race, class and background appear here.</p>'}`;
 }
 function resHtml() {
   const r = resolve(ch),
@@ -28,7 +28,7 @@ function resHtml() {
         u = inf ? 0 : Math.min(ch.used[x.k] || 0, x.max),
         left = inf ? '∞' : x.max - u,
         vis = !inf && x.max <= 12 ? '●'.repeat(x.max - u) + '○'.repeat(u) : left + (inf ? '' : ' / ' + x.max);
-      return `<div class="rw" style="cursor:default"><span>${esc(x.n)} <span class="src">${x.rest === 'S' ? 'short' : 'long'} rest${x.note ? ' · ' + esc(x.note) : ''}</span></span><span>${vis}</span><button class="lnk" data-a="res" data-k="${x.k}" data-d="1" data-m="${inf ? 0 : x.max}">Use</button><button class="lnk" data-a="res" data-k="${x.k}" data-d="-1" data-m="${inf ? 0 : x.max}">Restore</button></div>`;
+      return `<div class="rw" style="cursor:default"><span>${esc(x.n)} <span class="src">${x.rest === 'S' ? 'short' : 'long'} rest${x.note ? ' · ' + esc(x.note) : ''}</span></span><span>${vis}</span><button class="lnk" data-a="res" data-k="${esc(x.k)}" data-d="1" data-m="${inf ? 0 : x.max}">Use</button><button class="lnk" data-a="res" data-k="${esc(x.k)}" data-d="-1" data-m="${inf ? 0 : x.max}">Restore</button></div>`;
     }).join('') +
     '</section>'
   );

@@ -31,6 +31,7 @@
      "level": 17
     }
    ],
+   "supports": "Class:Cleric",
    "prepared": {
     "class": "Cleric",
     "levels": {

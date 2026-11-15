@@ -2,14 +2,32 @@
 const masteryName = (e) => (e && e.type === 'Weapon' && ((e.desc || '').match(/Mastery: (\w+)/) || [])[1]) || '';
 const masteryBox = (n) => (MASTERY[n] ? `<h3>Mastery: ${esc(n)}</h3><p>${esc(MASTERY[n])}</p>` : '');
 
+/* Reference list of all mastery properties, with the ones you've picked highlighted. */
+function masteryRef(r) {
+  const I = idx(),
+    picked = r.sels.filter((s) => s.kind === 'Weapon').flatMap((s) => s.chosen),
+    mine = {};
+  picked.forEach((id) => {
+    const n = masteryName(I[id]);
+    if (n) (mine[n] = mine[n] || []).push(I[id].name);
+  });
+  return (
+    '<div class="ph"><span>What each mastery does</span></div>' +
+    Object.entries(MASTERY)
+      .map(
+        ([n, t]) =>
+          `<div class="rw${mine[n] ? ' on' : ''}" style="cursor:default;display:block"><b>${mine[n] ? '✓ ' : ''}${esc(n)}</b>${mine[n] ? ` <span class="src">your weapons: ${esc(mine[n].join(', '))}</span>` : ''}<div class="src">${esc(t)}</div></div>`,
+      )
+      .join('')
+  );
+}
+
 const rows = (opts, key, chosen, rm) =>
   lfRows(
     opts.filter((o) => srcOk(o) || chosen.includes(o.id)),
     chosen,
-    (o) => {
-      const mt = chosen.includes(o.id) ? MASTERY[masteryName(o)] : ''; // a chosen weapon shows what its mastery does, right under its name
-      return `<div class="rw${chosen.includes(o.id) ? ' on' : ''}${pv && pv.id === o.id && pv.k === key ? ' pv' : ''}" data-lfn="${lfN(o)}" data-a="pv" data-id="${esc(o.id)}" data-k="${esc(key)}"${mt ? ' style="flex-wrap:wrap"' : ''}><span>${chosen.includes(o.id) ? '✓ ' : ''}${esc(o.name)}</span><span class="src">${masteryName(o) ? 'Mastery: ' + esc(masteryName(o)) + ' · ' : ''}${o.src ? esc(o.src) : ''}${rm && chosen.includes(o.id) ? `<b class="x" data-a="pick" data-id="${esc(o.id)}" data-k="${esc(key)}" title="Remove">✕</b>` : ''}</span>${mt ? `<div class="src" style="flex-basis:100%">${esc(mt)}</div>` : ''}</div>`;
-    },
+    (o) =>
+      `<div class="rw${chosen.includes(o.id) ? ' on' : ''}${pv && pv.id === o.id && pv.k === key ? ' pv' : ''}" data-lfn="${lfN(o)}" data-a="pv" data-id="${esc(o.id)}" data-k="${esc(key)}"><span>${chosen.includes(o.id) ? '✓ ' : ''}${esc(o.name)}</span><span class="src">${masteryName(o) ? 'Mastery: ' + esc(masteryName(o)) + ' · ' : ''}${o.src ? esc(o.src) : ''}${rm && chosen.includes(o.id) ? `<b class="x" data-a="pick" data-id="${esc(o.id)}" data-k="${esc(key)}" title="Remove">✕</b>` : ''}</span></div>`,
   );
 function root(t, k, ty) {
   const e = idx()[ch[k]];
@@ -21,8 +39,8 @@ function root(t, k, ty) {
   );
 }
 const selPanel = (s) => {
-  // a pick that is full collapses to just the chosen item(s); ✕ on one brings the full list back
-  const full = s.chosen.length >= s.n;
+  // a feat pick that is full collapses to just the chosen feat(s); ✕ brings the full list back
+  const full = s.kind === 'Feat' && s.chosen.length >= s.n;
   return (
     `<div class="ph"><span>${esc(s.name)} · ${esc(s.owner)}</span><span>${s.chosen.length}/${s.n}</span></div>` +
     rows(full ? s.opts.filter((o) => s.chosen.includes(o.id)) : s.opts, s.key, s.chosen, full)
@@ -78,7 +96,7 @@ function descPane() {
     (on && ro
       ? `<p><button data-a="rm" data-k="${esc(pv.k)}">Remove</button></p>`
       : `<p><button data-a="pick" data-id="${esc(pv.id)}" data-k="${esc(pv.k)}">${on ? 'Remove' : 'Select'}</button></p>`) +
-    (INFO[e.id][0] === '<' ? INFO[e.id] : rich(INFO[e.id]))
+    (INFO[e.id][0] === '<' ? clean(INFO[e.id]) : rich(INFO[e.id]))
   );
 }
 const KP = (r) =>
@@ -170,7 +188,8 @@ function renderBuild() {
             : (KIND[sub] || []).includes(s.kind),
         )
         .map(selPanel)
-        .join('');
+        .join('') +
+      (sub === 'class' && r.sels.some((s) => s.kind === 'Weapon') ? masteryRef(r) : '');
   } else if (sub === 'abil') {
     L = abTab();
     R =

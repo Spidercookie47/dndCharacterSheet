@@ -519,7 +519,7 @@ function loadCharacterFile(text) {
     note('That is not a Hearthscribe character file.');
     return;
   }
-  const c = j.character,
+  const c = Sanitize.char(j.character), // cleaned: only known fields, numbers are numbers
     b = fresh(mode === 'dm');
   ch = { ...b, ...c, ab: { ...b.ab, ...c.ab }, picks: c.picks || {}, d: c.d || {} };
   ch.dm = mode === 'dm';

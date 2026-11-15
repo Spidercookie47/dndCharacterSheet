@@ -24,14 +24,14 @@ function renderStart() {
     cards = list
     .map(
       (c) =>
-        `<div class="card" data-a="open" data-id="${c.id}">${
-          c.img
-            ? `<img src="${c.img}" alt="" style="display:block;margin:0 auto 10px;width:140px;height:140px;border-radius:14px;object-fit:cover">`
+        `<div class="card" data-a="open" data-id="${esc(c.id)}">${
+          imgSrc(c.img)
+            ? `<img src="${imgSrc(c.img)}" alt="" style="display:block;margin:0 auto 10px;width:140px;height:140px;border-radius:14px;object-fit:cover">`
             : ''
         }<b>${esc(c.name || 'Unnamed hero')}</b><small>${esc(summary(c))}</small>${
           delId === c.id
-            ? `<div class="bar" style="margin-top:6px"><button data-a="delyes" data-id="${c.id}">Delete</button><button class="alt" data-a="delno">Keep</button></div>`
-            : `<b class="x" data-a="del" data-id="${c.id}" title="Delete">✕</b>`
+            ? `<div class="bar" style="margin-top:6px"><button data-a="delyes" data-id="${esc(c.id)}">Delete</button><button class="alt" data-a="delno">Keep</button></div>`
+            : `<b class="x" data-a="del" data-id="${esc(c.id)}" title="Delete">✕</b>`
         }</div>`,
     )
     .join('');

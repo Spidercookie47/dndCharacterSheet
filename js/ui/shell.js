@@ -33,7 +33,7 @@ function chrome() {
     SYSTEMS.map(
       ([k, n]) => `<button class="sys${system === k ? ' on' : ''}" data-a="system" data-v="${k}">${n}</button>`,
     ).join('') +
-    `<div class="who"><div><b>${esc(mfocus ? mon.name || 'Unnamed monster' : ch.name || 'Unnamed')}</b><small>${esc(mfocus ? monSummary(mon) : summary(ch))}</small></div>${!mfocus && ch.img ? `<img class="av" src="${ch.img}">` : ''}</div>`;
+    `<div class="who"><div><b>${esc(mfocus ? mon.name || 'Unnamed monster' : ch.name || 'Unnamed')}</b><small>${esc(mfocus ? monSummary(mon) : summary(ch))}</small></div>${!mfocus && imgSrc(ch.img) ? `<img class="av" src="${imgSrc(ch.img)}">` : ''}</div>`;
   if (!$('#nav')) $('#top').insertAdjacentHTML('afterend', '<div id="nav" class="nav"></div>');
   $('#nav').innerHTML =
     (mfocus ? MTABS : TABS)

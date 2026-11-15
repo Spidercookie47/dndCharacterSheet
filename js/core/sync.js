@@ -199,8 +199,8 @@ const Sync = (() => {
   async function download(rm) {
     const j = await api('GET', `files/${rm.fileId}?alt=media`),
       raw = j && (j.character || j);
-    if (!raw || typeof raw !== 'object') return null;
-    const c = norm({ ...raw, id: rm.id });
+    if (!raw || typeof raw !== 'object' || !/^[\w\-]+$/.test(rm.id)) return null;
+    const c = norm({ ...Sanitize.char(raw), id: rm.id });
     c.updated = rm.u;
     return c;
   }

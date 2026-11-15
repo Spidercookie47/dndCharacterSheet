@@ -97,7 +97,7 @@ function drawer() {
     h =
       hd_(esc(ch.name || 'Unnamed hero').toUpperCase()) +
       bar +
-      (ch.img ? `<img class="av big" src="${ch.img}">` : '<div class="av big"></div>') +
+      (imgSrc(ch.img) ? `<img class="av big" src="${imgSrc(ch.img)}">` : '<div class="av big"></div>') +
       `<h3 style="text-align:center;border:0">LEVEL ${L} ${esc((sr || cl || {}).name || '')} ${esc(cn).toUpperCase()}</h3><p class="hint" style="text-align:center">${esc(bg ? bg.name : '')} ${ch.d.gender ? '• ' + esc(ch.d.gender) : ''}</p><p style="text-align:center">Proficiency <b>${sg(c.pb)}</b> · Initiative <b>${sg(c.init)}</b> · AC <b>${c.ac}</b> · Speed <b>${c.speed}ft</b> · HP <b>${c.hp}</b></p>
   <div class="abg">${AB.map((a) => `<div class="ab"><span>${a.toUpperCase()}</span><b>${c.sc[a]} (${sg(mod(c.sc[a]))})</b></div>`).join('')}</div><div class="ph"><span>Skills</span></div><div class="skc">${Object.entries(
     c.sk,
