@@ -13,6 +13,37 @@ const Loader = {
   loadErrors: [], // [{id,name,short,url,builtin,enabled,fetchedAt,count,json,error}]
   prefs: { enabled: {} },
   warnings: [],
+  prog: null, // {pack, file, done, total, fin}
+  report(p) {
+    const b = this.batch;
+    if (p) {
+      p.verb = (b && b.verb) || this.verb || 'Loading';
+      if (b) {
+        p.bi = b.i;
+        p.bt = b.total;
+      }
+    }
+    this.prog = p;
+    if (typeof progUpdate === 'function') progUpdate();
+  },
+  // One bar for several books: batchStart, then batchNext after each book, then batchEnd.
+  batchStart(total, verb) {
+    this.batch = { i: 0, total, verb };
+    this.report({ pack: '', file: '', done: 0, total: 1 });
+  },
+  batchNext() {
+    if (!this.batch) return;
+    this.batch.i++;
+    this.report({ pack: '', file: '', done: 0, total: 1 });
+  },
+  batchEnd(ok) {
+    if (!this.batch) return;
+    if (ok) {
+      this.report({ pack: '', file: '', done: 1, total: 1, fin: true });
+      setTimeout(() => this.report(null), 2500);
+    } else this.report(null);
+    this.batch = null;
+  },
 
   /* ---------- reading JSON ---------- */
   async getJson(url) {
@@ -33,15 +64,24 @@ const Loader = {
     const root = await this.getJson(url);
     if (Array.isArray(root.files)) {
       const out = { source: root.source || {}, elements: [], info: {}, tables: {} };
+      const nm = (root.source && root.source.name) || url,
+        tot = root.files.length;
+      let n = 0;
       for (const f of root.files) {
-        const j = await this.getJson(
+        const fu =
           window.__HS_BUNDLE__ && url.indexOf('data/') === 0
             ? url.replace(/[^/]*$/, f)
-            : this.resolve(url, f),
-        );
+            : this.resolve(url, f);
+        this.report({ pack: nm, file: fu, done: n, total: tot });
+        const j = await this.getJson(fu);
+        n++;
         out.elements.push(...(j.elements || []));
         Object.assign(out.info, j.info || {});
         Object.assign(out.tables, j.tables || {});
+      }
+      if (!this.batch) {
+        this.report({ pack: nm, file: '', done: tot, total: tot, fin: true });
+        setTimeout(() => this.report(null), 2500);
       }
       return out;
     }
@@ -209,8 +249,20 @@ const Loader = {
     const root = await this.getJson(url);
     if (Array.isArray(root.packs)) {
       // a catalog: add everything it lists
-      const out = [];
-      for (const p of root.packs) out.push(await this.addUrl(this.resolve(url, p.url || p)));
+      const out = [],
+        own = !this.batch;
+      if (own) this.batchStart(root.packs.length);
+      try {
+        for (const p of root.packs) {
+          this.report({ pack: '', file: this.resolve(url, p.url || p), done: 0, total: 1 });
+          out.push(await this.addUrl(this.resolve(url, p.url || p)));
+          if (own) this.batchNext();
+        }
+        if (own) this.batchEnd(true);
+      } catch (e) {
+        if (own) this.batchEnd(false);
+        throw e;
+      }
       return out.flat();
     }
     const json = Array.isArray(root.files) ? await this.readSource(url) : root;
@@ -229,7 +281,13 @@ const Loader = {
   async refresh(id) {
     const p = this.packs.find((x) => x.id === id);
     if (!p || !p.url) throw new Error('This pack has no link to refresh from.');
-    return this.addUrl(p.url);
+    const old = this.verb;
+    this.verb = 'Double checking';
+    try {
+      return await this.addUrl(p.url);
+    } finally {
+      this.verb = old;
+    }
   },
   /* ---------- update notices ---------- */
   hash(j) {

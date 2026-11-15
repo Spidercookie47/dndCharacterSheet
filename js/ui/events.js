@@ -381,17 +381,26 @@ on('srcpaste', () => {
 });
 /* Refresh several packs one after another; only packs with a link can be refreshed. */
 function refreshMany(ids) {
+  const list = ids.filter((id) => {
+    const p = Loader.packs.find((x) => x.id === id);
+    return p && p.url;
+  });
   sourcesAction(async () => {
     const out = [];
-    for (const id of ids) {
-      const p = Loader.packs.find((x) => x.id === id);
-      if (p && p.url) {
+    if (list.length) Loader.batchStart(list.length, 'Double checking');
+    try {
+      for (const id of list) {
+        const p = Loader.packs.find((x) => x.id === id);
+        Loader.report({ pack: p.name, file: p.url, done: 0, total: 1 });
         try {
           out.push(...(await Loader.refresh(id)));
         } catch (e) {
           out.push({ pack: p, warnings: ['Could not refresh ' + p.name + ': ' + ((e && e.message) || e)] });
         }
+        Loader.batchNext();
       }
+    } finally {
+      Loader.batchEnd(true);
     }
     return out;
   }, false);

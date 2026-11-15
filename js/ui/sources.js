@@ -1,4 +1,43 @@
 /* Sources: choose which content packs are active, add homebrew by link, file or pasted JSON. */
+function progVals(p) {
+  const bt = p.bt || 0,
+    chk = p.verb === 'Double checking',
+    pct = p.fin ? 100 : Math.round((((p.bi || 0) + (p.total ? p.done / p.total : 0)) / (bt || 1)) * 100);
+  return {
+    pct,
+    head: p.fin
+      ? (chk ? 'Checked ' : 'Loaded ') + (bt ? bt + ' books' : p.pack)
+      : (p.verb || 'Loading') + ' ' + (bt ? bt + ' books' : p.pack || '…'),
+    right: bt ? (p.fin ? '' : 'Book ' + Math.min((p.bi || 0) + 1, bt) + ' / ' + bt) : p.done + ' / ' + p.total + ' files',
+    file: String(p.file || '').replace(location.origin + '/', ''),
+  };
+}
+function progHtml() {
+  const p = Loader.prog;
+  if (!p) return '<div id="lprog"></div>';
+  const v = progVals(p);
+  return `<div id="lprog" class="rw" style="cursor:default;display:block"><b id="lph">${esc(v.head)}</b> <span class="src" id="lpr">${esc(v.right)}</span><div class="src" id="lpf" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:1.4em">${esc(v.file)}</div><div style="display:flex;align-items:center;gap:8px;margin-top:6px"><div style="flex:1;height:8px;border-radius:4px;background:var(--line);overflow:hidden"><i id="lpb" style="display:block;height:100%;width:${v.pct}%;background:var(--ok);transition:width .25s"></i></div><b id="lpp" style="min-width:3em;text-align:right">${v.pct}%</b></div></div>`;
+}
+/* Updates the bar in place (no rebuild), so it moves smoothly and the layout never jumps. */
+function progUpdate() {
+  const el = document.getElementById('lprog'),
+    p = Loader.prog;
+  if (!el) return;
+  if (!p || !document.getElementById('lph')) {
+    el.outerHTML = progHtml();
+    return;
+  }
+  const v = progVals(p),
+    set = (id, t) => {
+      const n = document.getElementById(id);
+      if (n && n.textContent !== t) n.textContent = t;
+    };
+  set('lph', v.head);
+  set('lpr', v.right);
+  set('lpf', v.file);
+  set('lpp', v.pct + '%');
+  document.getElementById('lpb').style.width = v.pct + '%';
+}
 function sourcesHtml() {
   const byId = new Map(Loader.packs.map((p) => [p.id, p])),
     seen = new Set(),
@@ -25,7 +64,7 @@ function sourcesHtml() {
     : '';
   const warn = Loader.warnings.map((w) => `<p class="hint">⚠ ${esc(w)}</p>`).join('');
   const credits = Loader.packs.filter((p) => p.credit).map((p) => p.credit);
-  return `<div class="ph"><span>Content sources</span><button class="lnk" data-a="srcrefall">Refresh all sources</button></div>
+  return progHtml() + `<div class="ph"><span>Content sources</span><button class="lnk" data-a="srcrefall">Refresh all sources</button></div>
     <p class="hint">Everything you can pick comes from a source. Turn a source off to hide its content. Characters keep working; missing content is simply not offered.</p>${rows}${warn}${m}
     ${missingHtml()}
     <div class="ph"><span>Add a source</span></div>
