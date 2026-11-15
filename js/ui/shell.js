@@ -51,7 +51,7 @@ function chrome() {
   else if (tab === 'equip') left = subTabs(ESUB, eqs, 'esub');
   else if (tab === 'manage') left = subTabs(MSUB, msub, 'msub');
   else left = '<span class="hint">Live character sheet</span>';
-  $('#sub').innerHTML = left + `<span class="acts">${mfocus ? MACTS : plusBtn() + ACTS}</span>`;
+  $('#sub').innerHTML = '<span class="subtabs">' + left + '</span>' + `<span class="acts">${mfocus ? MACTS : plusBtn() + ACTS}</span>`;
   const n = store.chars.filter((c) => !!c.dm === (mode === 'dm')).length,
     on = Loader.packs.filter((p) => p.enabled).length;
   $('#status').innerHTML =

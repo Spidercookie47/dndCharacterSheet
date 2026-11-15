@@ -13,16 +13,36 @@ const fmtP = (cp) =>
         : cp + ' cp'
     : '—';
 const fname = () => (ch.name || 'Character').replace(/[^\w\- ]+/g, '').trim() || 'Character';
+const HS_IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 async function dl(name, data, type) {
   const b = new Blob([data], { type }),
     d = window.claude ? await window.claude.use('downloads') : null;
   try {
     if (d) await d.save({ filename: name, data: b });
     else {
+      // iPhone/iPad: the share sheet is the dependable way to reach "Save to Files"
+      if (HS_IOS && navigator.canShare && typeof File === 'function') {
+        const f = new File([b], name, { type });
+        if (navigator.canShare({ files: [f] })) {
+          try {
+            await navigator.share({ files: [f] });
+            return;
+          } catch (e) {
+            if (e && e.name === 'AbortError') return; // the person closed the sheet
+            // any other error (for example the tap was too long ago): use a normal download below
+          }
+        }
+      }
       const a = document.createElement('a');
       a.href = URL.createObjectURL(b);
       a.download = name;
+      a.style.display = 'none';
+      document.body.appendChild(a); // some mobile browsers ignore clicks on detached links
       a.click();
+      setTimeout(() => {
+        a.remove();
+        URL.revokeObjectURL(a.href);
+      }, 4000);
     }
   } catch (e) {
     if (!e || e.code !== 'declined') note('Could not save the file: ' + ((e && e.message) || e));

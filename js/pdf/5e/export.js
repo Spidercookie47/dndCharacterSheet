@@ -157,16 +157,37 @@ async function preview() {
     if (!window.pdfjsLib) throw new Error('The PDF viewer could not load.');
     pdfjsLib.GlobalWorkerOptions.workerSrc = window.HS_PDFJS_WORKER || 'vendor/pdf.worker.min.js';
     const doc = await pdfjsLib.getDocument({ data: bytes.slice() }).promise,
-      box = $('#pg');
+      box = $('#pg'),
+      scale = window.matchMedia('(max-width: 860px)').matches ? 1.2 : 1.5; // phones run out of canvas memory on long sheets
+    // Pages are drawn only when they scroll near the screen, so a sheet with many spell-card pages stays light.
+    const draw_ = async (h) => {
+      try {
+        const cv = document.createElement('canvas');
+        cv.width = h._vp.width;
+        cv.height = h._vp.height;
+        cv.style.cssText = 'width:100%;height:auto;display:block';
+        h.appendChild(cv);
+        await h._p.render({ canvasContext: cv.getContext('2d'), viewport: h._vp }).promise;
+      } catch (e) {}
+    };
+    const io = new IntersectionObserver(
+      (es) =>
+        es.forEach((en) => {
+          if (!en.isIntersecting) return;
+          io.unobserve(en.target);
+          draw_(en.target);
+        }),
+      { rootMargin: '600px 0px' },
+    );
     for (let i = 1; i <= doc.numPages; i++) {
       const p = await doc.getPage(i),
-        vp = p.getViewport({ scale: 1.5 }),
-        cv = document.createElement('canvas');
-      cv.width = vp.width;
-      cv.height = vp.height;
-      cv.style.cssText = 'width:100%;height:auto;background:#fff;margin:8px 0;display:block';
-      box.appendChild(cv);
-      await p.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
+        vp = p.getViewport({ scale }),
+        h = document.createElement('div');
+      h.style.cssText = 'width:100%;aspect-ratio:' + vp.width + '/' + vp.height + ';background:#fff;margin:8px 0';
+      h._p = p;
+      h._vp = vp;
+      box.appendChild(h);
+      io.observe(h);
     }
     $('#pm').remove();
   } catch (e) {
