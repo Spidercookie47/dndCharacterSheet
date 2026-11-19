@@ -3,14 +3,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1a1114" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6eeef" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="manifest.json">
+<meta name="application-name" content="Hearthscribe">
+<script>window.__hsBIP=null;addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__hsBIP=e;});</script>
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hearthscribe">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Hearthscribe — D&D 5e Character Builder</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l8.5 5v10L12 22l-8.5-5V7z' fill='none' stroke='%23d4572e' stroke-width='2'/%3E%3Cpath d='M12 6.5c2.8 2.6 3.4 5.4 0 9.5-3.4-4.1-2.8-6.9 0-9.5z' fill='%23d4572e'/%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Special+Elite&family=Spectral:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/coc/coc.css">
-<link rel="stylesheet" href="css/mobile.css">
+<link rel="stylesheet" href="css/tokens.css?v=2.0.3">
+<link rel="stylesheet" href="css/layout.css?v=2.0.3">
+<link rel="stylesheet" href="css/components.css?v=2.0.3">
+<link rel="stylesheet" href="css/hp.css?v=2.0.3">
+<link rel="stylesheet" href="css/coc/coc.css?v=2.0.3">
+<link rel="stylesheet" href="css/mobile.css?v=2.0.3">
+<link rel="stylesheet" href="css/play.css?v=2.0.3">
+<link rel="stylesheet" href="css/bottombar.css?v=2.0.3">
+<link rel="stylesheet" href="css/home.css?v=2.0.3">
+<link rel="stylesheet" href="css/levelwiz.css?v=2.0.3">
+<link rel="stylesheet" href="css/homephone.css?v=2.0.3">
+<link rel="stylesheet" href="css/desksheet.css?v=2.0.3">
+<link rel="stylesheet" href="css/inventory.css?v=2.0.3">
 <!-- BUNDLE:vendor -->
 <script src="vendor/pdf-lib.min.js"></script>
 <script src="vendor/pdf.min.js"></script>
@@ -19,40 +35,65 @@
 <div class="ov" id="ov" hidden></div><div class="dr" id="dr" hidden></div>
 <div class="top" id="top"></div><div class="sub" id="sub"></div><div class="main" id="main"></div><div class="status" id="status"></div>
 <!-- Scripts run in this order (they share one global scope; see README for what each file does) -->
-<script src="js/core/5e/constants.js"></script>
-<script src="js/core/util.js"></script>
-<script src="js/core/sanitize.js"></script>   <!-- new line -->
-<script src="js/core/registry.js"></script>
-<script src="js/core/state.js"></script>
-<script src="js/core/5e/engine.js"></script>
-<script src="js/core/5e/leveling.js"></script>
-<script src="js/core/5e/inventory.js"></script>
-<script src="js/core/5e/casting.js"></script>
-<script src="js/core/5e/resources.js"></script>
-<script src="js/data/cache.js"></script>
-<script src="js/data/loader.js"></script>
-<script src="js/pdf/5e/fields.js"></script>
-<script src="js/pdf/5e/export.js"></script>
-<script src="js/pdf/5e/cards.js"></script>
-<script src="js/ui/constants.js"></script>
-<script src="js/ui/state.js"></script>
-<script src="js/ui/5e/rich.js"></script>
-<script src="js/ui/5e/build.js"></script>
-<script src="js/ui/5e/asi.js"></script>
-<script src="js/ui/5e/start.js"></script>
-<script src="js/ui/sources.js"></script>
-<script src="js/ui/5e/manage.js"></script>
-<script src="js/ui/5e/magic.js"></script>
-<script src="js/ui/5e/equipment.js"></script>
-<script src="js/ui/5e/sheet.js"></script>
-<script src="js/ui/5e/drawers.js"></script>
-<script src="js/ui/shell.js"></script>
-<script src="js/ui/events.js"></script>
-<script src="js/ui/listtools.js"></script>
-<script src="js/ui/5e/monster.js"></script>
-<script src="js/ui/coc/coc.js"></script>
-<script src="js/ui/theme.js"></script>
-<script src="js/ui/mobile.js"></script>
-<script src="js/core/sync.js"></script>  
-<script src="js/main.js"></script>
+<script>
+/* Core 5e basics, inline so no file can overwrite them: ability names, skills, coin values, proficiency labels. */
+const AB = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+const AN = { str: 'Strength', dex: 'Dexterity', con: 'Constitution', int: 'Intelligence', wis: 'Wisdom', cha: 'Charisma' };
+const SK = { Acrobatics: 'dex', 'Animal Handling': 'wis', Arcana: 'int', Athletics: 'str', Deception: 'cha', History: 'int', Insight: 'wis', Intimidation: 'cha', Investigation: 'int', Medicine: 'wis', Nature: 'int', Perception: 'wis', Performance: 'cha', Persuasion: 'cha', Religion: 'int', 'Sleight of Hand': 'dex', Stealth: 'dex', Survival: 'wis' };
+const CPV = { cp: 1, sp: 10, ep: 50, gp: 100, pp: 1000 };
+const PFN = { a: 'Armor', w: 'Weapons', t: 'Tools' };
+</script>
+<script src="js/core/util.js?v=2.0.3"></script>
+<script src="js/core/sanitize.js?v=2.0.3"></script>
+<script src="js/core/registry.js?v=2.0.3"></script>
+<script src="js/core/state.js?v=2.0.3"></script>
+<script>
+/* Safety net: if an old state.js is still being served, keep delete / new monster from crashing. */
+if (typeof writeStore !== 'function')
+  window.writeStore = function () {
+    try { localStorage.setItem(typeof STORE_KEY === 'string' ? STORE_KEY : 'aw-store', JSON.stringify(store)); return true; }
+    catch (e) { return false; }
+  };
+</script>
+<script src="js/core/5e/engine.js?v=2.0.3"></script>
+<script src="js/core/5e/leveling.js?v=2.0.3"></script>
+<script src="js/core/5e/inventory.js?v=2.0.3"></script>
+<script src="js/core/5e/casting.js?v=2.0.3"></script>
+<script src="js/core/5e/resources.js?v=2.0.3"></script>
+<script src="js/data/cache.js?v=2.0.3"></script>
+<script src="js/data/loader.js?v=2.0.3"></script>
+<script src="js/pdf/5e/fields.js?v=2.0.3"></script>
+<script src="js/pdf/5e/export.js?v=2.0.3"></script>
+<script src="js/pdf/5e/cards.js?v=2.0.3"></script>
+<script src="js/pdf/5e/custom.js?v=2.0.3"></script>
+<script src="js/ui/constants.js?v=2.0.3"></script>
+<script src="js/ui/state.js?v=2.0.3"></script>
+<script src="js/ui/5e/rich.js?v=2.0.3"></script>
+<script src="js/ui/5e/build.js?v=2.0.3"></script>
+<script src="js/ui/5e/asi.js?v=2.0.3"></script>
+<script src="js/ui/5e/start.js?v=2.0.3"></script>
+<script src="js/ui/sources.js?v=2.0.3"></script>
+<script src="js/ui/5e/manage.js?v=2.0.3"></script>
+<script src="js/ui/5e/magic.js?v=2.0.3"></script>
+<script src="js/ui/5e/equipment.js?v=2.0.3"></script>
+<script src="js/ui/5e/sheet.js?v=2.0.3"></script>
+<script src="js/ui/5e/drawers.js?v=2.0.3"></script>
+<script src="js/ui/shell.js?v=2.0.3"></script>
+<script src="js/ui/events.js?v=2.0.3"></script>
+<script src="js/ui/play.js?v=2.0.3"></script>
+<script src="js/ui/listtools.js?v=2.0.3"></script>
+<script src="js/ui/5e/monster.js?v=2.0.3"></script>
+<script src="js/ui/encounter.js?v=2.0.3"></script>
+<script src="js/ui/coc/coc.js?v=2.0.3"></script>
+<script src="js/ui/theme.js?v=2.0.3"></script>
+<script src="js/ui/mobile.js?v=2.0.3"></script>
+<script src="js/ui/bottombar.js?v=2.0.3"></script>
+<script src="js/ui/homephone.js?v=2.0.3"></script>
+<script src="js/ui/levelwiz.js?v=2.0.3"></script>
+<script src="js/ui/desksheet.js?v=2.0.3"></script>
+<script src="js/ui/customsheet.js?v=2.0.3"></script>
+<script src="js/ui/5e/invdesk.js?v=2.0.3"></script>
+<script src="js/core/sync.js?v=2.0.3"></script>  
+<script src="js/main.js?v=2.0.3"></script>
+<script src="js/pwa.js?v=2.0.3"></script>
 </body></html>

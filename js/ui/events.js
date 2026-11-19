@@ -7,6 +7,56 @@ const on = (name, fn) => {
 
 const chooseAny = (k, id) => (k === 'item' ? addQ(id, eqn) : k === 'spell' ? toggleSpell(id) : choose(k, id));
 
+/* ---- keeping going when something breaks ---- */
+let lastFail = 0;
+function failSoft(err) {
+  console.error(err);
+  if (Date.now() - lastFail < 5000) return; // one message at a time
+  lastFail = Date.now();
+  try {
+    note('Something went wrong: ' + ((err && err.message) || err) + '. Your characters are saved. Try another tab, or reload.');
+  } catch (e) {}
+}
+window.addEventListener('error', (e) => {
+  if (e.filename && !e.filename.startsWith(location.origin)) return; // scripts from other sites (Google sign-in...)
+  if (/ResizeObserver/.test(e.message || '')) return;
+  failSoft(e.error || e.message);
+});
+window.addEventListener('unhandledrejection', (e) => failSoft(e.reason));
+{
+  // a screen that fails to draw (for example because of a faulty homebrew pack) must not leave a blank page
+  const baseDraw = draw;
+  draw = function () {
+    try {
+      baseDraw();
+    } catch (err) {
+      failSoft(err);
+      const m = $('#main');
+      if (m && !m.innerHTML.trim())
+        m.innerHTML =
+          '<div class="left"><p class="hint">This screen could not be drawn. Your characters are safe. Try another tab, or turn off the last content source you added on the Sources tab.</p></div>';
+    }
+  };
+}
+
+/* ---- saving while typing: wait for a short pause instead of saving on every key ---- */
+let saveT = null;
+function flushSave() {
+  if (!saveT) return;
+  clearTimeout(saveT);
+  saveT = null;
+  persist();
+  chrome();
+}
+const queueSave = () => {
+  clearTimeout(saveT);
+  saveT = setTimeout(flushSave, 400);
+};
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) flushSave();
+});
+window.addEventListener('pagehide', flushSave);
+
 /* ---- navigation ---- */
 on('system', (d) => {
   system = d.v;
@@ -15,7 +65,7 @@ on('mode', (d) => {
   if (store.chars.some((c) => c.id === ch.id)) persist();
   mode = d.v;
   mfocus = false;
-  if (startSub === 'mons') startSub = 'chars';
+  if (startSub === 'mons' || startSub === 'enc') startSub = 'chars';
   if (!!ch.dm !== (mode === 'dm')) ch = fresh(mode === 'dm'); // each mode has its own characters
   tab = 'start';
   panel = null;
@@ -106,9 +156,7 @@ on('delyes', (d) => {
   }
   if (typeof Sync !== 'undefined' && Sync.onDelete) Sync.onDelete(d.id); // record the deletion so the next sync removes the Drive file instead of re-downloading it
   delId = null;
-  try {
-    localStorage.setItem('aw-store', JSON.stringify(store));
-  } catch (x) {}
+  writeStore();
 });
 on('save', () => {
   saveFile();
@@ -222,7 +270,16 @@ on('lvlup', (d) => {
       return false;
     }
   }
-  ch.lv.push({ c: cid, v: avgHp(idx()[cid].hd) });
+  const hd = idx()[cid].hd,
+    roll = ch.opt.avg ? avgHp(hd) : Math.floor(Math.random() * hd) + 1; // average only when that option is on
+  const hpBefore = calc(ch, resolve(ch)).hp;
+  ch.lv.push({ c: cid, v: roll });
+  if (ch.hpNow != null) {
+    // a hurt character keeps the same missing hit points: the new level's hit points are gained on top
+    const hpAfter = calc(ch, resolve(ch)).hp;
+    hpSet(ch.hpNow + (hpAfter - hpBefore), hpAfter);
+  }
+  if (!ch.opt.avg) note('Rolled d' + hd + ' for hit points: ' + roll + '. You can change it with the slider in Level up & HP.');
 });
 on('lvldown', () => {
   ensureLv(ch);
@@ -252,7 +309,79 @@ on('rest', (d) => {
   R.forEach((x) => {
     if (d.v === 'L' || x.rest === 'S') ch.used[x.k] = 0;
   });
-  note(d.v === 'L' ? 'Long rest: everything restored.' : 'Short rest: short-rest resources restored.');
+  if (d.v === 'L') {
+    delete ch.hpNow; // back to full health
+    delete ch.tempHp;
+    hdRest();
+  }
+  note(
+    d.v === 'L'
+      ? 'Long rest: hit points, half your hit dice and all resources restored.'
+      : 'Short rest: short-rest resources restored. Spend hit dice on the Hit points card.',
+  );
+});
+
+/* ---- Hit point tracker (Character sheet) ---- */
+const hpAmt = () => {
+  const el = $('#hpamt');
+  return Math.max(1, Math.min(9999, Math.trunc(+(el && el.value)) || 1));
+};
+function hpSet(now, max) {
+  if (now >= max) delete ch.hpNow; // full health: follow the maximum again
+  else ch.hpNow = Math.max(0, now);
+}
+function hpHit(n) {
+  const h = hpInfo(calc(ch, resolve(ch))),
+    t = Math.min(h.temp, n); // temporary hit points soak up damage first
+  if (h.temp - t > 0) ch.tempHp = h.temp - t;
+  else delete ch.tempHp;
+  hpSet(h.now - (n - t), h.max);
+}
+function hpHeal(n) {
+  const h = hpInfo(calc(ch, resolve(ch)));
+  hpSet(h.now + n, h.max);
+}
+function hdRest() {
+  // a long rest gives back half your hit dice (at least one), largest dice first
+  let back = Math.max(1, Math.floor(ch.level / 2));
+  ch.hdUsed = ch.hdUsed || {};
+  hdInfo()
+    .sort((a, b) => b.d - a.d)
+    .forEach((x) => {
+      const used = Math.min(ch.hdUsed[x.k] || 0, x.n),
+        give = Math.min(used, back);
+      back -= give;
+      if (used - give > 0) ch.hdUsed[x.k] = used - give;
+      else delete ch.hdUsed[x.k];
+    });
+  if (!Object.keys(ch.hdUsed).length) delete ch.hdUsed;
+}
+on('hp', (d) => {
+  if (+d.d < 0) hpHit(1);
+  else hpHeal(1);
+});
+on('hpdmg', () => hpHit(hpAmt()));
+on('hpheal', () => hpHeal(hpAmt()));
+on('hptemp', () => {
+  const h = hpInfo(calc(ch, resolve(ch))),
+    n = hpAmt();
+  if (n > h.temp) ch.tempHp = n;
+  note('Temporary hit points: ' + Math.max(n, h.temp) + '. They do not stack; the higher number counts.');
+});
+on('hdspend', (d) => {
+  const x = hdInfo().find((y) => y.k === d.c),
+    c = calc(ch, resolve(ch));
+  if (!x || x.left < 1) {
+    note('No hit dice left.');
+    return false;
+  }
+  const roll = Math.floor(Math.random() * x.d) + 1,
+    cm = mod(c.sc.con),
+    heal = Math.max(0, roll + cm);
+  ch.hdUsed = ch.hdUsed || {};
+  ch.hdUsed[x.k] = Math.min(x.n, ch.hdUsed[x.k] || 0) + 1;
+  hpHeal(heal);
+  note('Spent a d' + x.d + ': rolled ' + roll + (cm ? ' ' + sg(cm) + ' Constitution' : '') + ' = ' + heal + ' hit points.');
 });
 
 /* ---- backstory ---- */
@@ -438,8 +567,13 @@ document.addEventListener('click', (e) => {
   if (!t) return;
   const fn = Actions[t.dataset.a];
   if (!fn) return;
-  ch.inv = ch.inv || [];
-  if (fn(t.dataset, t, e) !== false) draw();
+  flushSave(); // save pending typing before this action can switch to another character
+  try {
+    ch.inv = ch.inv || [];
+    if (fn(t.dataset, t, e) !== false) draw();
+  } catch (err) {
+    failSoft(err);
+  }
 });
 
 /* ---- typing ---- */
@@ -448,14 +582,12 @@ document.addEventListener('input', (e) => {
     d = t.dataset;
   if (d.f && (t.type === 'text' || t.tagName === 'TEXTAREA')) {
     setF(d.f, t.value);
-    persist();
-    chrome();
+    queueSave();
   } else if (d.hp !== undefined) {
     ensureLv(ch);
     ch.lv[+d.hp].v = +t.value;
     t.nextElementSibling.textContent = '+' + t.value + ' HP';
-    persist();
-    chrome();
+    queueSave();
     const s = $('#hpt');
     if (s) s.textContent = calc(ch, resolve(ch)).hp;
   } else if (t.id === 'xq') {
@@ -523,6 +655,18 @@ function loadCharacterFile(text) {
     b = fresh(mode === 'dm');
   ch = { ...b, ...c, ab: { ...b.ab, ...c.ab }, picks: c.picks || {}, d: c.d || {} };
   ch.dm = mode === 'dm';
+  // a file with the same ID as a saved character would silently replace it: ask first
+  const clash = store.chars.find((x) => x.id === ch.id);
+  if (
+    clash &&
+    !confirm(
+      '"' + (clash.name || 'Unnamed hero') + '" is already in your collection.\n\nOK: replace it with the file.\nCancel: keep both (the file is added as a copy).',
+    )
+  ) {
+    ch.id = fresh(mode === 'dm').id;
+    ch.name = (ch.name || 'Unnamed hero') + ' (imported)';
+    delete ch.updated;
+  }
   mfocus = false;
   persist();
   tab = 'build';
@@ -535,6 +679,14 @@ document.addEventListener('change', (e) => {
     k = d.f;
   if (d.sf !== undefined) {
     srcF = t.value;
+    draw();
+  } else if (d.arr) {
+    // standard array: pick a number for this ability; the ability that had it gets this ability's old number
+    const v = +t.value,
+      other = AB.find((x) => x !== d.arr && ch.ab[x] === v);
+    if (other) ch.ab[other] = ch.ab[d.arr];
+    ch.ab[d.arr] = v;
+    persist();
     draw();
   } else if (d.asi) {
     const c = (ch.asi = ch.asi || {}),

@@ -280,8 +280,16 @@ const Sanitize = (() => {
     if (isObj(c.extra)) o.extra = { feats: strArr(c.extra.feats), langs: strArr(c.extra.langs), spells: strArr(c.extra.spells) };
     if (isObj(c.opt)) {
       o.opt = {};
-      ['avg', 'feats', 'multi'].forEach((k) => {
+      ['avg', 'feats', 'multi', 'reroll'].forEach((k) => {
         if (k in c.opt) o.opt[k] = !!c.opt[k];
+      });
+    }
+    if (typeof c.hpNow === 'number') o.hpNow = int(c.hpNow, 0, 99999, 0); // current hit points (missing = full health)
+    if (typeof c.tempHp === 'number') o.tempHp = int(c.tempHp, 0, 99999, 0);
+    if (isObj(c.hdUsed)) {
+      o.hdUsed = {};
+      Object.keys(c.hdUsed).forEach((k) => {
+        if (safeKey(k)) o.hdUsed[k] = int(c.hdUsed[k], 0, 20, 0);
       });
     }
     if (isObj(c.d)) {

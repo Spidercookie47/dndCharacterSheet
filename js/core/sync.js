@@ -29,11 +29,7 @@ const Sync = (() => {
     s.deleted = s.deleted || {};
     return s;
   };
-  const saveStore = () => {
-    try {
-      localStorage.setItem('aw-store', JSON.stringify(store));
-    } catch (e) {}
-  };
+  const saveStore = () => writeStore(); // shared safe save (core/state.js)
   const linked = () => {
     try {
       return localStorage.getItem(FLAG) === '1';
@@ -304,7 +300,7 @@ const Sync = (() => {
       s.pendingDel = s.pendingDel.filter((x) => x !== fid);
     }
     const remote = await listRemote(),
-      suspicious = remote.size === 0 && Object.keys(s.known).length > 1;
+      suspicious = remote.size === 0 && Object.keys(s.known).length > 0; // an empty Drive folder never deletes local characters
     for (const [id, rm] of remote) {
       const local = store.chars.find((c) => c.id === id),
         k = s.known[id];

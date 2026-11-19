@@ -181,6 +181,7 @@ button, .btn, .tab, .lnk, .rw, .card, .tile, summary, label, select {
     box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
   }
   body.sheet-open #sheetbg {
+    pointer-events: none; /* rows above the sheet stay tappable, so you can switch to another item */
     display: block;
     position: fixed;
     inset: 0;

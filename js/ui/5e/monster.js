@@ -55,11 +55,7 @@ let mon = freshMon(), // the monster being edited
   msb = 'basic', // Build sub-tab
   mDelId = null;
 
-const saveStore = () => {
-  try {
-    localStorage.setItem('aw-store', JSON.stringify(store));
-  } catch (e) {}
-};
+const saveStore = () => writeStore(); // shared safe save (core/state.js)
 function persistMon() {
   const i = store.mons.findIndex((x) => x.id === mon.id);
   i < 0 ? store.mons.push(mon) : (store.mons[i] = mon);

@@ -6,7 +6,7 @@
   const MQ = window.matchMedia('(max-width: 860px)');
   const body = document.body;
   // rows that preview something: build/magic/equipment lists, monster reference stat blocks and features
-  const TRIG = '[data-a="pv"],[data-a="mrpick"],[data-a="mfpick"]';
+  const TRIG = '[data-a="pv"],[data-a="mrpick"],[data-a="mfpick"],[data-a="plpv"]';
 
   const bg = document.createElement('div');
   bg.id = 'sheetbg';
@@ -30,6 +30,14 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
   MQ.addEventListener('change', () => { if (!MQ.matches) closeSheet(); sync(); });
 
+  // The class .sheetable is only put back one frame after a redraw, so check the screen itself
+  function sheetOk() {
+    const m = document.getElementById('main'),
+      l = m && m.querySelector(':scope > .left'),
+      r = m && m.querySelector(':scope > .right');
+    return !!(l && r && l.querySelector(TRIG));
+  }
+
   // events.js has already handled and redrawn by the time this runs (it was registered first)
   document.addEventListener('click', (e) => {
     if (!MQ.matches) return;
@@ -39,7 +47,7 @@
       if (t.closest('[data-a]')) closeSheet(); // Select, Remove, Add, Buy... then show the result
       return;
     }
-    if (t.closest(TRIG) && document.querySelector('#main.sheetable')) openSheet();
+    if (t.closest(TRIG) && sheetOk()) openSheet();
   });
 
   /* ---- keep markup in sync after every redraw ---- */

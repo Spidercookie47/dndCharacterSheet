@@ -31,7 +31,8 @@ function slotsFor(r) {
             : clv(n)),
       0,
     ); // 5.2 half casters round up
-    if (L > 0) sl = CLX.Cleric[Math.min(20, L) - 1].slice(1);
+    const FULL = CLX.Cleric || CLX.Wizard || CLX[nw.find((n) => !HALF[n])] || CLX[nw[0]]; // any full-caster slot table
+    if (L > 0) sl = FULL[Math.min(20, L) - 1].slice(1);
   }
   let pact = null;
   const wn = cs.find(isW);

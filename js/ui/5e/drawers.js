@@ -78,6 +78,11 @@ function drawer() {
           'Multiclassing',
           'Multiclassing allows you to gain levels in multiple classes. To qualify for a new class, you must meet the ability score prerequisites for both your current class and your new one.',
         ],
+        [
+          'reroll',
+          'Level-up rerolls',
+          'Allow rolling hit points again on the level-up screen.',
+        ],
       ]
         .map(
           ([k, n, d]) =>
