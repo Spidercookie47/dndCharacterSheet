@@ -1,0 +1,289 @@
+/* Mobile layer. Load LAST in index.html, after coc.css and any css/themes/ files.
+   It only adds rules for phones and touch screens; desktop is untouched. */
+
+/* ---------- Desktop-neutral helpers ---------- */
+/* shell.js wraps the sub tabs in <span class="subtabs">; on wide screens it must not change the layout */
+.subtabs { display: contents; }
+.sheet-grab, #sheetbg { display: none; }
+
+/* ---------- All touch devices, any width ---------- */
+html {
+  -webkit-text-size-adjust: 100%; /* stop iOS inflating text after rotation */
+  text-size-adjust: 100%;
+}
+body {
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none; /* no rubber-band pull on the page frame */
+}
+button, .btn, .tab, .lnk, .rw, .card, .tile, summary, label, select {
+  touch-action: manipulation; /* removes the 300 ms double-tap-zoom delay */
+}
+
+/* Sticky :hover on touch screens makes the last tapped row look stuck */
+@media (hover: none) {
+  .rw:hover { background: var(--panel); border-color: var(--line); }
+  .rw.pv:hover { background: var(--sel); border-color: var(--acc); }
+  .rw.on:hover { border-color: var(--ok); }
+  .card:hover { border-color: var(--line); }
+  .lnk:hover { box-shadow: none; }
+}
+
+/* ---------- Phones and small tablets ---------- */
+@media (max-width: 860px) {
+  /* Real viewport height: 100% is taller than the screen while the browser toolbar is showing */
+  html { height: 100dvh; }
+  body { height: 100%; }
+
+  /* Inputs under 16px make iOS Safari zoom the page on focus */
+  input[type='text'],
+  input[type='number'],
+  input[type='search'],
+  select,
+  textarea,
+  .fg input,
+  .fg select,
+  .fg textarea {
+    font-size: 16px;
+    min-height: 44px;
+  }
+  textarea { min-height: 88px; }
+
+  /* Touch targets: at least 44 px */
+  button, .btn { min-height: 44px; padding: 8px 18px; }
+  .tab { min-height: 44px; display: inline-flex; align-items: center; }
+  .sub .tab { min-height: 40px; padding: 6px 14px; }
+  .lnk { min-height: 40px; display: inline-flex; align-items: center; padding: 6px 14px; }
+  .md { min-height: 36px; }
+  .abc button { min-height: 40px; min-width: 44px; }
+  .x { padding: 10px; margin-left: 0; }
+  .rw { padding: 10px 12px; min-height: 44px; align-items: center; flex-wrap: wrap; }
+  .rw select { max-width: 100%; }
+  summary { padding: 8px 0; }
+  .opt { padding: 8px 0; }
+  .opt input { margin-top: 3px; }
+  input.sw { width: 48px; height: 28px; }
+  input.sw::after { width: 22px; height: 22px; top: 3px; left: 3px; }
+  input.sw:checked::after { left: 23px; }
+
+  /* Top bar: brand and Player/DM switch stay put, system tabs scroll sideways */
+  .top { padding: 8px 12px 0; gap: 4px 8px; }
+  .brand { margin-right: 8px; font-size: 1.1rem; }
+  .top .who { margin-left: auto; }
+  .who small { display: none; }
+
+  /* Main tab strip scrolls sideways; the Player/DM switch stays pinned on the right */
+  .nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .nav::-webkit-scrollbar, .subtabs::-webkit-scrollbar { display: none; }
+  .nav > * { flex: 0 0 auto; }
+  .nav .modes {
+    position: sticky;
+    right: 0;
+    margin-left: auto;
+    box-shadow: -10px 0 8px -4px var(--bar);
+    z-index: 2;
+  }
+
+  /* Sub strip: tabs scroll on their own line, action pills wrap on the line below */
+  .sub { flex-wrap: wrap; overflow: visible; padding: 4px 12px; gap: 2px 8px; }
+  .subtabs {
+    display: flex;
+    flex: 1 1 100%;
+    gap: 2px 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .subtabs > * { flex: 0 0 auto; }
+  .acts { flex: 1 1 100%; margin-left: 0; gap: 6px 8px; flex-wrap: wrap; padding-bottom: 4px; }
+
+  /* Rows that carry action buttons (inventory, resources, multiclass): name on its own line, buttons below */
+  .rw:has(> .lnk) > span:first-child { flex: 1 1 100%; }
+
+  /* Main area */
+  .main { padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); gap: 10px; }
+  .left { padding: 2px 0; }
+  .right { margin-top: 10px; padding: 14px 14px; border-radius: 14px; }
+  h2 { font-size: 1.4rem; }
+  .cs h2 { font-size: 1.5rem; }
+
+  /* Grids */
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .abs { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+  .abc b { font-size: 1.9rem; }
+  .fg { grid-template-columns: 1fr; }
+  .tiles { grid-template-columns: 1fr; }
+  .skc { columns: 1; font-size: 14px; }
+  .grid { gap: 8px; }
+  .card { width: calc(50% - 4px); min-height: 84px; }
+  .kv { flex-wrap: wrap; gap: 4px 14px; }
+
+  /* Tables scroll inside their own box; slightly larger text */
+  .tw { -webkit-overflow-scrolling: touch; }
+  .tb { font-size: 13px; }
+  .tb th, .tb td { padding: 4px 8px; }
+
+  /* Side drawer becomes full screen */
+  .dr {
+    width: 100%;
+    border-left: 0;
+    border-radius: 0;
+    padding: 12px 14px calc(16px + env(safe-area-inset-bottom, 0px));
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .dh { position: sticky; top: 0; z-index: 1; align-items: center; }
+
+  /* Full-screen overlay respects notches */
+  .ov {
+    padding: calc(12px + env(safe-area-inset-top, 0px)) 12px calc(12px + env(safe-area-inset-bottom, 0px));
+    overscroll-behavior: contain;
+  }
+
+  /* Update toasts clear the home indicator */
+  .upd { bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .upd-i { border-radius: 14px; }
+
+  /* Status bar */
+  .status { padding: 4px 12px calc(4px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* ---------- Detail bottom sheet (list screens with a description panel) ---------- */
+@media (max-width: 860px) {
+  /* mobile.js adds .sheetable to #main when the screen is a list + description. The description is hidden until a row is tapped. */
+  .main.sheetable > .right { display: none; }
+  body.sheet-open .main.sheetable > .right {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 7;
+    margin: 0;
+    max-height: 72dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 0 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    border-radius: 18px 18px 0 0;
+    background: var(--panel);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+  }
+  body.sheet-open #sheetbg {
+    pointer-events: none; /* rows above the sheet stay tappable, so you can switch to another item */
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 6;
+    background: rgba(0, 0, 0, 0.45);
+  }
+  body.sheet-open .sheet-grab {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin: 0 -16px 6px;
+    padding: 12px 12px 4px;
+    background: var(--panel);
+    border-radius: 18px 18px 0 0;
+  }
+  body.sheet-open .sheet-grab::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 40px;
+    height: 4px;
+    margin-left: -20px;
+    border-radius: 2px;
+    background: var(--line);
+  }
+}
+
+/* ---------- Narrow phones ---------- */
+@media (max-width: 420px) {
+  .abg { grid-template-columns: repeat(3, 1fr); }
+  .card { width: 100%; }
+  .abs { grid-template-columns: repeat(2, 1fr); }
+  .stat b, .ab b { font-size: 1.25rem; }
+  .sys { padding: 7px 12px 6px; }
+  .tab { padding: 6px 12px; font-size: 14px; }
+  .coc .bigsan { font-size: 2.4rem; }
+}
+
+/* ---------- Landscape phones: keep bars short ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .top { padding-top: 4px; }
+  .nav, .sub { padding-top: 2px; padding-bottom: 2px; }
+  .tab, .sub .tab { min-height: 36px; }
+}
+
+/* ---------- Motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  input.sw::after { transition: none; }
+}
+
+/* ---------- PDF preview overlay: keep Close / Download reachable while scrolling a long sheet ---------- */
+@media (max-width: 860px) {
+  .ov .ovb > .bar:first-child {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin: 0 -2px 8px;
+    padding: 8px;
+    background: var(--bar);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+}
+
+/* ---------- Compact header and tidier controls (phones) ---------- */
+@media (max-width: 860px) {
+  /* Top bar: logo only, system tabs, then name + Theme, all on one row */
+  .top { padding: 6px 12px 0; gap: 0 6px; }
+  .brand { font-size: 0; gap: 0; margin-right: 4px; padding-bottom: 6px; } /* hides the word, keeps the logo */
+  .sys { min-height: 40px; padding: 6px 12px 5px; font-size: 14px; }
+  .top .who { margin-left: auto; padding-bottom: 4px; }
+  .who b { font-size: 14px; }
+
+  /* Main tab strip: slimmer, with a smaller Player/DM switch */
+  .nav { padding-top: 4px; padding-bottom: 4px; }
+  .nav .tab { min-height: 40px; padding: 4px 12px; font-size: 14px; }
+  .modes .md { min-height: 32px; padding: 2px 12px; font-size: 13px; }
+
+  /* Sub strip: tabs, then ONE scrolling row of small action pills */
+  .sub { padding: 2px 12px 4px; }
+  .sub .tab { min-height: 36px; padding: 4px 12px; }
+  .acts { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .acts::-webkit-scrollbar { display: none; }
+  .acts > * { flex: 0 0 auto; }
+  .acts .lnk { min-height: 34px; padding: 3px 12px; font-size: 13px; }
+
+  /* Filter rows: the two dropdowns share a line, search takes the full width below them.
+     !important is needed because the JS writes widths into style="" on these controls. */
+  .left > .bar > select,
+  .left > .bar > input[type='text'] { min-width: 0; max-width: none !important; width: auto !important; }
+  .left > .bar > select { flex: 1 1 calc(50% - 4px); }
+  .left > .bar > input[type='text'] { flex: 1 1 160px; }
+
+  /* Status bar: keep the save message, drop the version text */
+  .status > span:last-child { display: none; }
+}
+
+/* Very narrow phones: the name would crowd out the system tabs */
+@media (max-width: 400px) {
+  .top .who { display: none; }
+}

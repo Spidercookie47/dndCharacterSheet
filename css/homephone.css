@@ -1,0 +1,194 @@
+/* Phone Home screen (D&D tab). Load after bottombar.css. Only active while <body class="hm-on">, set by homephone.js. */
+@media (max-width: 860px) {
+  /* the old tab rows are replaced by the Home layout; the bottom bar (#bb) stays */
+  body.hm-on #top,
+  body.hm-on #nav,
+  body.hm-on #sub { display: none; }
+  /* to hide the status line on Home too, uncomment: */
+  /* body.hm-on #status { display: none; } */
+
+  .hm { display: flex; flex-direction: column; gap: 14px; min-height: 100%; padding: 6px 4px 8px; }
+
+  .hm-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .hm-brand { display: flex; align-items: center; gap: 10px; font: 700 1.9rem/1 Fraunces, Georgia, serif; color: var(--acc); }
+  .hm-brand svg { width: 34px; height: 34px; flex: 0 0 auto; }
+  .hm-off { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--mut); font-size: 0.95rem; white-space: nowrap; }
+  .hm-off i { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); }
+
+  .hm-sys { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); }
+  .hm .hm-s { flex: 1; min-height: 48px; background: none; color: var(--mut); font-weight: 600; font-size: 1.05rem; }
+  .hm .hm-s.on { background: var(--sel); color: var(--ink); box-shadow: inset 0 0 0 1px var(--acc); }
+
+  .hm-card { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px 16px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); }
+  .hm-card b { display: block; font-size: 1.1rem; }
+  .hm-card small { display: block; color: var(--mut); }
+  .hm-card .hm-dot { flex: 0 0 auto; width: 12px; height: 12px; border-radius: 50%; background: var(--ok); }
+  .hm-card .hm-txt { flex: 1; min-width: 0; }
+  .hm-card .bar { flex: 0 0 auto; }
+  .hm-card button, .hm-card .btn { background: var(--head); color: var(--ink); }
+
+  .hm-h { margin: 6px 0 0; font: 600 1.25rem Fraunces, Georgia, serif; text-transform: none; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  .hm .clist { margin-top: 0; }
+  .hm-empty { margin: 4px 0; }
+
+  .hm-cta { display: flex; gap: 12px; }
+  .hm-cta > * { flex: 1; min-height: 56px; display: inline-flex; align-items: center; justify-content: center; margin: 0; font-size: 1.1rem; font-weight: 600; text-align: center; }
+  .hm-cta .btn.alt { background: var(--head); color: var(--ink); }
+
+  .hm-gap { flex: 1 1 auto; min-height: 8px; }
+
+  .hm-bak { border-style: dashed; border-color: var(--acc); background: none; }
+  .hm-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 6px; }
+}
+
+/* ---------- Phone shell for the D&D tabs ---------- */
+@media (max-width: 860px) {
+  /* the D&D 5e / Call of Cthulhu bar only lives on Home now (Theme is a link there) */
+  body.bb-on #top { display: none; }
+  /* Play tab: no sub-tab or action-pill row */
+  body.pl-on #sub { display: none; }
+  /* status line: hidden, and shown as a toast above the bottom bar while there is a message */
+  body.bb-on #status { display: none; }
+  body.bb-on #status.has-msg { display: flex; position: fixed; left: 12px; right: 12px; bottom: calc(88px + env(safe-area-inset-bottom, 0px)); z-index: 9; padding: 10px 14px; border: 1px solid var(--acc); border-radius: 14px; background: var(--panel); color: var(--ink); font-size: 14px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45); }
+}
+
+/* ---------- Play tab additions ---------- */
+.pl-links { display: none; }
+@media (max-width: 860px) {
+  .pl-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 6px; margin-top: 18px; }
+}
+.hpcard .plhd { text-decoration: underline dotted; text-underline-offset: 4px; cursor: pointer; }
+.hpcard .plhd[disabled] { text-decoration: none; }
+.plamt { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+.plamt > button { min-height: 48px; }
+.plamt > button:first-child { flex: 0 0 52px; padding: 0; }
+.plamt > button:last-child { flex: 1.2; }
+.hpcard .plamt input[type='number'] { flex: 1; width: auto; min-width: 0; min-height: 48px; text-align: center; font: 600 1.4rem Fraunces, Georgia, serif; }
+.pips { gap: 10px; }
+.pips i { width: 28px; height: 28px; }
+
+/* ---------- Home: smaller sizes so nothing pushes the page sideways on narrow phones ---------- */
+@media (max-width: 860px) {
+  body.hm-on, body.hm-on #main { overflow-x: hidden; }
+  .hm { gap: 12px; padding: 4px 0 6px; max-width: 100%; box-sizing: border-box; }
+  .hm > * { min-width: 0; max-width: 100%; box-sizing: border-box; }
+  .hm-top { flex-wrap: wrap; gap: 8px; }
+  .hm-brand { font-size: 1.45rem; gap: 8px; min-width: 0; }
+  .hm-brand svg { width: 28px; height: 28px; }
+  .hm-off { padding: 5px 11px; font-size: 0.82rem; gap: 6px; }
+  .hm-off i { width: 8px; height: 8px; }
+  .hm .hm-s { min-height: 42px; font-size: 0.95rem; }
+  .hm-card { padding: 11px 13px; border-radius: 16px; }
+  .hm-card b { font-size: 1rem; }
+  .hm-card small { font-size: 0.85rem; }
+  .hm-h { font-size: 1.1rem; }
+  .hm .crow { padding: 11px 13px; gap: 11px; border-radius: 16px; }
+  .hm .cav, .hm .crow > svg { width: 44px; height: 44px; }
+  .hm .cwho b { font-size: 1.05rem; }
+  .hm .cwho small { font-size: 0.85rem; }
+  .hm .chp b { font-size: 1.05rem; }
+  .hm-cta { gap: 10px; }
+  .hm-cta > * { min-height: 48px; font-size: 1rem; }
+}
+
+/* ---------- Play tab: Play | Features | Skills (phone) and smaller sizes ---------- */
+.plswitch, .plfeat, .plskills { display: none; }
+.plgh { display: flex; justify-content: space-between; align-items: baseline; }
+.plf { margin: 8px 0; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 0; }
+.plf[open] { border-color: var(--acc); }
+.plf summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 46px; padding: 6px 14px; font-weight: 600; font-size: 1rem; list-style: none; }
+.plf summary::-webkit-details-marker { display: none; }
+.plf summary::after { content: '▾'; color: var(--mut); flex: 0 0 auto; }
+.plf[open] summary::after { content: '▴'; color: var(--acc); }
+.plf summary > span:first-child { flex: 1; }
+.plf > :not(summary) { margin-left: 14px; margin-right: 14px; color: var(--ink); opacity: 0.88; }
+.plf > :last-child { margin-bottom: 12px; }
+.plfu { border: 1px solid var(--ok); color: var(--ok); border-radius: 999px; padding: 1px 10px; font-size: 0.8rem; font-weight: 600; }
+.plsk { columns: 2; column-gap: 18px; }
+.plsk li { break-inside: avoid; }
+@media (max-width: 860px) {
+  .plswitch { display: flex; gap: 4px; padding: 4px; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); }
+  .plswitch button { flex: 1; min-height: 38px; padding: 4px 0; background: none; color: var(--mut); }
+  .plswitch button.on { background: var(--sel); color: var(--ink); box-shadow: inset 0 0 0 1px var(--acc); }
+  .plmain[data-v='features'] .plgrid, .plmain[data-v='skills'] .plgrid { display: none; }
+  .plmain[data-v='features'] .plfeat, .plmain[data-v='skills'] .plskills { display: block; }
+
+  body.pl-on #main { overflow-x: hidden; }
+  .plmain, .plmain .left, .plgrid, .plcol, .plfeat, .plskills { min-width: 0; max-width: 100%; }
+  .plmain .left { padding: 0; }
+  .plhead { gap: 10px; margin-bottom: 10px; }
+  .plhead svg { width: 46px; height: 46px; }
+  .plwho b { font-size: 1.15rem; }
+  .plhead button { min-height: 42px; padding: 6px 14px; }
+  .hpcard { padding: 12px 14px; margin-bottom: 10px; border-radius: 16px; }
+  .hpcard .hpnum { margin: 6px 0 10px; }
+  .hpcard .hpnum button { width: 52px; height: 52px; min-height: 52px; font-size: 26px; }
+  .hpv { font-size: 2.6rem; }
+  .plhb { margin-top: 10px; }
+  .plhb button { min-height: 42px; }
+  .plgrid .stats { gap: 6px; margin-bottom: 10px; }
+  .plgrid .stat { padding: 8px 2px; border-radius: 12px; }
+  .plgrid .stat b { font-size: 1.3rem; }
+  .plres { padding: 12px 14px; margin-bottom: 10px; border-radius: 16px; }
+  .plbtn button { min-height: 42px; }
+  .pips { gap: 8px; }
+  .pips i { width: 24px; height: 24px; }
+  .slot { min-height: 46px; }
+  .plrest button { min-height: 46px; font-size: 1rem; }
+}
+
+/* ---------- Spells and Gear (phone) ---------- */
+.mob { display: none; }
+.sg { display: flex; gap: 4px; padding: 4px; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); }
+.sg button { flex: 1; min-width: 0; min-height: 38px; padding: 4px 2px; background: none; color: var(--mut); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sg button.on { background: var(--sel); color: var(--ink); box-shadow: inset 0 0 0 1px var(--acc); }
+.sg.mob { display: none; } /* phone-only tab switch: .sg (flex) used to win over .mob (none) and showed on desktop */
+.lvs { display: none; }
+.sphd { align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.sphd b { font: 700 1.5rem Fraunces, Georgia, serif; }
+.sphd span { color: var(--mut); font-size: 0.85rem; text-align: right; }
+.spstrip { margin-bottom: 10px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.spstrip .lb { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.8rem; color: var(--mut); }
+.spstrip .lb b { color: var(--ink); font-size: 1rem; }
+.spstrip .sl { display: flex; justify-content: space-between; margin-top: 6px; text-align: center; }
+.spstrip .sl div { flex: 1; }
+.spstrip .sl small { display: block; color: var(--mut); font-size: 0.75rem; }
+.spstrip .sl b { font-size: 1rem; }
+.spstrip .sl .pt b { color: var(--acc); }
+.gehd { align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.gehd b { font: 700 1.5rem Fraunces, Georgia, serif; }
+.gehd button { min-height: 38px; padding: 4px 14px; }
+.gsum { display: flex; gap: 8px; margin-bottom: 10px; }
+.gsum > div { flex: 1; min-width: 0; padding: 8px 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.gsum small { display: block; color: var(--mut); font-size: 0.75rem; }
+.gsum b { font: 600 1.05rem Fraunces, Georgia, serif; }
+.gsum em { margin-left: 4px; font-style: normal; font-size: 0.8rem; color: var(--acc); }
+.gi { margin: 6px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+.gi.open { border-color: var(--acc); }
+.gih { display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 6px 12px; cursor: pointer; }
+.gin { flex: 1; min-width: 0; font-weight: 600; }
+.gin .k { color: var(--ok); }
+.gin .a, .gwf { color: var(--acc); }
+.gwf { margin-left: 6px; }
+.gib { padding: 0 12px 10px; color: var(--mut); font-size: 0.9rem; }
+.gia { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.gco { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.gco label { margin: 0; padding: 4px 2px; text-align: center; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+.gco small { display: block; color: var(--mut); font-size: 0.75rem; text-transform: none; }
+.gco input { width: 100%; max-width: none; min-height: 0; padding: 2px 0; border: 0; background: none; text-align: center; font-weight: 600; }
+.geadd { margin-top: 14px; padding: 0 14px 10px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.geadd summary { padding: 12px 0; font-weight: 600; }
+
+@media (max-width: 860px) {
+  .dsk { display: none !important; }
+  .mob { display: block; }
+  .sg.mob, .gehd.mob, .sphd.mob { display: flex; }
+  body.sp-on #sub, body.ge-on #sub { display: none; }
+  .rw .spx, .rw .lvf { display: none; }
+  .lvs { display: inline; }
+  .gi:not(.open) .gib { display: none; }
+  /* filter chips scroll sideways instead of wrapping into many rows */
+  .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips > * { flex: 0 0 auto; }
+}

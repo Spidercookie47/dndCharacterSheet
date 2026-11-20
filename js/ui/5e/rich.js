@@ -58,7 +58,7 @@ function rich(t) {
       : `<p>${esc(l)}</p>`;
   }
   fl();
-  return o;
+  return clean(o);
 }
 function describe(el) {
   const I = idx(),

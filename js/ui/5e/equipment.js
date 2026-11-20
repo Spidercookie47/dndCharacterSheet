@@ -24,6 +24,28 @@ function fillEq() {
       )
       .join('') || '<p class="hint">No items match.</p>';
 }
+/* Gear on phones: title, Inventory / Shop / Starting / Treasure switch, compact rows that open to show their actions. */
+let geOpen = new Set(),
+  geAdd = false;
+/* the geopen / gearadd handlers are registered in homephone.js: events.js (which defines on()) loads after this file */
+document.addEventListener(
+  'toggle',
+  (e) => {
+    if (e.target && e.target.id === 'geadd') geAdd = e.target.open;
+  },
+  true,
+);
+document.addEventListener(
+  'click',
+  (e) => {
+    if (e.target.closest && e.target.closest('[data-a="cadd"]')) geAdd = false;
+  },
+  true,
+);
+const GE_TABS = [['inv', 'Inventory'], ['shop', 'Shop'], ['start', 'Starting'], ['treasure', 'Treasure']];
+const gearHead = () =>
+  `<div class="gehd mob"><b>Gear</b><button class="alt" data-a="gearadd">+ Add item</button></div><div class="sg mob">${GE_TABS.map(([k, n]) => `<button class="${eqs === k ? 'on' : ''}" data-a="esub" data-v="${k}">${n}</button>`).join('')}</div>`;
+
 function invView(r, c) {
   const inv = (ch.inv = ch.inv || []),
     I = idx(),
@@ -35,9 +57,9 @@ function invView(r, c) {
     cap = c.sc.str * 15,
     at = inv.filter((i) => i.att).length;
   const b = (a, i, x, t) => `<button class="lnk" data-a="${a}" data-i="${i}" data-d="${x}">${t}</button>`;
-  return (
-    `<div class="ph"><span>Inventory</span><span class="src">Weight ${wt.toFixed(1)} / ${cap} lb${wt > cap ? ' ⚠ over capacity' : ''} · Attuned ${at} / 3</span></div>` +
-    (inv
+  const tiles = `<div class="gsum"><div><small>Weight</small><b>${wt.toFixed(1)} / ${cap} lb</b>${wt > cap ? '<em>over</em>' : ''}</div><div><small>Attuned</small><b>${at} / 3</b></div><div><small>Armor class</small><b>${c.ac}</b></div></div>`;
+  const rows =
+    inv
       .map((i, n) => {
         const e = ent(i);
         if (!e) return '';
@@ -45,19 +67,27 @@ function invView(r, c) {
           warn =
             i.eq && e.type === 'Armor'
               ? !armorOk(r, e)
-                ? ' <span class="src">⚠ not proficient</span>'
+                ? '⚠ not proficient'
                 : e.smin && c.sc.str < e.smin
-                  ? ' <span class="src">⚠ Strength ' + e.smin + ' needed (speed −10)</span>'
+                  ? '⚠ Strength ' + e.smin + ' needed (speed −10)'
                   : e.sd
-                    ? ' <span class="src">stealth disadvantage</span>'
+                    ? 'stealth disadvantage'
                     : ''
-              : '';
-        return `<div class="rw${i.eq ? ' on' : ''}"><span data-a="pv" data-id="${esc(i.id)}" data-k="item">${i.eq ? '✓ ' : ''}${i.att ? '◆ ' : ''}${esc(e.name)} ×${i.q}${warn}${effTxt(e, i)}${i.tp ? ' <span class="src">· ' + esc(i.tp) + '</span>' : ''}${i.desc ? '<div class="src">' + esc(i.desc) + '</div>' : ''}</span><span class="src">${((e.wt || 0) * i.q).toFixed(1)} lb</span>${can ? b('eqi', n, '', i.eq ? 'Unequip' : 'Equip') : ''}${e.att ? b('att', n, '', i.att ? 'Unattune' : 'Attune') : ''}${b('mv', n, -1, '↑')}${b('mv', n, 1, '↓')}${b('qty2', n, -1, '−')}${b('qty2', n, 1, '+')}${b('rmi2', n, '', '✕')}</div>`;
+              : '',
+          open = geOpen.has(n);
+        return (
+          `<div class="gi${i.eq ? ' on' : ''}${open ? ' open' : ''}"><div class="gih" data-a="geopen" data-i="${n}"><span class="gin">${i.eq ? '<b class="k">✓</b> ' : ''}${i.att ? '<b class="a">◆</b> ' : ''}${esc(e.name)}${i.q > 1 ? ' ×' + i.q : ''}${warn.startsWith('⚠') ? '<span class="gwf">⚠</span>' : ''}</span><span class="src">${((e.wt || 0) * i.q).toFixed(1)} lb</span></div>` +
+          `<div class="gib">${warn ? '<div>' + esc(warn) + '</div>' : ''}${effTxt(e, i)}${i.tp ? ' <span class="src">· ' + esc(i.tp) + '</span>' : ''}${i.desc ? '<div class="src">' + esc(i.desc) + '</div>' : ''}` +
+          `<div class="gia">${can ? b('eqi', n, '', i.eq ? 'Unequip' : 'Equip') : ''}${e.att ? b('att', n, '', i.att ? 'Unattune' : 'Attune') : ''}${b('qty2', n, -1, '−')}${b('qty2', n, 1, '+')}${b('mv', n, -1, '↑')}${b('mv', n, 1, '↓')}${b('rmi2', n, '', 'Remove')}</div></div></div>`
+        );
       })
-      .join('') ||
-      '<p class="hint">Nothing yet. Add items from the Equipment tab, or use Starting equipment.</p>') +
-    `<div class="ph"><span>Coins</span></div><div class="bar">${['cp', 'sp', 'ep', 'gp', 'pp'].map((k) => `<label style="margin:0">${k.toUpperCase()} <input type="number" min="0" style="width:84px" data-f="c.${k}" value="${co[k] || 0}"></label>`).join('')}</div>` +
-    `<div class="ph"><span>Add a custom item</span></div><div class="fg"><label>Name<input type="text" id="cin" value="${esc(cust.n)}"></label><label>Type<select id="cit"><option value=""></option>${['Weapon', 'Armor', 'Wondrous item', 'Ring', 'Potion', 'Scroll', 'Wand', 'Staff', 'Rod', 'Gear'].map((x) => `<option${cust.t === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label><label>Weight (lb)<input type="number" id="ciw" min="0" value="${esc(cust.w)}"></label><label>Qty<input type="number" id="ciq" min="1" value="${cust.q}"></label></div>${cust.t === 'Weapon' ? `<div class="fg"><label>Damage dice<select id="cidc"><option value=""></option>${['1d4', '1d6', '1d8', '1d10', '1d12', '2d6'].map((x) => `<option${cust.dice === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label><label>Damage type<select id="cidt"><option value=""></option>${['slashing', 'piercing', 'bludgeoning'].map((x) => `<option${cust.dt === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label><label>Weapon kind<select id="ciwk"><option value="">Normal (Strength)</option><option value="finesse"${cust.wk === 'finesse' ? ' selected' : ''}>Finesse (Str or Dex)</option><option value="ranged"${cust.wk === 'ranged' ? ' selected' : ''}>Ranged (Dex)</option></select></label><label class="opt"><input type="checkbox" id="cimg"${cust.mg ? ' checked' : ''}><span>Magical weapon</span></label></div>` : ''}<label>Description<textarea id="cid" rows="3">${esc(cust.d)}</textarea></label><div class="fg"><label>AC bonus<input type="number" id="cia" value="${esc(cust.ac)}"></label><label>Saving throw bonus<input type="number" id="cis" value="${esc(cust.sv)}"></label><label>Saving throw applies to<select id="cisw"><option value="">All saving throws</option>${AB.map((a) => `<option value="${a}"${cust.svw === a ? ' selected' : ''}>${AN[a]} only</option>`).join('')}</select></label><label>Weapon attack and damage bonus<input type="number" id="ciwp" value="${esc(cust.wp)}"></label><label>Spell attack bonus<input type="number" id="cisp" value="${esc(cust.sp)}"></label></div><label>Resistances<input type="text" id="cir" value="${esc(cust.res)}" placeholder="fire, necrotic"></label><label class="opt"><input type="checkbox" id="cira"${cust.ra ? ' checked' : ''}><span>Requires attunement</span></label><p><button data-a="cadd">Add</button></p>`
+      .join('') || '<p class="hint">Nothing yet. Add items from the Shop tab, or use Starting equipment.</p>';
+  const coins = `<div class="ph"><span>Coins</span></div><div class="gco">${['pp', 'gp', 'ep', 'sp', 'cp'].map((k) => `<label><small>${k.toUpperCase()}</small><input type="number" min="0" data-f="c.${k}" value="${co[k] || 0}"></label>`).join('')}</div>`;
+  return (
+    tiles +
+    rows +
+    coins +
+    `<details class="geadd" id="geadd"${geAdd ? ' open' : ''}><summary>Add a custom item</summary><div class="fg"><label>Name<input type="text" id="cin" value="${esc(cust.n)}"></label><label>Type<select id="cit"><option value=""></option>${['Weapon', 'Armor', 'Wondrous item', 'Ring', 'Potion', 'Scroll', 'Wand', 'Staff', 'Rod', 'Gear'].map((x) => `<option${cust.t === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label><label>Weight (lb)<input type="number" id="ciw" min="0" value="${esc(cust.w)}"></label><label>Qty<input type="number" id="ciq" min="1" value="${cust.q}"></label></div>${cust.t === 'Weapon' ? `<div class="fg"><label>Damage dice<select id="cidc"><option value=""></option>${['1d4', '1d6', '1d8', '1d10', '1d12', '2d6'].map((x) => `<option${cust.dice === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label><label>Damage type<select id="cidt"><option value=""></option>${['slashing', 'piercing', 'bludgeoning'].map((x) => `<option${cust.dt === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label><label>Weapon kind<select id="ciwk"><option value="">Normal (Strength)</option><option value="finesse"${cust.wk === 'finesse' ? ' selected' : ''}>Finesse (Str or Dex)</option><option value="ranged"${cust.wk === 'ranged' ? ' selected' : ''}>Ranged (Dex)</option></select></label><label class="opt"><input type="checkbox" id="cimg"${cust.mg ? ' checked' : ''}><span>Magical weapon</span></label></div>` : ''}<label>Description<textarea id="cid" rows="3">${esc(cust.d)}</textarea></label><div class="fg"><label>AC bonus<input type="number" id="cia" value="${esc(cust.ac)}"></label><label>Saving throw bonus<input type="number" id="cis" value="${esc(cust.sv)}"></label><label>Saving throw applies to<select id="cisw"><option value="">All saving throws</option>${AB.map((a) => `<option value="${a}"${cust.svw === a ? ' selected' : ''}>${AN[a]} only</option>`).join('')}</select></label><label>Weapon attack and damage bonus<input type="number" id="ciwp" value="${esc(cust.wp)}"></label><label>Spell attack bonus<input type="number" id="cisp" value="${esc(cust.sp)}"></label></div><label>Resistances<input type="text" id="cir" value="${esc(cust.res)}" placeholder="fire, necrotic"></label><label class="opt"><input type="checkbox" id="cira"${cust.ra ? ' checked' : ''}><span>Requires attunement</span></label><p><button data-a="cadd">Add</button></p></details>`
   );
 }
 function startView(r) {
@@ -153,12 +183,12 @@ function renderEquip() {
   if (eqs === 'shop') {
     const I = idx();
     const s = pv && pv.k === 'item' && I[pv.id];
-    m.innerHTML = `<div class="left"><div class="chips">${ECATS.map((k) => `<button class="lnk${ecat === k ? ' on' : ''}" data-a="ecat" data-v="${esc(k)}">${k}</button>`).join('')}</div><div class="bar">${srcSel()}<input type="text" id="eqs" placeholder="Filter by name…" value="${esc(eqq)}" style="max-width:260px"></div><div class="ph"><span>${ecat}</span><span class="src">${ecat.startsWith('Magic') || /Wondrous|Rings|Rods|Staffs|Wands|Potions|Scrolls/.test(ecat) ? 'Rarity' : 'Price · Weight'}</span></div><div id="el"></div></div><div class="right">${s ? eqPane(s) : '<p class="hint">Click an item to read about it. Double-click it to add it, or use Buy to pay with your coins.</p>'}</div>`;
+    m.innerHTML = `<div class="left">${gearHead()}<div class="chips">${ECATS.map((k) => `<button class="lnk${ecat === k ? ' on' : ''}" data-a="ecat" data-v="${esc(k)}">${k}</button>`).join('')}</div><div class="bar">${srcSel()}<input type="text" id="eqs" placeholder="Filter by name…" value="${esc(eqq)}" style="max-width:260px"></div><div class="ph"><span>${ecat}</span><span class="src">${ecat.startsWith('Magic') || /Wondrous|Rings|Rods|Staffs|Wands|Potions|Scrolls/.test(ecat) ? 'Rarity' : 'Price · Weight'}</span></div><div id="el"></div></div><div class="right">${s ? eqPane(s) : '<p class="hint">Click an item to read about it. Double-click it to add it, or use Buy to pay with your coins.</p>'}</div>`;
     fillEq();
-  } else if (eqs === 'inv') m.innerHTML = `<div class="left">${invView(r, c)}</div>`;
-  else if (eqs === 'start') m.innerHTML = `<div class="left">${startView(r)}</div>`;
+  } else if (eqs === 'inv') m.innerHTML = `<div class="left">${gearHead()}${invView(r, c)}</div>`;
+  else if (eqs === 'start') m.innerHTML = `<div class="left">${gearHead()}${startView(r)}</div>`;
   else
-    m.innerHTML = `<div class="left"><div class="ph"><span>Additional treasure and quest items</span></div><p class="hint">Gems, art objects, keys, letters and quest items. This goes on the sheet's treasure box.</p>${TA('treasure', 'Treasure and quest items', 12)}</div>`;
+    m.innerHTML = `<div class="left">${gearHead()}<div class="ph"><span>Additional treasure and quest items</span></div><p class="hint">Gems, art objects, keys, letters and quest items. This goes on the sheet's treasure box.</p>${TA('treasure', 'Treasure and quest items', 12)}</div>`;
 }
 function effTxt(e, i) {
   const d = MEF[e.id] || i.fx,

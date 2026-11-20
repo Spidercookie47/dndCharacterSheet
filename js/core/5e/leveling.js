@@ -2,7 +2,8 @@
 const avgHp = (hd) => Math.floor(hd / 2) + 1,
   pl = () => classLevels(ch)[ch.cls] || ch.level;
 function ensureLv(c) {
-  c.opt = c.opt || { avg: false, feats: true, multi: true };
+  c.opt = c.opt || { avg: false, feats: true, multi: true, reroll: true };
+  if (c.opt.reroll === undefined) c.opt.reroll = true; // older characters keep unlimited rerolls
   const I = idx();
   if (!c.lv || !c.lv.length) {
     c.lv = [];

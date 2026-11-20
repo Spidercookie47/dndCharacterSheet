@@ -7,8 +7,9 @@ const rows = (opts, key, chosen, rm) =>
     opts.filter((o) => srcOk(o) || chosen.includes(o.id)),
     chosen,
     (o) => {
-      const mt = chosen.includes(o.id) ? MASTERY[masteryName(o)] : ''; // a chosen weapon shows what its mastery does, right under its name
-      return `<div class="rw${chosen.includes(o.id) ? ' on' : ''}${pv && pv.id === o.id && pv.k === key ? ' pv' : ''}" data-lfn="${lfN(o)}" data-a="pv" data-id="${esc(o.id)}" data-k="${esc(key)}"${mt ? ' style="flex-wrap:wrap"' : ''}><span>${chosen.includes(o.id) ? '✓ ' : ''}${esc(o.name)}</span><span class="src">${masteryName(o) ? 'Mastery: ' + esc(masteryName(o)) + ' · ' : ''}${o.src ? esc(o.src) : ''}${rm && chosen.includes(o.id) ? `<b class="x" data-a="pick" data-id="${esc(o.id)}" data-k="${esc(key)}" title="Remove">✕</b>` : ''}</span>${mt ? `<div class="src" style="flex-basis:100%">${esc(mt)}</div>` : ''}</div>`;
+      const mn = chosen.includes(o.id) ? masteryName(o) : '', // only a chosen weapon shows what its mastery does
+        mt = MASTERY[mn];
+      return `<div class="rw${chosen.includes(o.id) ? ' on' : ''}${pv && pv.id === o.id && pv.k === key ? ' pv' : ''}"${mt ? ' style="flex-wrap:wrap"' : ''} data-lfn="${lfN(o)}" data-a="pv" data-id="${esc(o.id)}" data-k="${esc(key)}"><span>${chosen.includes(o.id) ? '✓ ' : ''}${esc(o.name)}</span><span class="src">${masteryName(o) ? 'Mastery: ' + esc(masteryName(o)) + ' · ' : ''}${o.src ? esc(o.src) : ''}${rm && chosen.includes(o.id) ? `<b class="x" data-a="pick" data-id="${esc(o.id)}" data-k="${esc(key)}" title="Remove">✕</b>` : ''}</span>${mt ? `<div class="src" style="flex-basis:100%">${esc(mt)}</div>` : ''}</div>`;
     },
   );
 function root(t, k, ty) {
@@ -20,9 +21,10 @@ function root(t, k, ty) {
       : rows(ofType(ty), k, []))
   );
 }
+const SEL_COLLAPSE = ['Feat', 'Weapon', 'Language', 'Skill', 'Tool', 'Gear', 'Sub Race', 'Draconic Ancestry', 'Ability Increase', 'Spell', 'Race Variant']; // finished picks collapse to the chosen item(s)
 const selPanel = (s) => {
-  // a pick that is full collapses to just the chosen item(s); ✕ on one brings the full list back
-  const full = s.chosen.length >= s.n;
+  // once a pick is full it collapses to just the chosen item(s); ✕ brings the full list back
+  const full = SEL_COLLAPSE.includes(s.kind) && s.chosen.length >= s.n;
   return (
     `<div class="ph"><span>${esc(s.name)} · ${esc(s.owner)}</span><span>${s.chosen.length}/${s.n}</span></div>` +
     rows(full ? s.opts.filter((o) => s.chosen.includes(o.id)) : s.opts, s.key, s.chosen, full)
@@ -78,7 +80,7 @@ function descPane() {
     (on && ro
       ? `<p><button data-a="rm" data-k="${esc(pv.k)}">Remove</button></p>`
       : `<p><button data-a="pick" data-id="${esc(pv.id)}" data-k="${esc(pv.k)}">${on ? 'Remove' : 'Select'}</button></p>`) +
-    (INFO[e.id][0] === '<' ? INFO[e.id] : rich(INFO[e.id]))
+    (INFO[e.id][0] === '<' ? clean(INFO[e.id]) : rich(INFO[e.id]))
   );
 }
 const KP = (r) =>
@@ -97,6 +99,14 @@ function abTab() {
     sel = (k, v, opts, ph) =>
       `<select data-f="${k}" style="width:auto"><option value="">${ph}</option>${opts.map(([val, txt]) => `<option value="${val}"${v === val ? ' selected' : ''}>${txt}</option>`).join('')}</select>`,
     bgAb = bgEl && bgEl.abilities;
+  const ARR = [15, 14, 13, 12, 10, 8],
+    arrPick = (a) =>
+      ch.method === 'array'
+        ? `<select data-arr="${a}" aria-label="${AN[a]} base score" style="width:auto;margin:4px 0">${[...new Set([...ARR, ch.ab[a]])]
+            .sort((x, y) => y - x)
+            .map((v) => `<option value="${v}"${v === ch.ab[a] ? ' selected' : ''}>${v}</option>`)
+            .join('')}</select>`
+        : '';
   let boost =
     `<div class="ph"><span>Ability score increases</span></div><p class="hint">Your scores can be raised by your race (SRD 5.1 style) or by your background (SRD 5.2 style), not both. Using now: <b>${by.mode === 'bg' ? 'Background' + (bgEl && bgEl.src ? ' (' + esc(bgEl.src) + ')' : '') : 'Race'}</b>.</p>` +
     `<div class="bar">${sel('boost', ch.boost || '', [['race', 'Race'], ['bg', 'Background']], 'Automatic')}</div>`;
@@ -126,7 +136,7 @@ function abTab() {
  <div class="abs">${AB.map((a) => {
    const b = r.stats[a] || 0,
      t = ch.ab[a] + b;
-   return `<div class="abc"><small>${AN[a]}</small><b>${t}</b><span class="m">${sg(mod(t))}</span><div><button data-a="ab" data-k="${a}" data-d="-1">▼</button> <button data-a="ab" data-k="${a}" data-d="1">▲</button></div><small>${note(a)}</small></div>`;
+   return `<div class="abc"><small>${AN[a]}</small><b>${t}</b><span class="m">${sg(mod(t))}</span>${arrPick(a)}<div><button data-a="ab" data-k="${a}" data-d="-1">▼</button> <button data-a="ab" data-k="${a}" data-d="1">▲</button></div><small>${note(a)}</small></div>`;
  }).join('')}</div>${boost}`;
 }
 function expHtml(r) {

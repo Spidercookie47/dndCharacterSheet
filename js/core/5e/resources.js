@@ -89,9 +89,10 @@ function resMax(m, c, L) {
   const lv = m.class ? L(m.class) : 0;
   let v = 0;
   if ('n' in m) v = +m.n || 0;
-  else if (m.table) v = lv ? m.table[Math.min(lv, m.table.length) - 1] || 0 : 0;
+  else if (m.table) v = lv ? +m.table[Math.min(lv, m.table.length) - 1] || 0 : 0;
   else if (m.class) v = lv;
   else if (m.mod) v = mod(c.sc[m.mod]);
   else if (m.pb) v = c.pb;
-  return Math.floor((v * (m.mult || 1)) / (m.div || 1));
+  const out = Math.floor((v * (m.mult || 1)) / (m.div || 1));
+  return Number.isFinite(out) ? out : 0;
 }

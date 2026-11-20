@@ -102,6 +102,8 @@ const Loader = {
       }
       if (e.id !== e.type + ':' + e.name)
         warnings.push(e.id + ' does not follow the "Type:Name" id convention.');
+      if (Sanitize.changed(e))
+        warnings.push(e.id + ' has values that are not numbers where numbers are required. They will be ignored.');
       if (seen.has(e.id)) warnings.push('Duplicate id ' + e.id + ' in this pack.');
       seen.add(e.id);
     });
@@ -198,7 +200,15 @@ const Loader = {
     setRegistry(
       this.packs
         .filter((p) => p.enabled)
-        .map((p) => Object.assign({}, p.json, { source: { short: p.short, name: p.name } })),
+        .map((p) => {
+          const j = Object.assign({}, p.json, { source: { short: p.short, name: p.name } });
+          if (!p.builtin) {
+            // third-party packs: force numeric fields to be numbers (see sanitize.js)
+            j.elements = (j.elements || []).map(Sanitize.el);
+            j.tables = Sanitize.tables(j.tables);
+          }
+          return j;
+        }),
     );
     // report references that point at content that is not loaded
     const ids = idx(),

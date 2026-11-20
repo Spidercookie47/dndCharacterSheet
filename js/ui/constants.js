@@ -1,6 +1,7 @@
 /* Tab names, sub-tab lists and option lists used by the screens. */
 const TABS = [
   ['start', 'Start'],
+  ['play', 'Play'],
   ['build', 'Build'],
   ['magic', 'Magic'],
   ['equip', 'Equipment'],
@@ -103,6 +104,7 @@ const MTABS = [
   ['mref', 'Reference'],
   ['mbuild', 'Build'],
   ['mblock', 'Stat block'],
+  ['enc', 'Encounter'],
 ];
 const MSUBS = [
   ['basic', 'Basics'],

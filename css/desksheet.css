@@ -1,0 +1,157 @@
+/* Desktop Character sheet: Play and Export / PDF. Only active at 1000px and wider (desksheet.js).
+   Load after components.css, hp.css and play.css; position relative to mobile.css does not matter.
+   Colors come from the theme tokens only. */
+@media (min-width: 1000px) {
+  .main.ds { display: grid; grid-template-columns: 310px minmax(0, 1fr) minmax(0, 1fr) 280px; gap: 16px; padding: 0 24px 24px; align-items: stretch; }
+  .main.ds > .ds-col { min-width: 0; min-height: 0; overflow: auto; display: flex; flex-direction: column; gap: 12px; padding: 2px; }
+  .main.ds.exp { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; overflow: auto; }
+  .main.ds.exp > .ds-col { overflow: visible; }
+  .main.ds.exp .ds-prev { justify-content: center; }
+  .ds-a { grid-area: a; } .ds-b { grid-area: b; } .ds-c { grid-area: c; } .ds-d { grid-area: d; }
+  .main.ds:not(.exp) { grid-template-areas: 'a b c d'; }
+  /* start the middle and Spell/Features/Gear columns level with the hit points card: skip the name/portrait header (54px) + column gap (12px); the 2px column padding makes up the rest */
+  .main.ds:not(.exp) > .ds-b, .main.ds:not(.exp) > .ds-c { margin-top: 66px; } /* margin, not padding, so the empty strip stays put and does not scroll away with the content */
+  /* the columns still scroll (wheel, trackpad, touch), but the bright default scrollbars are hidden so they do not clash with the dark cards */
+  .main.ds, .main.ds > .ds-col, .ds-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+  .main.ds::-webkit-scrollbar, .main.ds > .ds-col::-webkit-scrollbar, .ds-scroll::-webkit-scrollbar { display: none; }
+
+  .ds-card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 16px; }
+  .ds-card.fill { flex: 1 1 auto; display: flex; flex-direction: column; }
+  .ds-h { margin: 0 0 8px; font: 700 1.05rem Fraunces, Georgia, serif; text-transform: none; border: 0; }
+  .ds-lab { color: var(--mut); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .ds-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .ds-hint { color: var(--mut); font-size: 0.8rem; margin: 8px 0 0; }
+
+  /* header */
+  .ds-who { display: flex; align-items: center; gap: 12px; }
+  .ds-av { flex: 0 0 54px; width: 54px; height: 54px; border-radius: 14px; border: 2px solid var(--acc); background: var(--sel); display: flex; align-items: center; justify-content: center; overflow: hidden; font: 700 1.2rem Fraunces, Georgia, serif; }
+  .ds-av img { width: 100%; height: 100%; object-fit: cover; }
+  .ds-nm { font: 700 1.3rem Fraunces, Georgia, serif; line-height: 1.15; }
+  .ds-who small { display: block; color: var(--mut); }
+
+  /* hit points */
+  .ds-hp { display: flex; align-items: center; justify-content: space-between; margin: 10px 0; }
+  .ds-hp > button { width: 48px; height: 48px; min-height: 48px; padding: 0; font-size: 1.5rem; line-height: 1; border-radius: 50%; background: var(--head); color: var(--ink); }
+  .ds-big { text-align: center; font: 700 3rem/1 Fraunces, Georgia, serif; }
+  .ds-big span { font-size: 1.25rem; font-weight: 500; color: var(--mut); }
+  .ds-big small { display: block; margin-top: 4px; font: 500 0.8rem Figtree, system-ui, sans-serif; color: var(--ok); }
+  .ds-act { display: flex; gap: 8px; margin-top: 12px; }
+  .ds-act input[type='number'] { flex: 0 0 56px; width: 56px; min-height: 44px; padding: 4px; text-align: center; font: 600 1.1rem Fraunces, Georgia, serif; }
+  .ds-act button { flex: 1; min-height: 44px; padding: 6px 4px; background: var(--head); color: var(--ink); }
+  .ds-act button.go { background: var(--btn); color: #fff; }
+
+  /* stat tiles */
+  .ds-st { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .ds-ab { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .ds-tile { aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; text-align: center; padding: 4px 2px; }
+  .ds-tile small { display: block; color: var(--mut); font-size: 0.7rem; letter-spacing: 0.1em; }
+  .ds-tile b { display: block; font: 600 1.5rem Fraunces, Georgia, serif; }
+  .ds-tile em { display: block; font-style: normal; color: var(--mut); font-size: 0.8rem; }
+  .ds-pp { padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--mut); font-size: 0.9rem; }
+  .ds-pp b { color: var(--ink); }
+
+  /* resources and slots */
+  .ds-name { font: 700 1.05rem Fraunces, Georgia, serif; }
+  .ds-name small { display: block; font: 400 0.8rem Figtree, system-ui, sans-serif; color: var(--mut); }
+  .ds-pips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ds-pips i { width: 24px; height: 24px; box-sizing: border-box; border: 2px solid var(--acc); border-radius: 50%; }
+  .ds-pips i.f { background: var(--acc); }
+  .ds-slots { display: flex; gap: 6px; margin-top: 8px; }
+  .ds-slots button { flex: 1; min-width: 0; min-height: 52px; padding: 6px 0; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 10px; background: var(--bg); color: var(--ink); }
+  .ds-slots small { color: var(--mut); font-size: 0.7rem; }
+  .ds-slots b { font-size: 1rem; }
+  .ds-slots .u b { color: var(--acc); }
+  .ds-rest { display: flex; gap: 10px; }
+  .ds-rest button { flex: 1; min-height: 48px; background: var(--head); color: var(--ink); }
+
+  /* spell list */
+  .ds-sh { display: flex; justify-content: space-between; align-items: baseline; margin: 10px 0 6px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
+  .ds-sh span { font: 700 1.05rem Fraunces, Georgia, serif; }
+  .ds-sh small { color: var(--mut); }
+  .ds-sp { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0; padding: 9px 14px; text-align: left; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--ink); font-weight: 400; }
+  .ds-sp:hover { border-color: var(--mut); }
+  .ds-sp small { color: var(--mut); }
+  .ds-sp.on { border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc); }
+
+  /* detail column */
+  .ds-seg { display: flex; gap: 4px; padding: 3px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
+  .ds-seg button { flex: 1; min-height: 40px; background: none; color: var(--mut); }
+  .ds-seg button.on { background: var(--sel); color: var(--ink); box-shadow: inset 0 0 0 1px var(--acc); }
+  .ds-t { margin: 0; font: 700 2.1rem/1.1 Fraunces, Georgia, serif; text-transform: none; }
+  .ds-sub { margin: 2px 0 0; font-style: italic; color: var(--mut); }
+  .ds-dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 18px; margin: 12px 0; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+  .ds-dl b { font-weight: 600; }
+  .ds-body p { margin: 0 0 8px; }
+  .ds-cast { margin-top: auto; padding-top: 14px; }
+  .ds-cb { display: flex; gap: 8px; margin: 8px 0; }
+  .ds-cb button { flex: 1; min-height: 56px; background: var(--head); color: var(--ink); font-size: 0.85rem; }
+  .ds-cb button.on { background: var(--btn); color: #fff; }
+  .ds-wide { display: block; width: 100%; min-height: 48px; background: var(--head); color: var(--ink); }
+  .ds-feat { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+
+  /* saves and skills */
+  .ds-r { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dotted var(--line); font-size: 0.9rem; }
+  .ds-r.p, .ds-r.e { color: var(--acc); }
+  .ds-m { display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; }
+  .ds-m.p { background: var(--acc); }
+  .ds-m.e { background: var(--acc); border-radius: 1px; transform: rotate(45deg); }
+  .ds-m.n { width: 0; margin-right: 16px; }
+
+  /* export */
+  .ds-r.off { opacity: 0.45; text-decoration: line-through; }
+  .ds-prev { display: flex; gap: 16px; align-items: flex-start; }
+  .ds-paper { flex: 1; min-width: 0; max-width: calc((100vh - 240px) * 0.773); aspect-ratio: 8.5 / 11; container-type: inline-size; overflow: hidden; border-radius: 10px; background: #fff; color: #1b1b1f; cursor: zoom-in; }
+  .ds-paper .pp { box-sizing: border-box; height: 100%; padding: 3.2cqw; font-size: 1.7cqw; line-height: 1.3; }
+  .pp-head { border-bottom: 0.3cqw solid #1b1b1f; padding-bottom: 1cqw; margin-bottom: 1.6cqw; }
+  .pp-name { font: 700 4.2cqw Fraunces, Georgia, serif; }
+  .pp-meta { color: #55575c; }
+  .pp-cols { display: grid; grid-template-columns: 24% 38% 1fr; gap: 2cqw; }
+  .pp-ab { display: flex; flex-direction: column; align-items: center; margin-bottom: 1cqw; padding: 0.8cqw 0; border: 0.25cqw solid #1b1b1f; border-radius: 1.2cqw; }
+  .pp-ab small { font-size: 1.3cqw; letter-spacing: 0.1em; color: #55575c; }
+  .pp-ab b { font: 700 3.2cqw Fraunces, Georgia, serif; line-height: 1.1; }
+  .pp-ab span { font-size: 1.4cqw; color: #55575c; }
+  .pp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1cqw; }
+  .pp-box { display: flex; flex-direction: column-reverse; align-items: center; padding: 1cqw 0; border: 0.25cqw solid #1b1b1f; border-radius: 1.2cqw; }
+  .pp-box b { font: 700 3cqw Fraunces, Georgia, serif; }
+  .pp-box small, .pp-hp small, .pp-t small { font-size: 1.3cqw; letter-spacing: 0.08em; text-transform: uppercase; color: #55575c; }
+  .pp-hp { margin-top: 1cqw; padding: 1cqw; text-align: center; border: 0.25cqw solid #1b1b1f; border-radius: 1.2cqw; }
+  .pp-hp b { display: block; font: 700 4cqw Fraunces, Georgia, serif; line-height: 1.1; }
+  .pp-hp span { color: #55575c; }
+  .pp-s { margin: 1.4cqw 0 0.6cqw; padding-bottom: 0.4cqw; border-bottom: 0.2cqw solid #b9bcc2; font: 700 1.9cqw Fraunces, Georgia, serif; }
+  .pp-r { display: flex; justify-content: space-between; gap: 1cqw; padding: 0.2cqw 0; border-bottom: 0.15cqw dotted #c9ccd1; }
+  .pp-t { margin-bottom: 1cqw; }
+  .pp-t small { display: block; }
+  .pp-mut { color: #8a8d93; }
+  .pp-list { columns: 2; }
+  .ds-th { flex: 0 0 110px; display: flex; flex-direction: column; gap: 10px; }
+  .ds-th button { aspect-ratio: 8.5 / 11; background: var(--line); color: var(--ink); border-radius: 8px; font-weight: 600; }
+  .ds-th button.on { background: #fff; color: #1b1b1f; box-shadow: 0 0 0 2px var(--acc); }
+  .ds-chk { display: flex; align-items: center; gap: 12px; min-height: 44px; margin: 0; font-weight: 400; }
+  .ds-chk input { width: 20px; height: 20px; accent-color: var(--btn); }
+  .ds-go { display: block; width: 100%; min-height: 52px; margin-top: 18px; }
+  .ds-exp-b { display: block; width: 100%; min-height: 52px; margin-top: 10px; background: var(--head); color: var(--ink); }
+}
+
+/* 1000 to 1399px: three columns, saves and skills go under the character column */
+@media (min-width: 1000px) and (max-width: 1399px) {
+  .main.ds:not(.exp) { grid-template-columns: 300px minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr; grid-template-areas: 'a b c' 'd b c'; overflow: auto; }
+  .main.ds:not(.exp) > .ds-col { overflow: visible; }
+}
+
+@media (min-width: 1000px) {
+  .ds-pdfpage { flex: 1; min-width: 0; max-width: calc((100vh - 240px) * 0.773); aspect-ratio: 8.5 / 11; overflow: hidden; border-radius: 10px; background: #fff; cursor: zoom-in; }
+  .ds-pdfpage img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .ds-pdfpage.ds-wait { display: flex; align-items: center; justify-content: center; color: #55575c; cursor: default; }
+  .ds-th { max-height: calc(100vh - 240px); overflow-y: auto; }
+  .ds-th img { display: block; width: 100%; border-radius: 6px; border: 2px solid transparent; background: #fff; cursor: pointer; }
+  .ds-th img.on { border-color: var(--acc); }
+}
+
+/* 1400px and wider: the saves and skills column is its own column, so it starts level with the hit points card too */
+@media (min-width: 1400px) {
+  .main.ds:not(.exp) > .ds-d { margin-top: 66px; }
+  /* Spell / Features / Gear: the card fits the column and only its content scrolls, so the tab buttons stay pinned at the top */
+  .main.ds:not(.exp) > .ds-c { overflow: hidden; }
+  .ds-c > .ds-card.fill { min-height: 0; overflow: hidden; }
+  .ds-scroll { flex: 1 1 auto; min-height: 0; overflow: auto; display: flex; flex-direction: column; }
+}

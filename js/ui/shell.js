@@ -1,4 +1,13 @@
 /* The page frame: top bar, sub bar, status bar, and the draw cycle. */
+/* Build stamp shown in the status bar: read from this script's own ?v= (set in index.html), so it always matches the deploy. */
+const HS_VER = (() => {
+  try {
+    return new URL(document.currentScript.src).searchParams.get('v') || '';
+  } catch (e) {
+    return '';
+  }
+})();
+
 function note(m) {
   msg = m;
   chrome();
@@ -33,10 +42,10 @@ function chrome() {
     SYSTEMS.map(
       ([k, n]) => `<button class="sys${system === k ? ' on' : ''}" data-a="system" data-v="${k}">${n}</button>`,
     ).join('') +
-    `<div class="who"><div><b>${esc(mfocus ? mon.name || 'Unnamed monster' : ch.name || 'Unnamed')}</b><small>${esc(mfocus ? monSummary(mon) : summary(ch))}</small></div>${!mfocus && ch.img ? `<img class="av" src="${ch.img}">` : ''}</div>`;
+    `<div class="who"><div><b>${esc(mfocus ? mon.name || 'Unnamed monster' : ch.name || 'Unnamed')}</b><small>${esc(mfocus ? monSummary(mon) : summary(ch))}</small></div>${!mfocus && imgSrc(ch.img) ? `<img class="av" src="${imgSrc(ch.img)}">` : ''}</div>`;
   if (!$('#nav')) $('#top').insertAdjacentHTML('afterend', '<div id="nav" class="nav"></div>');
   $('#nav').innerHTML =
-    (mfocus ? MTABS : TABS)
+    (mfocus ? MTABS : mode === 'dm' ? [...TABS, ['enc', 'Encounter']] : TABS)
       .map(([k, n]) => `<button class="tab${tab === k ? ' on' : ''}" data-a="tab" data-v="${k}">${n}</button>`)
       .join('') +
     `<span class="modes"><button class="md${mode === 'player' ? ' on' : ''}" data-a="mode" data-v="player">Player</button><button class="md${mode === 'dm' ? ' on' : ''}" data-a="mode" data-v="dm">DM</button></span>`;
@@ -50,12 +59,14 @@ function chrome() {
     left = subTabs([['cast', 'Spellcasting'], ...casters(resolve(ch)).map((n) => [n, n])], msp, 'msp');
   else if (tab === 'equip') left = subTabs(ESUB, eqs, 'esub');
   else if (tab === 'manage') left = subTabs(MSUB, msub, 'msub');
+  else if (tab === 'play') left = '<span class="hint">Playing at the table</span>';
+  else if (tab === 'enc') left = '<span class="hint">Running an encounter</span>';
   else left = '<span class="hint">Live character sheet</span>';
-  $('#sub').innerHTML = left + `<span class="acts">${mfocus ? MACTS : plusBtn() + ACTS}</span>`;
+  $('#sub').innerHTML = '<span class="subtabs">' + left + '</span>' + `<span class="acts">${tab === 'enc' ? '' : mfocus ? MACTS : plusBtn() + ACTS}</span>`;
   const n = store.chars.filter((c) => !!c.dm === (mode === 'dm')).length,
     on = Loader.packs.filter((p) => p.enabled).length;
   $('#status').innerHTML =
-    `<span>${esc(msg) || 'Saved in this browser · ' + n + ' character' + (n == 1 ? '' : 's')}</span><span>${on} content source${on == 1 ? '' : 's'} · Hearthscribe 1.3</span>`;
+    `<span>${esc(msg) || 'Saved in this browser · ' + n + ' character' + (n == 1 ? '' : 's')}</span><span>${on} content source${on == 1 ? '' : 's'} · Hearthscribe${HS_VER ? ' ' + HS_VER : ''}</span>`;
   if (system === 'coc') cocChrome();
   themeApply();
 }
@@ -68,6 +79,7 @@ function renderDm() {
 }
 function main() {
   if (system === 'coc') return renderCoc();
+  if (tab === 'enc') return renderEnc();
   if (mfocus && tab === 'mref') return renderMRef();
   if (mfocus && (tab === 'mbuild' || tab === 'mblock')) return tab === 'mbuild' ? renderMBuild() : renderMBlock();
   if (tab === 'start') renderStart();
@@ -75,11 +87,14 @@ function main() {
   else if (tab === 'magic') renderMagic();
   else if (tab === 'equip') renderEquip();
   else if (tab === 'manage') renderManage();
+  else if (tab === 'play') renderPlay();
   else renderSheet();
 }
 
 function draw() {
-  if (mfocus) {
+  if (tab === 'enc') {
+    /* the encounter keeps its own state (store.enc); nothing to save here */
+  } else if (mfocus) {
     if (tab === 'mbuild' || tab === 'mblock' || store.mons.some((x) => x.id === mon.id)) persistMon(); // browsing the reference does not save a blank monster
   } else if (tab !== 'start' || store.chars.some((c) => c.id === ch.id)) persist();
 

@@ -1,0 +1,12 @@
+#bb { display: none; }
+@media (max-width: 860px) {
+  body.bb-on #bb { display: flex; flex: 0 0 auto; position: relative; background: var(--bar); border-top: 1px solid var(--line); }
+  body.bb-on #nav { display: none; }
+  #bb .bbt { flex: 1; border-radius: 0; background: none; color: var(--mut); min-height: 56px; padding: 6px 2px; font-weight: 600; font-size: 14px; }
+  #bb .bbt { font-size: 13px; padding: 6px 0; }
+  #bb .bbt.on { color: var(--ink); box-shadow: inset 0 3px var(--acc); }
+  #bb .bbh { flex: 0 0 64px; width: 64px; height: 64px; min-height: 64px; padding: 0; margin: -22px 6px 4px; align-self: flex-start; border-radius: 50%; background: var(--btn); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 5px var(--bar), 0 6px 16px rgba(0, 0, 0, 0.55); }
+  #bb .bbh svg { width: 34px; height: 34px; }
+  #bb .bbh.on { color: #fff; box-shadow: 0 0 0 5px var(--bar), 0 0 0 7px var(--acc), 0 6px 16px rgba(0, 0, 0, 0.55); }
+}
+@media (max-width: 860px) { .acts .lnk.on { box-shadow: inset 0 0 0 1px var(--acc); } }

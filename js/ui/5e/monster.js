@@ -55,11 +55,7 @@ let mon = freshMon(), // the monster being edited
   msb = 'basic', // Build sub-tab
   mDelId = null;
 
-const saveStore = () => {
-  try {
-    localStorage.setItem('aw-store', JSON.stringify(store));
-  } catch (e) {}
-};
+const saveStore = () => writeStore(); // shared safe save (core/state.js)
 function persistMon() {
   const i = store.mons.findIndex((x) => x.id === mon.id);
   i < 0 ? store.mons.push(mon) : (store.mons[i] = mon);
@@ -227,7 +223,7 @@ function mPane() {
   if (msb === 'basic')
     return `<div class="ph"><span>Basics</span></div><div class="fg">${mI('name', 'Name', m.name)}${mS('size', 'Size', m.size, MSIZES)}${mS('type', 'Type', m.type, MTYPES)}${mI('tags', 'Tags (optional, e.g. goblinoid)', m.tags)}${mS('align', 'Alignment', m.align, MALIGN)}${mS('cr', 'Challenge rating', m.cr, MCR)}</div><p class="hint" id="mcalc">${mCalcText()}</p>${mFillHtml()}`;
   if (msb === 'abil')
-    return `<div class="ph"><span>Ability scores</span></div><p class="hint">Any score from 1 to 30.</p><div class="abs">${AB.map((a) => `<div class="abc"><small>${AN[a]}</small><input type="number" min="1" max="30" data-mf="ab.${a}" value="${m.ab[a]}" style="width:72px"><span class="m" data-mod="${a}">${sg(mod(+m.ab[a] || 10))}</span></div>`).join('')}</div>`;
+    return `<div class="ph"><span>Ability scores</span></div><p class="hint">Any score from 1 to 30.</p><div class="abs">${AB.map((a) => `<div class="abc"><small>${AN[a]}</small><input type="number" min="1" max="30" data-mf="ab.${a}" value="${esc(m.ab[a])}" style="width:72px"><span class="m" data-mod="${a}">${sg(mod(+m.ab[a] || 10))}</span></div>`).join('')}</div>`;
   if (msb === 'def') {
     const sp = (k, n) => mI('spd.' + k, n + ' (ft)', m.spd[k], 'number');
     return (
@@ -277,10 +273,10 @@ function monsHtml() {
   const cards = store.mons
     .map(
       (x) =>
-        `<div class="card" data-a="mopen" data-id="${x.id}"><b>${esc(x.name || 'Unnamed monster')}</b><small>${esc(monSummary(x))}</small><div class="bar" style="margin-top:6px"><button class="lnk" data-a="mdup" data-id="${x.id}">Duplicate</button></div>${
+        `<div class="card" data-a="mopen" data-id="${esc(x.id)}"><b>${esc(x.name || 'Unnamed monster')}</b><small>${esc(monSummary(x))}</small><div class="bar" style="margin-top:6px"><button class="lnk" data-a="mdup" data-id="${esc(x.id)}">Duplicate</button></div>${
           mDelId === x.id
-            ? `<div class="bar" style="margin-top:6px"><button data-a="mdelyes" data-id="${x.id}">Delete</button><button class="alt" data-a="mdelno">Keep</button></div>`
-            : `<b class="x" data-a="mdel" data-id="${x.id}" title="Delete">✕</b>`
+            ? `<div class="bar" style="margin-top:6px"><button data-a="mdelyes" data-id="${esc(x.id)}">Delete</button><button class="alt" data-a="mdelno">Keep</button></div>`
+            : `<b class="x" data-a="mdel" data-id="${esc(x.id)}" title="Delete">✕</b>`
         }</div>`,
     )
     .join('');
@@ -290,7 +286,7 @@ function monsHtml() {
     <div class="ph"><span>Monsters</span></div>${store.mons.length ? '<div class="grid">' + cards + '</div>' : '<p class="hint">No monsters yet. Choose New monster to start.</p>'}`;
 }
 function importMon(j) {
-  mon = Object.assign(freshMon(), j, { id: freshMon().id });
+  mon = Object.assign(freshMon(), Sanitize.mon(j), { id: freshMon().id });
   mfocus = true;
   tab = 'mbuild';
   msb = 'basic';

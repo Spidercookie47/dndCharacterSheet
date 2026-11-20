@@ -34,7 +34,7 @@ function spellRows(n, r, mode) {
   });
 }
 const srow = ({ s, on, m }) =>
-  `<div class="rw${on ? ' on' : ''}${pv && pv.id === s.id && pv.k === 'spell' ? ' pv' : ''}" data-a="pv" data-id="${esc(s.id)}" data-k="spell"><span>${m}${esc(s.name)}</span><span class="src">${s.src ? esc(s.src) + ' · ' : ''}<i>${esc(lvTxt(s))}</i> ${vsm(s)}</span></div>`;
+  `<div class="rw${on ? ' on' : ''}${pv && pv.id === s.id && pv.k === 'spell' ? ' pv' : ''}" data-a="pv" data-id="${esc(s.id)}" data-k="spell"><span>${m}${esc(s.name)}</span><span class="src"><span class="spx">${s.src ? esc(s.src) + ' · ' : ''}</span><i class="lvf">${esc(lvTxt(s))}</i><i class="lvs">${esc(s.school)}</i> <span class="spx">${vsm(s)}</span></span></div>`;
 function fillList() {
   const el = $('#sl');
   if (!el) return;
@@ -71,6 +71,22 @@ function fillList() {
   el.innerHTML =
     h +
     '<p class="hint">Double-click a spell to choose it. ★ marks always-prepared domain and oath spells, which don’t count against your limit.</p>';
+}
+/* Phone header: title, caster line, tab switch (replaces the sub-tab strip) and a slot overview. Hidden on wide screens. */
+function spHead(n, c, ab, cs, r) {
+  const tabs = [['cast', 'Spellcasting'], ...cs.map((x) => [x, x.replace(/ \(5\.2\)$/, '')])],
+    R = resources(r, c).filter((x) => isSlotKey(x.k)),
+    strip = R.length
+      ? `<section class="mob spstrip"><div class="lb"><b>Spell slots</b><span>cast them from Sheet › Spells</span></div><div class="sl">${R.map((x) => {
+          const left = slotLeft(R, x.k);
+          return `<div class="${left < x.max ? 'pt' : ''}"><small>${x.k === 'pact' ? 'Pact' : 'L' + x.k.slice(4)}</small><b>${left}/${x.max}</b></div>`;
+        }).join('')}</div></section>`
+      : '';
+  return (
+    `<div class="mob sphd"><b>Spells</b><span>${esc(n.replace(/ \(5\.2\)$/, ''))} · Save DC ${8 + c.pb + ab} · Attack ${sg(c.pb + ab + magicB(ch).spA)}</span></div>` +
+    `<div class="sg mob">${tabs.map(([k, t]) => `<button class="${msp === k ? 'on' : ''}" data-a="msp" data-v="${esc(k)}">${esc(t)}</button>`).join('')}</div>` +
+    strip
+  );
 }
 function renderMagic() {
   const m = $('#main');
@@ -112,7 +128,7 @@ function renderMagic() {
     )
     .join('');
   const s = pv && pv.k === 'spell' && I[pv.id];
-  m.innerHTML = `<div class="left"><div class="ph"><span>${n}</span><span class="src">Ability <b>${AN[CA[n]]}</b> · Attack ${sg(c.pb + ab + magicB(ch).spA)} · Save DC ${8 + c.pb + ab}</span></div><p class="hint">Spell slots: ${sl}</p><div class="bar">${sel}${srcSel()}<input type="text" id="spq" placeholder="Search spells…" value="${esc(spq)}" style="max-width:240px"></div><div class="chips">${chips}${secChip(n, r)}</div><div id="sl"></div>${featPanel(r)}</div><div class="right">${s ? spellPane(s) : '<p class="hint">Click a spell to read it.</p>'}</div>`;
+  m.innerHTML = `<div class="left">${spHead(n, c, ab, cs, r)}<div class="ph dsk"><span>${n}</span><span class="src">Ability <b>${AN[CA[n]]}</b> · Attack ${sg(c.pb + ab + magicB(ch).spA)} · Save DC ${8 + c.pb + ab}</span></div><p class="hint dsk">Spell slots: ${sl}</p><div class="bar">${sel}${srcSel()}<input type="text" id="spq" placeholder="Search spells…" value="${esc(spq)}" style="max-width:240px"></div><div class="chips">${chips}${secChip(n, r)}</div><div id="sl"></div>${featPanel(r)}</div><div class="right">${s ? spellPane(s) : '<p class="hint">Click a spell to read it.</p>'}</div>`;
   fillList();
 }
 const spellCard = (s) =>

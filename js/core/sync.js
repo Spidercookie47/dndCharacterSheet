@@ -29,11 +29,7 @@ const Sync = (() => {
     s.deleted = s.deleted || {};
     return s;
   };
-  const saveStore = () => {
-    try {
-      localStorage.setItem('aw-store', JSON.stringify(store));
-    } catch (e) {}
-  };
+  const saveStore = () => writeStore(); // shared safe save (core/state.js)
   const linked = () => {
     try {
       return localStorage.getItem(FLAG) === '1';
@@ -88,7 +84,10 @@ const Sync = (() => {
         const s = document.createElement('script');
         s.src = 'https://accounts.google.com/gsi/client';
         s.onload = res;
-        s.onerror = () => rej(new Error('Could not load Google sign-in.'));
+        s.onerror = () => {
+          gisP = null; // let the next click try again instead of failing until the page is reloaded
+          rej(new Error('Could not load Google sign-in.'));
+        };
         document.head.appendChild(s);
       }));
   }
@@ -199,8 +198,8 @@ const Sync = (() => {
   async function download(rm) {
     const j = await api('GET', `files/${rm.fileId}?alt=media`),
       raw = j && (j.character || j);
-    if (!raw || typeof raw !== 'object') return null;
-    const c = norm({ ...raw, id: rm.id });
+    if (!raw || typeof raw !== 'object' || !/^[\w\-]+$/.test(rm.id)) return null;
+    const c = norm({ ...Sanitize.char(raw), id: rm.id });
     c.updated = rm.u;
     return c;
   }
@@ -301,7 +300,7 @@ const Sync = (() => {
       s.pendingDel = s.pendingDel.filter((x) => x !== fid);
     }
     const remote = await listRemote(),
-      suspicious = remote.size === 0 && Object.keys(s.known).length > 1;
+      suspicious = remote.size === 0 && Object.keys(s.known).length > 0; // an empty Drive folder never deletes local characters
     for (const [id, rm] of remote) {
       const local = store.chars.find((c) => c.id === id),
         k = s.known[id];
@@ -391,6 +390,11 @@ const Sync = (() => {
   };
 
   async function connect() {
+    // Google refuses sign-in inside the built-in browsers of chat and social apps
+    if (/FBAN|FBAV|Instagram|Line\/|MicroMessenger|Snapchat|TikTok|Discord|; wv\)/i.test(navigator.userAgent)) {
+      note('Google sign-in does not work inside this app. Open the page in Safari or Chrome.');
+      return;
+    }
     try {
       state = 'busy';
       paint();
@@ -476,6 +480,9 @@ const Sync = (() => {
     if (!GDRIVE_CLIENT_ID) return;
     state = linked() ? 'reauth' : 'off';
     paint();
+    // Load Google's script now, so the sign-in pop-up opens straight from the tap. Phones block pop-ups that
+    // open after a wait. (Remove this line if you prefer not to contact Google until someone presses Connect.)
+    loadGis().catch(() => {});
     ['click', 'input', 'change', 'keydown'].forEach((t) =>
       document.addEventListener(
         t,

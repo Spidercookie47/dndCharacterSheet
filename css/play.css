@@ -1,0 +1,91 @@
+/* Play tab. Load after hp.css and mobile.css. */
+.plhead { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.plwho { flex: 1; min-width: 0; }
+.plwho b { display: block; font: 600 1.35rem Fraunces, Georgia, serif; }
+.plwho small { display: block; color: var(--mut); }
+
+/* hit points */
+.plhh { display: flex; justify-content: space-between; align-items: center; color: var(--mut); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.hpcard .plhd { min-height: 0; padding: 4px 0; background: none; color: var(--mut); font: inherit; letter-spacing: inherit; text-transform: uppercase; border-radius: 0; }
+.plhb { display: flex; gap: 10px; margin-top: 14px; }
+.plhb button { flex: 1; min-height: 48px; padding: 8px 4px; }
+.hpcard .hpnum button { width: 64px; height: 64px; min-height: 64px; }
+
+/* stat tiles: label on top, value below */
+.plgrid .stats { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.plgrid .stat { display: flex; flex-direction: column-reverse; align-items: center; padding: 12px 4px; border-radius: 14px; }
+.plgrid .stat span { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; }
+.plgrid .stat b { font: 600 1.6rem Fraunces, Georgia, serif; }
+.plgrid .stat b small { font-size: 1.1rem; }
+
+/* ability scores (tablet only) */
+.plabil { display: none; }
+.plabil .ab { padding: 10px 4px; border-radius: 14px; }
+.plabil .ab b { font: 600 2rem Fraunces, Georgia, serif; }
+
+/* resource and slot cards */
+.plres { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); }
+.plmain { flex: 1; min-width: 0; }
+.plres .plmain b, .plres .plmain small { display: block; }
+.plres .plmain b { font-size: 1.1rem; }
+.plres .plmain small { color: var(--mut); }
+.plbtn { display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
+.plbtn button { min-height: 48px; background: var(--head); color: var(--ink); }
+.pips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.pips i { display: inline-block; width: 26px; height: 26px; box-sizing: border-box; border: 2px solid var(--acc); border-radius: 50%; }
+.pips i.on { background: var(--acc); }
+.pips i.used { cursor: pointer; }
+.plsh { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.plsh b { font-size: 1.1rem; }
+.slots { display: flex; justify-content: space-between; gap: 2px; margin-top: 10px; }
+.slot { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 52px; padding: 2px 0; border: 0; border-radius: 10px; background: none; color: var(--ink); }
+.slot small { font-size: 12px; color: var(--mut); }
+.slot b { font-size: 1.15rem; }
+.slot.part b { color: var(--acc); }
+.slot.empty { opacity: 0.55; }
+.plrest { gap: 10px; flex-wrap: nowrap; }
+.plrest button { flex: 1; min-height: 52px; font-size: 1.05rem; }
+
+/* prepared spells */
+.plsp-h { font: 700 1.2rem Fraunces, Georgia, serif; text-transform: none; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin: 20px 0 10px; }
+
+/* spell detail */
+.plmain .right { display: none; }
+.right h2 + .plsub { font-style: italic; color: var(--mut); margin: 4px 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.pldl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 22px; margin: 0 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.pldl dt { font-weight: 700; }
+.pldl dd { margin: 0; }
+.pldl small { color: var(--mut); }
+.plact { margin-top: auto; padding-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.plact button { min-height: 52px; font-size: 1.05rem; }
+.plact .plfull { grid-column: 1 / -1; }
+.plup { display: flex; flex-direction: column; gap: 8px; }
+
+.main.plmain { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1000px) {
+  .main.plmain { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1.15fr); gap: 16px; }
+  .plmain > .left, .plmain .plgrid { display: contents; }
+  .plcol { overflow: auto; min-height: 0; padding: 4px 6px; }
+  .plmain > .right { display: flex; flex-direction: column; padding: 24px; }
+  .plmain .right h2 { text-transform: none; font-size: 2.4rem; margin: 0; }
+  .plabil { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+  .plgrid .stat b .ft { display: none; }
+}
+/* Spells view (spellcasters only): its own screen between Play and Features, hidden on desktop where the column shows spells. */
+.plspv { display: none; }
+@media (max-width: 999px) {
+  .plspells { display: none; }
+  .plmain[data-v='spells'] .plgrid { display: none; }
+  .plmain[data-v='spells'] .plspv { display: block; }
+  .plspv, .plspv .plres { min-width: 0; max-width: 100%; }
+}
+/* Tablets (861-999px): one column, spell details stacked under the list, Play | Spells | Features | Skills switch.
+   Phones (860px and below): a tapped spell opens in the bottom sheet (mobile.js) with the Cast buttons. */
+@media (min-width: 861px) and (max-width: 999px) {
+  .plmain > .right { display: block; }
+  .plswitch { display: flex; gap: 4px; padding: 4px; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); }
+  .plswitch button { flex: 1; min-height: 38px; padding: 4px 0; background: none; color: var(--mut); }
+  .plswitch button.on { background: var(--sel); color: var(--ink); box-shadow: inset 0 0 0 1px var(--acc); }
+  .plmain[data-v='features'] .plgrid, .plmain[data-v='skills'] .plgrid { display: none; }
+  .plmain[data-v='features'] .plfeat, .plmain[data-v='skills'] .plskills { display: block; }
+}

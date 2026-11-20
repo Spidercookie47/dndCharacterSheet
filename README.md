@@ -39,7 +39,7 @@ js/
     sync.js                Google Drive sync (optional): one JSON file per character in the hidden app folder
   data/
     cache.js               IndexedDB cache for downloaded packs
-    loader.js              reads the SRD and packs, validates, merges, toggles sources
+    loader.js              reads the SRD and packs, validates, merges, toggles sources, reports load progress
   pdf/
     fields.js              maps character data to the official sheet's form fields
     export.js              builds the data, downloads and previews the PDF
@@ -121,6 +121,8 @@ Run `python3 tools/validate_pack.py my-pack.json` before sharing. `data/homebrew
 ### Adding homebrew in the app
 
 Start → **Sources**: paste a link to a pack or catalog (for example a `raw.githubusercontent.com` link), choose a file, or paste JSON. It is cached in the browser. **Refresh** fetches the newest version, and the checkbox turns a source on or off.
+
+A **progress bar** at the top of the Sources screen shows what is being read. A pack split over several files shows its file count and the current file. Adding a catalog link, **Refresh all** or a group's **Refresh all** shows one bar for all the books, as "Book 3 / 12" with a percentage, and says "Double checking" while refreshing. Packs added from a file or pasted JSON load instantly, and packs already cached in the browser load without a bar.
 
 The **Missing content** list on the same screen shows any saved character that uses something that is not available right now, for example because its homebrew source is switched off, and says which source to turn on.
 
