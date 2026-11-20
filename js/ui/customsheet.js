@@ -1,12 +1,13 @@
-/* Use my own sheet: upload a fillable PDF, match its boxes (custom.js), and let the export fill it instead of the official sheet.
+/* Use my own sheet: upload fillable PDFs, keep them in a saved list, pick which one the export fills.
    Load after desksheet.js and custom.js. It needs no change to export.js: it takes over fillSheet(), which mk() calls.
-   The card shows up on Character sheet > Export / PDF through window.customCard (desksheet.js calls it). */
+   The card shows up on Character sheet > Export / PDF through window.customCard (desksheet.js calls it).
+   Saved in this browser (IndexedDB): 'lib' = list of sheets (no bytes), 'sheet:<id>' = one sheet with its PDF, 'active' = id in use. */
 (() => {
-  const S = { sheet: null, use: true, busy: false, msg: '', items: [] };
+  const S = { lib: [], sheet: null, busy: false, msg: '', items: [] }; // sheet = the active one, with its bytes
   window.hsCustom = S;
-  window.hsCustomKey = () => (S.sheet && S.use ? S.sheet.name + '|' + S.sheet.at + '|' + !!S.sheet.swap : '');
+  window.hsCustomKey = () => (S.sheet ? S.sheet.id + '|' + S.sheet.at + '|' + !!S.sheet.swap : '');
 
-  /* ---- keep the uploaded sheet in this browser (IndexedDB: PDFs are too big for localStorage) ---- */
+  /* ---- storage (IndexedDB: PDFs are too big for localStorage) ---- */
   const idb = () =>
     new Promise((ok, no) => {
       try {
@@ -26,17 +27,46 @@
       r.onerror = () => no(r.error);
     });
   };
-  const save = () => kv('readwrite', (s) => s.put({ ...S.sheet, use: S.use }, 'sheet')).catch(() => {});
-  const wipe = () => kv('readwrite', (s) => s.delete('sheet')).catch(() => {});
-  kv('readonly', (s) => s.get('sheet'))
-    .then((r) => {
-      if (!r) return;
-      S.sheet = r;
-      S.use = r.use !== false;
-      const a = document.activeElement;
-      if (typeof draw === 'function' && !(a && /^(TEXTAREA|INPUT|SELECT)$/.test(a.tagName))) draw();
-    })
-    .catch(() => {});
+  const get = (k) => kv('readonly', (s) => s.get(k));
+  const put = (k, v) => kv('readwrite', (s) => s.put(v, k)).catch(() => {});
+  const del = (k) => kv('readwrite', (s) => s.delete(k)).catch(() => {});
+  const meta = (r) => ({ id: r.id, name: r.name, at: r.at, stats: r.stats, unmapped: r.unmapped, notes: r.notes });
+  const saveSheet = () => put('sheet:' + S.sheet.id, S.sheet);
+  const saveLib = () => put('lib', S.lib);
+
+  async function openId(id) {
+    const r = id ? await get('sheet:' + id).catch(() => null) : null;
+    S.sheet = r || null;
+    S.items = [];
+    await put('active', r ? r.id : null);
+  }
+  const redraw = () => {
+    const a = document.activeElement;
+    if (typeof draw === 'function' && !(a && /^(TEXTAREA|INPUT|SELECT)$/.test(a.tagName) && a.type !== 'radio' && a.type !== 'checkbox')) draw();
+  };
+
+  /* start-up: read the list and the sheet that was in use. (Version 2.0.3 kept a single sheet under 'sheet': move it into the list.) */
+  (async () => {
+    try {
+      let lib = (await get('lib')) || [];
+      const old = await get('sheet');
+      if (old && old.bytes) {
+        const r = { ...old, id: 's' + (old.at || Date.now()) };
+        delete r.use;
+        await put('sheet:' + r.id, r);
+        lib = lib.concat(meta(r));
+        await put('lib', lib);
+        await put('active', old.use === false ? null : r.id);
+        await del('sheet');
+      }
+      S.lib = lib;
+      const act = await get('active');
+      if (act) await openId(act);
+      redraw();
+    } catch (e) {
+      /* no storage: the feature still works for this visit, it just is not remembered */
+    }
+  })();
 
   /* ---- character data -> the engine's keys ---- */
   function values() {
@@ -79,10 +109,10 @@
     return V;
   }
 
-  /* ---- export.js calls fillSheet(); when a custom sheet is on, fill that one instead ---- */
+  /* ---- export.js calls fillSheet(); when a saved sheet is picked, fill that one instead of the official sheet ---- */
   const official = window.fillSheet;
   window.fillSheet = async (L, bytes, d) => {
-    if (!(S.sheet && S.use && window.HSCustom)) return official(L, bytes, d);
+    if (!(S.sheet && window.HSCustom)) return official(L, bytes, d);
     try {
       S.sheet.plan.opts = S.sheet.plan.opts || {};
       S.sheet.plan.opts.swapAbility = !!S.sheet.swap;
@@ -100,19 +130,21 @@
   /* ---- the card ---- */
   const html = () => {
     const c = S.sheet, bad = S.items.filter((i) => i.status === 'clipped');
-    let h = '<div class="ds-feat" id="hscard"><div class="ds-lab">Your own sheet</div>';
-    if (!c)
-      h += '<p class="ds-hint">Upload a fillable PDF. Hearthscribe matches its boxes to your character and fills it. Your spell and item cards are still added.</p>';
-    else
+    const radio = (id, name, sub) =>
+      `<div class="ds-row"><label class="ds-chk"><input type="radio" name="hscsel" data-hsc="pick" value="${esc(id)}"${(c ? c.id : '') === id ? ' checked' : ''}><span>${esc(name)}${sub ? `<br><small class="ds-hint">${esc(sub)}</small>` : ''}</span></label>` +
+      (id ? `<button class="lnk" data-a="hscdel" data-id="${esc(id)}">Delete</button>` : '') + '</div>';
+    let h = '<div class="ds-feat" id="hscard"><div class="ds-lab">Sheet to fill</div>';
+    h += radio('', 'Official sheet', '') + S.lib.map((s) => radio(s.id, s.name, s.stats.mapped + ' things matched')).join('');
+    if (c)
       h +=
-        `<label class="ds-chk"><input type="checkbox" data-hsc="use"${S.use ? ' checked' : ''}>Use “${esc(c.name)}”</label>` +
         `<label class="ds-chk"><input type="checkbox" data-hsc="swap"${c.swap ? ' checked' : ''}>Swap ability score and modifier</label>` +
-        `<p class="ds-hint">Matched ${c.stats.mapped} things in ${c.stats.fields} boxes${c.unmapped ? '; ' + c.unmapped + ' text boxes left empty' : ''}.` +
-        (bad.length ? `<br>Too long for the box: ${esc(bad.slice(0, 5).map((i) => i.key.replace(/#.*/, '')).join(', '))}. The download still has the full text only where it fits.` : '') +
+        `<p class="ds-hint">${c.unmapped ? c.unmapped + ' text boxes on this sheet are left empty.' : 'Every text box was matched.'}` +
+        (bad.length ? `<br>Too long for the box: ${esc(bad.slice(0, 5).map((i) => i.key.replace(/#.*/, '')).join(', '))}.` : '') +
         (c.notes && c.notes.length ? '<br>' + c.notes.map(esc).join('<br>') : '') + '</p>';
+    else if (!S.lib.length)
+      h += '<p class="ds-hint">Upload a fillable PDF. Hearthscribe matches its boxes to your character and fills it. It is saved here so you can pick it again later. Spell and item cards are still added.</p>';
     h +=
-      `<label class="btn alt ds-wide" style="text-align:center;cursor:pointer">${c ? 'Replace my sheet' : 'Use my own sheet'}<input id="hscfile" type="file" accept="application/pdf,.pdf" hidden></label>` +
-      (c ? '<button class="ds-exp-b" data-a="hscclear">Remove my sheet</button>' : '') +
+      `<label class="btn alt ds-wide" style="text-align:center;cursor:pointer">${S.busy ? 'Reading…' : 'Add my own sheet (PDF)'}<input id="hscfile" type="file" accept="application/pdf,.pdf" hidden></label>` +
       (S.msg ? `<p class="ds-hint">${esc(S.msg)}</p>` : '') +
       '</div>';
     return h;
@@ -123,7 +155,7 @@
     if (el) el.outerHTML = html();
   }
 
-  /* ---- upload ---- */
+  /* ---- upload: read it, match it, save it to the list and use it ---- */
   async function load(f) {
     S.busy = true;
     S.msg = 'Reading ' + f.name + '…';
@@ -137,11 +169,14 @@
         S.msg = r.why === 'flat' ? 'That PDF has no fillable boxes, so it cannot be filled. Look for a "fillable" or "editable" version of the sheet.'
           : r.why === 'locked' ? 'That PDF is password protected.' : 'That PDF could not be read.';
       else {
-        S.sheet = { name: f.name.replace(/\.pdf$/i, ''), bytes: r.bytes, plan: r.plan, stats: r.stats, notes: r.notes, unmapped: r.unmapped.length, swap: false, at: Date.now() };
-        S.use = true;
+        const at = Date.now(), rec = { id: 's' + at, name: f.name.replace(/\.pdf$/i, ''), bytes: r.bytes, plan: r.plan, stats: r.stats, notes: r.notes, unmapped: r.unmapped.length, swap: false, at };
+        S.sheet = rec;
         S.items = [];
+        S.lib = S.lib.concat(meta(rec));
         S.msg = '';
-        await save();
+        await saveSheet();
+        await saveLib();
+        await put('active', rec.id);
       }
     } catch (e) {
       S.msg = 'Could not use that PDF: ' + ((e && e.message) || e);
@@ -149,24 +184,33 @@
     S.busy = false;
     draw();
   }
-  document.addEventListener('change', (e) => {
-    const t = e.target;
+
+  document.addEventListener('change', async (e) => {
+    const t = e.target, k = t.dataset && t.dataset.hsc;
     if (t.id === 'hscfile') {
       const f = t.files && t.files[0];
       t.value = '';
       if (f) load(f);
-    } else if (t.dataset && t.dataset.hsc && S.sheet) {
-      if (t.dataset.hsc === 'use') S.use = t.checked;
-      else S.sheet.swap = t.checked;
+    } else if (k === 'pick') {
+      await openId(t.value);
+      draw();
+    } else if (k === 'swap' && S.sheet) {
+      S.sheet.swap = t.checked;
       S.items = [];
-      save();
+      await saveSheet();
       draw();
     }
   });
-  on('hscclear', () => {
-    S.sheet = null;
-    S.items = [];
-    S.msg = '';
-    wipe();
+  on('hscdel', (d) => {
+    const s = S.lib.find((x) => x.id === d.id);
+    if (!s || !confirm('Delete the saved sheet "' + s.name + '"?')) return false;
+    S.lib = S.lib.filter((x) => x.id !== d.id);
+    if (S.sheet && S.sheet.id === d.id) {
+      S.sheet = null;
+      S.items = [];
+      put('active', null);
+    }
+    del('sheet:' + d.id);
+    saveLib();
   });
 })();
