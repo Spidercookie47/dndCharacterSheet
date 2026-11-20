@@ -3,7 +3,7 @@
    Uses the existing actions: hp, hpdmg, hpheal, hptemp, hdspend, res, rest, pick, prev, pdf, save. */
 (() => {
   const MQ = window.matchMedia('(min-width: 1000px)');
-  const st = { sub: 'play', pdf: null, pdfPage: 0, right: 'spell', spell: null, feat: null, gear: null, spells: true, items: true };
+  const st = { sub: 'play', pdf: null, pdfPage: 0, right: 'spell', spell: null, spellOpen: false, feat: null, gear: null, spells: true, items: true };
   window.hsPdfOpts = st; // pdf code can read hsPdfOpts.spells and hsPdfOpts.items
 
   const active = () => MQ.matches && system === 'dnd5e' && !mfocus;
@@ -82,21 +82,27 @@
           })
           .join('')}</div><p class="ds-hint">Blue = some slots spent. Tap a level to spend one; at 0 a tap gives one back.</p></section>`;
     if (R.length) h += '<div class="ds-rest"><button data-a="rest" data-v="S">Short rest</button><button data-a="rest" data-v="L">Long rest</button></div>';
-    const lv = Object.keys(sd.groups).map(Number).sort((a, b) => a - b);
-    h += lv
-      .map((l) => {
-        const sr = slotR.find((x) => x.k === 'slot' + l);
-        return (
-          `<div class="ds-sh"><span>${l ? ord(l) + ' level' : 'Cantrips'}</span>${sr ? `<small>${left(R, sr.k)} slots left</small>` : ''}</div>` +
-          sd.groups[l].map(({ s, tag }) => `<button class="ds-sp${st.spell === s.id ? ' on' : ''}" data-a="dsspell" data-id="${esc(s.id)}"><span>${tag}${esc(s.name)}</span><small>${l ? ord(l) : 'at will'}</small></button>`).join('')
-        );
-      })
-      .join('');
-    if (!lv.length && !other.length && !slotR.length) h += '<section class="ds-card"><p class="ds-hint" style="margin:0">Resources and spells appear here once your class gives you some.</p></section>';
+    const hasSpells = Object.keys(sd.groups).length > 0; // the spell list lives in the right-hand Spell tab (see spellList)
+    if (!hasSpells && !other.length && !slotR.length) h += '<section class="ds-card"><p class="ds-hint" style="margin:0">Resources and spells appear here once your class gives you some.</p></section>';
     return h;
   }
 
   /* ---- column 3: spell or feature detail ---- */
+  /* ---- Spell tab, list view: every spell the character has ready, grouped by level. Tap one to open it. ---- */
+  function spellList(sd, R) {
+    const slotR = R.filter((x) => isSK(x.k));
+    return Object.keys(sd.groups)
+      .map(Number)
+      .sort((a, b) => a - b)
+      .map((l) => {
+        const sr = slotR.find((x) => x.k === 'slot' + l);
+        return (
+          `<div class="ds-sh"><span>${l ? ord(l) + ' level' : 'Cantrips'}</span>${sr ? `<small>${left(R, sr.k)} slots left</small>` : ''}</div>` +
+          sd.groups[l].map(({ s, tag }) => `<button class="ds-sp" data-a="dsspell" data-id="${esc(s.id)}"><span>${tag}${esc(s.name)}</span><small>${l ? ord(l) : 'at will'}</small></button>`).join('')
+        );
+      })
+      .join('');
+  }
   function spellDetail(s, sd, R, r) {
     const n = sd.owner[s.id], md = n && MODE[n], rows = [];
     let cast = '';
@@ -181,11 +187,17 @@
   }
   function colC(r, c, R, sd) {
     const I = idx(), all = Object.values(sd.groups).flat();
-    const sel = I[st.spell] && all.some((x) => x.s.id === st.spell) ? I[st.spell] : (all[0] || {}).s;
+    const open = st.spellOpen && I[st.spell] && all.some((x) => x.s.id === st.spell) ? I[st.spell] : null; // null = show the list
+    const spellView = !all.length
+      ? '<p class="ds-hint">Pick spells on the Magic tab and they show up here.</p>'
+      : open
+        ? '<button class="lnk" data-a="dsspellback" style="align-self:flex-start;margin-bottom:10px">← Back to spells</button>' + spellDetail(open, sd, R, r)
+        : spellList(sd, R);
     return (
       `<div class="ds-card fill"><div class="ds-seg"><button class="${st.right === 'spell' ? 'on' : ''}" data-a="dsright" data-v="spell">Spell</button><button class="${st.right === 'feat' ? 'on' : ''}" data-a="dsright" data-v="feat">Features</button><button class="${st.right === 'gear' ? 'on' : ''}" data-a="dsright" data-v="gear">Gear</button></div>` +
-      (st.right === 'feat' ? featureDetail(r, R) : st.right === 'gear' ? gearDetail(r, c) : sel ? spellDetail(sel, sd, R, r) : '<p class="ds-hint">Pick spells on the Magic tab and they show up here.</p>') +
-      '</div>'
+      '<div class="ds-scroll">' +
+      (st.right === 'feat' ? featureDetail(r, R) : st.right === 'gear' ? gearDetail(r, c) : spellView) +
+      '</div></div>'
     );
   }
 
@@ -329,8 +341,10 @@
   on('dsright', (d) => { st.right = d.v; });
   on('dsfeat', (d) => { st.feat = d.id; });
   on('dsgear', (d) => { st.gear = +d.i; });
+  on('dsspellback', () => { st.spellOpen = false; });
   on('dsspell', (d) => {
     st.spell = d.id;
+    st.spellOpen = true;
     st.right = 'spell';
     const n = spellData(resolve(ch)).owner[d.id];
     if (n) spc = n; // so Unprepare changes the right class

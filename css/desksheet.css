@@ -9,6 +9,11 @@
   .main.ds.exp .ds-prev { justify-content: center; }
   .ds-a { grid-area: a; } .ds-b { grid-area: b; } .ds-c { grid-area: c; } .ds-d { grid-area: d; }
   .main.ds:not(.exp) { grid-template-areas: 'a b c d'; }
+  /* start the middle and Spell/Features/Gear columns level with the hit points card: skip the name/portrait header (54px) + column gap (12px); the 2px column padding makes up the rest */
+  .main.ds:not(.exp) > .ds-b, .main.ds:not(.exp) > .ds-c { margin-top: 66px; } /* margin, not padding, so the empty strip stays put and does not scroll away with the content */
+  /* the columns still scroll (wheel, trackpad, touch), but the bright default scrollbars are hidden so they do not clash with the dark cards */
+  .main.ds, .main.ds > .ds-col, .ds-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+  .main.ds::-webkit-scrollbar, .main.ds > .ds-col::-webkit-scrollbar, .ds-scroll::-webkit-scrollbar { display: none; }
 
   .ds-card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 16px; }
   .ds-card.fill { flex: 1 1 auto; display: flex; flex-direction: column; }
@@ -140,4 +145,13 @@
   .ds-th { max-height: calc(100vh - 240px); overflow-y: auto; }
   .ds-th img { display: block; width: 100%; border-radius: 6px; border: 2px solid transparent; background: #fff; cursor: pointer; }
   .ds-th img.on { border-color: var(--acc); }
+}
+
+/* 1400px and wider: the saves and skills column is its own column, so it starts level with the hit points card too */
+@media (min-width: 1400px) {
+  .main.ds:not(.exp) > .ds-d { margin-top: 66px; }
+  /* Spell / Features / Gear: the card fits the column and only its content scrolls, so the tab buttons stay pinned at the top */
+  .main.ds:not(.exp) > .ds-c { overflow: hidden; }
+  .ds-c > .ds-card.fill { min-height: 0; overflow: hidden; }
+  .ds-scroll { flex: 1 1 auto; min-height: 0; overflow: auto; display: flex; flex-direction: column; }
 }
