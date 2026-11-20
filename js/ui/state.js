@@ -22,4 +22,5 @@ let mode = 'player'; // 'player' | 'dm'
 let system = 'dnd5e'; // active game system
 let xt = 'feat',
   xq = ''; // DM + panel: which list (feat | lang | spell) and its search text
+let navM = false; // DM: Start > Monsters shows the monster tabs (Reference / Build / Stat block / Encounter) even before a monster is open
 let mfocus = false; // true while editing a monster (see monster.js); switches the tabs

@@ -35,6 +35,8 @@ function subTabs(list, active, action) {
     .join('');
 }
 
+const monNav = () => mfocus || (mode === 'dm' && navM); // the top bar shows the monster tabs
+
 function chrome() {
   document.documentElement.dataset.sys = system;
   $('#top').innerHTML =
@@ -45,7 +47,7 @@ function chrome() {
     `<div class="who"><div><b>${esc(mfocus ? mon.name || 'Unnamed monster' : ch.name || 'Unnamed')}</b><small>${esc(mfocus ? monSummary(mon) : summary(ch))}</small></div>${!mfocus && imgSrc(ch.img) ? `<img class="av" src="${imgSrc(ch.img)}">` : ''}</div>`;
   if (!$('#nav')) $('#top').insertAdjacentHTML('afterend', '<div id="nav" class="nav"></div>');
   $('#nav').innerHTML =
-    (mfocus ? MTABS : mode === 'dm' ? [...TABS, ['enc', 'Encounter']] : TABS)
+    (monNav() ? MTABS : mode === 'dm' ? [...TABS, ['enc', 'Encounter']] : TABS)
       .map(([k, n]) => `<button class="tab${tab === k ? ' on' : ''}" data-a="tab" data-v="${k}">${n}</button>`)
       .join('') +
     `<span class="modes"><button class="md${mode === 'player' ? ' on' : ''}" data-a="mode" data-v="player">Player</button><button class="md${mode === 'dm' ? ' on' : ''}" data-a="mode" data-v="dm">DM</button></span>`;
@@ -62,7 +64,7 @@ function chrome() {
   else if (tab === 'play') left = '<span class="hint">Playing at the table</span>';
   else if (tab === 'enc') left = '<span class="hint">Running an encounter</span>';
   else left = '<span class="hint">Live character sheet</span>';
-  $('#sub').innerHTML = '<span class="subtabs">' + left + '</span>' + `<span class="acts">${tab === 'enc' ? '' : mfocus ? MACTS : plusBtn() + ACTS}</span>`;
+  $('#sub').innerHTML = '<span class="subtabs">' + left + '</span>' + `<span class="acts">${tab === 'enc' || (!mfocus && monNav()) ? '' : mfocus ? MACTS : plusBtn() + ACTS}</span>`;
   const n = store.chars.filter((c) => !!c.dm === (mode === 'dm')).length,
     on = Loader.packs.filter((p) => p.enabled).length;
   $('#status').innerHTML =

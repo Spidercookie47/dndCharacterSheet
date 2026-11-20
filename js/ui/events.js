@@ -65,6 +65,7 @@ on('mode', (d) => {
   if (store.chars.some((c) => c.id === ch.id)) persist();
   mode = d.v;
   mfocus = false;
+  navM = false;
   if (startSub === 'mons' || startSub === 'enc') startSub = 'chars';
   if (!!ch.dm !== (mode === 'dm')) ch = fresh(mode === 'dm'); // each mode has its own characters
   tab = 'start';
@@ -75,6 +76,15 @@ on('tab', (d) => {
   tab = d.v;
   pv = null;
   if ((d.v === 'start' && panel === 'add') || panel === 'mfeat') panel = null;
+  if (!mfocus && mode === 'dm' && (d.v === 'mref' || d.v === 'mbuild' || d.v === 'mblock')) {
+    // a monster tab was clicked from Start > Monsters before any monster was opened: open one now (like New monster / Browse SRD reference)
+    const saved = store.mons.some((x) => x.id === mon.id);
+    if (d.v === 'mref' || !saved) mon = freshMon();
+    if (d.v === 'mref') mrSub = 'blocks';
+    else if (!saved) msb = 'basic';
+    mfocus = true;
+    panel = null;
+  }
 });
 on('sub', (d) => {
   sub = d.v;
@@ -83,6 +93,8 @@ on('sub', (d) => {
 });
 on('startsub', (d) => {
   startSub = d.v;
+  navM = d.v === 'mons'; // Monsters: monster tabs in the top bar; Characters / Sources: the player tabs
+  if (d.v !== 'mons') mfocus = false;
 });
 on('msub', (d) => {
   msub = d.v;
