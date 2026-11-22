@@ -3,7 +3,7 @@
    Uses the existing actions: hp, hpdmg, hpheal, hptemp, hdspend, res, rest, pick, prev, pdf, save. */
 (() => {
   const MQ = window.matchMedia('(min-width: 1000px)');
-  const st = { sub: 'play', pdf: null, pdfPage: 0, right: 'spell', spell: null, spellOpen: false, feat: null, gear: null, spells: true, items: true };
+  const st = { sub: 'play', pdf: null, pdfPage: 0, right: 'spell', spell: null, spellOpen: false, feat: null, featOpen: false, gear: null, gearOpen: false, spells: true, items: true };
   window.hsPdfOpts = st; // pdf code can read hsPdfOpts.spells and hsPdfOpts.items
 
   const active = () => MQ.matches && system === 'dnd5e' && !mfocus;
@@ -42,26 +42,48 @@
     const hdL = hd.reduce((s, x) => s + x.left, 0), hdN = hd.reduce((s, x) => s + x.n, 0), hdK = hd.find((x) => x.left > 0);
     const face = imgSrc(ch.img) ? `<img src="${imgSrc(ch.img)}" alt="">` : esc((ch.name || 'Hero').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join(''));
     return (
-      `<div class="ds-who"><div class="ds-av">${face}</div><div><div class="ds-nm">${esc(ch.name || 'Unnamed hero')}</div><small>${esc(summary(ch))}</small></div></div>` +
-      (h.max
+      `<div class="ds-who"><div class="ds-av">${face}</div><div><div class="ds-nm">${esc(ch.name || 'Unnamed hero')}</div><small>${esc(summary(ch))}</small></div>${inspBtn()}</div>` +
+      (h.max && h.now === 0
+        ? deathHtml('ds-card')
+        : h.max
         ? `<section class="ds-card hpcard"><div class="ds-row"><span class="ds-lab">Hit points</span><span class="ds-lab">Hit dice ${hdL} / ${hdN}</span></div>` +
           `<div class="ds-hp"><button data-a="hp" data-d="-1" aria-label="Lose 1 hit point">−</button><div class="ds-big">${h.now}<span> / ${h.max}</span>${h.temp ? `<small>+${h.temp} temporary</small>` : ''}</div><button data-a="hp" data-d="1" aria-label="Gain 1 hit point">+</button></div>` +
           `<div class="hpbar" role="progressbar" aria-label="Hit points" aria-valuemin="0" aria-valuemax="${h.max}" aria-valuenow="${h.now}"><i class="${tone}" style="width:${pct}%"></i></div>` +
+           statusHtml() +
           `<div class="ds-act"><input type="number" id="hpamt" min="1" value="1" aria-label="Amount"><button class="go" data-a="hpdmg">Damage</button><button data-a="hpheal">Heal</button><button data-a="hptemp">Temp</button></div>` +
           (hdK ? `<div class="ds-act"><button data-a="hdspend" data-c="${esc(hdK.k)}">Spend hit die (d${hdK.d})</button></div>` : '') +
           '</section>'
         : '<section class="ds-card"><p class="ds-hint" style="margin:0">Choose a class on the Build tab to track hit points.</p></section>') +
-      `<div class="ds-st">${tile('AC', c.ac)}${tile('INIT', sg(c.init))}${tile('SPEED', c.speed)}${tile('PROF', sg(c.pb))}</div>` +
+      `<div class="ds-st">${tile('AC', c.ac)}${tile('INIT', sg(c.init), (ch.exh || 0) >= 1 ? 'disadv.' : null)}${tile('SPEED', exhSpeed(c.speed), (ch.exh || 0) >= 2 && exhSpeed(c.speed) !== c.speed ? 'was ' + c.speed : null)}${tile('PROF', sg(c.pb))}</div>` +
+      exhHtml(c) +
       `<div class="ds-ab">${AB.map((a) => tile(a.toUpperCase(), sg(mod(c.sc[a])).replace('-', '−'), c.sc[a])).join('')}</div>` +
       `<div class="ds-pp">Passive Perception <b>${c.pp}</b></div>`
     );
   }
 
+  /* ---- pinned spells and items (card on top of column 2) ---- */
+  function pinCard(r, c) {
+    const { spells, items } = pinData(r, c);
+    if (!spells.length && !items.length) return '';
+    return (
+      '<section class="ds-card"><h3 class="ds-h">Pinned</h3>' +
+      spells.map((s) => `<button class="ds-sp" data-a="dsspell" data-id="${esc(s.id)}"><span>${esc(s.name)}</span><small>${s.lvl ? ord(s.lvl) : 'at will'}</small></button>`).join('') +
+      items.map(({ i, e, info }) => `<div class="ds-sp" style="cursor:default"><span>${esc(e.name)}${i.q > 1 ? ' ×' + i.q : ''}</span><small>${esc(info)}</small></div>`).join('') +
+      '</section>'
+    );
+  }
+
+  /* ---- ammunition card (counts shots down; helpers are in play.js) ---- */
+  function ammoCard() {
+    const A = ammoList();
+    if (!A.length) return '';
+    return '<section class="ds-card"><h3 class="ds-h">Ammunition</h3>' + A.map(({ n, e, t }) => `<div class="ds-row" style="margin:6px 0"><div class="ds-name">${esc(e.name)}<small>${t} left</small></div><span class="bar"><button class="alt" data-a="ammo" data-i="${n}" data-d="1">+1</button><button data-a="ammo" data-i="${n}" data-d="-1"${t < 1 ? ' disabled' : ''}>Use 1</button></span></div>`).join('') + '</section>';
+  }
   /* ---- column 2: resources, slots, rests, spells ---- */
   function colB(r, c, R, sd) {
     const slotR = R.filter((x) => isSK(x.k)), other = R.filter((x) => !isSK(x.k));
     const info = casterInfo(r, c);
-    let h = other
+    let h = pinCard(r, c) + ammoCard() + other
       .map((x) => {
         const inf = x.max === Infinity, u = inf ? 0 : Math.min(ch.used[x.k] || 0, x.max), lf = inf ? '∞' : x.max - u, m = inf ? 0 : x.max;
         const pips = !inf && x.max <= 12 ? `<div class="ds-pips">${'<i class="f"></i>'.repeat(x.max - u)}${'<i></i>'.repeat(u)}</div>` : '';
@@ -83,7 +105,7 @@
           .join('')}</div><p class="ds-hint">Blue = some slots spent. Tap a level to spend one; at 0 a tap gives one back.</p></section>`;
     if (R.length) h += '<div class="ds-rest"><button data-a="rest" data-v="S">Short rest</button><button data-a="rest" data-v="L">Long rest</button></div>';
     const hasSpells = Object.keys(sd.groups).length > 0; // the spell list lives in the right-hand Spell tab (see spellList)
-    if (!hasSpells && !other.length && !slotR.length) h += '<section class="ds-card"><p class="ds-hint" style="margin:0">Resources and spells appear here once your class gives you some.</p></section>';
+    if (!hasSpells && !other.length && !slotR.length && !ammoList().length) h += '<section class="ds-card"><p class="ds-hint" style="margin:0">Resources and spells appear here once your class gives you some.</p></section>';
     return h;
   }
 
@@ -106,41 +128,46 @@
   function spellDetail(s, sd, R, r) {
     const n = sd.owner[s.id], md = n && MODE[n], rows = [];
     let cast = '';
-    if (s.lvl === 0) cast = '<p class="ds-hint">Cantrip: cast it at will.</p>';
+    if (s.lvl === 0) cast = '<p class="ds-hint">Cantrip: cast it at will.</p>' + (isConc(s) ? '<div class="ds-cb">' + concBtn(s, 'on') + '</div>' : '');
     else {
       const opts = R.filter((x) => isSK(x.k) && slotLvl(x.k, r) >= s.lvl && left(R, x.k) > 0);
       cast =
         '<div class="ds-lab" style="letter-spacing:0;text-transform:none;font-size:.9rem">Cast using a slot</div>' +
         (opts.length
-          ? `<div class="ds-cb">${opts.map((x, i) => `<button class="${i ? '' : 'on'}" data-a="res" data-k="${esc(x.k)}" data-d="1" data-m="${x.max}">${x.k === 'pact' ? 'Pact' : ord(slotLvl(x.k, r)) + ' level'} · ${left(R, x.k)} left</button>`).join('')}</div>`
+          ? `<div class="ds-cb">${opts.map((x, i) => `<button class="${i ? '' : 'on'}" data-a="plcast" data-k="${esc(x.k)}" data-id="${esc(s.id)}">${x.k === 'pact' ? 'Pact' : ord(slotLvl(x.k, r)) + ' level'} · ${left(R, x.k)} left</button>`).join('')}</div>`
           : '<p class="ds-hint">No slots left at this level or higher.</p>');
     }
     const lab = s.lvl === 0 ? 'Remove cantrip' : md === 'known' ? 'Forget' : 'Unprepare';
     return (
       `<h2 class="ds-t">${esc(s.name)}</h2><p class="ds-sub">${esc(lvTxt(s))}</p>` +
       `<div class="ds-dl"><b>Casting time</b><span>${esc(s.cast)}</span><b>Range</b><span>${esc(s.range)}</span><b>Components</b><span>${esc(s.comp.replace(/,/g, ', '))}${s.mat ? ' (' + esc(s.mat) + ')' : ''}</span><b>Duration</b><span>${esc(s.dur)}</span></div>` +
-      `<div class="ds-body">${s.desc.split('\n\n').map((p) => `<p>${esc(p)}</p>`).join('')}</div><p class="ds-hint">${esc(s.lists.join(' · '))}</p>` +
-      `<div class="ds-cast">${cast}${n ? `<button class="ds-wide" data-a="pick" data-k="spell" data-id="${esc(s.id)}">${lab}</button>` : ''}</div>`
+      `<div class="ds-body">${s.desc.split('\n\n').map((p) => `<p>${esc(p)}</p>`).join('')}</div>${typeof spellScale === 'function' ? spellScale(s) : ''}<p class="ds-hint">${esc(s.lists.join(' · '))}</p>` +
+      `<div class="ds-cast">${cast}${favBtn(s.id, 'ds-wide', 'margin-bottom:8px')}${n ? `<button class="ds-wide" data-a="pick" data-k="spell" data-id="${esc(s.id)}">${lab}</button>` : ''}</div>`
     );
   }
   function featureDetail(r, R) {
     const feats = r.els.filter((e) => /Trait|Feature|Style|^Feat$/.test(e.type));
-    if (!feats.length) return '<p class="ds-hint">Features from your race, class and background appear here.</p>';
+    if (!feats.length && !customFeats().length) return '<p class="ds-hint">Features from your race, class and background appear here.</p>';
     const grp = {};
     feats.forEach((f) => {
       const g = /Racial|Race/.test(f.type) ? 'Race' : /Background/.test(f.type) ? 'Background' : /^Class Feature$/.test(f.type) ? 'Class' : f.type;
       (grp[g] = grp[g] || []).push(f);
     });
-    const sel = feats.find((f) => f.id === st.feat) || feats[0];
-    const body = INFO[sel.id] && INFO[sel.id][0] === '<' ? clean(INFO[sel.id]) : '<p>' + esc(sel.desc || '') + '</p>';
+    const sel = feats.find((f) => f.id === st.feat) || null;
+    if (st.featOpen && sel) {
+      // one feature open: the list steps aside so you never have to scroll down to read it
+      const body = INFO[sel.id] && INFO[sel.id][0] === '<' ? clean(INFO[sel.id]) : '<p>' + esc(sel.desc || '') + '</p>',
+        g = Object.keys(grp).find((k) => grp[k].includes(sel));
+      return '<button class="lnk" data-a="dsfeatback" style="align-self:flex-start;margin-bottom:10px">← Back to features</button>' + `<h2 class="ds-t">${esc(sel.name)}</h2><p class="ds-sub">${esc(g || '')}</p><div class="ds-body" style="margin-top:12px">${body}</div>`;
+    }
     return (
       Object.entries(grp)
         .map(([g, a]) => `<div class="ds-sh"><span>${esc(g)}</span><small>${a.length}</small></div>` +
           a.map((f) => {
             const x = R.find((y) => y.n === f.name);
-            return `<button class="ds-sp${f.id === sel.id ? ' on' : ''}" data-a="dsfeat" data-id="${esc(f.id)}"><span>${esc(f.name)}</span>${x ? `<small>${x.max === Infinity ? '∞' : left(R, x.k) + ' / ' + x.max}</small>` : ''}</button>`;
+            return `<button class="ds-sp${sel && f.id === sel.id ? ' on' : ''}" data-a="dsfeat" data-id="${esc(f.id)}"><span>${esc(f.name)}</span>${x ? `<small>${x.max === Infinity ? '∞' : left(R, x.k) + ' / ' + x.max}</small>` : ''}</button>`;
           }).join(''))
-        .join('') + `<div class="ds-feat ds-body"><h3 class="ds-h">${esc(sel.name)}</h3>${body}</div>`
+        .join('') + (customFeats().length ? `<div class="ds-sh"><span>Added by you</span><small>${customFeats().length}</small></div>` + customFeats().map((f) => `<div class="ds-sp" style="cursor:default;flex-direction:column;align-items:flex-start"><span><b>${esc(f.n)}</b></span>${f.b ? `<span style="white-space:pre-wrap;font-weight:400">${esc(f.b)}</span>` : ''}</div>`).join('') : '') + '<p class="ds-hint">Tap a feature to read it.</p>'
     );
   }
   /* ---- equipped weapons and items (the Gear view) ---- */
@@ -167,18 +194,18 @@
   function gearDetail(r, c) {
     const g = gearData(r, c), all = [...g.W, ...g.T];
     if (!all.length) return '<p class="ds-hint">Equip weapons and armor on the Equipment tab and they show up here.</p>';
-    const sel = all.find((x) => x.n === st.gear) || all[0];
+    const sel = all.find((x) => x.n === st.gear) || null;
     const row = (x, small) => `<button class="ds-sp${x === sel ? ' on' : ''}" data-a="dsgear" data-i="${x.n}"><span>${x.i.att ? '◆ ' : ''}${esc(x.e.name)}${x.i.q > 1 ? ' ×' + x.i.q : ''}</span><small>${esc(small)}</small></button>`;
     const list = (title, a, small) => (a.length ? `<div class="ds-sh"><span>${title}</span><small>${a.length}</small></div>` + a.map((x) => row(x, small(x))).join('') : '');
     const itemTag = (x) => (x.e.type === 'Armor' ? (x.e.kind === 'Shield' ? 'Shield' : 'Armor') : x.e.rar || x.e.type || 'Item') + (x.i.att ? ' · attuned' : x.i.eq ? '' : ' · not equipped');
+    if (!(st.gearOpen && sel)) return list('Weapons', g.W, (x) => x.w.atk + (x.w.dmg ? ' · ' + x.w.dmg + (x.w.type ? ' ' + x.w.type : '') : '')) + list('Equipped items', g.T, itemTag) + '<p class="ds-hint">Tap an item to read it.</p>';
     const { i, e, n, w } = sel;
     const body = String(e.desc || '').split('\n\n').filter(Boolean).map((p) => `<p>${esc(p)}</p>`).join('');
     const extra = i.desc && i.desc !== e.desc ? `<p>${esc(i.desc)}</p>` : '';
     const canEq = ['Armor', 'Weapon', 'Magic'].includes(e.type) || i.tp === 'Weapon';
     return (
-      list('Weapons', g.W, (x) => x.w.atk + (x.w.dmg ? ' · ' + x.w.dmg + (x.w.type ? ' ' + x.w.type : '') : '')) +
-      list('Equipped items', g.T, itemTag) +
-      `<div class="ds-feat ds-body"><h3 class="ds-h">${esc(e.name)}</h3>` +
+      '<button class="lnk" data-a="dsgearback" style="align-self:flex-start;margin-bottom:10px">← Back to gear</button>' +
+      `<h2 class="ds-t">${esc(e.name)}</h2><p class="ds-sub">${esc(i.att ? 'Attuned' : i.eq ? 'Equipped' : e.type || 'Item')}</p><div class="ds-body" style="margin-top:12px">` +
       (w ? `<div class="ds-dl"><b>Attack</b><span>${w.atk}</span><b>Damage</b><span>${esc(w.dmg || '—')}${w.type ? ' ' + esc(w.type) : ''}</span></div>` : '') +
       body + extra + effTxt(e, i) + masteryBox(masteryName(e)) +
       (canEq ? `<button class="ds-wide" style="margin-top:12px" data-a="eqi" data-i="${n}" data-d="">${i.eq ? 'Unequip' : 'Equip'}</button>` : '') +
@@ -203,10 +230,10 @@
 
   /* ---- column 4: saves and skills ---- */
   function colD(c) {
-    const row = (n, v, m) => `<div class="ds-r ${m}"><span><i class="ds-m ${m || 'n'}"></i>${esc(n)}</span><b>${sg(v).replace('-', '−')}</b></div>`;
+    const row = (n, v, m, k) => `<div class="ds-r ${m}"><span><i class="ds-m ${m || 'n'}"></i>${esc(n)}${k ? exhTag(k) : ''}</span><b>${sg(v).replace('-', '−')}</b></div>`;
     return (
-      `<div class="ds-card fill"><h3 class="ds-h">Saving throws</h3>${AB.map((a) => row(AN[a], c.sv[a].v, c.sv[a].p ? 'p' : '')).join('')}` +
-      `<h3 class="ds-h" style="margin-top:14px">Skills</h3>${Object.entries(c.sk).map(([n, s]) => row(n, s.v, s.x ? 'e' : s.p ? 'p' : '')).join('')}` +
+      `<div class="ds-card fill"><h3 class="ds-h">Saving throws</h3>${AB.map((a) => row(AN[a], c.sv[a].v, c.sv[a].p ? 'p' : '', 'save')).join('')}` +
+      `<h3 class="ds-h" style="margin-top:14px">Skills</h3>${Object.entries(c.sk).map(([n, s]) => row(n, s.v, s.x ? 'e' : s.p ? 'p' : '', 'check')).join('')}` +
       '<p class="ds-hint"><i class="ds-m p"></i>proficient · <i class="ds-m e"></i>expertise</p></div>'
     );
   }
@@ -339,8 +366,10 @@
   on('dssub', (d) => { st.sub = d.v; });
   on('dspdfpage', (d) => { st.pdfPage = +d.v || 0; });
   on('dsright', (d) => { st.right = d.v; });
-  on('dsfeat', (d) => { st.feat = d.id; });
-  on('dsgear', (d) => { st.gear = +d.i; });
+  on('dsfeat', (d) => { st.feat = d.id; st.featOpen = true; });
+  on('dsfeatback', () => { st.featOpen = false; });
+  on('dsgear', (d) => { st.gear = +d.i; st.gearOpen = true; });
+  on('dsgearback', () => { st.gearOpen = false; });
   on('dsspellback', () => { st.spellOpen = false; });
   on('dsspell', (d) => {
     st.spell = d.id;

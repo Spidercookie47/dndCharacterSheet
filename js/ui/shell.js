@@ -24,7 +24,7 @@ const plusBtn = () =>
     ? '<button class="lnk" data-a="xopen" title="Add an extra feat, language or spell">+ Add</button>'
     : '';
 const ACTS =
-  '<button class="lnk" data-a="save">Save</button><button class="lnk" data-a="lvl">Level up &amp; HP</button><button class="lnk" data-a="opt">Character options</button><button class="lnk" data-a="sheetpanel">Sheet</button>';
+  '<button class="lnk" data-a="save">Save</button><button class="lnk" data-a="lvl">Level up &amp; HP</button><button class="lnk" data-a="opt">Character options</button><button class="lnk" data-a="sheetpanel">Sheet</button><button class="lnk" data-a="share">Share</button>';
 
 function subTabs(list, active, action) {
   return list

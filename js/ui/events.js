@@ -324,6 +324,9 @@ on('rest', (d) => {
   if (d.v === 'L') {
     delete ch.hpNow; // back to full health
     delete ch.tempHp;
+    delete ch.ds; // death saves reset
+    if (ch.exh > 1) ch.exh--; // a long rest lowers exhaustion by 1
+    else delete ch.exh;
     hdRest();
   }
   note(
@@ -339,14 +342,20 @@ const hpAmt = () => {
   return Math.max(1, Math.min(9999, Math.trunc(+(el && el.value)) || 1));
 };
 function hpSet(now, max) {
-  if (now >= max) delete ch.hpNow; // full health: follow the maximum again
+  if (now >= max && (ch.exh || 0) < 4) delete ch.hpNow; // full health: follow the maximum again (not while exhaustion halves the maximum)
   else ch.hpNow = Math.max(0, now);
+  if (now > 0) delete ch.ds; // back on your feet: death saves are over
 }
 function hpHit(n) {
   const h = hpInfo(calc(ch, resolve(ch))),
     t = Math.min(h.temp, n); // temporary hit points soak up damage first
   if (h.temp - t > 0) ch.tempHp = h.temp - t;
   else delete ch.tempHp;
+  if (h.now === 0) {
+    // damage while at 0 hit points is an automatic failed death save (two if it is a crit: use the "Fail" button twice)
+    if (n - t > 0) dsAdd('f', 1);
+    return;
+  }
   hpSet(h.now - (n - t), h.max);
 }
 function hpHeal(n) {
@@ -394,6 +403,90 @@ on('hdspend', (d) => {
   ch.hdUsed[x.k] = Math.min(x.n, ch.hdUsed[x.k] || 0) + 1;
   hpHeal(heal);
   note('Spent a d' + x.d + ': rolled ' + roll + (cm ? ' ' + sg(cm) + ' Constitution' : '') + ' = ' + heal + ' hit points.');
+});
+
+/* ---- Death saves: shown instead of the Hit points card while a character is at 0 hit points ----
+   ch.ds = { s: successes, f: failures }, only stored while there is something to show.
+   3 successes = stable (still at 0 hit points), 3 failures = dead. Any healing clears it (see hpSet). */
+function dsGet() {
+  const d = ch.ds || {};
+  return { s: Math.min(3, d.s || 0), f: Math.min(3, d.f || 0) };
+}
+function dsPut(d) {
+  if (d.s || d.f) ch.ds = { s: d.s, f: d.f };
+  else delete ch.ds;
+}
+function dsAdd(k, n) {
+  let d = dsGet();
+  if (d.f >= 3) return; // already dead: use Reset
+  if (d.s >= 3 && k === 'f') d = { s: 0, f: 0 }; // a stable character who is hurt starts over
+  if (d.s >= 3) return;
+  d[k] = Math.min(3, d[k] + n);
+  dsPut(d);
+}
+on('dsok', () => dsAdd('s', 1));
+on('dsfail', () => dsAdd('f', 1));
+on('dspip', (d) => {
+  const c = dsGet(),
+    n = +d.n,
+    k = d.t;
+  c[k] = c[k] === n ? n - 1 : n; // tap the last filled pip to take one back
+  if (k === 's' && c.f >= 3) return;
+  dsPut(c);
+});
+on('dsstab', () => {
+  dsPut({ s: 3, f: 0 });
+  note('Stabilized: unconscious at 0 hit points, no more death saves.');
+});
+on('dsreset', () => {
+  delete ch.ds;
+});
+on('dsroll', () => {
+  const r = Math.floor(Math.random() * 20) + 1;
+  if (r === 20) {
+    hpHeal(1);
+    note('Death save: natural 20! Back up with 1 hit point.');
+  } else if (r === 1) {
+    dsAdd('f', 2);
+    note('Death save: natural 1. Two failures.');
+  } else if (r >= 10) {
+    dsAdd('s', 1);
+    note('Death save: ' + r + '. Success.');
+  } else {
+    dsAdd('f', 1);
+    note('Death save: ' + r + '. Failure.');
+  }
+});
+
+/* ---- Status effects (see statusHtml in sheet.js) ---- */
+on('condopen', () => {
+  condOpen = !condOpen;
+});
+on('cond', (d) => {
+  const a = ch.cond || [];
+  if (a.includes(d.k)) ch.cond = a.filter((x) => x !== d.k);
+  else if (CONDS.some((x) => x[0] === d.k)) ch.cond = [...a, d.k];
+  if (!ch.cond || !ch.cond.length) delete ch.cond;
+});
+/* Change exhaustion. At level 4 the hit point maximum halves: current hit points drop to the new maximum, and stay put when it comes back. */
+function exhSet(n) {
+  const old = ch.exh || 0,
+    b = hpInfo(calc(ch, resolve(ch)));
+  if (n) ch.exh = n;
+  else delete ch.exh;
+  if (old >= 4 || n >= 4) {
+    const a = hpInfo(calc(ch, resolve(ch)));
+    hpSet(Math.min(b.now, a.max), a.max);
+  }
+}
+on('exh', (d) => {
+  const n = Math.max(0, Math.min(6, (ch.exh || 0) + +d.d));
+  exhSet(n);
+  if (n === 6) note('Exhaustion 6 means death.');
+});
+on('condclear', () => {
+  delete ch.cond;
+  exhSet(0);
 });
 
 /* ---- backstory ---- */

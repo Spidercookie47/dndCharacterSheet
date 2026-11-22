@@ -223,7 +223,8 @@ const Sanitize = (() => {
         .filter(isObj)
         .slice(0, 500)
         .map((i) => {
-          const r = { id: Str(i.id, 200), q: int(i.q, 1, 99999, 1), eq: !!i.eq };
+          const r = { id: Str(i.id, 200), q: int(i.q, 0, 99999, 1), eq: !!i.eq }; // 0 is allowed: out of ammunition
+          if (+i.sh > 0) r.sh = int(i.sh, 0, 99999, 0); // ammunition already used from a pack (see play.js)
           ['att', 'ra', 'mg'].forEach((k) => {
             if (i[k]) r[k] = true;
           });

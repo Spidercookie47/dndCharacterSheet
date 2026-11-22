@@ -90,6 +90,7 @@ function drawer() {
         )
         .join('') +
       '<div class="bar"><button data-a="optok">OK</button><button class="alt" data-a="optno">Cancel</button></div>';
+  else if (panel === 'share') h = hd_('SHARE A LINK') + (typeof shareHtml === 'function' ? shareHtml() : '');
   else if (panel === 'add') h = hd_('ADD EXTRA') + addPanel();
   else if (panel === 'mfeat') h = hd_('FROM REFERENCE') + mpPanel();
   else {

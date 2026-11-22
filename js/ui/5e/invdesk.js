@@ -47,7 +47,7 @@
     const row = ({ i, e, n }) =>
       `<div class="iv-r${i.eq ? ' eq' : ''}${cur && cur.n === n ? ' sel' : ''}" data-a="invsel" data-id="${esc(i.id)}" data-n="${esc((e.name || '').toLowerCase())}">` +
       `<span class="iv-b">${BADGE[catOf(e)]}</span>` +
-      `<span class="iv-w"><b>${esc(e.name)}${i.att ? ' <i class="iv-a">◆</i>' : ''}</b><small>${esc(sub(e, i))}</small></span>` +
+      `<span class="iv-w"><b>${esc(e.name)}${i.att ? ' <i class="iv-a">◆</i>' : ''}${favHas(i.id) ? ' <i class="iv-a">★</i>' : ''}</b><small>${esc(sub(e, i))}</small></span>` +
       `<span class="iv-wt">${((e.wt || 0) * i.q).toFixed(1)} lb</span>` +
       `<span class="iv-q">${btn('qty2', n, -1, '−', 1)}<b>${i.q}</b>${btn('qty2', n, 1, '+', 1)}</span>` +
       `<span class="iv-x">${canEq(e) ? btn('eqi', n, '', i.eq ? 'Unequip' : 'Equip', i.eq) : ''}${e.att ? btn('att', n, '', i.att ? 'Unattune' : 'Attune', i.att) : ''}</span></div>`;
@@ -93,7 +93,7 @@
         `<section class="iv-card"><h2 class="iv-t">${esc(e.name)}</h2><p class="iv-s">${[e.type, e.rar, (e.wt || 0) + ' lb', i.eq ? 'equipped' : ''].filter(Boolean).map(esc).join(' · ')}</p>` +
         (w ? `<div class="iv-two"><div class="iv-tile"><div class="iv-lab">Attack</div><b>${w.atk}</b></div><div class="iv-tile"><div class="iv-lab">Damage</div><b>${esc(w.dmg)}</b></div></div>` : '') +
         d + (i.desc ? `<p>${esc(i.desc)}</p>` : '') + effTxt(e, i) + masteryBox(masteryName(e)) +
-        `<div class="iv-act">${canEq(e) ? btn('eqi', n, '', i.eq ? 'Unequip' : 'Equip', i.eq) : ''}${e.att ? btn('att', n, '', i.att ? 'Unattune' : 'Attune', i.att) : ''}${btn('mv', n, -1, 'Move up', 1)}${btn('mv', n, 1, 'Move down', 1)}<button class="lnk" data-a="rmi2" data-i="${n}" data-d="">Remove</button></div></section>`;
+        `<div class="iv-act">${canEq(e) ? btn('eqi', n, '', i.eq ? 'Unequip' : 'Equip', i.eq) : ''}${e.att ? btn('att', n, '', i.att ? 'Unattune' : 'Attune', i.att) : ''}${btn('mv', n, -1, 'Move up', 1)}${btn('mv', n, 1, 'Move down', 1)}${favBtn(i.id, 'alt')}<button class="lnk" data-a="rmi2" data-i="${n}" data-d="">Remove</button></div></section>`;
     }
 
     return `<div class="left">${bar}${body || '<p class="hint">No items match.</p>'}${form}</div><div class="iv-side">${carry}${det}</div>`;

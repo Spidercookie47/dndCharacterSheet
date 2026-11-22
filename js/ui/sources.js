@@ -41,21 +41,21 @@ function progUpdate() {
 function sourcesHtml() {
   const byId = new Map(Loader.packs.map((p) => [p.id, p])),
     seen = new Set(),
-    row = (p) => `<div class="rw" style="cursor:default;flex-wrap:wrap;align-items:center">
+    row = (p) => `<div class="rw" draggable="true" data-pid="${esc(p.id)}" style="cursor:default;flex-wrap:wrap;align-items:center">
     <label class="opt" style="margin:0;font-weight:600"><input class="sw" type="checkbox" data-a="srctoggle" data-id="${esc(p.id)}"${p.enabled ? ' checked' : ''}><span>${esc(p.name)}<small>${p.count} elements${p.builtin ? ' · built in' : p.url ? ' · ' + esc(p.url) : ' · added from file'}${p.fetchedAt ? ' · cached ' + new Date(p.fetchedAt).toLocaleDateString() : ''}</small></span></label>
     <span class="src" style="flex:0 0 auto">${p.builtin ? '' : (p.url ? `<button class="lnk" data-a="srcrefresh" data-id="${esc(p.id)}">Refresh</button>` : '') + `<button class="lnk" data-a="srcremove" data-id="${esc(p.id)}">Remove</button>`}</span></div>`,
     tile = (p, q) =>
-      `<label class="tile${p.enabled ? ' on' : ''}" data-n="${esc(p.name.toLowerCase())}"${q && !p.name.toLowerCase().includes(q) ? ' style="display:none"' : ''}><input class="sw" type="checkbox" data-a="srctoggle" data-id="${esc(p.id)}"${p.enabled ? ' checked' : ''}><span><b>${esc(p.name)}</b><small>${p.count} elements</small></span>${p.url ? `<button type="button" class="lnk" data-a="srcrefresh" data-id="${esc(p.id)}" title="Refresh this pack">↻</button>` : ''}</label>`;
+      `<label class="tile${p.enabled ? ' on' : ''}" draggable="true" data-pid="${esc(p.id)}" data-n="${esc(p.name.toLowerCase())}"${q && !p.name.toLowerCase().includes(q) ? ' style="display:none"' : ''}><input class="sw" type="checkbox" data-a="srctoggle" data-id="${esc(p.id)}"${p.enabled ? ' checked' : ''}><span><b>${esc(p.name)}</b><small>${p.count} elements</small></span>${p.url ? `<button type="button" class="lnk" data-a="srcrefresh" data-id="${esc(p.id)}" title="Refresh this pack">↻</button>` : ''}</label>`;
   const groups = srcGroups
     .map((g) => {
       const ps = g.ids.map((id) => byId.get(id)).filter(Boolean);
-      if (!ps.length) return '';
       ps.forEach((p) => seen.add(p.id));
       const q = (srcQ[g.id] || '').toLowerCase(),
-        n = ps.filter((p) => p.enabled).length;
-      return `<div class="ph"><span>${esc(g.name)}</span><span class="src">${n} / ${ps.length} on</span></div>
+        n = ps.filter((p) => p.enabled).length,
+        open = !!q || srcOpen.has(g.id) || !ps.length;
+      return `<div class="ph sgh${open ? ' open' : ''}" data-gid="${esc(g.id)}" data-drop="${esc(g.id)}" role="button" tabindex="0" aria-expanded="${open}" title="Show or hide the packs"><span><i class="sch">▶</i>${esc(g.name)}</span><span class="src">${n} / ${ps.length} on</span></div>
     <div class="bar" style="margin:8px 0"><input type="text" data-gq="${esc(g.id)}" placeholder="Search ${esc(g.name)}…" value="${esc(srcQ[g.id] || '')}" style="max-width:260px"><button class="lnk" data-a="srcgall" data-g="${esc(g.id)}" data-v="1">All on</button><button class="lnk" data-a="srcgall" data-g="${esc(g.id)}" data-v="0">All off</button><button class="lnk" data-a="srcgrefresh" data-g="${esc(g.id)}">Refresh all</button><button class="lnk" data-a="srcgrm" data-g="${esc(g.id)}">Remove group</button></div>
-    <div class="tiles" data-gt="${esc(g.id)}">${ps.map((p) => tile(p, q)).join('')}</div>`;
+    <div class="tiles${open ? '' : ' sclosed'}" data-gt="${esc(g.id)}" data-drop="${esc(g.id)}">${ps.map((p) => tile(p, q)).join('') || '<p class="hint">Drag books here.</p>'}</div>`;
     })
     .join('');
   const rows = Loader.packs.filter((p) => !seen.has(p.id)).map(row).join('') + groups;
@@ -64,15 +64,15 @@ function sourcesHtml() {
     : '';
   const warn = Loader.warnings.map((w) => `<p class="hint">⚠ ${esc(w)}</p>`).join('');
   const credits = Loader.packs.filter((p) => p.credit).map((p) => p.credit);
-  return progHtml() + `<div class="ph"><span>Content sources</span><button class="lnk" data-a="srcrefall">Refresh all sources</button></div>
-    <p class="hint">Everything you can pick comes from a source. Turn a source off to hide its content. Characters keep working; missing content is simply not offered.</p>${rows}${warn}${m}
+  return progHtml() + `<div class="ph"><span>Content sources</span><span><button class="lnk" data-ng="1">New group</button><button class="lnk" data-a="srcrefall">Refresh all sources</button></span></div>
+    <p class="hint">Everything you can pick comes from a source. Turn a source off to hide its content. Characters keep working; missing content is simply not offered.</p>${srcNewG ? '<div class="bar" style="margin:8px 0"><input type="text" id="srcng" placeholder="Group name, for example Favorites" maxlength="40" style="max-width:260px"><button data-ngok="1">Create</button><button class="alt" data-ngno="1">Cancel</button></div>' : ''}${rows}${warn}${m}
     ${missingHtml()}
     <div class="ph"><span>Add a source</span></div>
     <label for="srcurl">Link to a pack or index JSON file (for example a raw.githubusercontent.com link)</label>
     <div class="bar"><input type="text" id="srcurl" placeholder="https://raw.githubusercontent.com/you/your-homebrew/main/pack.json" value="${esc(srcUrl)}" style="max-width:620px"><button data-a="srcadd">Add</button></div>
     <div class="bar" style="margin-top:10px"><label class="btn alt" style="margin:0">Add from file<input id="srcfile" type="file" accept=".json,application/json" hidden></label><button class="alt" data-a="srcpaste">Add pasted JSON</button></div>
     <label for="srcpaste">…or paste pack JSON here</label><textarea id="srcpaste" rows="5" placeholder='{ "source": { "name": "My Homebrew" }, "elements": [ ... ] }'>${esc(srcPaste)}</textarea>
-    <p class="hint">Packs are cached in this browser after the first download, so they keep working offline. Use Refresh to fetch the newest version. Pack format and a template are in <code>data/homebrew/_template/</code>.</p>
+    <p class="hint">Packs are cached in this browser after the first download, so they keep working offline. Use Refresh to fetch the newest version. Pack format and a template are in <code>data/homebrew/_template/</code>. <a href="https://github.com/Spidercookie47/dndCharacterSheet" target="_blank" rel="noopener noreferrer" style="color:var(--acc)">See the homebrew example on GitHub</a>.</p>
     ${credits.length ? `<div class="ph"><span>Credits</span></div>${credits.map((c) => `<p class="hint">${esc(c)}</p>`).join('')}` : ''}`;
 }
 function srcSel() {
@@ -102,7 +102,8 @@ const srcOk = (e) => {
   return s ? s.has(srcF) : (e.src || '') === srcF;
 };
 let srcUrl = '',
-  srcPaste = '';
+  srcPaste = '',
+  srcNewG = false; // the "new group" name box is open
 let srcGroups = (() => {
     try {
       return JSON.parse(localStorage.getItem('hs-groups')) || [];
@@ -122,8 +123,113 @@ document.addEventListener('input', (e) => {
   srcQ[g] = e.target.value;
   const q = e.target.value.toLowerCase();
   document.querySelectorAll('.tiles').forEach((box) => {
-    if (box.dataset.gt === g) box.querySelectorAll('.tile').forEach((t) => (t.style.display = t.dataset.n.includes(q) ? '' : 'none'));
+    if (box.dataset.gt !== g) return;
+    box.querySelectorAll('.tile').forEach((t) => (t.style.display = t.dataset.n.includes(q) ? '' : 'none'));
+    box.classList.toggle('sclosed', !q && !srcOpen.has(g));
   });
+  document.querySelectorAll('.sgh').forEach((h) => {
+    if (h.dataset.gid === g) h.classList.toggle('open', !!q || srcOpen.has(g));
+  });
+});
+/* Show or hide a group's pack tiles (only the tiles: the search and buttons above them stay). Remembered between visits. */
+const srcOpen = new Set(
+  (() => {
+    try {
+      return JSON.parse(localStorage.getItem('hs-sopen')) || [];
+    } catch (e) {
+      return [];
+    }
+  })(),
+);
+function srcToggle(h) {
+  const id = h.dataset.gid,
+    o = !srcOpen.has(id);
+  o ? srcOpen.add(id) : srcOpen.delete(id);
+  try {
+    localStorage.setItem('hs-sopen', JSON.stringify([...srcOpen]));
+  } catch (e) {}
+  h.classList.toggle('open', o);
+  h.setAttribute('aria-expanded', String(o));
+  document.querySelectorAll('.tiles').forEach((box) => {
+    if (box.dataset.gt === id) box.classList.toggle('sclosed', !o);
+  });
+}
+document.addEventListener('click', (e) => {
+  const h = e.target.closest && e.target.closest('.sgh');
+  if (h) srcToggle(h);
+});
+document.addEventListener('keydown', (e) => {
+  const h = e.target.classList && e.target.classList.contains('sgh') ? e.target : null;
+  if (h && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault();
+    srcToggle(h);
+  }
+});
+const srcStyle = document.createElement('style');
+srcStyle.textContent =
+  '.sgh{cursor:pointer;user-select:none}.sgh:hover{color:var(--acc)}.sch{display:inline-block;margin-right:8px;font-style:normal;font-size:.7rem;color:var(--mut);transition:transform .15s}.sgh.open .sch{transform:rotate(90deg)}.tiles.sclosed{display:none}.tile[draggable=true],.rw[draggable=true]{cursor:grab}.dropon{outline:2px dashed var(--acc);outline-offset:2px}@media (prefers-reduced-motion:reduce){.sch{transition:none}}';
+document.head.appendChild(srcStyle);
+/* ---- Move a book to another group: drag it onto a group, or use its Move to… box (touch screens). The book leaves its old group. ---- */
+function srcMove(pid, gid) {
+  const p = Loader.packs.find((x) => x.id === pid),
+    g = gid && srcGroups.find((x) => x.id === gid);
+  if (!p || (gid && !g)) return;
+  srcGroups.forEach((x) => (x.ids = x.ids.filter((i) => i !== pid)));
+  if (g) g.ids.push(pid);
+  saveGroups();
+  srcMsg = { ok: true, text: g ? 'Moved ' + p.name + ' to ' + g.name + '. It is no longer in its old group.' : 'Moved ' + p.name + ' out of its group.' };
+  draw();
+}
+document.addEventListener('dragstart', (e) => {
+  const t = e.target.closest && e.target.closest('[data-pid]');
+  if (!t || !e.dataTransfer) return;
+  e.dataTransfer.setData('text/plain', t.dataset.pid);
+  e.dataTransfer.effectAllowed = 'move';
+});
+document.addEventListener('dragover', (e) => {
+  const z = e.target.closest && e.target.closest('[data-drop]');
+  if (!z) return;
+  e.preventDefault();
+  document.querySelectorAll('.dropon').forEach((n) => n !== z && n.classList.remove('dropon'));
+  z.classList.add('dropon');
+});
+document.addEventListener('dragend', () => document.querySelectorAll('.dropon').forEach((n) => n.classList.remove('dropon')));
+document.addEventListener('drop', (e) => {
+  const z = e.target.closest && e.target.closest('[data-drop]');
+  if (!z) return;
+  e.preventDefault();
+  const pid = e.dataTransfer && e.dataTransfer.getData('text/plain');
+  document.querySelectorAll('.dropon').forEach((n) => n.classList.remove('dropon'));
+  if (pid) srcMove(pid, z.dataset.drop);
+});
+function srcNgMake() {
+  const el = document.getElementById('srcng'),
+    nm = ((el && el.value) || '').trim();
+  srcNewG = false;
+  if (nm) {
+    const id = nm.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (!srcGroups.some((g) => g.id === id)) srcGroups.push({ id, name: nm, ids: [] });
+    saveGroups();
+    srcOpen.add(id);
+  }
+  draw();
+}
+document.addEventListener('click', (e) => {
+  const c = e.target.closest && e.target.closest('[data-ng],[data-ngok],[data-ngno]');
+  if (!c) return;
+  if (c.dataset.ngok) return srcNgMake();
+  srcNewG = !!c.dataset.ng;
+  draw();
+  const el = document.getElementById('srcng');
+  if (el) el.focus();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.target.id !== 'srcng') return;
+  if (e.key === 'Enter') srcNgMake();
+  else if (e.key === 'Escape') {
+    srcNewG = false;
+    draw();
+  }
 });
 async function sourcesAction(fn, nameHint) {
   try {

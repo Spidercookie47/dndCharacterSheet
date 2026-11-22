@@ -23,7 +23,7 @@ const cardHp = (c) => {
 
 function renderStart() {
   const m = $('#main');
-  m.className = 'main one';
+  m.className = 'main one st';
   if (startSub === 'mons' && mode === 'dm') {
     m.innerHTML =
       '<div class="left">' +
@@ -58,3 +58,8 @@ function renderStart() {
     <div class="bar"><button data-a="new">New character</button><label class="btn alt" style="margin:0">Open character file<input id="open" type="file" accept=".json,application/json" hidden></label>${typeof Sync !== 'undefined' ? Sync.html('alt') : ''}</div>
     ${typeof hsInstallCard === 'function' ? hsInstallCard() : ''}<div class="ph"><span>Characters</span></div>${list.length ? '<div class="clist">' + cards + '</div>' : '<p class="hint">No characters yet. Choose New character to start.</p>'}</div>`;
 }
+
+/* Start screens (Characters, Monsters, Sources) on PC and tablets: shown a bit smaller. Phones use the compact Home layout instead. Change .85 to taste. */
+const stStyle = document.createElement('style');
+stStyle.textContent = '@media (min-width:861px){.main.st>.left{zoom:.85}}';
+document.head.appendChild(stStyle);

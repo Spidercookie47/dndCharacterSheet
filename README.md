@@ -25,12 +25,16 @@ css/
   tokens.css               colors (dark, light follows the system)
   layout.css               top bar, sub bar, two columns, status bar
   components.css           rows, cards, forms, tables, side panels, the sheet
+  hp.css play.css          hit points, death saves, status effects; the Play tab
+  mobile.css bottombar.css homephone.css   phone layout: bottom tab bar, Home screen, bottom sheet
+  home.css levelwiz.css    Home character list; the level-up screen
+  desksheet.css inventory.css   wide-screen Character sheet and Inventory
 js/
   core/                    the rules, no screen code
-    constants.js           ability names, skills, coin values
+    sanitize.js            cleans pack data, character files and Drive downloads (numbers must be numbers)
     util.js                small helpers ($, esc, mod, file download)
     registry.js            holds all loaded elements and the tables built from them
-    state.js               the character in progress, the saved list, persistence
+    state.js               the character in progress, the saved list, safe storage (backup copy, other-window sync)
     engine.js              resolve() follows grants/choices, calc() computes AC, HP, saves, skills…
     leveling.js            levels, hit points, multiclass requirements, proficiencies text
     inventory.js           armor class from worn armor, buying with coins
@@ -49,6 +53,16 @@ js/
     events.js              every click, key press and file choice, as named actions
     start.js sources.js build.js asi.js magic.js equipment.js manage.js sheet.js drawers.js rich.js …
     monster.js             DM mode monster maker: Build tabs, reference, stat block preview and PDF
+    play.js                Play tab: hit points, resources, ammunition, slots, spells to cast, pinned, concentration, custom features
+    desksheet.js           wide-screen (1000px and up) Play and Export / PDF layout
+    invdesk.js             wide-screen Equipment > Inventory
+    levelwiz.js            level-up screen (roll or take average, new features)
+    homephone.js bottombar.js mobile.js   phone Home screen, bottom tab bar, detail bottom sheet
+    theme.js               Theme panel (any color, presets)
+    customsheet.js         use your own fillable PDF sheet
+    share.js encounter.js listtools.js   share links, DM encounter tracker, sort and search for pick lists
+  pwa.js                   install as an app, update notice
+sw.js version.json manifest.json   offline cache and update check (see Installing and updating)
   main.js                  start-up
 data/
   srd51/                   the SRD 5.1 as JSON (index.json lists the files, monsters.json included)
@@ -61,7 +75,7 @@ tools/
   validate_pack.py         check a homebrew pack
 ```
 
-The scripts are plain (non-module) files that share one global scope. Order matters, and `index.html` lists them in order. `js/ui/monster.js` goes after `events.js` and before `main.js`. `js/core/sync.js` also goes after `events.js`, because it uses `on`, `draw` and the state helpers.
+The scripts are plain (non-module) files that share one global scope. Ability names, skills and coin values are defined inline at the top of `index.html`. Order matters, and `index.html` lists them in order. `js/ui/monster.js` goes after `events.js` and before `main.js`. `js/core/sync.js` also goes after `events.js`, because it uses `on`, `draw` and the state helpers.
 
 ## Content packs
 
@@ -120,9 +134,13 @@ Run `python3 tools/validate_pack.py my-pack.json` before sharing. `data/homebrew
 
 ### Adding homebrew in the app
 
+A working example pack is in the project on GitHub: https://github.com/Spidercookie47/dndCharacterSheet (`data/homebrew/_template/`). The Sources screen links to it.
+
 Start → **Sources**: paste a link to a pack or catalog (for example a `raw.githubusercontent.com` link), choose a file, or paste JSON. It is cached in the browser. **Refresh** fetches the newest version, and the checkbox turns a source on or off.
 
 A **progress bar** at the top of the Sources screen shows what is being read. A pack split over several files shows its file count and the current file. Adding a catalog link, **Refresh all** or a group's **Refresh all** shows one bar for all the books, as "Book 3 / 12" with a percentage, and says "Double checking" while refreshing. Packs added from a file or pasted JSON load instantly, and packs already cached in the browser load without a bar.
+
+**Groups.** Packs added from a catalog link are grouped under one header. Press **New group** to make your own (for example Favorites), then **drag a book** onto a group's header or its tile area to move it there. The book leaves its old group, and the pack itself is not changed. Groups are kept in this browser. Dragging uses the mouse; on a phone it may not work.
 
 The **Missing content** list on the same screen shows any saved character that uses something that is not available right now, for example because its homebrew source is switched off, and says which source to turn on.
 
@@ -131,6 +149,13 @@ The **Missing content** list on the same screen shows any saved character that u
 Characters are kept in the browser, and **Save** downloads a `*.hearth.json` file you can open again from the Start screen. A character file stores your *choices*, not computed numbers, so it keeps working when the rules data changes.
 
 Player and DM characters are kept in separate lists: the Start screen shows the characters of the mode you are in. Opening a character file puts it in the current mode, so that is also how you turn a player character into a DM one.
+
+## Saved data and safety
+
+- **Storage.** Characters and monsters are saved in the browser's local storage. If saving fails (storage full or blocked), the status line says so, and **Save** downloads a copy you can keep.
+- **Backup copy.** The app keeps one backup copy per session. If the main copy cannot be read, the backup is restored and a notice says so, and the damaged text is kept under `aw-store-corrupt` so it can still be recovered by hand.
+- **Installed app.** It asks the browser not to delete this site's data when space runs low. The browser tab and the installed app share storage, and a change saved in one window is picked up by the other instead of being overwritten.
+- **Cleaning.** Packs from a link, a file or pasted JSON are cleaned before use (`js/core/sanitize.js`): fields that must be numbers are numbers, and pack HTML is cut down to a short list of safe tags. Character files and Drive downloads keep only known fields. **If you add a new field to a character, add it to `Sanitize.char()` as well**, or it is dropped when a file is opened or synced.
 
 ## Google Drive sync (optional)
 
@@ -165,6 +190,21 @@ Start → **Connect Google Drive**. The same button then shows the state: Syncin
 ## Character options
 
 Open **Character options** (top right) to change how a character is built: average hit points, feats and multiclassing. Player characters stop at 20 in each ability score. Characters built in DM mode go up to 30 by default, so there is no option for it. Point buy stays capped at 15; use the standard array or rolled scores for higher numbers.
+
+## Play tab
+
+The Play tab is the sheet as you use it at the table. On phones it has four views: **Play**, **Spells** (casters only), **Features** and **Skills**. On wide screens (1000px and up) the same things sit in columns (`desksheet.js`).
+
+- **Hit points**: current and maximum, Damage, Heal and Temp HP, hit dice. At 0 hit points the card becomes death saves.
+- **Status effects**: conditions and boosts, plus exhaustion (levels 1 to 6). They are reminders: they do not change the sheet's numbers, except exhaustion, which lowers speed and maximum hit points and tags checks and saves with DIS.
+- **Inspiration**: tap the star to gain or use it.
+- **Resources and spell slots**: dots for uses left, Use and Restore, and Short rest / Long rest.
+- **Ammunition**: shows inventory items that are ammunition, with **Use 1** and **+1**. Shop ammo counts automatically (a pack of 20 counts down one by one). For a custom item such as a gun's rounds, set its Type to **Ammunition** when you add it on the Equipment tab.
+- **Spells you can cast**: tap a spell to read it, then **Cast at** a slot level. Cantrips that grow with character level (levels 5, 11 and 17) show a box such as "At level 7: 2d10 damage", and beam spells like Eldritch Blast show the beam count. This is worked out from the spell's description text.
+- **Concentration**: remembers which spell you are concentrating on, and a warning card appears before you cast a second concentration spell. You roll the Constitution save yourself.
+- **Pinned**: pin spells and inventory items you use most, and they show at the top.
+- **Features**: your race, class, background and feats, as dropdowns, and a group called **Added by you** from Manage, Character, **Additional features**. A line like `Name: description` becomes its own feature.
+- **Level up**: opens the level-up screen. It adds the level at once, and Cancel puts the character back.
 
 ## DM mode
 
@@ -246,6 +286,12 @@ Add `Monster` elements to any pack, or put a `monsters.json` next to the other f
 - **Item cards** for equipped weapons, attuned or equipped magic items, and potions you press **Equip** on in the Inventory. Weapon cards show the character's own attack bonus and damage.
 
 Both are built in `js/pdf/cards.js`; set `INCLUDE_CANTRIPS = false` at the top of that file to leave cantrips out.
+
+## Installing and updating
+
+Hearthscribe is a PWA: it can be installed to the home screen and works offline. `sw.js` caches the app files, and the app checks for a new version in the background and shows a **Reload** notice when one is installed.
+
+On every deploy, bump the version in all three places: `version.json`, `VERSION` and the `?v=` strings in `sw.js`, and the `?v=` strings in `index.html`. If they do not match, phones keep the old files.
 
 ## Licenses
 

@@ -63,3 +63,62 @@
     transition: none;
   }
 }
+
+/* Death saves: replaces the hit points card at 0 HP (sheet.js deathHtml). Works in the .hpcard and .ds-card shells. */
+.dth { color: var(--ink); }
+.dth-top { display: flex; justify-content: space-between; align-items: center; color: var(--mut); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.dth-state { padding: 2px 12px; border: 1px solid var(--btn); border-radius: 999px; color: var(--ink); letter-spacing: 0.08em; }
+.dth.stable .dth-state { border-color: var(--ok); color: var(--ok); }
+.dth.dead .dth-state { background: var(--btn); color: #fff; }
+.dth-sk { display: flex; flex-direction: column; align-items: center; margin: 10px 0 8px; text-align: center; }
+.dth-sk .dsk-skull { color: var(--btn); }
+.dth.stable .dsk-skull { color: var(--ok); }
+.dth.dead .dsk-skull { color: var(--mut); }
+.dth-sk p { margin: 6px 0 0; color: var(--mut); font-size: 0.85rem; }
+.dth-rows { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.dth-r { display: flex; justify-content: space-between; align-items: center; }
+.dth-pips { display: flex; gap: 10px; }
+.dth .dspip { width: 30px; height: 30px; min-height: 30px; padding: 0; box-sizing: border-box; border-radius: 50%; background: none; border: 2px solid var(--ok); }
+.dth .dspip.f { border-color: var(--btn); }
+.dth .dspip.s.on { background: var(--ok); }
+.dth .dspip.f.on { background: var(--btn); }
+.dth-b { display: flex; gap: 8px; margin-top: 8px; }
+.dth-b button { flex: 1; min-height: 44px; padding: 6px 4px; }
+.dth-b input[type='number'] { flex: 0 0 56px; width: 56px; min-height: 44px; padding: 4px; text-align: center; font: 600 1.1rem Fraunces, Georgia, serif; }
+.dth-roll { display: block; width: 100%; min-height: 48px; margin-top: 8px; }
+
+/* Status effects: chips under the health bar, inside the Hit points card (sheet.js statusHtml). */
+.stbar { margin-top: 10px; }
+.stchips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.stnone { color: var(--mut); font-size: 0.85rem; margin-right: auto; }
+.hpcard .stchip, .hpcard .stadd { min-height: 0; padding: 4px 6px 4px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; line-height: 1.3; }
+.hpcard .stchip { display: inline-flex; align-items: center; gap: 6px; background: var(--sel); color: var(--ink); box-shadow: inset 0 0 0 1px var(--acc); }
+.hpcard .stchip b { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--head); color: var(--mut); font-size: 0.65rem; font-weight: 700; }
+.hpcard .stchip.ex { box-shadow: inset 0 0 0 1px var(--btn); }
+.hpcard .stadd { padding: 4px 12px; background: none; color: var(--mut); border: 1px dashed var(--line); }
+.hpcard .stbar.open .stadd { color: var(--ink); border-color: var(--acc); }
+.stpick { margin-top: 10px; padding: 10px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg); }
+.stgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 6px; }
+.hpcard .stopt { min-height: 36px; padding: 4px 6px; border-radius: 10px; font-size: 0.82rem; font-weight: 500; background: var(--panel); color: var(--ink); border: 1px solid var(--line); }
+.hpcard .stopt.on { border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc); background: var(--sel); }
+.stex { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.stexb { display: flex; gap: 8px; }
+.hpcard .stexb button { width: 40px; min-height: 36px; padding: 0; }
+.stexh { margin: 6px 0 0; font-size: 0.82rem; }
+.stfoot { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+.hpcard .stfoot button { min-height: 38px; padding: 4px 16px; }
+
+/* Exhaustion banner under the stat tiles (sheet.js exhHtml) */
+.exhpill { display: flex; flex-direction: column; gap: 2px; margin: 8px 0; padding: 8px 14px; border: 1px solid var(--btn); border-radius: 14px; background: var(--panel); font-size: 0.85rem; }
+.exhpill b { color: var(--acc); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.exhpill span { color: var(--ink); }
+.ds-tile em { color: var(--acc); }
+
+/* DIS tag on saves and skills while exhaustion gives disadvantage */
+.exdis { display: inline-block; margin-left: 8px; padding: 0 6px; border: 1px solid var(--btn); border-radius: 999px; font-style: normal; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1.5; color: var(--acc); vertical-align: 1px; }
+
+/* Boosts (positive statuses): green accent so they read apart from conditions */
+.hpcard .stchip.buff { box-shadow: inset 0 0 0 1px var(--ok); }
+.hpcard .stopt.buff.on { border-color: var(--ok); box-shadow: 0 0 0 1px var(--ok); }
+.stlab { margin: 10px 0 6px; color: var(--mut); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.stlab:first-child { margin-top: 0; }
